@@ -6,10 +6,6 @@
 	<title>Home</title>
 </head>
 <body>
-<h1>
-	Hello world!  
-</h1>
-
-<P>  The time on the server is ${serverTime}. </P>
+	<h1 class="body">메인페이지</h1>
 </body>
 </html>
