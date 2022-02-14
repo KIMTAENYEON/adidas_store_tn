@@ -6,6 +6,6 @@
 	<title>Home</title>
 </head>
 <body>
-	<h1 class="body">메인페이지</h1>
+	<h1 class="body">${m}</h1>
 </body>
 </html>
