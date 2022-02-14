@@ -6,9 +6,9 @@
 <html>
 <head>
 <title>스프링</title>
-<style>
+	<style>
 	.body{ min-height: calc(100vh - 240px)}
-</style>
+	</style>
 </head>
 <body>
     <tiles:insertAttribute name="header"/>
