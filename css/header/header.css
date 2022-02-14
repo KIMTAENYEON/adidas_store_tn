@@ -1,0 +1,53 @@
+@charset "urf-8";
+
+*{
+	padding: 0; margin: 0; list-style: none; text-decoration: none; color: #000;
+}
+.after::after{
+	content: ''; clear: both; display: block;
+}
+
+.header{
+	width: 100vw; height: 100px; background-color: #fff; position: relative;
+}
+.header-container{
+	padding: 0 40px; display: flex; justify-content: space-between;
+}
+/* 로고 부분 */
+.logo-box{
+	display: flex;
+}
+.logo{
+	width: 100px;
+	background-image: url(https://www.adidas.co.kr/glass/react/717be74/assets/img/icon-adidas-logo.svg);
+	background-position: left center;  background-size: contain; background-repeat: no-repeat;
+}
+/* 메인 메뉴 */
+.main-menu{
+	flex: 0 0 auto; position: relative; display: flex; line-height: 100px;
+}
+.main-menu-gender{
+	margin-top: 3px; margin-right: 20px;
+}
+.main-menu-gender a{
+	font-weight: bold; font-size: 20px; letter-spacing: 1.87px; margin: 0 3px;
+}
+/* 우측 메뉴 */
+.right-menu{
+	display: flex;
+}
+/* 검색창 */
+.search-input{
+	border: solid thin #e9ecef; padding-left: 10px; padding-right: 35px; 
+	background-color: #e9ecef;	text-overflow: ellipsis; font-size: 13px;
+	height: 32px; line-height: 32px; outline: none;
+}
+.mypage-box{
+	width: 100px; height: 100px; background-color: green;
+}
+.choice-box{
+	width: 100px; height: 100px; background-color: gray;
+}
+.basket-box{
+	width: 100px; height: 100px; background-color: blue;
+}
