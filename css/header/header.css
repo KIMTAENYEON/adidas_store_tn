@@ -37,6 +37,9 @@
 	display: flex;
 }
 /* 검색창 */
+.search-box{
+	position: absolute;
+}
 .search-input{
 	border: solid thin #e9ecef; padding-left: 10px; padding-right: 35px; 
 	background-color: #e9ecef;	text-overflow: ellipsis; font-size: 13px;
