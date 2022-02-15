@@ -17,7 +17,6 @@ CREATE TABLE `goods` (
 	`gd_name`	varchar(30)	NULL,
 	`gd_gender`	varchar(6)	NULL,
 	`gd_price`	int	NULL,
-	`gd_limited`	varchar(2)	NULL,
 	`gd_date`	datetime	NULL,
 	`gd_title`	varchar(30)	NULL,
 	`gd_content`	longtext	NULL,
