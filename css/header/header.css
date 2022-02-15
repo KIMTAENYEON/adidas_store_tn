@@ -8,17 +8,17 @@
 }
 
 .header{
-	width: 100vw; height: 100px; background-color: #fff; position: relative;
+	width: 100vw; height: 100px; background-color: #fff; 
 }
 .header-container{
-	padding: 0 40px; display: flex; justify-content: space-between;
+	padding: 0 40px; display: flex; justify-content: space-between; position: relative;
 }
 /* 로고 부분 */
 .logo-box{
 	display: flex;
 }
 .logo{
-	width: 100px;
+	width: 100px; height: 100px;
 	background-image: url(https://www.adidas.co.kr/glass/react/717be74/assets/img/icon-adidas-logo.svg);
 	background-position: left center;  background-size: contain; background-repeat: no-repeat;
 }
@@ -34,23 +34,54 @@
 }
 /* 우측 메뉴 */
 .right-menu{
-	display: flex;
+	display: flex; margin-top: 50px;
+}
+/* 로그인 */
+.login-box{
+	position: absolute; top: 25px; right: 49px;
 }
 /* 검색창 */
 .search-box{
-	position: absolute;
+	position: absolute; top: 59px; right: 190px;
 }
 .search-input{
 	border: solid thin #e9ecef; padding-left: 10px; padding-right: 35px; 
 	background-color: #e9ecef;	text-overflow: ellipsis; font-size: 13px;
 	height: 32px; line-height: 32px; outline: none;
 }
+/* 마이페이지 */
 .mypage-box{
-	width: 100px; height: 100px; background-color: green;
+	width: 50px; height: 50px; position: relative;
 }
+.mypage{
+	width: 32px; height: 32px; position: absolute; top: 9px; left: 9px;
+}
+.icon-mypage{
+	width: 32px; height: 32px; display: block;  
+	background-image: url(../img/person.png);
+	background-position: center; background-size: contain; 
+}
+/* 찜목록 */
 .choice-box{
-	width: 100px; height: 100px; background-color: gray;
+	width: 50px; height: 50px; position: relative;
 }
+.choice{
+	width: 32px; height: 32px; position: absolute; top: 9px; left: 9px;
+}
+.icon-choice{
+	width: 32px; height: 32px; display: block;  
+	background-image: url(../img/heart_empty.png);
+	background-position: center; background-size: contain; 
+}
+/* 장바구니 */
 .basket-box{
-	width: 100px; height: 100px; background-color: blue;
+	width: 50px; height: 50px; position: relative;
+}
+.basket{
+	width: 32px; height: 32px; position: absolute; top: 9px; left: 9px;
+}
+.icon-basket{
+	width: 32px; height: 32px; display: block;  
+	background-image: url(../img/shopping.png);
+	background-position: center; background-size: contain; 
 }
