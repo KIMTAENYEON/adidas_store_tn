@@ -18,8 +18,12 @@ public class HomeController {
 	public ModelAndView home(ModelAndView mv) throws Exception{		
 		MemberVO m = memberService.selectMember();
 		mv.addObject("m", m);
-	    mv.setViewName("/main/home");
-	    return mv;
+	  mv.setViewName("/main/home");
+	  return mv;
 	}
-	
+	@RequestMapping(value= {"/member/login"})
+	public ModelAndView login(ModelAndView mv){		
+	  mv.setViewName("/member/login");
+	  return mv;
+	}
 }

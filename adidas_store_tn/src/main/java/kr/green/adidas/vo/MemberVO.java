@@ -13,4 +13,5 @@ public class MemberVO {
 	private String me_authority;
 	private String me_postnum;
 	private String me_address_detail;
+	private String me_auto_login;
 }

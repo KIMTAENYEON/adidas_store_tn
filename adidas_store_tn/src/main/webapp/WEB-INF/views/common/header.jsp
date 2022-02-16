@@ -14,7 +14,7 @@
 	<div class="header">
 		<div class="header-container">
 			<div class="logo-box">
-				<a href="#" class="logo"></a>
+				<a href="<%=request.getContextPath()%>/" class="logo"></a>
 			</div>
 			<ul class="main-menu">
 				<li class="main-menu-gender">
@@ -28,8 +28,8 @@
 				</li>
 			</ul>
 			<div class="right-menu">
-				<div class="login-box">
-					<a href="" class="login">로그인</a>
+				<div class="login-user-box">
+					<a href="<%=request.getContextPath()%>/member/login" class="login">로그인</a>
 				</div>
 				<div class="search-box">
 					<form action="" class="search-input-container">
