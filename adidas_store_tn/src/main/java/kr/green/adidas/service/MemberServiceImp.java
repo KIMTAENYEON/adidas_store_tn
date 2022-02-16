@@ -1,9 +1,14 @@
 package kr.green.adidas.service;
 
+import javax.mail.internet.MimeMessage;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
 import kr.green.adidas.dao.MemberDAO;
+import kr.green.adidas.vo.EmailCheckVO;
 import kr.green.adidas.vo.MemberVO;
 
 @Service
@@ -11,10 +16,65 @@ public class MemberServiceImp implements MemberService{
 	
 	@Autowired
 	MemberDAO memberDao;
+	@Autowired
+	private JavaMailSender mailSender;
 
 	@Override
-	public MemberVO selectMember() {
-		return memberDao.selectMember();
+	public String emailCheck(EmailCheckVO emailCheck) {
+		if(emailCheck == null)
+			return "false";
+		MemberVO dbMember = memberDao.selectMember(emailCheck.getEm_email());
+		if(dbMember != null)
+			return "false";
+		String code = createRandomCode(6);
+		emailCheck.setEm_checknum(code);
+		memberDao.insertEmailCheck(emailCheck);
+		
+		String from = "k9313308@gmail.com";     // 보내는 사람 이메일    
+    String to  = emailCheck.getEm_email();     // 받는 사람 이메일
+    String title   = "이메일 인증 코드";      // 제목
+    String content = "인증코드는 "+ code + "입니다.";    // 내용
+
+    sendEmail(from, to, title, content);
+    
+		return "true";
+	}
+	
+	//메일보내기 메소드
+	private boolean sendEmail (String from, String to, String title, String content) {
+		try {
+	      MimeMessage message = mailSender.createMimeMessage();
+	      MimeMessageHelper messageHelper 
+	          = new MimeMessageHelper(message, true, "UTF-8");
+	
+	      messageHelper.setFrom(from);  // 보내는사람 생략하거나 하면 정상작동을 안함
+	      messageHelper.setTo(to);     // 받는사람 이메일
+	      messageHelper.setSubject(title); // 메일제목은 생략이 가능하다
+	      messageHelper.setText(content);  // 메일 내용
+	
+	      mailSender.send(message);
+	  } catch(Exception e){
+	      System.out.println(e);
+	      return false;
+	  }
+		return true;
+	}
+	// 랜덤 코드 (입력한 숫자만큼)
+	private String createRandomCode(int maxSize){
+		String pw = "";
+		for(int i = 0; i < maxSize; i++) {
+			int max = 61, min = 0;
+			int r = (int)(Math.random() * (max - min +1) +min);
+			if(0 <= r && r <= 9) {
+				pw += (char)('0' + r);
+			}else if(r <= 35) {
+				pw += (char)('a' + (r - 10));
+			//랜덤 수가 36~61이면 문자 A~Z
+			}else if(r <= 61) {
+				pw += (char)('A' + (r - 36));
+			}
+		}
+		return pw;
 	}
 
 }

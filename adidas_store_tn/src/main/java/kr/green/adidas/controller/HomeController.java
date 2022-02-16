@@ -2,11 +2,14 @@ package kr.green.adidas.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.green.adidas.service.MemberService;
+import kr.green.adidas.vo.EmailCheckVO;
 import kr.green.adidas.vo.MemberVO;
 
 @Controller
@@ -17,8 +20,6 @@ public class HomeController {
 	
 	@RequestMapping(value= {"/"})
 	public ModelAndView home(ModelAndView mv) throws Exception{		
-		MemberVO m = memberService.selectMember();
-		mv.addObject("m", m);
 	  mv.setViewName("/main/home");
 	  return mv;
 	}
@@ -36,5 +37,10 @@ public class HomeController {
 	public ModelAndView signupPost(ModelAndView mv){		
 	  mv.setViewName("/main/home");
 	  return mv;
+	}
+	@ResponseBody
+	@RequestMapping(value= {"/email/check"}, method = RequestMethod.POST)
+	public String emailCheck(@RequestBody EmailCheckVO emailCheck){	
+	  return memberService.emailCheck(emailCheck);
 	}
 }

@@ -1,9 +1,9 @@
 package kr.green.adidas.service;
 
-import kr.green.adidas.vo.MemberVO;
+import kr.green.adidas.vo.EmailCheckVO;
 
 public interface MemberService {
 
-	MemberVO selectMember();
+	String emailCheck(EmailCheckVO emailCheck);
 
 }
