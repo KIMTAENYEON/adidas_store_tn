@@ -6,4 +6,6 @@ public interface MemberService {
 
 	String emailCheck(EmailCheckVO emailCheck);
 
+	String checknumCheck(EmailCheckVO emailCheck);
+
 }

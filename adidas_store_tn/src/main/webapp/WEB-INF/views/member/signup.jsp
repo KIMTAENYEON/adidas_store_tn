@@ -15,11 +15,6 @@
 	<script src="<%=request.getContextPath()%>/resources/js/additional-methods.min.js"></script>
 	<style>
 		.error{ color : red}
-		.spinner-box{
-			position : absolute; top : calc(50vh - 16px); 
-			left : calc(50vw - 16px); width : 32px; height : 32px;
-			display: none;
-		}
 	</style>
 </head>
 <body>
@@ -77,36 +72,67 @@
 			</button>
 		</form>
 	</div>
-	<div class="spinner-box">
-		<div class="spinner-border"></div>
-	</div>
 	<script>
+	//회원가입 전송
+	$('#signup').submit(function() {
+		var agree = $('input[name=agree]').is(':checked');
+		if(!agree){
+			alert('약관동의를 선택하세요. ')
+			$('[name=agree]').focus();
+			return false; 
+		}
+		// 인증코드 확인
+		var em_email = $('[name=me_email]').val();
+		var em_checknum = $('.email-check-code').val();
+		var emailCheck = {
+				em_email : em_email,
+				em_checknum : em_checknum
+			}
+		var emailcode = "no";
+		$.ajax({
+	        async:false,
+	        type:'POST',
+	        data:JSON.stringify(emailCheck),
+	        url: '<%=request.getContextPath()%>/checknum/check',
+	        contentType:"application/json; charset=UTF-8",
+	        success : function(res){
+	        	if(res == "true"){
+	        		alert('회원가입이 완료되었습니다.');
+	        		emailcode = "ok";
+				}else{
+					alert('인증코드를 확인하세요.');
+					emailcode = "no"
+				}
+	        }
+	    });
+		if(emailcode == "no"){
+			return false;
+		}else if(emailcode == "ok"){
+			return true;
+		}
+	});
 	//이메일 인증 버튼 클릭시
 	$('.btn-email-check').click(function() {
 		var em_email = $(this).siblings('[name=me_email]').val();
 		var emailCheck = {
 				em_email : em_email
 			}
-		$('.spinner-box').show();
-		setTimeout(() => {
-			$.ajax({
-		        async:false,
-		        type:'POST',
-		        data:JSON.stringify(emailCheck),
-		        url: '<%=request.getContextPath()%>/email/check',
-		        contentType:"application/json; charset=UTF-8",
-		        success : function(res){
-		        	$('.spinner-box').hide();
-		        	if(res == "true"){
-						alert('입력한 메일에서 인증코드를 확인하세요.');
-					}else if(res == "false"){
-						alert('이미 가입된 이메일입니다.');
-					}else if(res == 'error'){
-						alert('메일 전송에 실패했습니다. 관리자에게 문의하세요.')
-					}
-		        }
-		    });
-		}, 100);
+		$.ajax({
+	        async:false,
+	        type:'POST',
+	        data:JSON.stringify(emailCheck),
+	        url: '<%=request.getContextPath()%>/email/check',
+	        contentType:"application/json; charset=UTF-8",
+	        success : function(res){
+	        	if(res == "true"){
+					alert('입력한 메일에서 인증코드를 확인하세요.');
+				}else if(res == "false"){
+					alert('이미 가입된 이메일입니다.');
+				}else if(res == 'error'){
+					alert('메일 전송에 실패했습니다. 관리자에게 문의하세요.')
+				}
+	        }
+	    });
 	});
 	
 		// 우편번호 찾기 찾기 화면을 넣을 element

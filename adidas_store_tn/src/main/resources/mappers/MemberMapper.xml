@@ -10,4 +10,10 @@
 		insert into emailcheck (em_email, em_checknum)
 			values (#{emailCheck.em_email}, #{emailCheck.em_checknum})
 	</insert>
+	<select id="selectEmailCheck" resultType="kr.green.adidas.vo.EmailCheckVO">
+		select * from emailcheck where em_email = #{em_email}
+	</select>
+	<delete id="deleteEmailCheck">
+		delete from emailcheck where em_email = #{em_email}
+	</delete>
 </mapper>

@@ -26,6 +26,7 @@ public class MemberServiceImp implements MemberService{
 		MemberVO dbMember = memberDao.selectMember(emailCheck.getEm_email());
 		if(dbMember != null)
 			return "false";
+		memberDao.deleteEmailCheck(emailCheck.getEm_email());
 		String code = createRandomCode(6);
 		emailCheck.setEm_checknum(code);
 		memberDao.insertEmailCheck(emailCheck);
@@ -40,6 +41,17 @@ public class MemberServiceImp implements MemberService{
 		return "true";
 	}
 	
+	@Override
+	public String checknumCheck(EmailCheckVO emailCheck) {
+		if(emailCheck == null)
+			return "false";
+		EmailCheckVO dbEmailCheck = memberDao.selectEmailCheck(emailCheck.getEm_email());
+		if(dbEmailCheck == null)
+			return "false";
+		if(!dbEmailCheck.getEm_checknum().equals(emailCheck.getEm_checknum()))
+			return "false";
+		return "true";
+	}
 	//메일보내기 메소드
 	private boolean sendEmail (String from, String to, String title, String content) {
 		try {
@@ -76,5 +88,6 @@ public class MemberServiceImp implements MemberService{
 		}
 		return pw;
 	}
+
 
 }

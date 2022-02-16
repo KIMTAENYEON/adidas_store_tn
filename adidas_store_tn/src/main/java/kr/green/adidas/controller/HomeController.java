@@ -43,4 +43,9 @@ public class HomeController {
 	public String emailCheck(@RequestBody EmailCheckVO emailCheck){	
 	  return memberService.emailCheck(emailCheck);
 	}
+	@ResponseBody
+	@RequestMapping(value= {"/checknum/check"}, method = RequestMethod.POST)
+	public String checknumCheck(@RequestBody EmailCheckVO emailCheck){	
+	  return memberService.checknumCheck(emailCheck);
+	}
 }

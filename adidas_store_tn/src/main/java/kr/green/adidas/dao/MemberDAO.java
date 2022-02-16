@@ -11,4 +11,8 @@ public interface MemberDAO {
 
 	void insertEmailCheck(@Param("emailCheck")EmailCheckVO emailCheck);
 
+	EmailCheckVO selectEmailCheck(@Param("em_email") String em_email);
+
+	void deleteEmailCheck(@Param("em_email") String em_email);
+
 }
