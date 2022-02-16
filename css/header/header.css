@@ -7,12 +7,16 @@
 .after::after{
 	content: ''; clear: both; display: block;
 }
+.margin-top{
+	margin-top: 30px;
+}
 
 .header{
 	width: 100vw; height: 100px; background-color: #fff; 
 }
 .header-container{
 	padding: 0 40px; display: flex; justify-content: space-between; position: relative;
+	border-bottom: 1px solid whitesmoke;
 }
 /* 로고 부분 */
 .logo-box{
@@ -38,7 +42,7 @@
 	display: flex; margin-top: 50px;
 }
 /* 로그인 */
-.right-menu .login-box{
+.right-menu .login-user-box{
 	position: absolute; top: 25px; right: 49px;
 }
 /* 검색창 */

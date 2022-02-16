@@ -12,7 +12,7 @@
 <body>
 		<div class="body login-container">
 			<div class="login-box">
-				<h3>로그인</h3>
+				<h3 class="margin-top">로그인</h3>
 				<form action="" method="post">
 					<a href="javascript:;" class="pw-forget">비밀번호를 잊으셨나요?</a>
 					<div class="email-input-container">
@@ -36,6 +36,10 @@
 							<span>로그인</span>
 							<i class="icon-right"></i>
 						</button>
+						<a href="<%=request.getContextPath()%>/member/signup" class="btn btn-signup">
+							<span>회원가입</span>
+							<i class="icon-right"></i>
+						</a>
 					</div>
 				</form>
 			</div>

@@ -7,7 +7,7 @@
 <head>
 <title>스프링</title>
 	<style>
-	.body{ min-height: calc(100vh - 240px)}
+	.body{ min-height: calc(100vh - 240px);}
 	</style>
 </head>
 <body>

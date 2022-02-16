@@ -3,6 +3,7 @@ package kr.green.adidas.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.green.adidas.service.MemberService;
@@ -21,9 +22,19 @@ public class HomeController {
 	  mv.setViewName("/main/home");
 	  return mv;
 	}
-	@RequestMapping(value= {"/member/login"})
+	@RequestMapping(value= {"/member/login"}, method = RequestMethod.GET)
 	public ModelAndView login(ModelAndView mv){		
 	  mv.setViewName("/member/login");
+	  return mv;
+	}
+	@RequestMapping(value= {"/member/signup"}, method = RequestMethod.GET)
+	public ModelAndView signupGet(ModelAndView mv){		
+	  mv.setViewName("/member/signup");
+	  return mv;
+	}
+	@RequestMapping(value= {"/member/signup"}, method = RequestMethod.POST)
+	public ModelAndView signupPost(ModelAndView mv){		
+	  mv.setViewName("/main/home");
 	  return mv;
 	}
 }
