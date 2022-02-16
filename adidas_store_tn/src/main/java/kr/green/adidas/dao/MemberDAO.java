@@ -15,4 +15,6 @@ public interface MemberDAO {
 
 	void deleteEmailCheck(@Param("em_email") String em_email);
 
+	void insertMember(@Param("member") MemberVO member);
+
 }

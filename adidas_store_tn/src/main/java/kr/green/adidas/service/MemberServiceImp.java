@@ -5,6 +5,7 @@ import javax.mail.internet.MimeMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import kr.green.adidas.dao.MemberDAO;
@@ -18,6 +19,8 @@ public class MemberServiceImp implements MemberService{
 	MemberDAO memberDao;
 	@Autowired
 	private JavaMailSender mailSender;
+	@Autowired
+	BCryptPasswordEncoder passwordEncoder;
 
 	@Override
 	public String emailCheck(EmailCheckVO emailCheck) {
@@ -52,6 +55,23 @@ public class MemberServiceImp implements MemberService{
 			return "false";
 		return "true";
 	}
+	
+	@Override
+	public boolean insertMember(MemberVO member) {
+		if(member == null)
+			return false;
+		if(member.getMe_email() == null || member.getMe_email().trim().length() == 0)
+			return false;
+		if(memberDao.selectMember(member.getMe_email()) != null)
+			return false;
+		if(member.getMe_pw() == null || member.getMe_pw().trim().length() == 0)
+			return false;
+		String encPw = passwordEncoder.encode(member.getMe_pw());
+		member.setMe_pw(encPw);
+		memberDao.insertMember(member);
+		return true;
+	}
+	
 	//메일보내기 메소드
 	private boolean sendEmail (String from, String to, String title, String content) {
 		try {
@@ -88,6 +108,5 @@ public class MemberServiceImp implements MemberService{
 		}
 		return pw;
 	}
-
 
 }

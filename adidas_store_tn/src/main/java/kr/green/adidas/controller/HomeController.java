@@ -34,8 +34,13 @@ public class HomeController {
 	  return mv;
 	}
 	@RequestMapping(value= {"/member/signup"}, method = RequestMethod.POST)
-	public ModelAndView signupPost(ModelAndView mv){		
-	  mv.setViewName("/main/home");
+	public ModelAndView signupPost(ModelAndView mv, MemberVO member){		
+		boolean signup = memberService.insertMember(member);
+		if(signup) {
+			mv.setViewName("redirect:/");			
+		}else {
+			mv.setViewName("redirect:/member/signup");
+		}
 	  return mv;
 	}
 	@ResponseBody

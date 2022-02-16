@@ -16,4 +16,9 @@
 	<delete id="deleteEmailCheck">
 		delete from emailcheck where em_email = #{em_email}
 	</delete>
+	<insert id="insertMember">
+		insert into member (me_email, me_pw, me_name, me_address, me_phone, me_postnum, me_address_detail)
+			values (#{member.me_email}, #{member.me_pw}, #{member.me_name}, #{member.me_address},
+					#{member.me_phone}, #{member.me_postnum}, #{member.me_address_detail} )
+	</insert>
 </mapper>
