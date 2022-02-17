@@ -1,5 +1,7 @@
 package kr.green.adidas.vo;
 
+import java.util.Date;
+
 import lombok.Data;
 
 @Data
@@ -14,4 +16,6 @@ public class MemberVO {
 	private String me_postnum;
 	private String me_address_detail;
 	private String me_auto_login;
+	private String me_session_id;
+	private Date me_session_limit;
 }

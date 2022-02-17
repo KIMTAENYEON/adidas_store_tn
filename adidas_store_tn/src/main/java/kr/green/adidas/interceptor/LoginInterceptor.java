@@ -1,5 +1,8 @@
 package kr.green.adidas.interceptor;
 
+import java.util.Date;
+
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -28,9 +31,29 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 	    MemberVO user = (MemberVO)modelMap.get("user");
 
 	    if(user != null) {
-	        HttpSession session = request.getSession();
-	        session.setAttribute("user", user);
-	    }
+        HttpSession session = request.getSession();
+        //자동 로그인 체크 했으면 
+        if(user.getMe_auto_login() != null) {
+        	//서버에서 쿠키 생성 (이름 : loginCookie, 값 : 세션아이디)
+        	Cookie cookie = new Cookie("loginCookie", session.getId());
+        	//쿠키 기본 경로 설정 
+        	cookie.setPath("/");
+        	//쿠키 유지시간 설정 
+        	int day = 7;
+        	int session_limit_second = 60 * 60 * 24 * day;//일을 초로 계산
+        	cookie.setMaxAge(session_limit_second);
+        	//서버에서 생성된 쿠키를 클라이언트로 보내기 위해 쿠키를 response에 추가
+        	response.addCookie(cookie);
+        	//DB 회원 정보에 쿠키에 저장된 session_id와 session 유지 시간을 업데이트 
+        	//1000ms + 1s => 1000ms + 1000ms => 2000ms
+        	//dat(7)일 후의 날짜
+        	Date session_limit = new Date(System.currentTimeMillis() + 1000 * session_limit_second);
+        	user.setMe_session_id(session.getId());
+        	user.setMe_session_limit(session_limit);
+        	memberService.updateAutoLogin(user);
+        }
+        session.setAttribute("user", user);
+    }
 	}
 
 }

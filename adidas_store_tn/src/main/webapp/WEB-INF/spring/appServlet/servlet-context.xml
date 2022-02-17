@@ -42,25 +42,27 @@
 		class="kr.green.adidas.interceptor.MemberInterceptor"></beans:bean>
 	<beans:bean id="guestInterceptor" 
 		class="kr.green.adidas.interceptor.GuestInterceptor"></beans:bean>
+	<beans:bean id="autoLoginInterceptor" 
+		class="kr.green.adidas.interceptor.AutoLoginInterceptor"></beans:bean>
 		
 	<interceptors>
 	    <interceptor>
 	        <mapping path="/member/login"/>
 	        <beans:ref bean="loginInterceptor"/>
 	    </interceptor>
-	</interceptors>
-	<interceptors>
 	    <interceptor>
 	        <mapping path="/member/mypage"/>
 	        <beans:ref bean="memberInterceptor"/>
 	    </interceptor>
-	</interceptors>
-	<interceptors>
 	    <interceptor>
 	    	<mapping path="/member/login"/>
 	        <mapping path="/member/signup"/>
 	        <mapping path="/member/find"/>
 	        <beans:ref bean="guestInterceptor"/>
+	    </interceptor>
+		<interceptor>
+	        <mapping path="/**/"/>
+	        <beans:ref bean="autoLoginInterceptor"/>
 	    </interceptor>
 	</interceptors>
 	

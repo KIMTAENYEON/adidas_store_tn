@@ -2,7 +2,10 @@ package kr.green.adidas.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Date;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.util.WebUtils;
 
 import kr.green.adidas.service.MemberService;
 import kr.green.adidas.vo.EmailCheckVO;
@@ -44,6 +48,7 @@ public class HomeController {
       out.flush();
       mv.setViewName("/member/login");
 		}else {
+			loginMember.setMe_auto_login(member.getMe_auto_login());
 			mv.addObject("user",loginMember);
 			mv.setViewName("redirect:/");
 		}
@@ -73,6 +78,32 @@ public class HomeController {
 	@RequestMapping(value= {"/checknum/check"}, method = RequestMethod.POST)
 	public String checknumCheck(@RequestBody EmailCheckVO emailCheck){	
 	  return memberService.checknumCheck(emailCheck);
+	}
+	@RequestMapping(value= {"/member/mypage"}, method = RequestMethod.GET)
+	public ModelAndView mypageGet(ModelAndView mv){		
+	  mv.setViewName("/member/mypage");
+	  return mv;
+	}
+	@RequestMapping(value= {"/member/logout"}, method = RequestMethod.GET)
+	public ModelAndView logoutGet(ModelAndView mv, HttpServletRequest request, HttpServletResponse response){		
+		MemberVO user = (MemberVO) request.getSession().getAttribute("user");
+		if(user != null) {
+			//세션에 있는 유저 정보를 삭제
+			request.getSession().removeAttribute("user");
+			//request에 있는 쿠키 들 중에서 loginCookie 정보를 가져옴
+			Cookie cookie = WebUtils.getCookie(request, "loginCookie");
+			//loginCookie 정보가 있으면 => 자동로그인 했다가 로그아웃하는 경우
+			if(cookie != null) {
+				cookie.setMaxAge(0);
+				response.addCookie(cookie);
+				//자동로그인 해제를 위해 세션 아이디에 none을 저장하고, 만료시간을 현재시간으로 설정
+				user.setMe_session_id("none");
+				user.setMe_session_limit(new Date());
+				memberService.updateAutoLogin(user);
+			}
+		}
+	  mv.setViewName("redirect:/member/login");
+	  return mv;
 	}
 	@RequestMapping(value= {"/member/find"}, method = RequestMethod.GET)
 	public ModelAndView findGet(ModelAndView mv){		

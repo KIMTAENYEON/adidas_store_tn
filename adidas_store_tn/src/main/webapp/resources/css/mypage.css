@@ -1,0 +1,38 @@
+@charset "UTF-8";
+*{
+	box-sizing: border-box;
+}
+.icon-right{
+	width: 24px; height: 24px; margin-left: 15px; display: inline-block; vertical-align: -5px;
+	background-image: url(../img/right-arrow.png);
+	background-position: left center;  background-size: contain; background-repeat: no-repeat;
+}
+.mypage-container{
+	position: relative; padding: 0 100px;
+}
+/* 나의 장바구니 */
+.mypage-basket-box{
+	width: 1000px; height: 400px; background-color: yellow; padding: 15px; float: left;
+}
+.mypage-basket-img{
+	width: 100%; height: 300px; background-color: grey; margin-bottom: 10px;
+}
+.mypage-container .btn-mypage{
+	width: 200px;	height: 50px; background: #fff; border: 2px solid #000;
+}
+.mypage-container .btn-mypage span{
+	font-size: 13px; font-weight: bold;
+	text-align: center; line-height: 50px;
+}
+/* 우측 메뉴 */
+.mypage-right-box{
+	width: 300px; height: 200px; background-color: aqua; float: right;
+}
+/* 로그아웃 버튼 */
+.mypage-container .btn-logout{
+	width: 100%;	height: 50px; background-color:#fff; display: block; text-align: center; line-height: 50px; text-decoration: none; border: 2px solid #000;
+}
+.mypage-container .btn-logout span{
+	font-size: 13px; font-weight: bold;
+	text-align: center; line-height: 50px;
+}
