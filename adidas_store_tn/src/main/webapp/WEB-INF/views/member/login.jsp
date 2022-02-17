@@ -14,7 +14,7 @@
 			<div class="login-box">
 				<h3 class="margin-top">로그인</h3>
 				<form action="" method="post">
-					<a href="javascript:;" class="pw-forget">비밀번호를 잊으셨나요?</a>
+					<a href="<%=request.getContextPath()%>/member/find" class="pw-forget">비밀번호를 잊으셨나요?</a>
 					<div class="email-input-container">
 						<div class="email-input-box">
 							<input type="email" placeholder="이메일" name="me_email">

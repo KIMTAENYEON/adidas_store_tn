@@ -1,5 +1,10 @@
 package kr.green.adidas.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,8 +29,24 @@ public class HomeController {
 	  return mv;
 	}
 	@RequestMapping(value= {"/member/login"}, method = RequestMethod.GET)
-	public ModelAndView login(ModelAndView mv){		
+	public ModelAndView loginGet(ModelAndView mv){		
 	  mv.setViewName("/member/login");
+	  return mv;
+	}
+	@RequestMapping(value= {"/member/login"}, method = RequestMethod.POST)
+	public ModelAndView loginPost(ModelAndView mv, MemberVO member, HttpServletResponse response) throws IOException {
+		MemberVO loginMember = memberService.login(member);
+		if(loginMember == null) {
+			response.setContentType("text/html; charset=utf-8");
+			response.setCharacterEncoding("utf-8");
+			PrintWriter out = response.getWriter();
+      out.println("<script>alert('회원정보를 다시 입력하세요.');</script> ");
+      out.flush();
+      mv.setViewName("/member/login");
+		}else {
+			mv.addObject("user",loginMember);
+			mv.setViewName("redirect:/");
+		}
 	  return mv;
 	}
 	@RequestMapping(value= {"/member/signup"}, method = RequestMethod.GET)
@@ -52,5 +73,10 @@ public class HomeController {
 	@RequestMapping(value= {"/checknum/check"}, method = RequestMethod.POST)
 	public String checknumCheck(@RequestBody EmailCheckVO emailCheck){	
 	  return memberService.checknumCheck(emailCheck);
+	}
+	@RequestMapping(value= {"/member/find"}, method = RequestMethod.GET)
+	public ModelAndView findGet(ModelAndView mv){		
+	  mv.setViewName("/member/find");
+	  return mv;
 	}
 }

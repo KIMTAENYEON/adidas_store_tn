@@ -221,7 +221,7 @@
                 },
                 me_pw: {
                     required : true,
-                    regex: /^[a-zA-Z0-9]*(\d[A-z]|[A-z]\d)[a-zA-Z0-9]+$/,
+                    regex: /^[a-zA-Z0-9]*(\d[A-z]|[A-z]\d)[a-zA-Z0-9]*$/,
                     minlength : 8,
                     maxlength : 20
                 },

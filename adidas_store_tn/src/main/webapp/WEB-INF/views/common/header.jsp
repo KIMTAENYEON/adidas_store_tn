@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -29,7 +30,12 @@
 			</ul>
 			<div class="right-menu">
 				<div class="login-user-box">
-					<a href="<%=request.getContextPath()%>/member/login" class="login">로그인</a>
+					<c:if test="${user == null}">
+						<a href="<%=request.getContextPath()%>/member/login" class="login">로그인</a>
+					</c:if>
+					<c:if test="${user != null}">
+						<a href="<%=request.getContextPath()%>/member/mypage" class="user">${user.me_name}님</a>
+					</c:if>
 				</div>
 				<div class="search-box">
 					<form action="" class="search-input-container">
@@ -40,7 +46,7 @@
 					</form>
 				</div>
 				<div class="mypage-box">
-					<a href="" class="mypage"><i class="icon-mypage"></i></a>
+					<a href="<%=request.getContextPath()%>/member/mypage" class="mypage"><i class="icon-mypage"></i></a>
 				</div>
 				<div class="choice-box">
 					<a href="" class="choice"><i class="icon-choice"></i></a>

@@ -72,6 +72,18 @@ public class MemberServiceImp implements MemberService{
 		return true;
 	}
 	
+	@Override
+	public MemberVO login(MemberVO member) {
+		if(member == null || member.getMe_email() == null || member.getMe_email().trim().length() == 0)
+			return null;
+		MemberVO dbMember = memberDao.selectMember(member.getMe_email());
+		if(dbMember == null)
+			return null;
+		if(!passwordEncoder.matches(member.getMe_pw(), dbMember.getMe_pw()))
+			return null;
+		return dbMember;
+	}
+	
 	//메일보내기 메소드
 	private boolean sendEmail (String from, String to, String title, String content) {
 		try {
@@ -108,5 +120,4 @@ public class MemberServiceImp implements MemberService{
 		}
 		return pw;
 	}
-
 }
