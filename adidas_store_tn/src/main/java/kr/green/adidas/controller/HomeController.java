@@ -126,4 +126,13 @@ public class HomeController {
 	public String memberCheck(@RequestBody MemberVO member){	
 	  return memberService.memberCheck(member);
 	}
+	@RequestMapping(value= {"/member/privacy"})
+	public ModelAndView privacy(ModelAndView mv, HttpServletRequest request, MemberVO input){		
+		MemberVO user = (MemberVO) request.getSession().getAttribute("user");
+		MemberVO userMod = memberService.updateMember(input, user);
+		if(userMod != null)
+			request.getSession().setAttribute("user", userMod);
+	  mv.setViewName("/member/privacy");
+	  return mv;
+	}
 }

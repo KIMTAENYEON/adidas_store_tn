@@ -1,0 +1,44 @@
+@charset "UTF-8";
+*{
+	padding: 0; margin: 0; list-style: none; text-decoration: none; color: #000;
+	box-sizing: border-box;
+}
+
+.privacy-modify-box{
+	max-width: 1220px;
+	min-height: 100vh;
+	margin: 0 auto;
+}
+.privacy-modify-box h3{
+	font-size: 42px; line-height: 38px; margin-bottom: 15px;
+}
+.input-member{
+	margin-bottom: 15px;
+}
+.input-member input{
+	height: 50px; width: 500px; padding: 10px; font-size: 16px;
+}
+.input-member #address,
+.input-member .email-check-code{
+	margin-top: 5px;
+}
+.input-member .me_pw{
+	margin-bottom: -10px;
+}
+.input-member .btn-email-check{
+	width: 100px; height: 50px;
+}
+/* 수정 완료 버튼 */
+.privacy-modify-box .btn-modify{
+	width: 150px;	height: 50px; background: #fff; border: 2px solid #000;
+	text-align: center; line-height: 50px; display: inline-block;
+}
+.privacy-modify-box .btn-modify span{
+	font-size: 13px; font-weight: bold;
+	text-align: center; line-height: 50px;
+}
+.icon-right{
+	width: 24px; height: 24px; margin-left: 15px; display: inline-block; vertical-align: -5px;
+	background-image: url(../img/right-arrow.png);
+	background-position: left center;  background-size: contain; background-repeat: no-repeat;
+}

@@ -34,7 +34,18 @@
 						<span>로그아웃</span>
 						<i class="icon-right"></i>
 					</a>
-
+					<a href="<%=request.getContextPath()%>/member/privacy" class="btn btn-privacy">
+						<span>개인정보</span>
+						<i class="icon-right"></i>
+					</a>
+					<a class="btn btn-order">
+						<span>주문조회</span>
+						<i class="icon-right"></i>
+					</a>
+					<a class="btn btn-choice">
+						<span>찜목록</span>
+						<i class="icon-right"></i>
+					</a>
 				</div>
 			</div>
 		</div>

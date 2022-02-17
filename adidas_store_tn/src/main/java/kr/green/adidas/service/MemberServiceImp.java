@@ -116,6 +116,25 @@ public class MemberServiceImp implements MemberService{
 		sendEmail(from, to, title, content);
 		return true;
 	}
+	
+	@Override
+	public MemberVO updateMember(MemberVO input, MemberVO user) {
+		if(input == null || user == null)
+			return null;
+		if(input.getMe_name() == null || input.getMe_address() == null 
+				|| input.getMe_postnum() == null || input.getMe_phone() == null)
+			return null;
+		input.setMe_email(user.getMe_email());
+		if(input.getMe_pw() == null || input.getMe_pw().length() == 0) {
+			input.setMe_pw(user.getMe_pw());
+		}else {
+			String encPw = passwordEncoder.encode(input.getMe_pw());
+			input.setMe_pw(encPw);
+		}
+		memberDao.updateMember(input);
+		return input;
+	}
+	
 	//메일보내기 메소드
 	private boolean sendEmail (String from, String to, String title, String content) {
 		try {
@@ -164,5 +183,6 @@ public class MemberServiceImp implements MemberService{
 	public MemberVO selectMemberBySessionId(String me_session_id) {	
 		return memberDao.selectMemberBySessionId(me_session_id);
 	}
+
 
 }

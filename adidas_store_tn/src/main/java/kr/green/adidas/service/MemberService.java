@@ -21,4 +21,6 @@ public interface MemberService {
 
 	boolean findPw(MemberVO member);
 
+	MemberVO updateMember(MemberVO input, MemberVO user);
+
 }
