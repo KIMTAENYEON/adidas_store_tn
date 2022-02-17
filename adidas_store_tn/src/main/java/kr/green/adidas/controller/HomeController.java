@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -109,5 +110,20 @@ public class HomeController {
 	public ModelAndView findGet(ModelAndView mv){		
 	  mv.setViewName("/member/find");
 	  return mv;
+	}
+	@RequestMapping(value= {"/member/find"}, method = RequestMethod.POST)
+	public ModelAndView findPost(ModelAndView mv, MemberVO member){		
+		boolean find = memberService.findPw(member);
+		if(find) {
+			mv.setViewName("redirect:/member/login");
+		}else {
+			mv.setViewName("redirect:/member/find");
+		}
+	  return mv;
+	}
+	@ResponseBody
+	@RequestMapping(value= {"/member/check"}, method = RequestMethod.POST)
+	public String memberCheck(@RequestBody MemberVO member){	
+	  return memberService.memberCheck(member);
 	}
 }

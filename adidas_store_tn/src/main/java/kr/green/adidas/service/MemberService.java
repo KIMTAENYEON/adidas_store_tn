@@ -17,4 +17,8 @@ public interface MemberService {
 
 	MemberVO selectMemberBySessionId(String value);
 
+	String memberCheck(MemberVO member);
+
+	boolean findPw(MemberVO member);
+
 }

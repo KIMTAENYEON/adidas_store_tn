@@ -1,0 +1,29 @@
+@charset "UTF-8";
+*{
+	padding: 0; margin: 0; list-style: none; text-decoration: none; color: #000;
+	box-sizing: border-box;
+}
+.find-pw-box{
+	width: 500px; height: 500px; margin: 0 auto;
+}
+.find-pw-container h3{
+	font-size: 42px; line-height: 38px; margin-bottom: 15px;
+}
+.find-pw-container .input-email{
+	margin-bottom: 15px;
+}
+.find-pw-container .input-email input{
+	width: 500px; height: 50px; padding: 10px 10px; border: 1px solid #000; outline: none; font-size: 16px;
+}
+.find-pw-container .btn-find-pw{
+	width: 200px;	height: 50px; background: #fff; border: 2px solid #000;
+}
+.find-pw-container .btn-find-pw span{
+	font-size: 13px; font-weight: bold;
+	text-align: center; line-height: 50px;
+}
+.icon-right{
+	width: 24px; height: 24px; margin-left: 15px; display: inline-block; vertical-align: -5px;
+	background-image: url(../img/right-arrow.png);
+	background-position: left center;  background-size: contain; background-repeat: no-repeat;
+}

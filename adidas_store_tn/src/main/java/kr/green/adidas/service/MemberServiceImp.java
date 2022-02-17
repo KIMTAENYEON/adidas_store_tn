@@ -84,6 +84,38 @@ public class MemberServiceImp implements MemberService{
 		return dbMember;
 	}
 	
+	@Override
+	public String memberCheck(MemberVO member) {
+		if(member == null)
+			return "false";
+		MemberVO dbMember = memberDao.selectMember(member.getMe_email());
+		if(dbMember == null)
+			return "false";
+    
+		return "true";
+	}
+	
+	@Override
+	public boolean findPw(MemberVO member) {
+		if(member == null)
+			return false;
+		MemberVO dbMember = memberDao.selectMember(member.getMe_email());
+		if(dbMember == null)
+			return false;
+		String newPw = createRandomCode(8);
+		String encPw = passwordEncoder.encode(newPw);
+		dbMember.setMe_pw(encPw);
+		memberDao.updateMember(dbMember);
+		
+		
+		String from = "k9313308@gmail.com";     // 보내는 사람 이메일    
+		String to  = member.getMe_email();     // 받는 사람 이메일
+		String title   = "새 비밀번호 발급";      // 제목
+		String content = "새 비밀번호는 "+ newPw + "입니다.";    // 내용
+		
+		sendEmail(from, to, title, content);
+		return true;
+	}
 	//메일보내기 메소드
 	private boolean sendEmail (String from, String to, String title, String content) {
 		try {
@@ -103,7 +135,7 @@ public class MemberServiceImp implements MemberService{
 	  }
 		return true;
 	}
-	// 랜덤 코드 (입력한 숫자만큼)
+	// 랜덤 코드 생성 메소드 (입력한 숫자만큼)
 	private String createRandomCode(int maxSize){
 		String pw = "";
 		for(int i = 0; i < maxSize; i++) {
@@ -132,4 +164,5 @@ public class MemberServiceImp implements MemberService{
 	public MemberVO selectMemberBySessionId(String me_session_id) {	
 		return memberDao.selectMemberBySessionId(me_session_id);
 	}
+
 }
