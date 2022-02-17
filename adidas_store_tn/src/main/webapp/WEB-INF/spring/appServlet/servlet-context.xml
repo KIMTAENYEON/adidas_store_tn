@@ -52,6 +52,7 @@
 	    </interceptor>
 	    <interceptor>
 	        <mapping path="/member/mypage"/>
+	        <mapping path="/member/privacy"/>
 	        <beans:ref bean="memberInterceptor"/>
 	    </interceptor>
 	    <interceptor>
