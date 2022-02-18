@@ -37,6 +37,11 @@
 						<a href="<%=request.getContextPath()%>/member/mypage" class="user">${user.me_name}님</a>
 					</c:if>
 				</div>
+				<c:if test="${user.me_authority == '관리자'}">
+					<div class="admin-page-box">
+						<a href="<%=request.getContextPath()%>/admin" class="login">관리자페이지</a>
+					</div>
+				</c:if>
 				<div class="search-box">
 					<form action="" class="search-input-container">
 						<div class="search-input-box">
