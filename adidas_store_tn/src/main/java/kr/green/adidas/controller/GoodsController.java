@@ -5,11 +5,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class AdminController {
+public class GoodsController {
 
-	@RequestMapping(value= {"/admin"})
-	public ModelAndView admin(ModelAndView mv) throws Exception{		
-	  mv.setViewName("/admin/admin");
+	@RequestMapping(value= {"/goods/list"})
+	public ModelAndView home(ModelAndView mv) throws Exception{		
+	  mv.setViewName("/goods/list");
 	  return mv;
 	}
 }

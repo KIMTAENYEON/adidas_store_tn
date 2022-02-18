@@ -13,7 +13,7 @@
 	<div class="body margin-top">
 		<div class="admin-page-container">
 			<div class="admin-goods-move"> 
-				<a href="" class="btn btn-admin-goods">
+				<a href="<%=request.getContextPath()%>/goods/list" class="btn btn-admin-goods">
 					<span>제품관리</span>
 					<i class="icon-right"></i>
 				</a>
