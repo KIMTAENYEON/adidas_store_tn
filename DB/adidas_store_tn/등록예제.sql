@@ -260,3 +260,4 @@ ALTER TABLE `adidas_store_tn`.`member`
 ADD COLUMN `me_session_id` VARCHAR(255) NULL AFTER `me_address_detail`,
 ADD COLUMN `me_session_limit` DATETIME NULL AFTER `me_session_id`;
 
+
