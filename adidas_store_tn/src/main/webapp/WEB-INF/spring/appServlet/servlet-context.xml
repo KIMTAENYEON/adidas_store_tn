@@ -50,6 +50,8 @@
 		class="kr.green.adidas.interceptor.GuestInterceptor"></beans:bean>
 	<beans:bean id="autoLoginInterceptor" 
 		class="kr.green.adidas.interceptor.AutoLoginInterceptor"></beans:bean>
+	<beans:bean id="adminInterceptor" 
+		class="kr.green.adidas.interceptor.AdminInterceptor"></beans:bean>
 		
 	<interceptors>
 	    <interceptor>
@@ -70,6 +72,11 @@
 		<interceptor>
 	        <mapping path="/**/"/>
 	        <beans:ref bean="autoLoginInterceptor"/>
+	    </interceptor>
+	    <interceptor>
+	        <mapping path="/admin"/>
+	        <mapping path="/goods/register"/>
+	        <beans:ref bean="adminInterceptor"/>
 	    </interceptor>
 	</interceptors>
 	
