@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.green.adidas.dao.GoodsDAO">
+	<insert id="insertGoods">
+		insert into goods (gd_img, gd_name, gd_gender, gd_price, gd_title, gd_content,
+				gd_code, gd_material, gd_color, gd_country, gd_made_date, gd_made_company, gd_ca_num, gd_sub_num)
+			values(#{goods.gd_img}, #{goods.gd_name}, #{goods.gd_gender}, #{goods.gd_price},
+				#{goods.gd_title}, #{goods.gd_content}, #{goods.gd_code}, #{goods.gd_material},
+				#{goods.gd_color}, #{goods.gd_country}, #{goods.gd_made_date}, #{goods.gd_made_company},
+				1, 1)
+	</insert>
+</mapper>

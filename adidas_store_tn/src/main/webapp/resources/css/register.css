@@ -20,6 +20,9 @@
 .goods-register .select_img{
 	margin-top: 10px;
 }
+.goods-register .select_img img{
+	width: 800px; height: 750px;
+}
 /* 제품정보 */
 .goods-register .goods-register-information{
 	float: right; width: 30%; height: 850px;

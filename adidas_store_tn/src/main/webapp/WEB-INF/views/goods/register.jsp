@@ -100,7 +100,7 @@
 	  	if(this.files && this.files[0]) {
 	    	var reader = new FileReader;
 	    	reader.onload = function(data) {
-	    		$(".select_img img").attr("src", data.target.result).width(800).height(750);        
+	    		$(".select_img img").attr("src", data.target.result);        
 	    	}
 	    	reader.readAsDataURL(this.files[0]);
 	  	}
