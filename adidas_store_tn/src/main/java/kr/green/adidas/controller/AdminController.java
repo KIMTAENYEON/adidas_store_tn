@@ -7,8 +7,8 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class AdminController {
 
-	@RequestMapping(value= {"/admin"})
-	public ModelAndView admin(ModelAndView mv) throws Exception{		
+	@RequestMapping(value= "/admin")
+	public ModelAndView admin(ModelAndView mv){		
 	  mv.setViewName("/admin/admin");
 	  return mv;
 	}

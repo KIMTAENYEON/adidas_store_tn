@@ -11,7 +11,7 @@
 </head>
 <body>
 	<div class="body margin-top">
-		<form action="" method="post" enctype="multipart/form-data">
+		<form action="<%=request.getContextPath()%>/goods/register" method="post" enctype="multipart/form-data">
 			<div class="goods-register">
 				<div class="goods-register-container after">
 					<!-- 제품이미지 -->
@@ -87,12 +87,8 @@
 						<h3>제조사</h3>
 						<input type="text" name="gd_made_company">
 					</div>
-					<div class="goods-register-code-box">
-						<h3>제품코드</h3>
-						<input type="text" name="gd_code">
-					</div>
 				</div>
-				<button class="btn btn-goods-register">
+				<button type="submit" class="btn btn-goods-register">
 					<span>등록</span>
 					<i class="icon-right"></i>
 				</button>

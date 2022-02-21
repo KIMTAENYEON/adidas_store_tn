@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -28,17 +27,17 @@ public class HomeController {
 	@Autowired
 	MemberService memberService;
 	
-	@RequestMapping(value= {"/"})
-	public ModelAndView home(ModelAndView mv) throws Exception{		
+	@RequestMapping(value= "/")
+	public ModelAndView home(ModelAndView mv){		
 	  mv.setViewName("/main/home");
 	  return mv;
 	}
-	@RequestMapping(value= {"/member/login"}, method = RequestMethod.GET)
+	@RequestMapping(value= "/member/login", method = RequestMethod.GET)
 	public ModelAndView loginGet(ModelAndView mv){		
 	  mv.setViewName("/member/login");
 	  return mv;
 	}
-	@RequestMapping(value= {"/member/login"}, method = RequestMethod.POST)
+	@RequestMapping(value= "/member/login", method = RequestMethod.POST)
 	public ModelAndView loginPost(ModelAndView mv, MemberVO member, HttpServletResponse response) throws IOException {
 		MemberVO loginMember = memberService.login(member);
 		if(loginMember == null) {
@@ -55,12 +54,12 @@ public class HomeController {
 		}
 	  return mv;
 	}
-	@RequestMapping(value= {"/member/signup"}, method = RequestMethod.GET)
+	@RequestMapping(value= "/member/signup", method = RequestMethod.GET)
 	public ModelAndView signupGet(ModelAndView mv){		
 	  mv.setViewName("/member/signup");
 	  return mv;
 	}
-	@RequestMapping(value= {"/member/signup"}, method = RequestMethod.POST)
+	@RequestMapping(value= "/member/signup", method = RequestMethod.POST)
 	public ModelAndView signupPost(ModelAndView mv, MemberVO member){		
 		boolean signup = memberService.insertMember(member);
 		if(signup) {
@@ -71,21 +70,21 @@ public class HomeController {
 	  return mv;
 	}
 	@ResponseBody
-	@RequestMapping(value= {"/email/check"}, method = RequestMethod.POST)
+	@RequestMapping(value= "/email/check", method = RequestMethod.POST)
 	public String emailCheck(@RequestBody EmailCheckVO emailCheck){	
 	  return memberService.emailCheck(emailCheck);
 	}
 	@ResponseBody
-	@RequestMapping(value= {"/checknum/check"}, method = RequestMethod.POST)
+	@RequestMapping(value= "/checknum/check", method = RequestMethod.POST)
 	public String checknumCheck(@RequestBody EmailCheckVO emailCheck){	
 	  return memberService.checknumCheck(emailCheck);
 	}
-	@RequestMapping(value= {"/member/mypage"}, method = RequestMethod.GET)
+	@RequestMapping(value= "/member/mypage", method = RequestMethod.GET)
 	public ModelAndView mypageGet(ModelAndView mv){		
 	  mv.setViewName("/member/mypage");
 	  return mv;
 	}
-	@RequestMapping(value= {"/member/logout"}, method = RequestMethod.GET)
+	@RequestMapping(value= "/member/logout", method = RequestMethod.GET)
 	public ModelAndView logoutGet(ModelAndView mv, HttpServletRequest request, HttpServletResponse response){		
 		MemberVO user = (MemberVO) request.getSession().getAttribute("user");
 		if(user != null) {
@@ -106,12 +105,12 @@ public class HomeController {
 	  mv.setViewName("redirect:/member/login");
 	  return mv;
 	}
-	@RequestMapping(value= {"/member/find"}, method = RequestMethod.GET)
+	@RequestMapping(value= "/member/find", method = RequestMethod.GET)
 	public ModelAndView findGet(ModelAndView mv){		
 	  mv.setViewName("/member/find");
 	  return mv;
 	}
-	@RequestMapping(value= {"/member/find"}, method = RequestMethod.POST)
+	@RequestMapping(value= "/member/find", method = RequestMethod.POST)
 	public ModelAndView findPost(ModelAndView mv, MemberVO member){		
 		boolean find = memberService.findPw(member);
 		if(find) {
@@ -122,11 +121,11 @@ public class HomeController {
 	  return mv;
 	}
 	@ResponseBody
-	@RequestMapping(value= {"/member/check"}, method = RequestMethod.POST)
+	@RequestMapping(value= "/member/check", method = RequestMethod.POST)
 	public String memberCheck(@RequestBody MemberVO member){	
 	  return memberService.memberCheck(member);
 	}
-	@RequestMapping(value= {"/member/privacy"})
+	@RequestMapping(value= "/member/privacy")
 	public ModelAndView privacy(ModelAndView mv, HttpServletRequest request, MemberVO input){		
 		MemberVO user = (MemberVO) request.getSession().getAttribute("user");
 		MemberVO userMod = memberService.updateMember(input, user);

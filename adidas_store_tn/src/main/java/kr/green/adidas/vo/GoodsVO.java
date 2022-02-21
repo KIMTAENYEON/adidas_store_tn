@@ -14,7 +14,6 @@ public class GoodsVO {
 	private Date gd_date;
 	private String gd_title;
 	private String gd_content;
-	private String gd_con_img;
 	private String gd_code;
 	private String gd_material;
 	private String gd_color;
