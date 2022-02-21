@@ -13,7 +13,7 @@
 	<div class="body margin-top">
 		<div class="goods-list">
 			<div class="goods-list-select-option-container">
-				<a href="" class="btn btn-goods-insert">
+				<a href="<%=request.getContextPath()%>/goods/register" class="btn btn-goods-insert">
 					<span>제품등록</span>
 					<i class="icon-right"></i>
 				</a>
