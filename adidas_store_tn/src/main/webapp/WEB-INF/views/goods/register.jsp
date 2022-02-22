@@ -8,10 +8,16 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>제품등록</title>
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/register.css">
+	<!-- 유효성검사 -->
+	<script src="<%=request.getContextPath()%>/resources/js/jquery.validate.min.js"></script>
+	<script src="<%=request.getContextPath()%>/resources/js/additional-methods.min.js"></script>
+	<style>
+		.error{ color : red}
+	</style>
 </head>
 <body>
 	<div class="body margin-top">
-		<form action="<%=request.getContextPath()%>/goods/register" method="post" enctype="multipart/form-data">
+		<form action="<%=request.getContextPath()%>/goods/register" method="post" enctype="multipart/form-data" id="register">
 			<div class="goods-register">
 				<div class="goods-register-container after">
 					<!-- 제품이미지 -->
@@ -32,22 +38,22 @@
 							<input type="radio" name="gd_gender" value="Man">Man
 							<input type="radio" name="gd_gender" value="Woman">Woman
 							<input type="radio" name="gd_gender" value="Kids">Kids
+							<br>
+							<label id="gd_gender-error" class="error" for="gd_gender"></label>
 						</div>
 						<div class="goods-register-category-box">
 							<h3>카테고리 선택</h3>
-							<select class="goods-register-category">
-								<option>신발</option>
-								<option>의류</option>
-								<option>용품</option>
+							<select class="goods-register-category" name="gd_ca_num">
+								
 							</select>
-							<select class="goods-register-sub-category">
+							<select class="goods-register-sub-category" name="gd_sub_num">
 							
 							</select>
 						</div>
 						<div class="goods-register-price-box">
 							<div class="goods-register-price">
 								<h3>가격</h3>
-								<input type="text" name="gd_price">
+								<input type="text" name="gd_price" placeholder="1000원 이상 입력하세요.">
 							</div>
 						</div>
 					</div>
@@ -64,7 +70,7 @@
 					</div>
 					<div class="goods-register-code-box">
 						<h3>제품코드</h3>
-						<input type="text" name="gd_code">
+						<input type="text" name="gd_code" placeholder="영어와 숫자만 사용가능하며 6자로 구성해주세요.">
 					</div>
 					<div class="goods-register-material-box">
 						<h3>소재</h3>
@@ -80,7 +86,7 @@
 					</div>
 					<div class="goods-register-madeDate-box">
 						<h3>제조년월</h3>
-						<input type="text" name="gd_made_date">
+						<input type="text" name="gd_made_date" placeholder="년월일로 6자로 구성해주세요. 예) 220201">
 					</div>
 					<div class="goods-register-madeCompany-box">
 						<h3>제조사</h3>
@@ -95,19 +101,28 @@
 		</form>
 	</div>
 	<script>
-	  $("#gd_img").change(function(){
-	  	if(this.files && this.files[0]) {
-	    	var reader = new FileReader;
-	    	reader.onload = function(data) {
-	    		$(".select_img img").attr("src", data.target.result);        
-	    	}
-	    	reader.readAsDataURL(this.files[0]);
-	  	}
-	  });
-	  setcategory();
-	  //카테고리 불러오기 함수
-	  function setcategory(){
-			var str = '';
+		//등록전송시
+		$("#register").submit(function() {
+			var img = $('[name=file]').val();
+			if(img == null || img == ""){
+				alert('이미지를 선택해주세요.')
+				return false;
+			}
+		});
+	  	//이미지 미리보기
+		$("#gd_img").change(function(){
+			if(this.files && this.files[0]) {
+		  	var reader = new FileReader;
+		  	reader.onload = function(data) {
+		  		$(".select_img img").attr("src", data.target.result);        
+		  	}
+		  	reader.readAsDataURL(this.files[0]);
+			}
+		});
+	  	setcategory();
+	  	//카테고리 불러오기 함수
+	  	function setcategory(){
+			var str = '<option value="0">카테고리</option>';
 			$.ajax({
 		        async:false,
 		        type:'GET',
@@ -122,13 +137,13 @@
 		        }
 		    });
 		}
-	  //카테고리 변경시
-	  $('.goods-register-category').change(function(){
+	  	//카테고리 변경시
+	  	$('.goods-register-category').change(function(){
 			var ca_num = $(this).val();
 			setSubCategory(ca_num);
 		});
-	  //서브카테고리 불러오기 함수
-	  function setSubCategory(ca_num){
+	  	//서브카테고리 불러오기 함수
+	  	function setSubCategory(ca_num){
 			var str = '';
 			if(ca_num <= 0){
 				$('.goods-register-sub-category').html(str);
@@ -148,6 +163,108 @@
 		        }
 		    });
 		}
+		$(function() {
+			// 유효성 검사
+		    $("#register").validate({
+		    	rules: {
+		             gd_name: {
+		                 required : true
+		             },
+		             gd_gender:{
+		             	required: true
+		             },
+		            	gd_ca_num:{
+		            		required: true
+		            	},
+		             gd_sub_num: {
+		             	required : true
+		             },
+		             gd_price: {
+		                 required : true,
+		                 regex: /^[1-9]\d{3,}$/
+		             },
+		             gd_title: {
+		             	required : true
+		             },
+		             gd_content: {
+		             	required : true
+		             },
+		             gd_code: {
+		             	required : true,
+		             	regex: /^[a-zA-Z0-9]{6}$/
+		             },
+		             gd_material: {
+		             	required : true
+		             },
+		             gd_color: {
+		             	required : true
+		             },
+		             gd_country: {
+		             	required : true
+		             },
+		             gd_made_date: {
+		             	required : true,
+		             	regex: /^\d{6}$/
+		             },
+		             gd_made_company: {
+		             	required : true
+		             }
+		         },
+				//규칙체크 실패시 출력될 메시지
+				messages : {
+				    gd_name: {
+				    	required : "필수로입력하세요."
+				    },
+				    gd_gender:{
+				    	required : "필수로입력하세요."
+				    },
+				   	gd_ca_num:{
+				   		required : "필수로입력하세요."
+				   	},
+				    gd_sub_num: {
+				    	required : "필수로입력하세요."
+				    },
+				    gd_price: {
+				   	 	required : "필수로입력하세요.",
+				        regex: "숫자만 입력 가능하고, 1000원 이상 입력해주세요. (0부터 시작할 수 없습니다.)"
+				    },
+				    gd_title: {
+				    	required : "필수로입력하세요."
+				    },
+				    gd_content: {
+				    	required : "필수로입력하세요."
+				    },
+				    gd_code: {
+				    	required : "필수로입력하세요.",
+				    	regex: "영어와 숫자만 입력 가능하고, 6자로 구성해주세요."
+				    },
+				    gd_material: {
+				    	required : "필수로입력하세요."
+				    },
+				    gd_color: {
+				    	required : "필수로입력하세요."
+				    },
+				    gd_country: {
+				    	required : "필수로입력하세요."
+				    },
+				    gd_made_date: {
+				    	required : "필수로입력하세요.",
+				    	regex: "숫자만 입력 가능하고, 6자로 구성해주세요. 예) 220201"
+				    },
+				    gd_made_company: {
+				    	required : "필수로입력하세요."
+				    }
+		       	}
+		   	});
+		  	$.validator.addMethod(
+		 	 		"regex",
+		 	    function(value, element, regexp) {
+		 	        var re = new RegExp(regexp);
+		 	        return this.optional(element) || re.test(value);
+		 	    },
+		 	    "Please check your input."
+			);
+		})
 	</script>
 </body>
 </html>

@@ -1,13 +1,9 @@
 package kr.green.adidas.dao;
 
-import java.util.List;
-
 import org.apache.ibatis.annotations.Param;
 
-import kr.green.adidas.vo.CategoryVO;
 import kr.green.adidas.vo.EmailCheckVO;
 import kr.green.adidas.vo.MemberVO;
-import kr.green.adidas.vo.SubCategoryVO;
 
 public interface MemberDAO {
 
@@ -26,9 +22,5 @@ public interface MemberDAO {
 	MemberVO selectMemberBySessionId(@Param("me_session_id") String me_session_id);
 
 	void updateMember(@Param("member") MemberVO dbMember);
-
-	List<CategoryVO> selectCategory();
-
-	List<SubCategoryVO> selectSubCategory(@Param("sub_ca_num") Integer sub_ca_num);
 
 }

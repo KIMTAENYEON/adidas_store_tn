@@ -3,9 +3,6 @@ package kr.green.adidas.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -21,10 +18,8 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.util.WebUtils;
 
 import kr.green.adidas.service.MemberService;
-import kr.green.adidas.vo.CategoryVO;
 import kr.green.adidas.vo.EmailCheckVO;
 import kr.green.adidas.vo.MemberVO;
-import kr.green.adidas.vo.SubCategoryVO;
 
 @Controller
 public class HomeController {
@@ -139,20 +134,5 @@ public class HomeController {
 	  mv.setViewName("/member/privacy");
 	  return mv;
 	}
-	@ResponseBody
-	@RequestMapping(value= "/category")
-	public Map<String, Object> category(){	
-		HashMap<String, Object> map = new HashMap<String, Object>();
-		List<CategoryVO> list = memberService.selectCategory();
-		map.put("list", list);
-	  return map;
-	}
-	@ResponseBody
-	@RequestMapping(value= "/subcategory")
-	public Map<String, Object> subCategory(Integer sub_ca_num){	
-		HashMap<String, Object> map = new HashMap<String, Object>();
-		List<SubCategoryVO> list = memberService.selectSubCategory(sub_ca_num);
-		map.put("list", list);
-	  return map;
-	}
+	
 }

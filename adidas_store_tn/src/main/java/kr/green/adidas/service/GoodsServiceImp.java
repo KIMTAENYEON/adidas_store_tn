@@ -1,6 +1,7 @@
 package kr.green.adidas.service;
 
 import java.io.File;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,8 +9,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import kr.green.adidas.dao.GoodsDAO;
 import kr.green.adidas.utils.UploadFileUtils;
+import kr.green.adidas.vo.CategoryVO;
 import kr.green.adidas.vo.GoodsVO;
 import kr.green.adidas.vo.MemberVO;
+import kr.green.adidas.vo.SubCategoryVO;
 
 @Service
 public class GoodsServiceImp implements GoodsService{
@@ -39,5 +42,16 @@ public class GoodsServiceImp implements GoodsService{
 			}
 		}
 		goodsDao.insertGoods(goods);
+	}
+	@Override
+	public List<CategoryVO> selectCategory() {
+		return goodsDao.selectCategory();
+	}
+
+	@Override
+	public List<SubCategoryVO> selectSubCategory(Integer sub_ca_num) {
+		if(sub_ca_num == null || sub_ca_num <= 0)
+			return null;
+		return goodsDao.selectSubCategory(sub_ca_num);
 	}
 }

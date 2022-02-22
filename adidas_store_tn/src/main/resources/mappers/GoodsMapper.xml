@@ -9,6 +9,12 @@
 			values(#{goods.gd_img}, #{goods.gd_name}, #{goods.gd_gender}, #{goods.gd_price},
 				#{goods.gd_title}, #{goods.gd_content}, #{goods.gd_code}, #{goods.gd_material},
 				#{goods.gd_color}, #{goods.gd_country}, #{goods.gd_made_date}, #{goods.gd_made_company},
-				1, 1)
+				#{goods.gd_ca_num}, #{goods.gd_sub_num})
 	</insert>
+	<select id="selectCategory" resultType="kr.green.adidas.vo.CategoryVO">
+		select * from category
+	</select>
+	<select id="selectSubCategory" resultType="kr.green.adidas.vo.SubCategoryVO">
+		select * from subcategory where sub_ca_num = #{sub_ca_num}
+	</select>
 </mapper>
