@@ -17,4 +17,6 @@ public interface GoodsService {
 
 	List<SubCategoryVO> selectSubCategory(Integer sub_ca_num);
 
+	List<GoodsVO> getGoodsList();
+
 }

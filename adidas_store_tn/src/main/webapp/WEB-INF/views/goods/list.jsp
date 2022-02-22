@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -39,18 +40,11 @@
 						</span>
 						<span class="goods-select-category-box">
 							<select class="goods-select-category" name="gd_ca_num">
-								<option value="0">카테고리</option>
-								<option value="1">신발</option>
-								<option value="2">의류</option>
-								<option value="3">용품</option>
 							</select>
 						</span>
 						<span class="goods-select-subcategory-box">
 							<select class="goods-select-subcategory" name="gd_sub_num">
 								<option value="0">소분류</option>
-								<option value="1">오리지널스</option>
-								<option value="2">러닝</option>
-								<option value="3">축구</option>
 							</select>
 						</span>
 						<span class="goods-select-size-box">
@@ -90,20 +84,69 @@
 			</div>
 			<!-- 제품리스트 -->
 			<div class="goods-item-list-container">
-				<div class="goods-item-box">
-					<a href="" class="btn btn-goods-item">
-						<span class="goods-item-img-box">
-							<img src="<%=request.getContextPath()%>\/resources/imgUpload\/2022/02/22/f356c84d-7dec-4d0f-842f-61d318602f4f_GW2499.png" alt="">
-							<button type="button" class="btn btn-item-choice"><i class="icon-item-choice"></i></button>
-						</span>
-						<span class="goods-item-text-box">
-							<span class="goods-item-name">name</span>
-							<span class="goods-item-price">10000원</span>
-						</span>
-					</a>
-				</div>
+				<c:forEach var="goods" items="${list}">
+					<input type="hidden" name="gd_num" value="${goods.gd_num}">
+					<div class="goods-item-box">
+						<a href="" class="btn btn-goods-item">
+							<span class="goods-item-img-box">
+								<img src="<%=request.getContextPath()%>${goods.gd_img}" alt="">
+								<button type="button" class="btn btn-item-choice"><i class="icon-item-choice"></i></button>
+							</span>
+							<span class="goods-item-text-box">
+								<span class="goods-item-name">${goods.gd_name}</span>
+								<span class="goods-item-price">${goods.gd_price}원</span>
+							</span>
+						</a>
+					</div>
+				</c:forEach>
 			</div>
 		</div>
 	</div>
+	<script>
+		setCategory();
+	  	//카테고리 불러오기 함수
+	  	function setCategory(){
+			var str = '<option value="0">카테고리</option>';
+			$.ajax({
+		        async:false,
+		        type:'GET',
+		        url: '<%=request.getContextPath()%>/category',
+		        dataType:"json",
+		        success : function(res){
+	        		var list = res.list
+		        	for(ca of list){
+						str += '<option value="'+ca.ca_num+'">'+ca.ca_name+'</option>';
+		        	}
+		        	$('.goods-select-category').html(str);
+		        }
+		    });
+		}
+	  	//카테고리 변경시
+	  	$('.goods-select-category').change(function(){
+			var ca_num = $(this).val();
+			setSubCategory(ca_num);
+		});
+	  	//서브카테고리 불러오기 함수
+	  	function setSubCategory(ca_num){
+			var str = '<option value="0">소분류</option>';
+			if(ca_num <= 0){
+				$('.goods-select-subcategory').html(str);
+				return;
+			}
+			$.ajax({
+		        async:false,
+		        type:'GET',
+		        url: '<%=request.getContextPath()%>/subcategory?sub_ca_num='+ca_num,
+		        dataType:"json",
+		        success : function(res){
+	        		var list = res.list
+		        	for(sub of list){
+						str += '<option value="'+sub.sub_num+'">'+sub.sub_name+'</option>';
+		        	}
+		        	$('.goods-select-subcategory').html(str);
+		        }
+		    });
+		}
+	</script>
 </body>
 </html>

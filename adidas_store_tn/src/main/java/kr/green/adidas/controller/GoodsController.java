@@ -28,6 +28,8 @@ public class GoodsController {
 
 	@RequestMapping(value= "/goods/list")
 	public ModelAndView list(ModelAndView mv){		
+		List<GoodsVO> list = goodsService.getGoodsList();
+		mv.addObject("list", list);
 	  mv.setViewName("/goods/list");
 	  return mv;
 	}

@@ -15,4 +15,6 @@ public interface GoodsDAO {
 	List<CategoryVO> selectCategory();
 
 	List<SubCategoryVO> selectSubCategory(@Param("sub_ca_num") Integer sub_ca_num);
+
+	List<GoodsVO> getGoodsList();
 }

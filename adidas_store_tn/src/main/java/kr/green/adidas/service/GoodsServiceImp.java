@@ -54,4 +54,8 @@ public class GoodsServiceImp implements GoodsService{
 			return null;
 		return goodsDao.selectSubCategory(sub_ca_num);
 	}
+	@Override
+	public List<GoodsVO> getGoodsList() {
+		return goodsDao.getGoodsList();
+	}
 }

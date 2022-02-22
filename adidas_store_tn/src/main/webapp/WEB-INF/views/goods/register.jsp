@@ -119,9 +119,9 @@
 		  	reader.readAsDataURL(this.files[0]);
 			}
 		});
-	  	setcategory();
+	  	setCategory();
 	  	//카테고리 불러오기 함수
-	  	function setcategory(){
+	  	function setCategory(){
 			var str = '<option value="0">카테고리</option>';
 			$.ajax({
 		        async:false,

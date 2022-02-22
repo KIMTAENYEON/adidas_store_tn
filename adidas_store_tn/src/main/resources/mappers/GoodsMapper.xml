@@ -17,4 +17,7 @@
 	<select id="selectSubCategory" resultType="kr.green.adidas.vo.SubCategoryVO">
 		select * from subcategory where sub_ca_num = #{sub_ca_num}
 	</select>
+	<select id="getGoodsList" resultType="kr.green.adidas.vo.GoodsVO">
+		select * from goods order by gd_num desc
+	</select>
 </mapper>
