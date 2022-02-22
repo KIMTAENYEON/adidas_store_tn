@@ -40,4 +40,10 @@
 			me_phone = #{member.me_phone}
 			where me_email = #{member.me_email}
 	</update>
+	<select id="selectCategory" resultType="kr.green.adidas.vo.CategoryVO">
+		select * from category
+	</select>
+	<select id="selectSubCategory" resultType="kr.green.adidas.vo.SubCategoryVO">
+		select * from subcategory where sub_ca_num = #{sub_ca_num}
+	</select>
 </mapper>

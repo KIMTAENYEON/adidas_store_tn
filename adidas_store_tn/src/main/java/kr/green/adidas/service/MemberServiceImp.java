@@ -1,5 +1,7 @@
 package kr.green.adidas.service;
 
+import java.util.List;
+
 import javax.mail.internet.MimeMessage;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,8 +11,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import kr.green.adidas.dao.MemberDAO;
+import kr.green.adidas.vo.CategoryVO;
 import kr.green.adidas.vo.EmailCheckVO;
 import kr.green.adidas.vo.MemberVO;
+import kr.green.adidas.vo.SubCategoryVO;
 
 @Service
 public class MemberServiceImp implements MemberService{
@@ -182,6 +186,18 @@ public class MemberServiceImp implements MemberService{
 	@Override
 	public MemberVO selectMemberBySessionId(String me_session_id) {	
 		return memberDao.selectMemberBySessionId(me_session_id);
+	}
+
+	@Override
+	public List<CategoryVO> selectCategory() {
+		return memberDao.selectCategory();
+	}
+
+	@Override
+	public List<SubCategoryVO> selectSubCategory(Integer sub_ca_num) {
+		if(sub_ca_num == null || sub_ca_num <= 0)
+			return null;
+		return memberDao.selectSubCategory(sub_ca_num);
 	}
 
 

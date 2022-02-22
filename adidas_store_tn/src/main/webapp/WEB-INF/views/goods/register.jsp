@@ -40,9 +40,8 @@
 								<option>의류</option>
 								<option>용품</option>
 							</select>
-							<select class="goods-register-category">
-								<option>소분류</option>
-								<option>선택1</option>
+							<select class="goods-register-sub-category">
+							
 							</select>
 						</div>
 						<div class="goods-register-price-box">
@@ -105,6 +104,50 @@
 	    	reader.readAsDataURL(this.files[0]);
 	  	}
 	  });
+	  setcategory();
+	  //카테고리 불러오기 함수
+	  function setcategory(){
+			var str = '';
+			$.ajax({
+		        async:false,
+		        type:'GET',
+		        url: '<%=request.getContextPath()%>/category',
+		        dataType:"json",
+		        success : function(res){
+	        		var list = res.list
+		        	for(ca of list){
+						str += '<option value="'+ca.ca_num+'">'+ca.ca_name+'</option>';
+		        	}
+		        	$('.goods-register-category').html(str);
+		        }
+		    });
+		}
+	  //카테고리 변경시
+	  $('.goods-register-category').change(function(){
+			var ca_num = $(this).val();
+			setSubCategory(ca_num);
+		});
+	  //서브카테고리 불러오기 함수
+	  function setSubCategory(ca_num){
+			var str = '';
+			if(ca_num <= 0){
+				$('.goods-register-sub-category').html(str);
+				return;
+			}
+			$.ajax({
+		        async:false,
+		        type:'GET',
+		        url: '<%=request.getContextPath()%>/subcategory?sub_ca_num='+ca_num,
+		        dataType:"json",
+		        success : function(res){
+	        		var list = res.list
+		        	for(sub of list){
+						str += '<option value="'+sub.sub_num+'">'+sub.sub_name+'</option>';
+		        	}
+		        	$('.goods-register-sub-category').html(str);
+		        }
+		    });
+		}
 	</script>
 </body>
 </html>
