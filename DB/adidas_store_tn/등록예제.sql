@@ -112,18 +112,18 @@ ALTER TABLE `option` ADD CONSTRAINT `PK_OPTION` PRIMARY KEY (
 ALTER TABLE `adidas_store_tn`.`goods` 
 CHANGE COLUMN `gd_num` `gd_num` INT NOT NULL AUTO_INCREMENT ,
 CHANGE COLUMN `gd_img` `gd_img` VARCHAR(255) NOT NULL ,
-CHANGE COLUMN `gd_name` `gd_name` VARCHAR(30) NOT NULL ,
+CHANGE COLUMN `gd_name` `gd_name` VARCHAR(100) NOT NULL ,
 CHANGE COLUMN `gd_gender` `gd_gender` VARCHAR(6) NOT NULL ,
 CHANGE COLUMN `gd_price` `gd_price` INT NOT NULL ,
 CHANGE COLUMN `gd_date` `gd_date` DATETIME NOT NULL DEFAULT now() ,
-CHANGE COLUMN `gd_title` `gd_title` VARCHAR(30) NOT NULL ,
+CHANGE COLUMN `gd_title` `gd_title` VARCHAR(100) NOT NULL ,
 CHANGE COLUMN `gd_content` `gd_content` LONGTEXT NOT NULL ,
 CHANGE COLUMN `gd_code` `gd_code` CHAR(6) NOT NULL ,
-CHANGE COLUMN `gd_material` `gd_material` VARCHAR(30) NOT NULL ,
+CHANGE COLUMN `gd_material` `gd_material` VARCHAR(100) NOT NULL ,
 CHANGE COLUMN `gd_color` `gd_color` VARCHAR(100) NOT NULL ,
 CHANGE COLUMN `gd_country` `gd_country` VARCHAR(30) NOT NULL ,
 CHANGE COLUMN `gd_made_date` `gd_made_date` CHAR(6) NOT NULL ,
-CHANGE COLUMN `gd_made_company` `gd_made_company` VARCHAR(30) NOT NULL ,
+CHANGE COLUMN `gd_made_company` `gd_made_company` VARCHAR(100) NOT NULL ,
 CHANGE COLUMN `gd_importer` `gd_importer` VARCHAR(30) NULL DEFAULT '아디다스코리아[유]' ;
 
 ALTER TABLE `adidas_store_tn`.`category` 
@@ -259,5 +259,4 @@ CREATE TABLE `adidas_store_tn`.`emailcheck` (
 ALTER TABLE `adidas_store_tn`.`member` 
 ADD COLUMN `me_session_id` VARCHAR(255) NULL AFTER `me_address_detail`,
 ADD COLUMN `me_session_limit` DATETIME NULL AFTER `me_session_id`;
-
 
