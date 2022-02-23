@@ -20,6 +20,7 @@ import kr.green.adidas.service.GoodsService;
 import kr.green.adidas.vo.CategoryVO;
 import kr.green.adidas.vo.GoodsVO;
 import kr.green.adidas.vo.MemberVO;
+import kr.green.adidas.vo.SelectVO;
 import kr.green.adidas.vo.SubCategoryVO;
 
 @Controller
@@ -29,10 +30,12 @@ public class GoodsController {
 	GoodsService goodsService;
 
 	@RequestMapping(value= "/goods/list")
-	public ModelAndView list(ModelAndView mv, Criteria cri){		
+	public ModelAndView list(ModelAndView mv, Criteria cri, SelectVO select){	
+		System.out.println(select);
 		List<GoodsVO> list = goodsService.getGoodsList(cri);
-		int totalCount = goodsService.getTotalCount();
+		int totalCount = goodsService.getTotalCount(cri);
 		PageMaker pm = new PageMaker(totalCount, cri);
+		mv.addObject("select", select);
 		mv.addObject("pm", pm);
 		mv.addObject("list", list);
 	  mv.setViewName("/goods/list");

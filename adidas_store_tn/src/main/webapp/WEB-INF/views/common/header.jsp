@@ -43,11 +43,11 @@
 					</div>
 				</c:if>
 				<div class="search-box">
-					<form action="" class="search-input-container">
+					<form action="<%=request.getContextPath()%>/goods/list" class="search-input-container">
 						<div class="search-input-box">
-							<input type="text" class="search-input" placeholder="검색">
+							<input type="text" class="search-input" placeholder="검색" name="search" value="${pm.criteria.search}">
 						</div>
-						<button class="btn btn-search"><i class="icon-search"></i></button>
+						<button class="btn btn-search" type="submit"><i class="icon-search"></i></button>
 					</form>
 				</div>
 				<div class="mypage-box">

@@ -19,5 +19,5 @@ public interface GoodsDAO {
 
 	List<GoodsVO> getGoodsList(@Param("cri") Criteria cri);
 
-	int selectTotalCount();
+	int selectTotalCount(@Param("cri") Criteria cri);
 }

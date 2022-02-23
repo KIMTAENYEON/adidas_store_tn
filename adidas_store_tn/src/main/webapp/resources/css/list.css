@@ -3,6 +3,9 @@
 	padding: 0; margin: 0; list-style: none; text-decoration: none; color: #000;
 	box-sizing: border-box;
 }
+button{
+	cursor: pointer;
+}
 .goods-list{
 	padding: 50px; margin: 0 auto; min-width: 1280px; width: 80%;
 }

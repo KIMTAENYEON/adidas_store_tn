@@ -20,6 +20,6 @@ public interface GoodsService {
 
 	List<GoodsVO> getGoodsList(Criteria cri);
 
-	int getTotalCount();
+	int getTotalCount(Criteria cri);
 
 }

@@ -34,7 +34,7 @@
 						</div>
 						<div class="goods-register-gender-box">
 							<h3>성별</h3>
-							<input type="radio" name="gd_gender" value="unisex">Unisex 
+							<input type="radio" name="gd_gender" value="Unisex">Unisex 
 							<input type="radio" name="gd_gender" value="Man">Man
 							<input type="radio" name="gd_gender" value="Woman">Woman
 							<input type="radio" name="gd_gender" value="Kids">Kids

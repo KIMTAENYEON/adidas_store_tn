@@ -60,7 +60,7 @@ public class GoodsServiceImp implements GoodsService{
 		return goodsDao.getGoodsList(cri);
 	}
 	@Override
-	public int getTotalCount() {
-		return goodsDao.selectTotalCount();
+	public int getTotalCount(Criteria cri) {
+		return goodsDao.selectTotalCount(cri);
 	}
 }

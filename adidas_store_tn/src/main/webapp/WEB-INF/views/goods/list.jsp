@@ -10,7 +10,9 @@
 	<title>제품리스트</title>
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/list.css">
 	<script src="<%=request.getContextPath()%>/resources/js/jquery.min.js"></script>
-	
+	<!-- 유효성 검사 -->
+	<script src="<%=request.getContextPath()%>/resources/js/jquery.validate.min.js"></script>
+	<script src="<%=request.getContextPath()%>/resources/js/additional-methods.min.js"></script>
 </head>
 <body>
 	<div class="body">
@@ -23,17 +25,62 @@
 				<!-- 검색결과 -->
 				<div class="goods-list-select-search-box">
 					<h1>
-						<span>Men</span>
-						<span class="and"> · </span>
-						<span>Shoes</span>
+						<c:if test="${pm.criteria.search != null && pm.criteria.search != ''}">
+							<span>${pm.criteria.search}</span>
+						</c:if>
+						<c:if test="${select.se_gender != null && select.se_gender != '성별'}">
+							<span>${select.se_gender}</span>
+							<c:if test="${select.se_ca_num != null && select.se_ca_num != 0}">
+								<span class="and"> · </span>
+							</c:if>
+						</c:if>
+						<c:if test="${select.se_ca_num != null && select.se_ca_num != 0}">
+							<c:if test="${select.se_ca_num == 1}"><span>Shoes</span></c:if>
+							<c:if test="${select.se_ca_num == 2}"><span>Clothing</span></c:if>
+							<c:if test="${select.se_ca_num == 3}"><span>Accessories</span></c:if>
+							<c:if test="${select.se_ca_num == 4}"><span>8-16 Years</span></c:if>
+							<c:if test="${select.se_ca_num == 5}"><span>4-8 Years</span></c:if>
+							<c:if test="${select.se_ca_num == 6}"><span>1-4 Years</span></c:if>
+							<c:if test="${select.se_sub_num != null && select.se_sub_num != 0}">
+								<span class="and"> · </span>
+								<c:if test="${select.se_sub_num == 1}"><span>Originals</span></c:if>
+								<c:if test="${select.se_sub_num == 2}"><span>Running</span></c:if>
+								<c:if test="${select.se_sub_num == 3}"><span>Football</span></c:if>
+								<c:if test="${select.se_sub_num == 4}"><span>Golf</span></c:if>
+								<c:if test="${select.se_sub_num == 5}"><span>Jackets</span></c:if>
+								<c:if test="${select.se_sub_num == 6}"><span>Jerseys</span></c:if>
+								<c:if test="${select.se_sub_num == 7}"><span>Hoodies</span></c:if>
+								<c:if test="${select.se_sub_num == 8}"><span>T-Shirts</span></c:if>
+								<c:if test="${select.se_sub_num == 9}"><span>Tracksuits</span></c:if>
+								<c:if test="${select.se_sub_num == 10}"><span>Pants</span></c:if>
+								<c:if test="${select.se_sub_num == 11}"><span>Shorts</span></c:if>
+								<c:if test="${select.se_sub_num == 12}"><span>Tights</span></c:if>
+								<c:if test="${select.se_sub_num == 13}"><span>Skirts</span></c:if>
+								<c:if test="${select.se_sub_num == 14}"><span>Dresses</span></c:if>
+								<c:if test="${select.se_sub_num == 15}"><span>Socks</span></c:if>
+								<c:if test="${select.se_sub_num == 16}"><span>Headwear</span></c:if>
+								<c:if test="${select.se_sub_num == 17}"><span>Bags</span></c:if>
+								<c:if test="${select.se_sub_num == 18}"><span>Gloves</span></c:if>
+								<c:if test="${select.se_sub_num == 19 || select.se_sub_num == 22 || select.se_sub_num == 25}"><span>Shoes</span></c:if>
+								<c:if test="${select.se_sub_num == 20 || select.se_sub_num == 23 || select.se_sub_num == 26}"><span>Clothing</span></c:if>
+								<c:if test="${select.se_sub_num == 21 || select.se_sub_num == 24}"><span>Accessories</span></c:if>
+							</c:if>
+						</c:if>
+						<c:if test="${pm.criteria.search == null || pm.criteria.search == ''}">
+							<c:if test="${select.se_gender == null || select.se_gender == '성별'}">
+								<c:if test="${select.se_ca_num == null || select.se_ca_num == 0}">
+									<span>모든제품</span>
+								</c:if>
+							</c:if>
+						</c:if>
 					</h1>
 				</div>
 				<!-- 선택옵션창 -->
-				<form action="">
+				<form action="<%=request.getContextPath()%>/goods/list" id="select-option">
 					<div class="goods-list-select-option-box">
 						<span class="goods-select-gender-box">
-							<select class="goods-select-gender" name="gd_gender">
-								<option value="0">성별</option>
+							<select class="goods-select-gender" name="se_gender">
+								<option value="성별">성별</option>
 								<option value="Unisex">Unisex</option>
 								<option value="Man">Man</option>
 								<option value="Woman">Woman</option>
@@ -41,31 +88,23 @@
 							</select>
 						</span>
 						<span class="goods-select-category-box">
-							<select class="goods-select-category" name="gd_ca_num">
+							<select class="goods-select-category" name="se_ca_num">
 							</select>
 						</span>
 						<span class="goods-select-subcategory-box">
-							<select class="goods-select-subcategory" name="gd_sub_num">
+							<select class="goods-select-subcategory" name="se_sub_num">
 								<option value="0">소분류</option>
 							</select>
 						</span>
-						<span class="goods-select-size-box">
-							<select class="goods-select-size" name="op_size">
-								<option value="0">사이즈</option>
-								<option value="">S</option>
-								<option value="">M</option>
-								<option value="">L</option>
-							</select>
-						</span>
 						<label class="goods-select-new-box">
-							<input type="checkbox" class="goods-select-new" name="new">신상품
+							<input type="checkbox" class="goods-select-new" name="se_new">신상품
 						</label>
 						<span class="goods-select-price-box">
-							<input type="number" class="goods-select-min-price" placeholder="최소 가격"> ~
-							<input type="number" class="goods-select-max-price" placeholder="최대 가격">
+							<input type="text" class="goods-select-min-price" placeholder="최소 가격" name="se_min_price"> ~
+							<input type="text" class="goods-select-max-price" placeholder="최대 가격" name="se_max_price">
 						</span>
 						<span class="goods-select-lineup-box">
-							<select class="goods-select-lineup" name="lineup">
+							<select class="goods-select-lineup" name="se_lineup">
 								<option value="0">정렬기준</option>
 								<option value="1">가격낮은순</option>
 								<option value="2">가격높은순</option>
@@ -107,7 +146,7 @@
 				<div class="goods-list-pagination-box">
 					<div class="pagination-prev-box">
 						<c:if test="${pm.prev}">
-							<a href="<%=request.getContextPath()%>/goods/list?page=${pm.criteria.page-1}" class="btn btn-pagination-prev">이전</a>
+							<a href="<%=request.getContextPath()%>/goods/list?page=${pm.criteria.page-1}&search=${pm.criteria.search}" class="btn btn-pagination-prev">이전</a>
 						</c:if>
 					</div>
 					<div class="pagination-page-box">
@@ -125,12 +164,12 @@
 									<c:forEach begin="1" end="${pm.endPage }" var="i">
 										<c:if test="${i != pm.criteria.page}">
 											<li class="page-item">
-												<a href="<%=request.getContextPath()%>/goods/list?page=${i}" class="page-link">${i}</a>
+												<a href="<%=request.getContextPath()%>/goods/list?page=${i}&search=${pm.criteria.search}" class="page-link">${i}</a>
 											</li>
 										</c:if>
 										<c:if test="${i == pm.criteria.page}">
 											<li class="page-item selected">
-												<a href="<%=request.getContextPath()%>/goods/list?page=${i}" class="page-link">${i}</a>
+												<a href="<%=request.getContextPath()%>/goods/list?page=${i}&search=${pm.criteria.search}" class="page-link">${i}</a>
 											</li>
 										</c:if>
 									</c:forEach>
@@ -141,7 +180,7 @@
 					</div>
 					<div class="pagination-next-box">
 						<c:if test="${pm.next }">
-							<a href="<%=request.getContextPath()%>/goods/list?page=${pm.criteria.page+1}" class="btn btn-pagination-next">다음</a>
+							<a href="<%=request.getContextPath()%>/goods/list?page=${pm.criteria.page+1}&search=${pm.criteria.search}" class="btn btn-pagination-next">다음</a>
 						</c:if>
 					</div>
 				</div>
@@ -149,8 +188,15 @@
 		</div>
 	</div>
 	<script>
+		//옵션 적용시 최소가격, 최대가격 입력안할시 0으로 처리
+		$('.btn-option-apply').click(function() {
+			if($('[name=se_min_price]').val() == null || $('[name=se_min_price]').val() == "")
+				$('[name=se_min_price]').val(0)
+			if($('[name=se_max_price]').val() == null || $('[name=se_max_price]').val() == "")
+				$('[name=se_max_price]').val(0)
+		});
 		setCategory();
-	  	//카테고리 불러오기 함수
+	  	//카테고리 목록 불러오기 함수
 	  	function setCategory(){
 			var str = '<option value="0">카테고리</option>';
 			$.ajax({
@@ -172,7 +218,7 @@
 			var ca_num = $(this).val();
 			setSubCategory(ca_num);
 		});
-	  	//서브카테고리 불러오기 함수
+	  	//서브카테고리 목록 불러오기 함수
 	  	function setSubCategory(ca_num){
 			var str = '<option value="0">소분류</option>';
 			if(ca_num <= 0){
