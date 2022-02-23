@@ -9,6 +9,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>제품리스트</title>
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/list.css">
+	<script src="<%=request.getContextPath()%>/resources/js/jquery.min.js"></script>
+	
 </head>
 <body>
 	<div class="body">
@@ -50,9 +52,9 @@
 						<span class="goods-select-size-box">
 							<select class="goods-select-size" name="op_size">
 								<option value="0">사이즈</option>
-								<option value="1">S</option>
-								<option value="2">M</option>
-								<option value="3">L</option>
+								<option value="">S</option>
+								<option value="">M</option>
+								<option value="">L</option>
 							</select>
 						</span>
 						<label class="goods-select-new-box">
@@ -85,9 +87,9 @@
 			<!-- 제품리스트 -->
 			<div class="goods-item-list-container">
 				<c:forEach var="goods" items="${list}">
-					<input type="hidden" name="gd_num" value="${goods.gd_num}">
 					<div class="goods-item-box">
 						<a href="" class="btn btn-goods-item">
+							<input type="hidden" name="gd_num" value="${goods.gd_num}">
 							<span class="goods-item-img-box">
 								<img src="<%=request.getContextPath()%>${goods.gd_img}" alt="">
 								<button type="button" class="btn btn-item-choice"><i class="icon-item-choice"></i></button>
@@ -99,6 +101,50 @@
 						</a>
 					</div>
 				</c:forEach>
+			</div>
+			<!-- 페이지네이션 -->
+			<div class="goods-list-pagination-container">
+				<div class="goods-list-pagination-box">
+					<div class="pagination-prev-box">
+						<c:if test="${pm.prev}">
+							<a href="<%=request.getContextPath()%>/goods/list?page=${pm.criteria.page-1}" class="btn btn-pagination-prev">이전</a>
+						</c:if>
+					</div>
+					<div class="pagination-page-box">
+						<span>
+							페이지: 
+						</span>
+						<div class="pagination-now-page-box">
+							<button type="button" class="btn btn-now-page">
+								<span>${pm.criteria.page}</span>
+								<i class="icon-arrow-down"></i>
+							</button>
+							<!-- 현재페이지박스 클릭시 나타나는 페이지선택박스 -->
+							<div class="page-select-box">
+								<ul class="pagination-page-select">
+									<c:forEach begin="1" end="${pm.endPage }" var="i">
+										<c:if test="${i != pm.criteria.page}">
+											<li class="page-item">
+												<a href="<%=request.getContextPath()%>/goods/list?page=${i}" class="page-link">${i}</a>
+											</li>
+										</c:if>
+										<c:if test="${i == pm.criteria.page}">
+											<li class="page-item selected">
+												<a href="<%=request.getContextPath()%>/goods/list?page=${i}" class="page-link">${i}</a>
+											</li>
+										</c:if>
+									</c:forEach>
+								</ul>
+							</div>
+						</div>
+						<span>/ ${pm.endPage}</span>
+					</div>
+					<div class="pagination-next-box">
+						<c:if test="${pm.next }">
+							<a href="<%=request.getContextPath()%>/goods/list?page=${pm.criteria.page+1}" class="btn btn-pagination-next">다음</a>
+						</c:if>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -147,6 +193,17 @@
 		        }
 		    });
 		}
+	  	// 페이지네이션 이벤트
+	  	$('.btn-now-page').click(function(){
+			$('.goods-list-pagination-container .page-select-box').toggle();
+		});
+		$('.page-item').hover(function(){
+			$(this).css('background-color', '#e9ecef');
+		}, function(){
+			if(!$(this).hasClass('selected')){
+				$(this).css('background-color', '#fff');
+			}
+		});
 	</script>
 </body>
 </html>

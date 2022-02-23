@@ -6,6 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>제품리스트</title>
 	<link rel="stylesheet" href="../list/list.css">
+	<script src="../js/jquery.min.js"></script>
 </head>
 <body>
 	<div class="body">
@@ -149,7 +150,64 @@
 					</a>
 				</div>
 			</div>
+			<!-- 페이지네이션 -->
+			<div class="goods-list-pagination-container">
+				<div class="goods-list-pagination-box">
+					<div class="pagination-prev-box">
+						<a href="" class="btn btn-pagination-prev">이전</a>
+					</div>
+					<div class="pagination-page-box">
+						<span>
+							페이지: 
+						</span>
+						<div class="pagination-now-page-box">
+							<button type="button" class="btn btn-now-page">
+								<span>2</span>
+								<i class="icon-arrow-down"></i>
+							</button>
+							<!-- 현재페이지박스 클릭시 나타나는 페이지선택박스 -->
+							<div class="page-select-box">
+								<ul class="pagination-page-select">
+									<li class="page-item">
+										<a href="javascript:;" class="page-link">1</a>
+									</li>
+									<li class="page-item selected">
+										<a href="javascript:;" class="page-link">2</a>
+									</li>
+									<li class="page-item">
+										<a href="javascript:;" class="page-link">3</a>
+									</li>
+									<li class="page-item">
+										<a href="javascript:;" class="page-link">4</a>
+									</li>
+									<li class="page-item">
+										<a href="javascript:;" class="page-link">5</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<span>
+							/46
+						</span>
+					</div>
+					<div class="pagination-next-box">
+						<a href="" class="btn btn-pagination-next">다음</a>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
+	<script>
+		$('.btn-now-page').click(function(){
+			$('.goods-list-pagination-container .page-select-box').toggle();
+		});
+		$('.page-item').hover(function(){
+			$(this).css('background-color', '#e9ecef');
+		}, function(){
+			if(!$(this).hasClass('selected')){
+				$(this).css('background-color', '#fff');
+			}
+		});
+	</script>
 </body>
 </html>

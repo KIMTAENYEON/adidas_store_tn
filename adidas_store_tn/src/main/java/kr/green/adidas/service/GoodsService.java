@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import kr.green.adidas.pagination.Criteria;
 import kr.green.adidas.vo.CategoryVO;
 import kr.green.adidas.vo.GoodsVO;
 import kr.green.adidas.vo.MemberVO;
@@ -17,6 +18,8 @@ public interface GoodsService {
 
 	List<SubCategoryVO> selectSubCategory(Integer sub_ca_num);
 
-	List<GoodsVO> getGoodsList();
+	List<GoodsVO> getGoodsList(Criteria cri);
+
+	int getTotalCount();
 
 }

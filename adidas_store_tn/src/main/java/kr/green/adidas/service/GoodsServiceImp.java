@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.green.adidas.dao.GoodsDAO;
+import kr.green.adidas.pagination.Criteria;
 import kr.green.adidas.utils.UploadFileUtils;
 import kr.green.adidas.vo.CategoryVO;
 import kr.green.adidas.vo.GoodsVO;
@@ -55,7 +56,11 @@ public class GoodsServiceImp implements GoodsService{
 		return goodsDao.selectSubCategory(sub_ca_num);
 	}
 	@Override
-	public List<GoodsVO> getGoodsList() {
-		return goodsDao.getGoodsList();
+	public List<GoodsVO> getGoodsList(Criteria cri) {
+		return goodsDao.getGoodsList(cri);
+	}
+	@Override
+	public int getTotalCount() {
+		return goodsDao.selectTotalCount();
 	}
 }

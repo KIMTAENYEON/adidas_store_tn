@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import kr.green.adidas.pagination.Criteria;
+import kr.green.adidas.pagination.PageMaker;
 import kr.green.adidas.service.GoodsService;
 import kr.green.adidas.vo.CategoryVO;
 import kr.green.adidas.vo.GoodsVO;
@@ -27,8 +29,11 @@ public class GoodsController {
 	GoodsService goodsService;
 
 	@RequestMapping(value= "/goods/list")
-	public ModelAndView list(ModelAndView mv){		
-		List<GoodsVO> list = goodsService.getGoodsList();
+	public ModelAndView list(ModelAndView mv, Criteria cri){		
+		List<GoodsVO> list = goodsService.getGoodsList(cri);
+		int totalCount = goodsService.getTotalCount();
+		PageMaker pm = new PageMaker(totalCount, cri);
+		mv.addObject("pm", pm);
 		mv.addObject("list", list);
 	  mv.setViewName("/goods/list");
 	  return mv;

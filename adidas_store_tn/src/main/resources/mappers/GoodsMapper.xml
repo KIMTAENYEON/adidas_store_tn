@@ -19,5 +19,9 @@
 	</select>
 	<select id="getGoodsList" resultType="kr.green.adidas.vo.GoodsVO">
 		select * from goods order by gd_num desc
+			limit #{cri.pageStart}, #{cri.perPageNum}
+	</select>
+	<select id="selectTotalCount" resultType="int">
+		select count(*) from goods 
 	</select>
 </mapper>
