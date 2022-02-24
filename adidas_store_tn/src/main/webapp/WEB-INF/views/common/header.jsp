@@ -19,13 +19,13 @@
 			</div>
 			<ul class="main-menu">
 				<li class="main-menu-gender">
-					<a href="" class="men">MEN</a>
+					<a href="<%=request.getContextPath()%>/goods/list?se_gender=Man" class="man">MAN</a>
 				</li>
 				<li class="main-menu-gender">
-					<a href="" class="women">WOMEN</a>
+					<a href="<%=request.getContextPath()%>/goods/list?se_gender=Women" class="women">WOMEN</a>
 				</li>
 				<li class="main-menu-gender">
-					<a href="" class="kids">KIDS</a>
+					<a href="<%=request.getContextPath()%>/goods/list?se_gender=Kids" class="kids">KIDS</a>
 				</li>
 			</ul>
 			<div class="right-menu">

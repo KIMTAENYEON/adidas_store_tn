@@ -61,7 +61,7 @@
 	width: 100%; display: grid; grid-template-columns: repeat(4, 25.00%); grid-template-rows: repeat(5, 400px);
 }
 .goods-item-list-container .goods-item-box{
-	border: 1px solid #000; height: 400px; display: inline;
+	border: 1px solid #fff; height: 400px; display: inline;
 }
 /* 제품이미지박스 */
 .goods-item-list-container .goods-item-img-box{
@@ -87,6 +87,9 @@
 }
 .goods-item-list-container .goods-item-price{
 	font-size: 13px; line-height: 50px; position: absolute; bottom: 10px; left: 10px;
+}
+.goods-item-list-container .goods-item-amount{
+	font-size: 13px; line-height: 50px; position: absolute; bottom: 10px; right: 10px; color: red;
 }
 .goods-item-list-container span{
 	display: block;

@@ -7,6 +7,8 @@ import org.apache.ibatis.annotations.Param;
 import kr.green.adidas.pagination.Criteria;
 import kr.green.adidas.vo.CategoryVO;
 import kr.green.adidas.vo.GoodsVO;
+import kr.green.adidas.vo.OptionVO;
+import kr.green.adidas.vo.SelectVO;
 import kr.green.adidas.vo.SubCategoryVO;
 
 public interface GoodsDAO {
@@ -17,7 +19,9 @@ public interface GoodsDAO {
 
 	List<SubCategoryVO> selectSubCategory(@Param("sub_ca_num") Integer sub_ca_num);
 
-	List<GoodsVO> getGoodsList(@Param("cri") Criteria cri);
+	List<GoodsVO> getGoodsList(@Param("cri") Criteria cri, @Param("select") SelectVO select);
 
-	int selectTotalCount(@Param("cri") Criteria cri);
+	int selectTotalCount(@Param("cri") Criteria cri, @Param("select") SelectVO select);
+
+	List<OptionVO> getTotalAmount();
 }

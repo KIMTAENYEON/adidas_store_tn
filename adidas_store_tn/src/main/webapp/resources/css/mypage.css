@@ -12,7 +12,7 @@
 }
 /* 나의 장바구니 */
 .mypage-basket-box{
-	width: 1000px; height: 400px; background-color: yellow; padding: 15px; float: left;
+	width: 70%; height: 400px; background-color: yellow; padding: 15px; float: left;
 }
 .mypage-basket-img{
 	width: 100%; height: 300px; background-color: grey; margin-bottom: 10px;
@@ -26,7 +26,7 @@
 }
 /* 우측 메뉴 */
 .mypage-right-box{
-	width: 300px; height: 200px; float: right;
+	width: 20%; height: 200px; float: right;
 }
 /* 우측 메뉴 버튼 */
 .mypage-container .mypage-right-box a{

@@ -20,6 +20,7 @@ import kr.green.adidas.service.GoodsService;
 import kr.green.adidas.vo.CategoryVO;
 import kr.green.adidas.vo.GoodsVO;
 import kr.green.adidas.vo.MemberVO;
+import kr.green.adidas.vo.OptionVO;
 import kr.green.adidas.vo.SelectVO;
 import kr.green.adidas.vo.SubCategoryVO;
 
@@ -32,9 +33,14 @@ public class GoodsController {
 	@RequestMapping(value= "/goods/list")
 	public ModelAndView list(ModelAndView mv, Criteria cri, SelectVO select){	
 		System.out.println(select);
-		List<GoodsVO> list = goodsService.getGoodsList(cri);
-		int totalCount = goodsService.getTotalCount(cri);
+		List<GoodsVO> list = goodsService.getGoodsList(cri, select);
+		int totalCount = goodsService.getTotalCount(cri, select);
 		PageMaker pm = new PageMaker(totalCount, cri);
+		if(select.getSe_gender().equals("")) {
+			select.setSe_gender("성별");			
+		}
+		List<OptionVO> option = goodsService.getTotalAmount();
+		mv.addObject("option", option);
 		mv.addObject("select", select);
 		mv.addObject("pm", pm);
 		mv.addObject("list", list);

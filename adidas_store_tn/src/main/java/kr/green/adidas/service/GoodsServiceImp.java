@@ -13,6 +13,8 @@ import kr.green.adidas.utils.UploadFileUtils;
 import kr.green.adidas.vo.CategoryVO;
 import kr.green.adidas.vo.GoodsVO;
 import kr.green.adidas.vo.MemberVO;
+import kr.green.adidas.vo.OptionVO;
+import kr.green.adidas.vo.SelectVO;
 import kr.green.adidas.vo.SubCategoryVO;
 
 @Service
@@ -56,11 +58,17 @@ public class GoodsServiceImp implements GoodsService{
 		return goodsDao.selectSubCategory(sub_ca_num);
 	}
 	@Override
-	public List<GoodsVO> getGoodsList(Criteria cri) {
-		return goodsDao.getGoodsList(cri);
+	public List<GoodsVO> getGoodsList(Criteria cri, SelectVO select) {
+		if(select.getSe_gender() == null || select.getSe_gender().equals("성별"))
+			select.setSe_gender("");
+		return goodsDao.getGoodsList(cri, select);
 	}
 	@Override
-	public int getTotalCount(Criteria cri) {
-		return goodsDao.selectTotalCount(cri);
+	public int getTotalCount(Criteria cri, SelectVO select) {
+		return goodsDao.selectTotalCount(cri, select);
+	}
+	@Override
+	public List<OptionVO> getTotalAmount() {
+		return goodsDao.getTotalAmount();
 	}
 }

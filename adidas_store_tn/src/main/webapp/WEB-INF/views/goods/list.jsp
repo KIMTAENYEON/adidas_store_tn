@@ -18,10 +18,12 @@
 	<div class="body">
 		<div class="goods-list">
 			<div class="goods-list-select-option-container">
-				<a href="<%=request.getContextPath()%>/goods/register" class="btn btn-goods-insert">
-					<span>제품등록</span>
-					<i class="icon-right"></i>
-				</a>
+				<c:if test="${user.me_authority == '관리자'}">
+					<a href="<%=request.getContextPath()%>/goods/register" class="btn btn-goods-insert">
+						<span>제품등록</span>
+						<i class="icon-right"></i>
+					</a>
+				</c:if>
 				<!-- 검색결과 -->
 				<div class="goods-list-select-search-box">
 					<h1>
@@ -73,6 +75,9 @@
 								</c:if>
 							</c:if>
 						</c:if>
+						<c:if test="${select.se_new != null}">
+							<span>(신상품)</span>
+						</c:if>
 					</h1>
 				</div>
 				<!-- 선택옵션창 -->
@@ -83,7 +88,7 @@
 								<option value="성별">성별</option>
 								<option value="Unisex">Unisex</option>
 								<option value="Man">Man</option>
-								<option value="Woman">Woman</option>
+								<option value="Women">Women</option>
 								<option value="Kids">Kids</option>
 							</select>
 						</span>
@@ -136,6 +141,13 @@
 							<span class="goods-item-text-box">
 								<span class="goods-item-name">${goods.gd_name}</span>
 								<span class="goods-item-price">${goods.gd_price}원</span>
+								<c:if test="${user.me_authority == '관리자'}">
+									<c:forEach var="option" items="${option}">
+										<c:if test="${goods.gd_num == option.op_gd_num }">
+											<span class="goods-item-amount">남은수량 (${option.op_amount})</span>
+										</c:if>
+									</c:forEach>
+								</c:if>
 							</span>
 						</a>
 					</div>
@@ -146,7 +158,7 @@
 				<div class="goods-list-pagination-box">
 					<div class="pagination-prev-box">
 						<c:if test="${pm.prev}">
-							<a href="<%=request.getContextPath()%>/goods/list?page=${pm.criteria.page-1}&search=${pm.criteria.search}" class="btn btn-pagination-prev">이전</a>
+							<a href="<%=request.getContextPath()%>/goods/list?page=${pm.criteria.page-1}&search=${pm.criteria.search}&se_gender=${select.se_gender}&se_ca_num=${select.se_ca_num}&se_sub_num=${select.se_sub_num}&se_new=${select.se_new}&se_min_price=${select.se_min_price}&se_max_price=${select.se_max_price}&se_lineup=${select.se_lineup}" class="btn btn-pagination-prev">이전</a>
 						</c:if>
 					</div>
 					<div class="pagination-page-box">
@@ -164,12 +176,12 @@
 									<c:forEach begin="1" end="${pm.endPage }" var="i">
 										<c:if test="${i != pm.criteria.page}">
 											<li class="page-item">
-												<a href="<%=request.getContextPath()%>/goods/list?page=${i}&search=${pm.criteria.search}" class="page-link">${i}</a>
+												<a href="<%=request.getContextPath()%>/goods/list?page=${i}&search=${pm.criteria.search}&se_gender=${select.se_gender}&se_ca_num=${select.se_ca_num}&se_sub_num=${select.se_sub_num}&se_new=${select.se_new}&se_min_price=${select.se_min_price}&se_max_price=${select.se_max_price}&se_lineup=${select.se_lineup}" class="page-link">${i}</a>
 											</li>
 										</c:if>
 										<c:if test="${i == pm.criteria.page}">
 											<li class="page-item selected">
-												<a href="<%=request.getContextPath()%>/goods/list?page=${i}&search=${pm.criteria.search}" class="page-link">${i}</a>
+												<a href="<%=request.getContextPath()%>/goods/list?page=${i}&search=${pm.criteria.search}&se_gender=${select.se_gender}&se_ca_num=${select.se_ca_num}&se_sub_num=${select.se_sub_num}&se_new=${select.se_new}&se_min_price=${select.se_min_price}&se_max_price=${select.se_max_price}&se_lineup=${select.se_lineup}" class="page-link">${i}</a>
 											</li>
 										</c:if>
 									</c:forEach>
@@ -180,7 +192,7 @@
 					</div>
 					<div class="pagination-next-box">
 						<c:if test="${pm.next }">
-							<a href="<%=request.getContextPath()%>/goods/list?page=${pm.criteria.page+1}&search=${pm.criteria.search}" class="btn btn-pagination-next">다음</a>
+							<a href="<%=request.getContextPath()%>/goods/list?page=${pm.criteria.page+1}&search=${pm.criteria.search}&se_gender=${select.se_gender}&se_ca_num=${select.se_ca_num}&se_sub_num=${select.se_sub_num}&se_new=${select.se_new}&se_min_price=${select.se_min_price}&se_max_price=${select.se_max_price}&se_lineup=${select.se_lineup}" class="btn btn-pagination-next">다음</a>
 						</c:if>
 					</div>
 				</div>
@@ -188,7 +200,7 @@
 		</div>
 	</div>
 	<script>
-		//옵션 적용시 최소가격, 최대가격 입력안할시 0으로 처리
+		//옵션 적용시 최소가격, 최대가격 입력안할시 0으로 처리;
 		$('.btn-option-apply').click(function() {
 			if($('[name=se_min_price]').val() == null || $('[name=se_min_price]').val() == "")
 				$('[name=se_min_price]').val(0)
