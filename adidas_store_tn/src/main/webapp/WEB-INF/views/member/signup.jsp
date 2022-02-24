@@ -113,6 +113,10 @@
 	});
 	//이메일 인증 버튼 클릭시
 	$('.btn-email-check').click(function() {
+		if($(this).siblings('[name=me_email]').val() == "" || $(this).siblings('[name=me_email]').val() == null){
+			alert('이메일을 입력하세요.')
+			return;
+		}
 		var em_email = $(this).siblings('[name=me_email]').val();
 		var emailCheck = {
 				em_email : em_email
