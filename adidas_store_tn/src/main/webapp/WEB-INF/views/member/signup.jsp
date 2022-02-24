@@ -221,7 +221,7 @@
                	},
                 me_email: {
                 	required : true,
-                	regex: /^[a-zA-Z0-9]+@[a-z]+(.[a-z]+){1,}$/,
+                	regex: /^[a-zA-Z0-9]+@[a-z]+(.[a-z]+){1,}$/
                 },
                 me_pw: {
                     required : true,
