@@ -76,6 +76,7 @@
 	    <interceptor>
 	        <mapping path="/admin"/>
 	        <mapping path="/goods/register"/>
+	        <mapping path="/goods/add"/>
 	        <beans:ref bean="adminInterceptor"/>
 	    </interceptor>
 	</interceptors>

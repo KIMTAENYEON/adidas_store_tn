@@ -24,4 +24,10 @@ public interface GoodsDAO {
 	int selectTotalCount(@Param("cri") Criteria cri, @Param("select") SelectVO select);
 
 	List<OptionVO> getTotalAmount();
+
+	void insertOption(@Param("option") OptionVO option);
+
+	OptionVO selectOption(@Param("option") OptionVO option);
+
+	void addAmount(@Param("option") OptionVO option);
 }

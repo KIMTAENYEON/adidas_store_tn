@@ -26,4 +26,6 @@ public interface GoodsService {
 
 	List<OptionVO> getTotalAmount();
 
+	boolean insertOption(OptionVO option);
+
 }

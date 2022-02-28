@@ -71,4 +71,22 @@ public class GoodsServiceImp implements GoodsService{
 	public List<OptionVO> getTotalAmount() {
 		return goodsDao.getTotalAmount();
 	}
+	@Override
+	public boolean insertOption(OptionVO option) {
+		if(option == null)
+			return false;
+		if(option.getOp_gd_num() <= 0)
+			return false;
+		if(option.getOp_size().trim().length() >= 5 || option.getOp_size().trim().length() == 0 || option.getOp_size() == null)
+			return false;
+		if(option.getOp_amount() <= 0)
+			return false;
+		OptionVO dbOption = goodsDao.selectOption(option);
+		if(dbOption != null) {		
+			goodsDao.addAmount(option);
+		}else{
+			goodsDao.insertOption(option);			
+		}
+		return true;
+	}
 }

@@ -147,6 +147,7 @@
 											<span class="goods-item-amount">남은수량 (${option.op_amount})</span>
 										</c:if>
 									</c:forEach>
+									<button type="button" onclick="window.open('<%=request.getContextPath()%>/goods/add?op_gd_num=${goods.gd_num}','','width=500px, height=200px, top=300px, left=300px')" class="btn btn-item-add">재고추가</button>
 								</c:if>
 							</span>
 						</a>

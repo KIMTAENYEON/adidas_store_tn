@@ -96,4 +96,17 @@
 		select op_gd_num, sum(op_amount) as op_amount from `option`
 			group by op_gd_num
 	</select>
+	<insert id="insertOption">
+		insert into `option` (op_gd_num, op_size, op_amount)
+			values (#{option.op_gd_num}, #{option.op_size}, #{option.op_amount})
+	</insert>
+	<select id="selectOption" resultType="kr.green.adidas.vo.OptionVO">
+		select * from `option`
+			where op_gd_num = #{option.op_gd_num} and op_size = #{option.op_size}
+	</select>
+	<update id="addAmount">
+		update `option` set
+			op_amount = op_amount + #{option.op_amount}
+			where op_gd_num = #{option.op_gd_num} and op_size = #{option.op_size}
+	</update>
 </mapper>

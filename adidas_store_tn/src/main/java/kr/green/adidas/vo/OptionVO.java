@@ -8,5 +8,5 @@ public class OptionVO {
 	private int op_num;
 	private int op_gd_num;
 	private String op_size;
-	private String op_amount;
+	private int op_amount;
 }

@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -32,7 +33,6 @@ public class GoodsController {
 
 	@RequestMapping(value= "/goods/list")
 	public ModelAndView list(ModelAndView mv, Criteria cri, SelectVO select){	
-		System.out.println(select);
 		List<GoodsVO> list = goodsService.getGoodsList(cri, select);
 		int totalCount = goodsService.getTotalCount(cri, select);
 		PageMaker pm = new PageMaker(totalCount, cri);
@@ -74,5 +74,16 @@ public class GoodsController {
 		List<SubCategoryVO> list = goodsService.selectSubCategory(sub_ca_num);
 		map.put("list", list);
 	  return map;
+	}
+	@RequestMapping(value= "/goods/add")
+	public ModelAndView addAmountGet(ModelAndView mv, Integer op_gd_num){	
+		mv.addObject("op_gd_num",op_gd_num);
+	  mv.setViewName("/goods/option/add");
+	  return mv;
+	}
+	@ResponseBody
+	@RequestMapping(value= "/add/option")
+	public boolean addOption(@RequestBody OptionVO option){
+	  return goodsService.insertOption(option);
 	}
 }

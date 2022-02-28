@@ -97,6 +97,10 @@ button{
 .goods-item-list-container span{
 	display: block;
 }
+/* 재고추가버튼 */
+.goods-item-list-container .btn-item-add{
+	position: absolute; bottom: 45px; right: 10px; border: 1px solid #000; width: 80px; height: 20px; background-color: #fff;
+}
 /* 페이지네이션 */
 .goods-list-pagination-container{
 	width: 100%; position: relative;
