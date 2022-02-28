@@ -74,7 +74,7 @@ CREATE TABLE `orderlist` (
 CREATE TABLE `option` (
 	`op_num`	int	NOT NULL,
 	`gd_num`	int	NOT NULL,
-	`op_size`	int	NULL,
+	`op_size`	varchar(5)	NULL,
 	`op_amount`	int	NULL
 );
 
