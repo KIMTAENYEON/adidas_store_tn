@@ -75,7 +75,7 @@
 								</c:if>
 							</c:if>
 						</c:if>
-						<c:if test="${select.se_new != null}">
+						<c:if test="${select.se_new != null && select.se_new != ''}">
 							<span>(신상품)</span>
 						</c:if>
 					</h1>

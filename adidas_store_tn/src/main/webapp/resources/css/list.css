@@ -61,7 +61,7 @@ button{
 
 /* 제품리스트 */
 .goods-item-list-container{
-	width: 100%; display: grid; grid-template-columns: repeat(4, 25.00%); grid-template-rows: repeat(5, 400px);
+	width: 100%; display: grid; grid-template-columns: repeat(4, 25.00%);
 }
 .goods-item-list-container .goods-item-box{
 	border: 1px solid #fff; height: 400px; display: inline;

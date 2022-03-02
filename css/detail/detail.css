@@ -1,0 +1,146 @@
+@charset "UTF-8";
+*{
+	padding: 0; margin: 0; list-style: none; text-decoration: none; color: #000;
+	box-sizing: border-box;
+}
+
+.goods-detail{
+	padding: 30px;
+}
+.goods-detail .goods-detail-container::after{
+	clear: both; content: ""; display: block;
+}
+/* 이미지 박스 */
+.goods-detail-img-container{
+	width: 70%; height: 750px; background-color: #edeff0; float: left;
+}
+.goods-detail-img-container .goods-detail-img-box{
+	margin: 0 auto; width: 800px; height: 750px;
+}
+.goods-detail-img-container img{
+	width: 800px; height: 750px;
+}
+/* 제품정보 박스 */
+.goods-detail-information-container{
+	width: 30%; height: 750px; float: right;
+	padding: 30px 20px;
+}
+.goods-detail-information-container .goods-detail-name{
+	font-size: 40px; line-height: 38px; outline: none; border: none;
+}
+.goods-detail-information-container .goods-detail-price-box{
+	margin-top: 10px;
+}
+.goods-detail-information-container .goods-detail-price{
+	font-size: 18px; line-height: 24px; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+/* 사이즈 선택 */
+.goods-detail-information-container .goods-detail-size-container{
+	margin-top: 40px;
+}
+.goods-detail-information-container .size-title{
+	font-size: 14px; font-weight: bold;
+}
+.goods-detail-information-container .goods-size-box{
+	display: grid; grid-template-columns: repeat(5, 20%); margin-top: 10px; border-left: 1px solid #e9ecef;
+}
+.goods-detail-information-container .btn-size-select{
+	border: 1px solid #e9ecef; border-left: none; height: 40px; background-color: #fff; margin-bottom: -1px;
+	cursor: pointer;
+}
+/* 사이즈 선택 됬을 때 */
+.goods-detail-information-container .goods-size-box .selected{
+	background-color: #000; color: #fff;
+}
+/* 재고 없을 때 */
+.goods-detail-information-container .goods-size-box .no-amount{
+	 color: red; cursor: auto;
+}
+/* 수량 선택 */
+.goods-detail-information-container .goods-detail-amount-box{
+	margin-top: 40px;
+}
+.goods-detail-information-container .goods-detail-amount{
+	width: 100px; height: 30px; margin-top: 5px; outline: none;
+}
+/* 제품 선택 박스 */
+.goods-detail-information-container .goods-detail-select-container{
+	margin-top: 50px;
+}
+.goods-detail-information-container .btn-select-bascket{
+	width: 80%; height: 50px; background: #fff; border: 2px solid #000; cursor: pointer;
+}
+.goods-detail-information-container .goods-detail-select-container span{
+	color: #000; font-size: 13px; font-weight: bold;
+	text-align: center; line-height: 50px;
+}
+.icon-right{
+	width: 24px; height: 24px; margin-left: 15px; display: inline-block; vertical-align: -5px;
+	background-image: url(../img/right-arrow.png);
+	background-position: left center;  background-size: contain; background-repeat: no-repeat;
+}
+.goods-detail-information-container .btn-select-choice{
+	width: 15%; height: 50px; border: 2px solid #000; cursor: pointer; background-color: #fff; vertical-align: top; float: right;
+}
+.goods-detail-information-container .btn-select-choice .icon-choice{
+	width: 15px; height: 15px; display: block;  margin: 0 auto;
+	background-image: url(../img/heart_empty.png);
+	background-position: center; background-size: contain; 
+}
+.goods-detail-information-container .btn-select-buy{
+	width: 100%; height: 50px; margin-top: 10px; background-color: #fff; border: 2px solid #000; cursor: pointer;
+}
+/* 수정, 삭제 버튼 */
+.goods-detail-information-container .goods-detail-modify-delete-container{
+	margin-top: 50px;
+}
+.goods-detail-modify-delete-container a{
+	border: 2px solid #000; width: 45%; height: 50px; display: inline-block; text-align: center;
+}
+.goods-detail-modify-delete-container .btn-goods-delete{
+	float: right;
+}
+.goods-detail-modify-delete-container span{
+	color: #000; font-size: 13px; font-weight: bold;
+	line-height: 50px; cursor: pointer;
+}
+/* 제품 설명 박스 */
+.goods-detail-content-container{
+	width: 100%; margin-top: 50px; border-top: 1px solid #e9ecef; border-bottom: 2px solid #e9ecef; padding: 50px 0;
+}
+/* 설명 상단 */
+.goods-detail-content-container .goods-detail-content-top{
+	max-width: 1200px; display: flex; align-items: center; margin: 0 auto;
+}
+.goods-detail-content-top .goods-content-title-box{
+	width: 50%; padding: 0 50px;
+}
+.goods-detail-content-top .goods-content-title{
+	font-size: 30px; line-height: 28px; margin-bottom: 15px; word-break: keep-all;
+}
+.goods-detail-content-top .goods-content-content{
+	font-size: 16px; line-height: 22px; word-break: keep-all;
+}
+.goods-detail-content-top .goods-content-img-box{
+	width: 50%; background-color: #edeff0;
+}
+.goods-detail-content-top .goods-content-img{
+	margin: 0 auto; width: 400px; height: 400px;
+}
+.goods-detail-content-top img{
+	width: 400px; height: 400px;
+}
+/* 설명 하단 */
+.goods-detail-content-container .goods-detail-content-bottom{
+	max-width: 1200px; margin: 20px auto 0;
+}
+.goods-detail-content-bottom>div{
+	display: flex; align-items: stretch;
+}
+.goods-detail-content-bottom .goods-detail-content-name{
+	border: 1px solid #000; margin-bottom: -1px; text-align: center; padding: 15px 20px; font-size: 14px; flex: 1 1 50%;
+  display: flex; align-items: center; justify-content: center;
+}
+.goods-detail-content-bottom .goods-detail-content-val{
+	border: 1px solid #000; background-color: #e9ecef; border-left: none; margin-bottom: -1px; text-align: center; padding: 15px 20px; font-size: 14px; flex: 1 1 50%;
+}
