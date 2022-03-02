@@ -48,13 +48,13 @@
 	border: 1px solid #e9ecef; border-left: none; height: 40px; background-color: #fff; margin-bottom: -1px;
 	color: red; cursor: auto;
 }
-/* 사이즈 선택 됬을 때 */
-.goods-detail-information-container .goods-size-box .selected{
-	background-color: #000; color: #fff;
-}
 /* 재고 있을 때 */
-.goods-detail-information-container .goods-size-box .btn-size-select.amount{
+.goods-detail-information-container .goods-size-box .amount{
 	color: #000; cursor: pointer;
+}
+/* 사이즈 선택 됬을 때 */
+.goods-detail-information-container .goods-size-box .btn-size-select.selected{
+	background-color: #000; color: #fff;
 }
 /* 수량 선택 */
 .goods-detail-information-container .goods-detail-amount-box{

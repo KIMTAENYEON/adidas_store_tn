@@ -36,7 +36,7 @@
 				</if>
 			</if>
 			<!-- 신상품 체크시 -->
-			<if test="select.se_new != null">
+			<if test="select.se_new != null and select.se_new != ''">
 				and gd_date >= date_add(now(), interval - 1 month)
 			</if>
 			<!-- 가격 설정 -->
@@ -81,7 +81,7 @@
 				</if>
 			</if>
 			<!-- 신상품 체크시 -->
-			<if test="select.se_new != null">
+			<if test="select.se_new != null and select.se_new != ''">
 				and gd_date >= date_add(now(), interval - 1 month)
 			</if>
 			<!-- 가격 설정 -->
@@ -109,4 +109,10 @@
 			op_amount = op_amount + #{option.op_amount}
 			where op_gd_num = #{option.op_gd_num} and op_size = #{option.op_size}
 	</update>
+	<select id="selectGoods" resultType="kr.green.adidas.vo.GoodsVO">
+		select * from goods where gd_num = #{gd_num}
+	</select>
+	<select id="getOption" resultType="kr.green.adidas.vo.OptionVO">
+		select * from `option` where op_gd_num = #{gd_num}
+	</select>
 </mapper>

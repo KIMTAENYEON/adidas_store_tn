@@ -132,8 +132,7 @@
 			<div class="goods-item-list-container">
 				<c:forEach var="goods" items="${list}">
 					<div class="goods-item-box">
-						<a href="" class="btn btn-goods-item">
-							<input type="hidden" name="gd_num" value="${goods.gd_num}">
+						<a href="<%=request.getContextPath()%>/goods/detail?gd_num=${goods.gd_num}" class="btn btn-goods-item">
 							<span class="goods-item-img-box">
 								<img src="<%=request.getContextPath()%>${goods.gd_img}" alt="">
 								<button type="button" class="btn btn-item-choice"><i class="icon-item-choice"></i></button>

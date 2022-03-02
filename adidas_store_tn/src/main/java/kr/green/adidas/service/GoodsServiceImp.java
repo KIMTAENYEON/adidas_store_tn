@@ -89,4 +89,16 @@ public class GoodsServiceImp implements GoodsService{
 		}
 		return true;
 	}
+	@Override
+	public GoodsVO getGoods(Integer gd_num) {
+		if(gd_num == null || gd_num <= 0)
+			return null;		
+		return goodsDao.selectGoods(gd_num);
+	}
+	@Override
+	public List<OptionVO> getOption(Integer gd_num) {
+		if(gd_num == null || gd_num <= 0)
+			return null;	
+		return goodsDao.getOption(gd_num);
+	}
 }

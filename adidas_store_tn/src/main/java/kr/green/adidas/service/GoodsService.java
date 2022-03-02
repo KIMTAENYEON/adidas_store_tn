@@ -28,4 +28,8 @@ public interface GoodsService {
 
 	boolean insertOption(OptionVO option);
 
+	GoodsVO getGoods(Integer gd_num);
+
+	List<OptionVO> getOption(Integer gd_num);
+
 }

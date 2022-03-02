@@ -86,4 +86,25 @@ public class GoodsController {
 	public boolean addOption(@RequestBody OptionVO option){
 	  return goodsService.insertOption(option);
 	}
+	@RequestMapping(value= "/goods/detail")
+	public ModelAndView detail(ModelAndView mv, Integer gd_num){	
+		GoodsVO goods = goodsService.getGoods(gd_num);
+		if(goods == null) {
+			mv.setViewName("/goods/list");
+		}else {
+			List<OptionVO> option = goodsService.getOption(gd_num);
+			mv.addObject("option", option);
+			mv.addObject("goods", goods);
+			mv.setViewName("/goods/detail");
+		}
+	  return mv;
+	}
+	@ResponseBody
+	@RequestMapping(value= "/option")
+	public Map<String, Object> option(Integer gd_num){
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		List<OptionVO> list = goodsService.getOption(gd_num);
+		map.put("list", list);
+	  return map;
+	}
 }

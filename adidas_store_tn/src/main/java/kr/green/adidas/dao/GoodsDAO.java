@@ -30,4 +30,8 @@ public interface GoodsDAO {
 	OptionVO selectOption(@Param("option") OptionVO option);
 
 	void addAmount(@Param("option") OptionVO option);
+
+	GoodsVO selectGoods(@Param("gd_num") Integer gd_num);
+
+	List<OptionVO> getOption(@Param("gd_num") Integer gd_num);
 }
