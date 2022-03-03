@@ -26,19 +26,19 @@
 						</div>
 						<div class="goods-register-gender-box">
 							<h3>성별</h3>
-							<input type="radio" name="gd_gender" value="unisex">Unisex 
+							<input type="radio" name="gd_gender" value="Unisex">Unisex 
 							<input type="radio" name="gd_gender" value="Man">Man
-							<input type="radio" name="gd_gender" value="Woman">Woman
+							<input type="radio" name="gd_gender" value="Women">Women
 							<input type="radio" name="gd_gender" value="Kids">Kids
 						</div>
 						<div class="goods-register-category-box">
 							<h3>카테고리 선택</h3>
-							<select class="goods-register-category">
+							<select class="goods-register-category" name="gd_ca_num">
 								<option>신발</option>
 								<option>의류</option>
 								<option>용품</option>
 							</select>
-							<select class="goods-register-category">
+							<select class="goods-register-sub-category" name="gd_sub_num">
 								<option>소분류</option>
 								<option>선택1</option>
 							</select>
@@ -46,7 +46,7 @@
 						<div class="goods-register-price-box">
 							<div class="goods-register-price">
 								<h3>가격</h3>
-								<input type="text" name="gd_price">
+								<input type="text" name="gd_price" placeholder="1000원 이상 입력하세요.">
 							</div>
 						</div>
 					</div>
@@ -63,7 +63,7 @@
 					</div>
 					<div class="goods-register-code-box">
 						<h3>제품코드</h3>
-						<input type="text" name="gd_code">
+						<input type="text" name="gd_code" placeholder="영어와 숫자만 사용가능하며 6자로 구성해주세요.">
 					</div>
 					<div class="goods-register-material-box">
 						<h3>소재</h3>

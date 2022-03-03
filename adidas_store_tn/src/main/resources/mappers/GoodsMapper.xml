@@ -115,4 +115,22 @@
 	<select id="getOption" resultType="kr.green.adidas.vo.OptionVO">
 		select * from `option` where op_gd_num = #{gd_num}
 	</select>
+	<update id="updateGoods">
+		update goods set
+			gd_img = #{goods.gd_img},
+			gd_name = #{goods.gd_name},
+			gd_gender = #{goods.gd_gender},
+			gd_price = #{goods.gd_price},
+			gd_title = #{goods.gd_title},
+			gd_content = #{goods.gd_content},
+			gd_code = #{goods.gd_code},
+			gd_material = #{goods.gd_material},
+			gd_color = #{goods.gd_color},
+			gd_country = #{goods.gd_country},
+			gd_made_date = #{goods.gd_made_date},
+			gd_made_company = #{goods.gd_made_company},
+			gd_ca_num = #{goods.gd_ca_num},
+			gd_sub_num = #{goods.gd_sub_num}
+			where gd_num = #{goods.gd_num}
+	</update>
 </mapper>

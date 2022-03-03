@@ -104,11 +104,11 @@
 						<!-- 수정, 삭제 버튼 -->
 						<div class="goods-detail-modify-delete-container">
 							<div class="goods-detail-modify-delete">
-								<a href="" class="btn btn-goods-modify">
+								<a href="<%=request.getContextPath()%>/goods/modify?gd_num=${goods.gd_num}" class="btn btn-goods-modify">
 									<span>수정</span>
 									<i class="icon-right"></i>
 								</a>
-								<a href="" class="btn btn-goods-delete">
+								<a href="<%=request.getContextPath()%>/goods/delete?gd_num=${goods.gd_num}" onclick="return confirm('삭제하시겠습니까?')" class="btn btn-goods-delete">
 									<span>삭제</span>
 									<i class="icon-right"></i>
 								</a>

@@ -107,4 +107,34 @@ public class GoodsController {
 		map.put("list", list);
 	  return map;
 	}
+	@RequestMapping(value= "/goods/modify", method = RequestMethod.GET)
+	public ModelAndView modifyGet(ModelAndView mv, Integer gd_num){	
+		GoodsVO goods = goodsService.getGoods(gd_num);
+		if(goods == null) {
+			mv.setViewName("/goods/list");
+		}else {
+			mv.addObject("goods", goods);
+			mv.setViewName("/goods/modify");
+		}
+	  return mv;
+	}
+	@RequestMapping(value= "/goods/modify", method = RequestMethod.POST)
+	public ModelAndView modifyPost(ModelAndView mv, GoodsVO goods, HttpServletRequest request, MultipartFile file){	
+		MemberVO user = (MemberVO) request.getSession().getAttribute("user");
+		boolean modify = goodsService.modifyGoods(goods, user, file);
+		if(modify) {
+			mv.addObject("gd_num", goods.getGd_num());
+			mv.setViewName("redirect:/goods/detail");
+		}else {
+			mv.addObject("gd_num", goods.getGd_num());
+			mv.setViewName("redirect:/goods/modify");			
+		}
+	  return mv;
+	}
+	@RequestMapping(value= "/goods/delete")
+	public ModelAndView delete(ModelAndView mv, Integer gd_num, HttpServletRequest request){
+		MemberVO user = (MemberVO) request.getSession().getAttribute("user");
+		mv.setViewName("redirect:/goods/list");
+	  return mv;
+	}
 }

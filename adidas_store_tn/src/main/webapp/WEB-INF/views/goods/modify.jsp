@@ -6,8 +6,9 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>제품등록</title>
-	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/register.css">
+	<title>Document</title>
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/modify.css">
+	<script src="<%=request.getContextPath()%>/resources/js/jquery.min.js"></script>
 	<!-- 유효성검사 -->
 	<script src="<%=request.getContextPath()%>/resources/js/jquery.validate.min.js"></script>
 	<script src="<%=request.getContextPath()%>/resources/js/additional-methods.min.js"></script>
@@ -17,22 +18,23 @@
 </head>
 <body>
 	<div class="body margin-top">
-		<form action="<%=request.getContextPath()%>/goods/register" method="post" enctype="multipart/form-data" id="register">
-			<div class="goods-register">
-				<div class="goods-register-container after">
+		<form action="<%=request.getContextPath()%>/goods/modify" method="post" enctype="multipart/form-data" id="modify">
+			<div class="goods-modify">
+				<div class="goods-modify-container after">
+					<input type="hidden" name="gd_num" value="${goods.gd_num}">
 					<!-- 제품이미지 -->
-					<div class="goods-register-img">
+					<div class="goods-modify-img">
 						<h3>이미지 선택</h3>
 						<input type="file" id="gd_img" name="file" />
-						<div class="select_img"><img src=""/></div>
+						<div class="select_img"><img src="<%=request.getContextPath()%>${goods.gd_img}"/></div>
 					</div>
 					<!-- 제품정보 -->
-					<div class="goods-register-information"> 
-						<div class="goods-register-name-box">
+					<div class="goods-modify-information"> 
+						<div class="goods-modify-name-box">
 							<h3>이름</h3>
-							<input type="text" name="gd_name"> 
+							<input type="text" name="gd_name" value="${goods.gd_name}"> 
 						</div>
-						<div class="goods-register-gender-box">
+						<div class="goods-modify-gender-box">
 							<h3>성별</h3>
 							<input type="radio" name="gd_gender" value="Unisex">Unisex 
 							<input type="radio" name="gd_gender" value="Man">Man
@@ -41,75 +43,71 @@
 							<br>
 							<label id="gd_gender-error" class="error" for="gd_gender"></label>
 						</div>
-						<div class="goods-register-category-box">
+						<div class="goods-modify-category-box">
 							<h3>카테고리 선택</h3>
-							<select class="goods-register-category" name="gd_ca_num">
-								
+							<select class="goods-modify-category" name="gd_ca_num">
+							
 							</select>
-							<select class="goods-register-sub-category" name="gd_sub_num">
+							<select class="goods-modify-sub-category" name="gd_sub_num">
 							
 							</select>
 						</div>
-						<div class="goods-register-price-box">
-							<div class="goods-register-price">
+						<div class="goods-modify-price-box">
+							<div class="goods-modify-price">
 								<h3>가격</h3>
-								<input type="text" name="gd_price" placeholder="1000원 이상 입력하세요.">
+								<input type="text" name="gd_price" placeholder="1000원 이상 입력하세요." value="${goods.gd_price}">
 							</div>
 						</div>
 					</div>
 				</div>
 				<!-- 제품상세정보 -->
-				<div class="goods-register-detail">
-					<div class="goods-register-title-box">
+				<div class="goods-modify-detail">
+					<div class="goods-modify-title-box">
 						<h3>타이틀</h3>
-						<input type="text" name="gd_title">
+						<input type="text" name="gd_title" value="${goods.gd_title}">
 					</div>
-					<div class="goods-register-content-box">
+					<div class="goods-modify-content-box">
 						<h3>내용</h3>
-						<textarea name="gd_content" rows="10"></textarea>
+						<textarea name="gd_content" rows="10">${goods.gd_content}</textarea>
 					</div>
-					<div class="goods-register-code-box">
+					<div class="goods-modify-code-box">
 						<h3>제품코드</h3>
-						<input type="text" name="gd_code" placeholder="영어와 숫자만 사용가능하며 6자로 구성해주세요.">
+						<input type="text" name="gd_code" placeholder="영어와 숫자만 사용가능하며 6자로 구성해주세요." value="${goods.gd_code}">
 					</div>
-					<div class="goods-register-material-box">
+					<div class="goods-modify-material-box">
 						<h3>소재</h3>
-						<input type="text" name="gd_material">
+						<input type="text" name="gd_material" value="${goods.gd_material}">
 					</div>
-					<div class="goods-register-color-box">
+					<div class="goods-modify-color-box">
 						<h3>컬러</h3>
-						<input type="text" name="gd_color">
+						<input type="text" name="gd_color" value="${goods.gd_color}">
 					</div>
-					<div class="goods-register-country-box">
+					<div class="goods-modify-country-box">
 						<h3>원산지</h3>
-						<input type="text" name="gd_country">
+						<input type="text" name="gd_country" value="${goods.gd_country}">
 					</div>
-					<div class="goods-register-madeDate-box">
+					<div class="goods-modify-madeDate-box">
 						<h3>제조년월</h3>
-						<input type="text" name="gd_made_date" placeholder="년월일로 6자로 구성해주세요. 예) 220201">
+						<input type="text" name="gd_made_date" value="${goods.gd_made_date}">
 					</div>
-					<div class="goods-register-madeCompany-box">
+					<div class="goods-modify-madeCompany-box">
 						<h3>제조사</h3>
-						<input type="text" name="gd_made_company">
+						<input type="text" name="gd_made_company" value="${goods.gd_made_company}">
 					</div>
 				</div>
-				<button type="submit" class="btn btn-goods-register">
-					<span>등록</span>
+				<button class="btn btn-goods-modify">
+					<span>수정</span>
 					<i class="icon-right"></i>
 				</button>
+				<a href="<%=request.getContextPath()%>/goods/detail?gd_num=${goods.gd_num}" class="btn btn-goods-modify-cancle">
+					<span>취소</span>
+					<i class="icon-right"></i>
+				</a>
 			</div>
 		</form>
 	</div>
 	<script>
-		//등록전송시
-		$("#register").submit(function() {
-			var img = $('[name=file]').val();
-			if(img == null || img == ""){
-				alert('이미지를 선택해주세요.')
-				return false;
-			}
-		});
-	  	//이미지 미리보기
+		//이미지 미리보기
 		$("#gd_img").change(function(){
 			if(this.files && this.files[0]) {
 		  	var reader = new FileReader;
@@ -119,7 +117,13 @@
 		  	reader.readAsDataURL(this.files[0]);
 			}
 		});
-	  	setCategory();
+		setCategory();
+		setSubCategory(${goods.gd_ca_num});
+		getSubCategory();
+		//제품에 맞는 서브 카테고리 불러오기
+		function getSubCategory() {
+			$('.goods-modify-sub-category').find('[value='+${goods.gd_sub_num}+']').prop('selected', 'selected')
+		}
 	  	//카테고리 불러오기 함수
 	  	function setCategory(){
 			var str = '<option value="0">카테고리</option>';
@@ -133,12 +137,13 @@
 		        	for(ca of list){
 						str += '<option value="'+ca.ca_num+'">'+ca.ca_name+'</option>';
 		        	}
-		        	$('.goods-register-category').html(str);
+		        	$('.goods-modify-category').html(str);
+		        	$('.goods-modify-category').find('[value='+${goods.gd_ca_num}+']').prop('selected', 'selected')
 		        }
 		    });
 		}
 	  	//카테고리 변경시
-	  	$('.goods-register-category').change(function(){
+	  	$('.goods-modify-category').change(function(){
 			var ca_num = $(this).val();
 			setSubCategory(ca_num);
 		});
@@ -146,7 +151,7 @@
 	  	function setSubCategory(ca_num){
 			var str = '';
 			if(ca_num <= 0){
-				$('.goods-register-sub-category').html(str);
+				$('.goods-modify-sub-category').html(str);
 				return;
 			}
 			$.ajax({
@@ -159,13 +164,19 @@
 		        	for(sub of list){
 						str += '<option value="'+sub.sub_num+'">'+sub.sub_name+'</option>';
 		        	}
-		        	$('.goods-register-sub-category').html(str);
+		        	$('.goods-modify-sub-category').html(str);
 		        }
 		    });
 		}
-		$(function() {
+	  	setGender();
+		//제품에 맞는 기존성별 불러오기
+		function setGender() {
+			var gender = '${goods.gd_gender}';
+			$('[value='+gender+']').prop('checked', true);
+		}
+	  	$(function() {
 			// 유효성 검사
-		    $("#register").validate({
+		    $("#modify").validate({
 		    	rules: {
 		             gd_name: {
 		                 required : true
@@ -173,9 +184,9 @@
 		             gd_gender:{
 		             	required: true
 		             },
-		             gd_ca_num:{
-		            	required: true
-		             },
+		            	gd_ca_num:{
+		            		required: true
+		            	},
 		             gd_sub_num: {
 		             	required : true
 		             },

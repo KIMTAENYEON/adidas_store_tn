@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link rel="stylesheet" href="../modify/modify.css">
+</head>
+<body>
+	<div class="body margin-top">
+		<form action="" method="post" enctype="multipart/form-data">
+			<div class="goods-modify">
+				<div class="goods-modify-container after">
+					<!-- 제품이미지 -->
+					<div class="goods-modify-img">
+						<h3>이미지 선택</h3>
+						<input type="file" id="gd_img" name="file" />
+						<div class="select_img"><img src="../imgUpload/DZ9388.webp"/></div>
+					</div>
+					<!-- 제품정보 -->
+					<div class="goods-modify-information"> 
+						<div class="goods-modify-name-box">
+							<h3>이름</h3>
+							<input type="text" name="gd_name" value="쿠션 로우삭스 1PP"> 
+						</div>
+						<div class="goods-modify-gender-box">
+							<h3>성별</h3>
+							<input type="radio" name="gd_gender" value="Unisex" checked>Unisex 
+							<input type="radio" name="gd_gender" value="Man">Man
+							<input type="radio" name="gd_gender" value="Women">Women
+							<input type="radio" name="gd_gender" value="Kids">Kids
+						</div>
+						<div class="goods-modify-category-box">
+							<h3>카테고리 선택</h3>
+							<select class="goods-modify-category" name="gd_ca_num">
+								<option>신발</option>
+								<option>의류</option>
+								<option selected>용품</option>
+							</select>
+							<select class="goods-modify-sub-category" name="gd_sub_num">
+								<option>소분류</option>
+								<option selected>양말</option>
+							</select>
+						</div>
+						<div class="goods-modify-price-box">
+							<div class="goods-modify-price">
+								<h3>가격</h3>
+								<input type="text" name="gd_price" placeholder="1000원 이상 입력하세요." value="6000">
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- 제품상세정보 -->
+				<div class="goods-modify-detail">
+					<div class="goods-modify-title-box">
+						<h3>타이틀</h3>
+						<input type="text" name="gd_title" value="쿠션 로우삭스 1PP">
+					</div>
+					<div class="goods-modify-content-box">
+						<h3>내용</h3>
+						<textarea name="gd_content" rows="10">양말</textarea>
+					</div>
+					<div class="goods-modify-code-box">
+						<h3>제품코드</h3>
+						<input type="text" name="gd_code" placeholder="영어와 숫자만 사용가능하며 6자로 구성해주세요." value="DZ9388">
+					</div>
+					<div class="goods-modify-material-box">
+						<h3>소재</h3>
+						<input type="text" name="gd_material" value="겉감: 58% 면/40% 폴리에스터/2% 폴리우레탄">
+					</div>
+					<div class="goods-modify-color-box">
+						<h3>컬러</h3>
+						<input type="text" name="gd_color" value="White / White / Black">
+					</div>
+					<div class="goods-modify-country-box">
+						<h3>원산지</h3>
+						<input type="text" name="gd_country" value="터키">
+					</div>
+					<div class="goods-modify-madeDate-box">
+						<h3>제조년월</h3>
+						<input type="text" name="gd_made_date" value="202112">
+					</div>
+					<div class="goods-modify-madeCompany-box">
+						<h3>제조사</h3>
+						<input type="text" name="gd_made_company" value="adidasAG">
+					</div>
+				</div>
+				<button class="btn btn-goods-modify">
+					<span>등록</span>
+					<i class="icon-right"></i>
+				</button>
+				<a href="" class="btn btn-goods-modify-cancle">
+					<span>취소</span>
+					<i class="icon-right"></i>
+				</a>
+			</div>
+		</form>
+	</div>
+</body>
+</html>

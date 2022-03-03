@@ -101,4 +101,26 @@ public class GoodsServiceImp implements GoodsService{
 			return null;	
 		return goodsDao.getOption(gd_num);
 	}
+	@Override
+	public boolean modifyGoods(GoodsVO goods, MemberVO user, MultipartFile file) {
+		if(goods == null || user == null) 
+			return false;
+		if(!user.getMe_authority().equals("관리자")) 
+			return false;
+		GoodsVO dbGoods = goodsDao.selectGoods(goods.getGd_num());
+		if(dbGoods == null)
+			return false;
+		if(file != null && file.getOriginalFilename().length() != 0) {
+			try {
+				String fileName = UploadFileUtils.uploadFile(imgUploadPath, file.getOriginalFilename(), file.getBytes());
+				goods.setGd_img(File.separator + imgUpload + File.separator + fileName);
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else {
+			goods.setGd_img(dbGoods.getGd_img());
+		}
+		goodsDao.updateGoods(goods);
+		return true;
+	}
 }

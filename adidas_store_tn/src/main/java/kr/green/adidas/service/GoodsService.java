@@ -32,4 +32,6 @@ public interface GoodsService {
 
 	List<OptionVO> getOption(Integer gd_num);
 
+	boolean modifyGoods(GoodsVO goods, MemberVO user, MultipartFile file);
+
 }
