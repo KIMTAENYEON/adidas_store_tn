@@ -134,6 +134,7 @@ public class GoodsController {
 	@RequestMapping(value= "/goods/delete")
 	public ModelAndView delete(ModelAndView mv, Integer gd_num, HttpServletRequest request){
 		MemberVO user = (MemberVO) request.getSession().getAttribute("user");
+		goodsService.deleteGoods(gd_num, user);
 		mv.setViewName("redirect:/goods/list");
 	  return mv;
 	}

@@ -123,4 +123,15 @@ public class GoodsServiceImp implements GoodsService{
 		goodsDao.updateGoods(goods);
 		return true;
 	}
+	@Override
+	public void deleteGoods(Integer gd_num, MemberVO user) {
+		if(gd_num == null || gd_num <= 0)
+			return;
+		if(!user.getMe_authority().equals("관리자")) 
+			return;
+		GoodsVO dbGoods = goodsDao.selectGoods(gd_num);
+		if(dbGoods == null)
+			return;
+		goodsDao.deleteGoods(gd_num);
+	}
 }

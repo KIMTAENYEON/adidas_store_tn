@@ -133,4 +133,7 @@
 			gd_sub_num = #{goods.gd_sub_num}
 			where gd_num = #{goods.gd_num}
 	</update>
+	<delete id="deleteGoods">
+		delete from goods where gd_num = #{gd_num}
+	</delete>
 </mapper>

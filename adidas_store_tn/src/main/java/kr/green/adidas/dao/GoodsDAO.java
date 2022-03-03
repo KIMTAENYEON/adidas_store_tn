@@ -36,4 +36,6 @@ public interface GoodsDAO {
 	List<OptionVO> getOption(@Param("gd_num") Integer gd_num);
 
 	void updateGoods(@Param("goods") GoodsVO goods);
+
+	void deleteGoods(@Param("gd_num") Integer gd_num);
 }

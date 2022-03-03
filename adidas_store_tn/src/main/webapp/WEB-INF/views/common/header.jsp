@@ -60,7 +60,266 @@
 					<a href="" class="basket"><i class="icon-basket"></i></a>
 				</div>
 			</div>
+			<!-- 메인메뉴 호버 -->
+			<div class="category-container">
+				<!-- 남성호버 -->
+				<div class="category-container-MAN">
+					<div class="category-box">
+						<div class="cate-box">
+							<div class="cate-head">
+								<a href="">남성</a>
+							</div>
+							<ul class="cate-sub">
+								<li class="cate-sub-item">
+									<a href="">신상품</a>
+								</li>
+								<li class="cate-sub-item">
+									<a href="">인기상품</a>
+								</li>
+							</ul>
+						</div>
+						<div class="cate-box">
+							<div class="cate-head">
+								<a href="">신발</a>
+							</div>
+							<ul class="cate-sub">
+								<li class="cate-sub-item">
+									<a href="">오리지널스</a>
+								</li>
+								<li class="cate-sub-item">
+									<a href="">러닝</a>
+								</li>
+								<li class="cate-sub-item">
+									<a href="">축구</a>
+								</li>
+								<li class="cate-sub-item">
+									<a href="">골프</a>
+								</li>
+							</ul>
+						</div>
+						<div class="cate-box">
+							<div class="cate-head">
+								<a href="">의류</a>
+							</div>
+							<ul class="cate-sub">
+								<li class="cate-sub-item">
+									<a href="">자켓</a>
+								</li>
+								<li class="cate-sub-item">
+									<a href="">축구저지</a>
+								</li>
+								<li class="cate-sub-item">
+									<a href="">후디</a>
+								</li>
+								<li class="cate-sub-item">
+									<a href="">티셔츠</a>
+								</li>
+								<li class="cate-sub-item">
+									<a href="">트랙수트/트랙탑</a>
+								</li>
+								<li class="cate-sub-item">
+									<a href="">팬츠</a>
+								</li>
+								<li class="cate-sub-item">
+									<a href="">반바지</a>
+								</li>
+							</ul>
+						</div>
+						<div class="cate-box">
+							<div class="cate-head">
+								<a href="">용품</a>
+							</div>
+							<ul class="cate-sub">
+								<li class="cate-sub-item">
+									<a href="">양말</a>
+								</li>
+								<li class="cate-sub-item">
+									<a href="">모자</a>
+								</li>
+								<li class="cate-sub-item">
+									<a href="">가방</a>
+								</li>
+								<li class="cate-sub-item">
+									<a href="">장갑</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<!-- 여성호버 -->
+				<div class="category-container-WOMEN">
+					<div class="category-box">
+						<div class="cate-box">
+							<div class="cate-head">
+								<a href="">여성</a>
+							</div>
+							<ul class="cate-sub">
+								<li class="cate-sub-item">
+									<a href="">신상품</a>
+								</li>
+								<li class="cate-sub-item">
+									<a href="">인기상품</a>
+								</li>
+							</ul>
+						</div>
+						<div class="cate-box">
+							<div class="cate-head">
+								<a href="">신발</a>
+							</div>
+							<ul class="cate-sub">
+								<li class="cate-sub-item">
+									<a href="">오리지널스</a>
+								</li>
+								<li class="cate-sub-item">
+									<a href="">러닝</a>
+								</li>
+								<li class="cate-sub-item">
+									<a href="">축구</a>
+								</li>
+								<li class="cate-sub-item">
+									<a href="">골프</a>
+								</li>
+							</ul>
+						</div>
+						<div class="cate-box">
+							<div class="cate-head">
+								<a href="">의류</a>
+							</div>
+							<ul class="cate-sub">
+								<li class="cate-sub-item">
+									<a href="">자켓</a>
+								</li>
+								<li class="cate-sub-item">
+									<a href="">축구저지</a>
+								</li>
+								<li class="cate-sub-item">
+									<a href="">후디</a>
+								</li>
+								<li class="cate-sub-item">
+									<a href="">티셔츠</a>
+								</li>
+								<li class="cate-sub-item">
+									<a href="">트랙수트/트랙탑</a>
+								</li>
+								<li class="cate-sub-item">
+									<a href="">팬츠</a>
+								</li>
+								<li class="cate-sub-item">
+									<a href="">반바지</a>
+								</li>
+								<li class="cate-sub-item">
+									<a href="">타이즈</a>
+								</li>
+								<li class="cate-sub-item">
+									<a href="">스커트</a>
+								</li>
+								<li class="cate-sub-item">
+									<a href="">원피스</a>
+								</li>
+							</ul>
+						</div>
+						<div class="cate-box">
+							<div class="cate-head">
+								<a href="">용품</a>
+							</div>
+							<ul class="cate-sub">
+								<li class="cate-sub-item">
+									<a href="">양말</a>
+								</li>
+								<li class="cate-sub-item">
+									<a href="">모자</a>
+								</li>
+								<li class="cate-sub-item">
+									<a href="">가방</a>
+								</li>
+								<li class="cate-sub-item">
+									<a href="">장갑</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<!-- 키즈호버 -->
+				<div class="category-container-KIDS">
+					<div class="category-box">
+						<div class="cate-box">
+							<div class="cate-head">
+								<a href="">키즈</a>
+							</div>
+							<ul class="cate-sub">
+								<li class="cate-sub-item">
+									<a href="">신상품</a>
+								</li>
+								<li class="cate-sub-item">
+									<a href="">인기상품</a>
+								</li>
+							</ul>
+						</div>
+						<div class="cate-box">
+							<div class="cate-head">
+								<a href="">청소년</a>
+							</div>
+							<ul class="cate-sub">
+								<li class="cate-sub-item">
+									<a href="">신발</a>
+								</li>
+								<li class="cate-sub-item">
+									<a href="">의류</a>
+								</li>
+								<li class="cate-sub-item">
+									<a href="">용품</a>
+								</li>
+							</ul>
+						</div>
+						<div class="cate-box">
+							<div class="cate-head">
+								<a href="">어린이</a>
+							</div>
+							<ul class="cate-sub">
+								<li class="cate-sub-item">
+									<a href="">신발</a>
+								</li>
+								<li class="cate-sub-item">
+									<a href="">의류</a>
+								</li>
+								<li class="cate-sub-item">
+									<a href="">용품</a>
+								</li>
+							</ul>
+						</div>
+						<div class="cate-box">
+							<div class="cate-head">
+								<a href="">유아</a>
+							</div>
+							<ul class="cate-sub">
+								<li class="cate-sub-item">
+									<a href="">신발</a>
+								</li>
+								<li class="cate-sub-item">
+									<a href="">의류</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
+	<script>
+		// 메인메뉴 호버
+		$('.main-menu-gender').hover(function() {
+			var target = $(this).children().text();
+			$('.category-container-'+target).show();
+		}, function() {
+			var target = $(this).children().text();
+			$('.category-container-'+target).hide();
+		});
+		// 메인메뉴 호버해서 나타난 카테고리창 호버
+		$('.category-container').children().hover(function() {
+			$(this).show();
+		}, function() {
+			$(this).hide();
+		});
+	</script>
 </body>
 </html>

@@ -34,4 +34,6 @@ public interface GoodsService {
 
 	boolean modifyGoods(GoodsVO goods, MemberVO user, MultipartFile file);
 
+	void deleteGoods(Integer gd_num, MemberVO user);
+
 }
