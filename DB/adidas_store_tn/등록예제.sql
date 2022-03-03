@@ -44,7 +44,6 @@ CREATE TABLE `subcategory` (
 
 CREATE TABLE `order` (
 	`or_num`	int	NOT NULL,
-	`or_state`	varchar(10)	NULL,
 	`or_date`	datetime	NULL,
 	`or_name`	varchar(30)	NULL,
 	`or_address`	varchar(255)	NULL,
@@ -68,7 +67,8 @@ CREATE TABLE `orderlist` (
 	`ol_gd_num`	int	NOT NULL,
 	`ol_or_num`	int	NOT NULL,
 	`ol_total_price`	int	NULL,
-	`ol_amount`	int	NULL
+	`ol_amount`	int	NULL,
+    `ol_state` VARCHAR(10) NOT NULL DEFAULT '주문완료'
 );
 
 CREATE TABLE `option` (
@@ -156,7 +156,6 @@ CHANGE COLUMN `gd_num` `op_gd_num` INT NOT NULL ;
 
 ALTER TABLE `adidas_store_tn`.`order` 
 CHANGE COLUMN `or_num` `or_num` INT NOT NULL AUTO_INCREMENT ,
-CHANGE COLUMN `or_state` `or_state` VARCHAR(10) NOT NULL DEFAULT '주문완료' ,
 CHANGE COLUMN `or_date` `or_date` DATETIME NOT NULL DEFAULT now() ,
 CHANGE COLUMN `or_name` `or_name` VARCHAR(30) NOT NULL ,
 CHANGE COLUMN `or_address` `or_address` VARCHAR(255) NOT NULL ,
