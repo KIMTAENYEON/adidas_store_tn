@@ -6,6 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>메인</title>
 	<link rel="stylesheet" href="../home/home.css">
+	<script src="../js/jquery.min.js"></script>
 </head>
 <body>
 	<div class="body">
@@ -29,7 +30,120 @@
 				</div>
 			</div>
 		</div>
-
+		<!-- 중단 카테고리 화면 -->
+		<div class="middle-category">
+			<div class="middle-category-container">
+				<div class="middle-category-box">
+					<div class="middle-gender">
+						<span>WOMEN</span>
+						<img src="https://brand.assets.adidas.com/image/upload/f_auto,q_auto,fl_lossy/koKR/Images/updated_gender_women_dt_tcm215-636701.jpg">
+					</div>
+					<div class="middle-gender">
+						<span>MAN</span>
+						<img src="https://brand.assets.adidas.com/image/upload/f_auto,q_auto,fl_lossy/koKR/Images/updated_gender_men_dt_tcm215-636698.jpg">
+					</div>
+					<div class="middle-gender">
+						<span>KIDS</span>
+						<img src="https://brand.assets.adidas.com/image/upload/f_auto,q_auto,fl_lossy/koKR/Images/updated_gender_kids_dt_tcm215-636695.jpg">
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 중단 카테고리 클릭 화면 -->
+		<div class="middle-category-click">
+			<div class="middle-category-click-container">
+				<!-- 성별선택 -->
+				<div class="select-gender-box">
+					<button type="button" class="btn btn-WOMEN selected">WOMEN</button>
+					<button type="button" class="btn btn-MAN">MAN</button>
+					<button type="button" class="btn btn-KIDS">KIDS</button>
+				</div>
+				<!-- 카테고리 리스트 -->
+				<div class="select-category-box">
+					<div class="select-category-list-container">
+						<div class="select-category-list-box">
+							<!-- 카테고리 -->
+							<div class="select-category-item-box start">
+								<a href="" class="select-category-item">
+									<span class="select-category-img-box">
+										<img src="../imgUpload/DZ9388.webp" alt="">
+									</span>
+									<span class="select-category-name">오리지널스 신발</span>
+								</a>
+							</div>
+							<div class="select-category-item-box ">
+								<a href="" class="select-category-item">
+									<span class="select-category-img-box">
+										<img src="../imgUpload/ED6116.webp" alt="">
+									</span>
+									<span class="select-category-name">오리지널스 신발</span>
+								</a>
+							</div>
+							<div class="select-category-item-box ">
+								<a href="" class="select-category-item">
+									<span class="select-category-img-box">
+										<img src="../imgUpload/FY6869.webp" alt="">
+									</span>
+									<span class="select-category-name">오리지널스 신발</span>
+								</a>
+							</div>
+							<div class="select-category-item-box end">
+								<a href="" class="select-category-item">
+									<span class="select-category-img-box">
+										<img src="../imgUpload/GL8870.webp" alt="">
+									</span>
+									<span class="select-category-name">오리지널스 신발</span>
+								</a>
+							</div>
+							<div class="select-category-item-box ">
+								<a href="" class="select-category-item">
+									<span class="select-category-img-box">
+										<img src="../imgUpload/GM3804.webp" alt="">
+									</span>
+									<span class="select-category-name">오리지널스 신발</span>
+								</a>
+							</div>
+							<div class="select-category-item-box ">
+								<a href="" class="select-category-item">
+									<span class="select-category-img-box">
+										<img src="../imgUpload/GM3804.webp" alt="">
+									</span>
+									<span class="select-category-name">오리지널스 신발</span>
+								</a>
+							</div>
+							<div class="select-category-item-box">
+								<a href="" class="select-category-item">
+									<span class="select-category-img-box">
+										<img src="../imgUpload/GM3804.webp" alt="">
+									</span>
+									<span class="select-category-name">오리지널스 신발</span>
+								</a>
+							</div>
+							<div class="select-category-item-box">
+								<a href="" class="select-category-item">
+									<span class="select-category-img-box">
+										<img src="../imgUpload/GM3804.webp" alt="">
+									</span>
+									<span class="select-category-name">오리지널스 신발</span>
+								</a>
+							</div>
+							<div class="select-category-item-box ">
+								<a href="" class="select-category-item">
+									<span class="select-category-img-box">
+										<img src="../imgUpload/DZ9388.webp" alt="">
+									</span>
+									<span class="select-category-name">오리지널스 신발</span>
+								</a>
+							</div>
+						</div>
+						<div class="select-category-btn-box">
+							<button type="button" class="btn btn-prev"><i class="icon-left"></i></button>
+							<button type="button" class="btn btn-next"><i class="icon-right"></i></button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 		<!-- 하단 화면 -->
 		<div class="bottom">
 			<div class="bottom-container">
@@ -58,5 +172,71 @@
 			</div>
 		</div>
 	</div>
+	<script>
+		// 중단 카테고리 클릭 시 화면 전환
+		$('.middle-gender').click(function(){
+			$('.middle-category').hide();
+			$('.middle-category-click').show();
+		})
+		// 중단 카테고리 클릭화면 성별선택 
+		$('.select-gender-box button').click(function(){
+			$('.select-gender-box button').each(function() {
+				if($(this).hasClass('selected')){
+					$(this).removeClass('selected');
+				}
+			});
+			$(this).addClass('selected');
+		})
+		// 다음버튼클릭
+		$('.select-category-btn-box .btn-next').click(function(){
+			var cateNext = $('.select-category-list-box .end').nextAll().length
+			var cateNextMargin = (cateNext * 25)
+			if(cateNext >= 4){
+				$('.select-category-list-box').animate({marginLeft : '-=100%'});
+				$('.select-category-list-box .end').nextAll().eq(3).addClass('end');
+				$('.select-category-list-box .end').first().removeClass('end');
+				$('.select-category-list-box .start').nextAll().eq(3).addClass('start');
+				$('.select-category-list-box .start').first().removeClass('start');
+				$('.select-category-btn-box .btn-prev').show();
+			}
+			if(cateNext >= 1 && cateNext < 4){
+				$('.select-category-list-box').animate({marginLeft : '-='+cateNextMargin+'%'});
+				$('.select-category-list-box .end').nextAll().eq(cateNext -1).addClass('end');
+				$('.select-category-list-box .end').first().removeClass('end');
+				$('.select-category-list-box .start').nextAll().eq(cateNext -1).addClass('start');
+				$('.select-category-list-box .start').first().removeClass('start');
+				$('.select-category-btn-box .btn-prev').show();
+			}
+			var cateNext = $('.select-category-list-box .end').nextAll().length
+			if(cateNext == 0){
+				$('.select-category-btn-box .btn-next').hide();
+			}
+		});
+		// 이전버튼클릭
+		$('.select-category-btn-box .btn-prev').click(function(){
+			var catePrev = $('.select-category-list-box .start').prevAll().length
+			var catePrevMargin = (catePrev * 25)
+			if(catePrev >= 4){
+				$('.select-category-list-box').animate({marginLeft : '+=100%'});
+				$('.select-category-list-box .end').prevAll().eq(3).addClass('end');
+				$('.select-category-list-box .end').last().removeClass('end');
+				$('.select-category-list-box .start').prevAll().eq(3).addClass('start');
+				$('.select-category-list-box .start').last().removeClass('start');
+				$('.select-category-btn-box .btn-next').show();
+			}
+			if(catePrev >= 1 && catePrev < 4){
+				$('.select-category-list-box').animate({marginLeft : '+='+catePrevMargin+'%'});
+				$('.select-category-list-box .end').prevAll().eq(catePrev -1).addClass('end');
+				$('.select-category-list-box .end').last().removeClass('end');
+				$('.select-category-list-box .start').prevAll().eq(catePrev -1).addClass('start');
+				$('.select-category-list-box .start').last().removeClass('start');
+				$('.select-category-btn-box .btn-next').show();
+			}
+			var catePrev = $('.select-category-list-box .start').prevAll().length
+			if(catePrev == 0){
+				$('.select-category-btn-box .btn-prev').hide();
+			}
+		});
+	</script>
 </body>
 </html>
