@@ -1,5 +1,7 @@
 package kr.green.adidas.service;
 
+import java.util.List;
+
 import javax.mail.internet.MimeMessage;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,7 @@ import org.springframework.stereotype.Service;
 import kr.green.adidas.dao.MemberDAO;
 import kr.green.adidas.vo.EmailCheckVO;
 import kr.green.adidas.vo.MemberVO;
+import kr.green.adidas.vo.SubCategoryVO;
 
 @Service
 public class MemberServiceImp implements MemberService{
@@ -182,6 +185,11 @@ public class MemberServiceImp implements MemberService{
 	@Override
 	public MemberVO selectMemberBySessionId(String me_session_id) {	
 		return memberDao.selectMemberBySessionId(me_session_id);
+	}
+
+	@Override
+	public List<SubCategoryVO> selectSubCategory() {
+		return memberDao.selectSubCategory();
 	}
 
 }

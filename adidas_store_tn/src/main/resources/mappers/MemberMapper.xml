@@ -40,4 +40,7 @@
 			me_phone = #{member.me_phone}
 			where me_email = #{member.me_email}
 	</update>
+	<select id="selectSubCategory" resultType="kr.green.adidas.vo.SubCategoryVO">
+		select * from subcategory
+	</select>
 </mapper>

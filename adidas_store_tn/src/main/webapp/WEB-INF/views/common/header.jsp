@@ -67,11 +67,11 @@
 					<div class="category-box">
 						<div class="cate-box">
 							<div class="cate-head">
-								<a href="">남성</a>
+								<a href="<%=request.getContextPath()%>/goods/list?se_gender=Man">남성</a>
 							</div>
 							<ul class="cate-sub">
 								<li class="cate-sub-item">
-									<a href="">신상품</a>
+									<a href="<%=request.getContextPath()%>/goods/list?se_gender=Man&se_new=on">신상품</a>
 								</li>
 								<li class="cate-sub-item">
 									<a href="">인기상품</a>
@@ -80,68 +80,23 @@
 						</div>
 						<div class="cate-box">
 							<div class="cate-head">
-								<a href="">신발</a>
+								<a href="<%=request.getContextPath()%>/goods/list?se_gender=Man&se_ca_num=1">신발</a>
 							</div>
-							<ul class="cate-sub">
-								<li class="cate-sub-item">
-									<a href="">오리지널스</a>
-								</li>
-								<li class="cate-sub-item">
-									<a href="">러닝</a>
-								</li>
-								<li class="cate-sub-item">
-									<a href="">축구</a>
-								</li>
-								<li class="cate-sub-item">
-									<a href="">골프</a>
-								</li>
+							<ul class="cate-sub Man-shoes">
 							</ul>
 						</div>
 						<div class="cate-box">
 							<div class="cate-head">
-								<a href="">의류</a>
+								<a href="<%=request.getContextPath()%>/goods/list?se_gender=Man&se_ca_num=2">의류</a>
 							</div>
-							<ul class="cate-sub">
-								<li class="cate-sub-item">
-									<a href="">자켓</a>
-								</li>
-								<li class="cate-sub-item">
-									<a href="">축구저지</a>
-								</li>
-								<li class="cate-sub-item">
-									<a href="">후디</a>
-								</li>
-								<li class="cate-sub-item">
-									<a href="">티셔츠</a>
-								</li>
-								<li class="cate-sub-item">
-									<a href="">트랙수트/트랙탑</a>
-								</li>
-								<li class="cate-sub-item">
-									<a href="">팬츠</a>
-								</li>
-								<li class="cate-sub-item">
-									<a href="">반바지</a>
-								</li>
+							<ul class="cate-sub Man-clothing">
 							</ul>
 						</div>
 						<div class="cate-box">
 							<div class="cate-head">
-								<a href="">용품</a>
+								<a href="<%=request.getContextPath()%>/goods/list?se_gender=Man&se_ca_num=3">용품</a>
 							</div>
-							<ul class="cate-sub">
-								<li class="cate-sub-item">
-									<a href="">양말</a>
-								</li>
-								<li class="cate-sub-item">
-									<a href="">모자</a>
-								</li>
-								<li class="cate-sub-item">
-									<a href="">가방</a>
-								</li>
-								<li class="cate-sub-item">
-									<a href="">장갑</a>
-								</li>
+							<ul class="cate-sub Man-accessories">
 							</ul>
 						</div>
 					</div>
@@ -151,11 +106,11 @@
 					<div class="category-box">
 						<div class="cate-box">
 							<div class="cate-head">
-								<a href="">여성</a>
+								<a href="<%=request.getContextPath()%>/goods/list?se_gender=Women">여성</a>
 							</div>
 							<ul class="cate-sub">
 								<li class="cate-sub-item">
-									<a href="">신상품</a>
+									<a href="<%=request.getContextPath()%>/goods/list?se_gender=Man&se_new=on">신상품</a>
 								</li>
 								<li class="cate-sub-item">
 									<a href="">인기상품</a>
@@ -164,77 +119,23 @@
 						</div>
 						<div class="cate-box">
 							<div class="cate-head">
-								<a href="">신발</a>
+								<a href="<%=request.getContextPath()%>/goods/list?se_gender=Women&se_ca_num=1">신발</a>
 							</div>
-							<ul class="cate-sub">
-								<li class="cate-sub-item">
-									<a href="">오리지널스</a>
-								</li>
-								<li class="cate-sub-item">
-									<a href="">러닝</a>
-								</li>
-								<li class="cate-sub-item">
-									<a href="">축구</a>
-								</li>
-								<li class="cate-sub-item">
-									<a href="">골프</a>
-								</li>
+							<ul class="cate-sub Women-shoes">
 							</ul>
 						</div>
 						<div class="cate-box">
 							<div class="cate-head">
-								<a href="">의류</a>
+								<a href="<%=request.getContextPath()%>/goods/list?se_gender=Women&se_ca_num=2">의류</a>
 							</div>
-							<ul class="cate-sub">
-								<li class="cate-sub-item">
-									<a href="">자켓</a>
-								</li>
-								<li class="cate-sub-item">
-									<a href="">축구저지</a>
-								</li>
-								<li class="cate-sub-item">
-									<a href="">후디</a>
-								</li>
-								<li class="cate-sub-item">
-									<a href="">티셔츠</a>
-								</li>
-								<li class="cate-sub-item">
-									<a href="">트랙수트/트랙탑</a>
-								</li>
-								<li class="cate-sub-item">
-									<a href="">팬츠</a>
-								</li>
-								<li class="cate-sub-item">
-									<a href="">반바지</a>
-								</li>
-								<li class="cate-sub-item">
-									<a href="">타이즈</a>
-								</li>
-								<li class="cate-sub-item">
-									<a href="">스커트</a>
-								</li>
-								<li class="cate-sub-item">
-									<a href="">원피스</a>
-								</li>
+							<ul class="cate-sub Women-clothing">
 							</ul>
 						</div>
 						<div class="cate-box">
 							<div class="cate-head">
-								<a href="">용품</a>
+								<a href="<%=request.getContextPath()%>/goods/list?se_gender=Women&se_ca_num=3">용품</a>
 							</div>
-							<ul class="cate-sub">
-								<li class="cate-sub-item">
-									<a href="">양말</a>
-								</li>
-								<li class="cate-sub-item">
-									<a href="">모자</a>
-								</li>
-								<li class="cate-sub-item">
-									<a href="">가방</a>
-								</li>
-								<li class="cate-sub-item">
-									<a href="">장갑</a>
-								</li>
+							<ul class="cate-sub Women-accessories">
 							</ul>
 						</div>
 					</div>
@@ -320,6 +221,61 @@
 		}, function() {
 			$(this).hide();
 		});
+		// 서브카테고리 목록 가져오기
+		getSubCategory()
+		function getSubCategory(){
+			var man_shoes = '';
+			var man_clothing = '';
+			var man_accessories = '';
+			var women_shoes = '';
+			var women_clothing = '';
+			var women_accessories = '';
+			$.ajax({
+		        async:false,
+		        type:'GET',
+		        url: '<%=request.getContextPath()%>/subcategory/all',
+		        dataType:"json",
+		        success : function(res){
+		        	var list = res.list
+		        	for(sub of list){
+						if(sub.sub_ca_num == 1){
+							man_shoes += '<li class="cate-sub-item">';
+							man_shoes += '<a href="<%=request.getContextPath()%>/goods/list?se_gender=Man&se_ca_num=1&se_sub_num='+sub.sub_num+'">'+sub.sub_name+'</a>';
+							man_shoes += '</li>';
+							women_shoes += '<li class="cate-sub-item">';
+							women_shoes += '<a href="<%=request.getContextPath()%>/goods/list?se_gender=Women&se_ca_num=1&se_sub_num='+sub.sub_num+'">'+sub.sub_name+'</a>';
+							women_shoes += '</li>';
+						}
+						if(sub.sub_ca_num == 2){
+							if(sub.sub_num <= 11){
+								man_clothing += '<li class="cate-sub-item">';
+								man_clothing += '<a href="<%=request.getContextPath()%>/goods/list?se_gender=Man&se_ca_num=2&se_sub_num='+sub.sub_num+'">'+sub.sub_name+'</a>';
+								man_clothing += '</li>';
+							}
+							if(sub.sub_num != 6){
+								women_clothing += '<li class="cate-sub-item">';
+								women_clothing += '<a href="<%=request.getContextPath()%>/goods/list?se_gender=Women&se_ca_num=2&se_sub_num='+sub.sub_num+'">'+sub.sub_name+'</a>';
+								women_clothing += '</li>';
+							}
+						}
+						if(sub.sub_ca_num == 3){
+							man_accessories += '<li class="cate-sub-item">';
+							man_accessories += '<a href="<%=request.getContextPath()%>/goods/list?se_gender=Man&se_ca_num=3&se_sub_num='+sub.sub_num+'">'+sub.sub_name+'</a>';
+							man_accessories += '</li>';
+							women_accessories += '<li class="cate-sub-item">';
+							women_accessories += '<a href="<%=request.getContextPath()%>/goods/list?se_gender=Women&se_ca_num=3&se_sub_num='+sub.sub_num+'">'+sub.sub_name+'</a>';
+							women_accessories += '</li>';
+						}
+		        	}
+		        	$('.Man-shoes').html(man_shoes);
+		        	$('.Women-shoes').html(women_shoes);
+		        	$('.Man-clothing').html(man_clothing);
+		        	$('.Women-clothing').html(women_clothing);
+		        	$('.Man-accessories').html(man_accessories);
+		        	$('.Women-accessories').html(women_accessories);
+		        }
+		    });
+		}
 	</script>
 </body>
 </html>
