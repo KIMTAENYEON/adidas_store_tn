@@ -99,10 +99,10 @@
 	margin-right: 10px; height: 100%; display: block; text-decoration: none;
 }
 .middle-category-click .select-category-img-box{
-	display: block; background-color: #e9ecef; margin-bottom: 5px;
+	display: block; margin-bottom: 5px;
 }
 .middle-category-click .select-category-img-box img{
-	width: 100%; height: 100%;
+	width: 100%; height: 310px;
 }
 .middle-category-click .select-category-name{
  color: #000;

@@ -342,10 +342,16 @@
 				}
 			});
 			$(this).addClass('selected');
+			$('.select-category-list-container .'+gender).css('margin-left', '0px');
+			$('.select-category-list-container .'+gender).children().removeClass('start').removeClass('end');
+			$('.select-category-list-container .'+gender).children().eq(0).addClass('start');
+			$('.select-category-list-container .'+gender).children().eq(3).addClass('end');
+			$('.select-category-btn-box .btn-prev').hide();
+			$('.select-category-btn-box .btn-next').show();
 		})
 		// 다음버튼클릭
 		$('.select-category-btn-box .btn-next').click(function(){
-			var gender = ('.select-gender-box .selected').text();
+			var gender = $('.select-gender-box .selected').text();
 			var cateNext = $('.select-category-list-container .'+gender+' .end').nextAll().length
 			var cateNextMargin = (cateNext * 25)
 			if(cateNext >= 4){
@@ -354,7 +360,7 @@
 				$('.select-category-list-container .'+gender+' .end').first().removeClass('end');
 				$('.select-category-list-container .'+gender+' .start').nextAll().eq(3).addClass('start');
 				$('.select-category-list-container .'+gender+' .start').first().removeClass('start');
-				$('.select-category-list-container .'+gender+' .btn-prev').show();
+				$('.select-category-btn-box .btn-prev').show();
 			}
 			if(cateNext >= 1 && cateNext < 4){
 				$('.select-category-list-container .'+gender+'').animate({marginLeft : '-='+cateNextMargin+'%'});
@@ -362,7 +368,7 @@
 				$('.select-category-list-container .'+gender+' .end').first().removeClass('end');
 				$('.select-category-list-container .'+gender+' .start').nextAll().eq(cateNext -1).addClass('start');
 				$('.select-category-list-container .'+gender+' .start').first().removeClass('start');
-				$('.select-category-list-container .'+gender+' .btn-prev').show();
+				$('.select-category-btn-box .btn-prev').show();
 			}
 			var cateNext = $('.select-category-list-container .'+gender+' .end').nextAll().length
 			if(cateNext == 0){
@@ -371,7 +377,7 @@
 		});
 		// 이전버튼클릭
 		$('.select-category-btn-box .btn-prev').click(function(){
-			var gender = ('.select-gender-box .selected').text();
+			var gender = $('.select-gender-box .selected').text();
 			var catePrev = $('.select-category-list-container .'+gender+' .start').prevAll().length
 			var catePrevMargin = (catePrev * 25)
 			if(catePrev >= 4){
