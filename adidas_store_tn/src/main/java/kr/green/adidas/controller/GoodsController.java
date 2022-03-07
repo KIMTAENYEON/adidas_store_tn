@@ -77,7 +77,8 @@ public class GoodsController {
 	}
 	@RequestMapping(value= "/goods/add")
 	public ModelAndView addAmountGet(ModelAndView mv, Integer op_gd_num){	
-		mv.addObject("op_gd_num",op_gd_num);
+		GoodsVO goods = goodsService.getGoods(op_gd_num);
+		mv.addObject("goods", goods);
 	  mv.setViewName("/goods/option/add");
 	  return mv;
 	}
