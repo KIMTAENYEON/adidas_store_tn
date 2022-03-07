@@ -134,7 +134,7 @@
 					<div class="goods-item-box">
 						<a href="<%=request.getContextPath()%>/goods/detail?gd_num=${goods.gd_num}" class="btn btn-goods-item">
 							<span class="goods-item-img-box">
-								<img src="<%=request.getContextPath()%>${goods.gd_img}" alt="">
+								<img src="<%=request.getContextPath()%>/img/${goods.gd_img}" alt="">
 								<button type="button" class="btn btn-item-choice"><i class="icon-item-choice"></i></button>
 							</span>
 							<span class="goods-item-text-box">

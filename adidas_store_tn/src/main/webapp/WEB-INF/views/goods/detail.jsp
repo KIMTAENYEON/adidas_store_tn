@@ -18,7 +18,7 @@
 				<!-- 이미지 박스 -->
 				<div class="goods-detail-img-container">
 					<div class="goods-detail-img-box">
-						<img src="<%=request.getContextPath()%>${goods.gd_img}" alt="">
+						<img src="<%=request.getContextPath()%>/img/${goods.gd_img}" alt="">
 					</div>
 				</div>
 				<!-- 제품정보 박스 -->
@@ -134,7 +134,7 @@
 					</div>
 					<div class="goods-content-img-box">
 						<div class="goods-content-img">
-							<img src="<%=request.getContextPath()%>${goods.gd_img}" alt="">
+							<img src="<%=request.getContextPath()%>/img/${goods.gd_img}" alt="">
 						</div>
 					</div>
 				</div>

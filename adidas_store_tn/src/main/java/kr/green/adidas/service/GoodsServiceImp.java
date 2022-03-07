@@ -23,7 +23,7 @@ public class GoodsServiceImp implements GoodsService{
 	@Autowired
 	GoodsDAO goodsDao;
 
-	String uploadPath = "D:\\JAVA_TN\\adidas_store_tn\\adidas_store_tn\\src\\main\\webapp";
+	String uploadPath = "D:\\JAVA_TN\\upload";
 	String imgUpload = "/resources/imgUpload";
 	String imgUploadPath = uploadPath + File.separator + imgUpload;
 	String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
@@ -38,8 +38,8 @@ public class GoodsServiceImp implements GoodsService{
 			return;
 		if(file != null && file.getOriginalFilename().length() != 0) {
 			try {
-				String fileName = UploadFileUtils.uploadFile(imgUploadPath, file.getOriginalFilename(), file.getBytes());
-				goods.setGd_img(File.separator + imgUpload + File.separator + fileName);
+				String fileName = UploadFileUtils.uploadFile(uploadPath, file.getOriginalFilename(), file.getBytes());
+				goods.setGd_img(fileName);
 			}catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -112,8 +112,8 @@ public class GoodsServiceImp implements GoodsService{
 			return false;
 		if(file != null && file.getOriginalFilename().length() != 0) {
 			try {
-				String fileName = UploadFileUtils.uploadFile(imgUploadPath, file.getOriginalFilename(), file.getBytes());
-				goods.setGd_img(File.separator + imgUpload + File.separator + fileName);
+				String fileName = UploadFileUtils.uploadFile(uploadPath, file.getOriginalFilename(), file.getBytes());
+				goods.setGd_img(fileName);
 			}catch (Exception e) {
 				e.printStackTrace();
 			}

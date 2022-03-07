@@ -62,7 +62,7 @@
 				<div class="select-category-box">
 					<div class="select-category-list-container">
 						<!-- Women-카테고리 -->
-						<div class="select-category-list-box man-cate">
+						<div class="select-category-list-box WOMEN">
 							<!-- 카테고리 -->
 							<div class="select-category-item-box start">
 								<a href="" class="select-category-item">
@@ -138,7 +138,7 @@
 							</div>
 						</div>
 						<!-- Man-카테고리 -->
-						<div class="select-category-list-box women-cate">
+						<div class="select-category-list-box MAN">
 							<!-- 카테고리 -->
 							<div class="select-category-item-box start">
 								<a href="" class="select-category-item">
@@ -214,7 +214,7 @@
 							</div>
 						</div>
 						<!-- Kids-카테고리 -->
-						<div class="select-category-list-box women-cate">
+						<div class="select-category-list-box KIDS">
 							<!-- 카테고리 -->
 							<div class="select-category-item-box start">
 								<a href="" class="select-category-item">
@@ -333,6 +333,9 @@
 		})
 		// 중단 카테고리 클릭화면 성별선택 
 		$('.select-gender-box button').click(function(){
+			var gender = $(this).text();
+			$('.select-category-list-box').hide();
+			$('.select-category-list-container .'+gender).css('display','flex');
 			$('.select-gender-box button').each(function() {
 				if($(this).hasClass('selected')){
 					$(this).removeClass('selected');
@@ -342,50 +345,52 @@
 		})
 		// 다음버튼클릭
 		$('.select-category-btn-box .btn-next').click(function(){
-			var cateNext = $('.select-category-list-box .end').nextAll().length
+			var gender = ('.select-gender-box .selected').text();
+			var cateNext = $('.select-category-list-container .'+gender+' .end').nextAll().length
 			var cateNextMargin = (cateNext * 25)
 			if(cateNext >= 4){
-				$('.select-category-list-box').animate({marginLeft : '-=100%'});
-				$('.select-category-list-box .end').nextAll().eq(3).addClass('end');
-				$('.select-category-list-box .end').first().removeClass('end');
-				$('.select-category-list-box .start').nextAll().eq(3).addClass('start');
-				$('.select-category-list-box .start').first().removeClass('start');
-				$('.select-category-btn-box .btn-prev').show();
+				$('.select-category-list-container .'+gender+'').animate({marginLeft : '-=100%'});
+				$('.select-category-list-container .'+gender+' .end').nextAll().eq(3).addClass('end');
+				$('.select-category-list-container .'+gender+' .end').first().removeClass('end');
+				$('.select-category-list-container .'+gender+' .start').nextAll().eq(3).addClass('start');
+				$('.select-category-list-container .'+gender+' .start').first().removeClass('start');
+				$('.select-category-list-container .'+gender+' .btn-prev').show();
 			}
 			if(cateNext >= 1 && cateNext < 4){
-				$('.select-category-list-box').animate({marginLeft : '-='+cateNextMargin+'%'});
-				$('.select-category-list-box .end').nextAll().eq(cateNext -1).addClass('end');
-				$('.select-category-list-box .end').first().removeClass('end');
-				$('.select-category-list-box .start').nextAll().eq(cateNext -1).addClass('start');
-				$('.select-category-list-box .start').first().removeClass('start');
-				$('.select-category-btn-box .btn-prev').show();
+				$('.select-category-list-container .'+gender+'').animate({marginLeft : '-='+cateNextMargin+'%'});
+				$('.select-category-list-container .'+gender+' .end').nextAll().eq(cateNext -1).addClass('end');
+				$('.select-category-list-container .'+gender+' .end').first().removeClass('end');
+				$('.select-category-list-container .'+gender+' .start').nextAll().eq(cateNext -1).addClass('start');
+				$('.select-category-list-container .'+gender+' .start').first().removeClass('start');
+				$('.select-category-list-container .'+gender+' .btn-prev').show();
 			}
-			var cateNext = $('.select-category-list-box .end').nextAll().length
+			var cateNext = $('.select-category-list-container .'+gender+' .end').nextAll().length
 			if(cateNext == 0){
 				$('.select-category-btn-box .btn-next').hide();
 			}
 		});
 		// 이전버튼클릭
 		$('.select-category-btn-box .btn-prev').click(function(){
-			var catePrev = $('.select-category-list-box .start').prevAll().length
+			var gender = ('.select-gender-box .selected').text();
+			var catePrev = $('.select-category-list-container .'+gender+' .start').prevAll().length
 			var catePrevMargin = (catePrev * 25)
 			if(catePrev >= 4){
-				$('.select-category-list-box').animate({marginLeft : '+=100%'});
-				$('.select-category-list-box .end').prevAll().eq(3).addClass('end');
-				$('.select-category-list-box .end').last().removeClass('end');
-				$('.select-category-list-box .start').prevAll().eq(3).addClass('start');
-				$('.select-category-list-box .start').last().removeClass('start');
+				$('.select-category-list-container .'+gender+'').animate({marginLeft : '+=100%'});
+				$('.select-category-list-container .'+gender+' .end').prevAll().eq(3).addClass('end');
+				$('.select-category-list-container .'+gender+' .end').last().removeClass('end');
+				$('.select-category-list-container .'+gender+' .start').prevAll().eq(3).addClass('start');
+				$('.select-category-list-container .'+gender+' .start').last().removeClass('start');
 				$('.select-category-btn-box .btn-next').show();
 			}
 			if(catePrev >= 1 && catePrev < 4){
-				$('.select-category-list-box').animate({marginLeft : '+='+catePrevMargin+'%'});
-				$('.select-category-list-box .end').prevAll().eq(catePrev -1).addClass('end');
-				$('.select-category-list-box .end').last().removeClass('end');
-				$('.select-category-list-box .start').prevAll().eq(catePrev -1).addClass('start');
-				$('.select-category-list-box .start').last().removeClass('start');
+				$('.select-category-list-container .'+gender+'').animate({marginLeft : '+='+catePrevMargin+'%'});
+				$('.select-category-list-container .'+gender+' .end').prevAll().eq(catePrev -1).addClass('end');
+				$('.select-category-list-container .'+gender+' .end').last().removeClass('end');
+				$('.select-category-list-container .'+gender+' .start').prevAll().eq(catePrev -1).addClass('start');
+				$('.select-category-list-container .'+gender+' .start').last().removeClass('start');
 				$('.select-category-btn-box .btn-next').show();
 			}
-			var catePrev = $('.select-category-list-box .start').prevAll().length
+			var catePrev = $('.select-category-list-container .'+gender+' .start').prevAll().length
 			if(catePrev == 0){
 				$('.select-category-btn-box .btn-prev').hide();
 			}
