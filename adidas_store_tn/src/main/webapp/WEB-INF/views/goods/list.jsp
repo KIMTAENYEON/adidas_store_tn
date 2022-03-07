@@ -262,6 +262,26 @@
 				$(this).css('background-color', '#fff');
 			}
 		});
+		getSelectOption();
+		//선택된 옵션 불러오기
+		function getSelectOption() {
+			var gender = '${select.se_gender}';
+			var se_new = '${select.se_new}';
+			$('.goods-select-gender').find('[value='+gender+']').prop('selected', 'selected');
+			$('.goods-select-category').find('[value='+${select.se_ca_num}+']').prop('selected', 'selected');
+			setSubCategory(${select.se_ca_num});
+			$('.goods-select-subcategory').find('[value='+${select.se_sub_num}+']').prop('selected', 'selected');	
+			if(${select.se_min_price} > 0){
+				$('[name=se_min_price]').val(${select.se_min_price});
+			}
+			if(${select.se_max_price} > 0){
+				$('[name=se_max_price]').val(${select.se_max_price});
+			}
+			$('.goods-select-lineup').find('[value='+${select.se_lineup}+']').prop('selected', 'selected');	
+			if(se_new == 'on'){
+				$('[name=se_new]').prop('checked', true);
+			}
+		}
 	</script>
 </body>
 </html>
