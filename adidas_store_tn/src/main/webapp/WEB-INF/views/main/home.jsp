@@ -32,7 +32,94 @@
 				</div>
 			</div>
 		</div>
-		
+		<!-- 중단 카테고리 화면 -->
+		<div class="middle-category">
+			<div class="middle-category-container">
+				<div class="middle-category-box">
+					<div class="middle-gender">
+						<span class="gender">WOMEN</span>
+						<img src="https://brand.assets.adidas.com/image/upload/f_auto,q_auto,fl_lossy/koKR/Images/updated_gender_women_dt_tcm215-636701.jpg">
+					</div>
+					<div class="middle-gender">
+						<span class="gender">MAN</span>
+						<img src="https://brand.assets.adidas.com/image/upload/f_auto,q_auto,fl_lossy/koKR/Images/updated_gender_men_dt_tcm215-636698.jpg">
+					</div>
+					<div class="middle-gender">
+						<span class="gender">KIDS</span>
+						<img src="https://brand.assets.adidas.com/image/upload/f_auto,q_auto,fl_lossy/koKR/Images/updated_gender_kids_dt_tcm215-636695.jpg">
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 중단 카테고리 클릭 화면 -->
+		<div class="middle-category-click">
+			<div class="middle-category-click-container">
+				<!-- 성별선택 -->
+				<div class="select-gender-box">
+					<button type="button" class="btn btn-WOMEN selected">WOMEN</button>
+					<button type="button" class="btn btn-MAN">MAN</button>
+					<button type="button" class="btn btn-KIDS">KIDS</button>
+				</div>
+				<!-- 카테고리 리스트 -->
+				<div class="select-category-box">
+					<div class="select-category-list-container">
+						<!-- Women-카테고리 -->
+						<div class="select-category-list-box WOMEN">
+							<c:forEach var="goods" items="${list}">
+								<c:if test="${goods.gd_sub_num < 19 && goods.gd_sub_num != 6}">
+									<!-- 카테고리 -->
+									<div class="select-category-item-box start">
+										<a href="<%=request.getContextPath()%>/goods/list?se_gender=Women&se_ca_num=${goods.gd_ca_num}&se_sub_num=${goods.gd_sub_num}" class="select-category-item">
+											<span class="select-category-img-box">
+												<img src="<%=request.getContextPath()%>/img/${goods.gd_img}" alt="">
+											</span>
+											<span class="select-category-name">${goods.gd_name}</span>
+										</a>
+									</div>
+								</c:if>
+							</c:forEach>
+						</div>
+						<!-- Man-카테고리 -->
+						<div class="select-category-list-box MAN">
+							<c:forEach var="goods" items="${list}">
+								<c:if test="${goods.gd_sub_num < 19 && goods.gd_sub_num != 12 && goods.gd_sub_num != 13 && goods.gd_sub_num != 14}">
+									<!-- 카테고리 -->
+									<div class="select-category-item-box start">
+										<a href="<%=request.getContextPath()%>/goods/list?se_gender=Man&se_ca_num=${goods.gd_ca_num}&se_sub_num=${goods.gd_sub_num}" class="select-category-item">
+											<span class="select-category-img-box">
+												<img src="<%=request.getContextPath()%>/img/${goods.gd_img}" alt="">
+											</span>
+											<span class="select-category-name">${goods.gd_name}</span>
+										</a>
+									</div>
+								</c:if>
+							</c:forEach>
+						</div>
+						<!-- Kids-카테고리 -->
+						<div class="select-category-list-box KIDS">
+							<c:forEach var="goods" items="${list}">
+								<c:if test="${goods.gd_sub_num >= 19 && goods.gd_sub_num <= 26}">
+									<!-- 카테고리 -->
+									<div class="select-category-item-box start">
+										<a href="<%=request.getContextPath()%>/goods/list?se_gender=Kids&se_ca_num=${goods.gd_ca_num}&se_sub_num=${goods.gd_sub_num}" class="select-category-item">
+											<span class="select-category-img-box">
+												<img src="<%=request.getContextPath()%>/img/${goods.gd_img}" alt="">
+											</span>
+											<span class="select-category-name">${goods.gd_name}</span>
+										</a>
+									</div>
+								</c:if>
+							</c:forEach>
+						</div>
+						<!-- 이전, 다음 버튼 -->
+						<div class="select-category-btn-box">
+							<button type="button" class="btn btn-prev"><i class="icon-left"></i></button>
+							<button type="button" class="btn btn-next"><i class="icon-right"></i></button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 		<!-- 하단 화면 -->
 		<div class="bottom">
 			<div class="bottom-container">
@@ -61,5 +148,84 @@
 			</div>
 		</div>
 	</div>
+	<script>
+		// 중단 카테고리 클릭 시 화면 전환
+		$('.middle-gender').click(function(){
+			var gender = $(this).children('.gender').text();		
+			$('.middle-category').hide();
+			$('.middle-category-click').show();
+			$('.select-gender-box .btn-'+gender).click();
+		})
+		// 중단 카테고리 클릭화면 성별선택 
+		$('.select-gender-box button').click(function(){
+			var gender = $(this).text();
+			$('.select-category-list-box').hide();
+			$('.select-category-list-container .'+gender).css('display','flex');
+			$('.select-gender-box button').each(function() {
+				if($(this).hasClass('selected')){
+					$(this).removeClass('selected');
+				}
+			});
+			$(this).addClass('selected');
+			$('.select-category-list-container .'+gender).css('margin-left', '0px');
+			$('.select-category-list-container .'+gender).children().removeClass('start').removeClass('end');
+			$('.select-category-list-container .'+gender).children().eq(0).addClass('start');
+			$('.select-category-list-container .'+gender).children().eq(3).addClass('end');
+			$('.select-category-btn-box .btn-prev').hide();
+			$('.select-category-btn-box .btn-next').show();
+		})
+		// 다음버튼클릭
+		$('.select-category-btn-box .btn-next').click(function(){
+			var gender = $('.select-gender-box .selected').text();
+			var cateNext = $('.select-category-list-container .'+gender+' .end').nextAll().length
+			var cateNextMargin = (cateNext * 25)
+			if(cateNext >= 4){
+				$('.select-category-list-container .'+gender+'').animate({marginLeft : '-=100%'});
+				$('.select-category-list-container .'+gender+' .end').nextAll().eq(3).addClass('end');
+				$('.select-category-list-container .'+gender+' .end').first().removeClass('end');
+				$('.select-category-list-container .'+gender+' .start').nextAll().eq(3).addClass('start');
+				$('.select-category-list-container .'+gender+' .start').first().removeClass('start');
+				$('.select-category-btn-box .btn-prev').show();
+			}
+			if(cateNext >= 1 && cateNext < 4){
+				$('.select-category-list-container .'+gender+'').animate({marginLeft : '-='+cateNextMargin+'%'});
+				$('.select-category-list-container .'+gender+' .end').nextAll().eq(cateNext -1).addClass('end');
+				$('.select-category-list-container .'+gender+' .end').first().removeClass('end');
+				$('.select-category-list-container .'+gender+' .start').nextAll().eq(cateNext -1).addClass('start');
+				$('.select-category-list-container .'+gender+' .start').first().removeClass('start');
+				$('.select-category-btn-box .btn-prev').show();
+			}
+			var cateNext = $('.select-category-list-container .'+gender+' .end').nextAll().length
+			if(cateNext == 0){
+				$('.select-category-btn-box .btn-next').hide();
+			}
+		});
+		// 이전버튼클릭
+		$('.select-category-btn-box .btn-prev').click(function(){
+			var gender = $('.select-gender-box .selected').text();
+			var catePrev = $('.select-category-list-container .'+gender+' .start').prevAll().length
+			var catePrevMargin = (catePrev * 25)
+			if(catePrev >= 4){
+				$('.select-category-list-container .'+gender+'').animate({marginLeft : '+=100%'});
+				$('.select-category-list-container .'+gender+' .end').prevAll().eq(3).addClass('end');
+				$('.select-category-list-container .'+gender+' .end').last().removeClass('end');
+				$('.select-category-list-container .'+gender+' .start').prevAll().eq(3).addClass('start');
+				$('.select-category-list-container .'+gender+' .start').last().removeClass('start');
+				$('.select-category-btn-box .btn-next').show();
+			}
+			if(catePrev >= 1 && catePrev < 4){
+				$('.select-category-list-container .'+gender+'').animate({marginLeft : '+='+catePrevMargin+'%'});
+				$('.select-category-list-container .'+gender+' .end').prevAll().eq(catePrev -1).addClass('end');
+				$('.select-category-list-container .'+gender+' .end').last().removeClass('end');
+				$('.select-category-list-container .'+gender+' .start').prevAll().eq(catePrev -1).addClass('start');
+				$('.select-category-list-container .'+gender+' .start').last().removeClass('start');
+				$('.select-category-btn-box .btn-next').show();
+			}
+			var catePrev = $('.select-category-list-container .'+gender+' .start').prevAll().length
+			if(catePrev == 0){
+				$('.select-category-btn-box .btn-prev').hide();
+			}
+		});
+	</script>
 </body>
 </html>

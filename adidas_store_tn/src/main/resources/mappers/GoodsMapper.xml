@@ -136,4 +136,11 @@
 	<delete id="deleteGoods">
 		delete from goods where gd_num = #{gd_num}
 	</delete>
+	<select id="selectGroupbyCategory" resultType="kr.green.adidas.vo.GoodsVO">
+		select gd_gender, gd_ca_num, gd_img, gd_sub_num, sub_name as gd_name from goods 
+			join subcategory
+    		on gd_sub_num = sub_num
+			group by gd_sub_num 
+			order by gd_sub_num asc
+	</select>
 </mapper>

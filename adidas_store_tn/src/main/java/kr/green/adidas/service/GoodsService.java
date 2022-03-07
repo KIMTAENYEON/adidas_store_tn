@@ -36,4 +36,6 @@ public interface GoodsService {
 
 	void deleteGoods(Integer gd_num, MemberVO user);
 
+	List<GoodsVO> selectGroupbyCategory();
+
 }

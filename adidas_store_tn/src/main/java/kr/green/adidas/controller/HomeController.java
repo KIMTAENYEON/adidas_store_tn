@@ -20,8 +20,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.util.WebUtils;
 
+import kr.green.adidas.service.GoodsService;
 import kr.green.adidas.service.MemberService;
 import kr.green.adidas.vo.EmailCheckVO;
+import kr.green.adidas.vo.GoodsVO;
 import kr.green.adidas.vo.MemberVO;
 import kr.green.adidas.vo.SubCategoryVO;
 
@@ -30,9 +32,13 @@ public class HomeController {
 	
 	@Autowired
 	MemberService memberService;
+	@Autowired
+	GoodsService goodsService;
 	
 	@RequestMapping(value= "/")
-	public ModelAndView home(ModelAndView mv){		
+	public ModelAndView home(ModelAndView mv){
+	  List<GoodsVO> list =	goodsService.selectGroupbyCategory();
+	  mv.addObject("list", list);
 	  mv.setViewName("/main/home");
 	  return mv;
 	}

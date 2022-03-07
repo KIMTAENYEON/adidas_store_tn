@@ -35,15 +35,15 @@
 			<div class="middle-category-container">
 				<div class="middle-category-box">
 					<div class="middle-gender">
-						<span>WOMEN</span>
+						<span class="gender">WOMEN</span>
 						<img src="https://brand.assets.adidas.com/image/upload/f_auto,q_auto,fl_lossy/koKR/Images/updated_gender_women_dt_tcm215-636701.jpg">
 					</div>
 					<div class="middle-gender">
-						<span>MAN</span>
+						<span class="gender">MAN</span>
 						<img src="https://brand.assets.adidas.com/image/upload/f_auto,q_auto,fl_lossy/koKR/Images/updated_gender_men_dt_tcm215-636698.jpg">
 					</div>
 					<div class="middle-gender">
-						<span>KIDS</span>
+						<span class="gender">KIDS</span>
 						<img src="https://brand.assets.adidas.com/image/upload/f_auto,q_auto,fl_lossy/koKR/Images/updated_gender_kids_dt_tcm215-636695.jpg">
 					</div>
 				</div>
@@ -328,8 +328,10 @@
 	<script>
 		// 중단 카테고리 클릭 시 화면 전환
 		$('.middle-gender').click(function(){
+			var gender = $(this).children('.gender').text();		
 			$('.middle-category').hide();
 			$('.middle-category-click').show();
+			$('.select-gender-box .btn-'+gender).click();
 		})
 		// 중단 카테고리 클릭화면 성별선택 
 		$('.select-gender-box button').click(function(){

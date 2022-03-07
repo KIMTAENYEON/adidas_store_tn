@@ -1,6 +1,5 @@
 package kr.green.adidas.service;
 
-import java.io.File;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,9 +23,6 @@ public class GoodsServiceImp implements GoodsService{
 	GoodsDAO goodsDao;
 
 	String uploadPath = "D:\\JAVA_TN\\upload";
-	String imgUpload = "/resources/imgUpload";
-	String imgUploadPath = uploadPath + File.separator + imgUpload;
-	String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
 	
 	@Override
 	public void registerGoods(GoodsVO goods, MultipartFile file, MemberVO user) {
@@ -133,5 +129,9 @@ public class GoodsServiceImp implements GoodsService{
 		if(dbGoods == null)
 			return;
 		goodsDao.deleteGoods(gd_num);
+	}
+	@Override
+	public List<GoodsVO> selectGroupbyCategory() {
+		return goodsDao.selectGroupbyCategory();
 	}
 }
