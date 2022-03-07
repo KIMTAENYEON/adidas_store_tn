@@ -83,6 +83,9 @@
 					<div class="goods-detail-amount-box">
 						<h4>수량</h4>
 						<input type="number" class="goods-detail-amount" min="1" value="1">
+						<c:if test="${user.me_authority == '관리자'}">
+							<button type="button" onclick="window.open('<%=request.getContextPath()%>/goods/add?op_gd_num=${goods.gd_num}','','width=500px, height=200px, top=300px, left=300px')" class="btn btn-item-add">재고추가</button>
+						</c:if>
 					</div>
 					<!-- 제품 선택 박스(장바구니, 찜, 구매) -->
 					<div class="goods-detail-select-container">

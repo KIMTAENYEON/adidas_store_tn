@@ -13,7 +13,7 @@
 		<div class="body login-container">
 			<div class="login-box">
 				<h3 class="margin-top">로그인</h3>
-				<form action="" method="post">
+				<form action="<%=request.getContextPath()%>/member/login" method="post">
 					<a href="<%=request.getContextPath()%>/member/find" class="pw-forget">비밀번호를 잊으셨나요?</a>
 					<div class="email-input-container">
 						<div class="email-input-box">

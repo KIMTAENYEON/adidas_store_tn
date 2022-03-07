@@ -88,6 +88,10 @@
 .middle-category-click .select-category-list-box{
 	height: 100%; display: flex; width: 100%; margin-left: 0;
 }
+.middle-category-click .select-category-list-box:nth-child(2),
+.middle-category-click .select-category-list-box:nth-child(3){
+	display: none;
+}
 .middle-category-click .select-category-item-box{
 	width: 25%; flex: 0 0 auto;
 }

@@ -20,7 +20,7 @@
 }
 /* 메인 메뉴 (호버) */
 .header .category-container{
-	width: 100vw; height: 330px; position: absolute; top: 100px; left: 0;
+	width: 100vw; height: 330px; position: absolute; top: 100px; left: 0; display: none;
 }
 .header .category-container-MAN,
 .header .category-container-WOMEN,

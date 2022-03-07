@@ -63,6 +63,9 @@
 .goods-detail-information-container .goods-detail-amount{
 	width: 100px; height: 30px; margin-top: 5px; outline: none;
 }
+.goods-detail-amount-box button{
+	border: 1px solid red; width: 80px; height: 30px; background-color: #fff; vertical-align: bottom; margin-left: 30px;
+}
 /* 제품 선택 박스 */
 .goods-detail-information-container .goods-detail-select-container{
 	margin-top: 50px;

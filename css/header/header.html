@@ -298,17 +298,21 @@
 	<script>
 		// 메인메뉴 호버
 		$('.main-menu-gender').hover(function() {
+			$('.category-container').show();
 			var target = $(this).children().text();
 			$('.category-container-'+target).show();
 		}, function() {
 			var target = $(this).children().text();
 			$('.category-container-'+target).hide();
+			$('.category-container').hide();
 		});
 		// 메인메뉴 호버해서 나타난 카테고리창 호버
 		$('.category-container').children().hover(function() {
+			$('.category-container').show();
 			$(this).show();
 		}, function() {
 			$(this).hide();
+			$('.category-container').hide();
 		});
 	</script>
 </body>

@@ -110,7 +110,7 @@
 							</div>
 							<ul class="cate-sub">
 								<li class="cate-sub-item">
-									<a href="<%=request.getContextPath()%>/goods/list?se_gender=Man&se_new=on">신상품</a>
+									<a href="<%=request.getContextPath()%>/goods/list?se_gender=Women&se_new=on">신상품</a>
 								</li>
 								<li class="cate-sub-item">
 									<a href="">인기상품</a>
@@ -145,11 +145,11 @@
 					<div class="category-box">
 						<div class="cate-box">
 							<div class="cate-head">
-								<a href="">키즈</a>
+								<a href="<%=request.getContextPath()%>/goods/list?se_gender=Kids">키즈</a>
 							</div>
 							<ul class="cate-sub">
 								<li class="cate-sub-item">
-									<a href="">신상품</a>
+									<a href="<%=request.getContextPath()%>/goods/list?se_gender=Kids&se_new=on">신상품</a>
 								</li>
 								<li class="cate-sub-item">
 									<a href="">인기상품</a>
@@ -158,46 +158,46 @@
 						</div>
 						<div class="cate-box">
 							<div class="cate-head">
-								<a href="">청소년</a>
+								<a href="<%=request.getContextPath()%>/goods/list?se_gender=Kids&se_ca_num=4">청소년</a>
 							</div>
 							<ul class="cate-sub">
 								<li class="cate-sub-item">
-									<a href="">신발</a>
+									<a href="<%=request.getContextPath()%>/goods/list?se_gender=Kids&se_ca_num=4&se_sub_num=19">신발</a>
 								</li>
 								<li class="cate-sub-item">
-									<a href="">의류</a>
+									<a href="<%=request.getContextPath()%>/goods/list?se_gender=Kids&se_ca_num=4&se_sub_num=20">의류</a>
 								</li>
 								<li class="cate-sub-item">
-									<a href="">용품</a>
+									<a href="<%=request.getContextPath()%>/goods/list?se_gender=Kids&se_ca_num=4&se_sub_num=21">용품</a>
 								</li>
 							</ul>
 						</div>
 						<div class="cate-box">
 							<div class="cate-head">
-								<a href="">어린이</a>
+								<a href="<%=request.getContextPath()%>/goods/list?se_gender=Kids&se_ca_num=5">어린이</a>
 							</div>
 							<ul class="cate-sub">
 								<li class="cate-sub-item">
-									<a href="">신발</a>
+									<a href="<%=request.getContextPath()%>/goods/list?se_gender=Kids&se_ca_num=5&se_sub_num=22">신발</a>
 								</li>
 								<li class="cate-sub-item">
-									<a href="">의류</a>
+									<a href="<%=request.getContextPath()%>/goods/list?se_gender=Kids&se_ca_num=5&se_sub_num=23">의류</a>
 								</li>
 								<li class="cate-sub-item">
-									<a href="">용품</a>
+									<a href="<%=request.getContextPath()%>/goods/list?se_gender=Kids&se_ca_num=5&se_sub_num=24">용품</a>
 								</li>
 							</ul>
 						</div>
 						<div class="cate-box">
 							<div class="cate-head">
-								<a href="">유아</a>
+								<a href="<%=request.getContextPath()%>/goods/list?se_gender=Kids&se_ca_num=6">유아</a>
 							</div>
 							<ul class="cate-sub">
 								<li class="cate-sub-item">
-									<a href="">신발</a>
+									<a href="<%=request.getContextPath()%>/goods/list?se_gender=Kids&se_ca_num=6&se_sub_num=25">신발</a>
 								</li>
 								<li class="cate-sub-item">
-									<a href="">의류</a>
+									<a href="<%=request.getContextPath()%>/goods/list?se_gender=Kids&se_ca_num=6&se_sub_num=26">의류</a>
 								</li>
 							</ul>
 						</div>
@@ -209,17 +209,21 @@
 	<script>
 		// 메인메뉴 호버
 		$('.main-menu-gender').hover(function() {
+			$('.category-container').show();
 			var target = $(this).children().text();
 			$('.category-container-'+target).show();
 		}, function() {
 			var target = $(this).children().text();
 			$('.category-container-'+target).hide();
+			$('.category-container').hide();
 		});
 		// 메인메뉴 호버해서 나타난 카테고리창 호버
 		$('.category-container').children().hover(function() {
+			$('.category-container').show();
 			$(this).show();
 		}, function() {
 			$(this).hide();
+			$('.category-container').hide();
 		});
 		// 서브카테고리 목록 가져오기
 		getSubCategory()
