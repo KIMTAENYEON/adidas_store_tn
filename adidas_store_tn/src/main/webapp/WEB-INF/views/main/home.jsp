@@ -174,7 +174,7 @@
 			$('.select-category-btn-box .btn-prev').hide();
 			$('.select-category-btn-box .btn-next').show();
 		})
-		// 다음버튼클릭
+		// 중단 카테고리 다음버튼클릭
 		$('.select-category-btn-box .btn-next').click(function(){
 			var gender = $('.select-gender-box .selected').text();
 			var cateNext = $('.select-category-list-container .'+gender+' .end').nextAll().length
@@ -200,7 +200,7 @@
 				$('.select-category-btn-box .btn-next').hide();
 			}
 		});
-		// 이전버튼클릭
+		// 중단 카테고리 이전버튼클릭
 		$('.select-category-btn-box .btn-prev').click(function(){
 			var gender = $('.select-gender-box .selected').text();
 			var catePrev = $('.select-category-list-container .'+gender+' .start').prevAll().length
