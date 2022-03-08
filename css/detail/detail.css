@@ -63,9 +63,6 @@
 .goods-detail-information-container .goods-detail-amount{
 	width: 100px; height: 30px; margin-top: 5px; outline: none;
 }
-.goods-detail-amount-box button{
-	border: 1px solid red; width: 80px; height: 30px; background-color: #fff; vertical-align: bottom; margin-left: 30px;
-}
 /* 제품 선택 박스 */
 .goods-detail-information-container .goods-detail-select-container{
 	margin-top: 50px;
@@ -91,7 +88,7 @@
 	background-position: center; background-size: contain; 
 }
 .goods-detail-information-container .btn-select-buy{
-	width: 100%; height: 50px; margin-top: 10px; background-color: #fff; border: 2px solid #000; cursor: pointer; display: block; text-align: center;
+	width: 100%; height: 50px; margin-top: 10px; background-color: #fff; border: 2px solid #000; cursor: pointer;
 }
 /* 수정, 삭제 버튼 */
 .goods-detail-information-container .goods-detail-modify-delete-container{

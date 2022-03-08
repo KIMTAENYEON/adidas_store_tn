@@ -21,104 +21,105 @@
 						<img src="<%=request.getContextPath()%>/img/${goods.gd_img}" alt="">
 					</div>
 				</div>
-				<!-- 제품정보 박스 -->
-				<div class="goods-detail-information-container">
-					<div class="goods-detail-name-box">
-						<span class="goods-detail-name">${goods.gd_name}</span>
-					</div>
-					<div class="goods-detail-price-box">
-						<span class="goods-detail-price">${goods.gd_price}원</span>
-					</div>
-					<!-- 사이즈 선택 -->
-					<div class="goods-detail-size-container">
-						<div class="size-title">구입 가능한 사이즈</div>
-						<div class="goods-size-box">
-							<c:if test="${goods.gd_ca_num == 1}">
-								<button class="btn btn-size-select" disabled>230</button>
-								<button class="btn btn-size-select" disabled>235</button>
-								<button class="btn btn-size-select" disabled>240</button>
-								<button class="btn btn-size-select" disabled>245</button>
-								<button class="btn btn-size-select" disabled>250</button>
-								<button class="btn btn-size-select" disabled>255</button>
-								<button class="btn btn-size-select" disabled>260</button>
-								<button class="btn btn-size-select" disabled>265</button>
-								<button class="btn btn-size-select" disabled>270</button>
-								<button class="btn btn-size-select" disabled>275</button>
-								<button class="btn btn-size-select" disabled>280</button>
-							</c:if>
-							<c:if test="${goods.gd_ca_num == 2 || goods.gd_sub_num == 20 || goods.gd_sub_num == 23 || goods.gd_sub_num == 26}">
-								<button class="btn btn-size-select" disabled>XS</button>
-								<button class="btn btn-size-select" disabled>S</button>
-								<button class="btn btn-size-select" disabled>M</button>
-								<button class="btn btn-size-select" disabled>L</button>
-								<button class="btn btn-size-select" disabled>XL</button>
-							</c:if>
-							<c:if test="${goods.gd_ca_num == 3 || goods.gd_sub_num == 21 || goods.gd_sub_num == 24}">
-								<button class="btn btn-size-select" disabled>FREE</button>
-							</c:if>
-							<c:if test="${goods.gd_sub_num == 19}">
-								<button class="btn btn-size-select" disabled>220</button>
-								<button class="btn btn-size-select" disabled>225</button>
-								<button class="btn btn-size-select" disabled>230</button>
-								<button class="btn btn-size-select" disabled>235</button>
-								<button class="btn btn-size-select" disabled>240</button>
-							</c:if>
-							<c:if test="${goods.gd_sub_num == 22}">
-								<button class="btn btn-size-select" disabled>170</button>
-								<button class="btn btn-size-select" disabled>180</button>
-								<button class="btn btn-size-select" disabled>190</button>
-								<button class="btn btn-size-select" disabled>200</button>
-								<button class="btn btn-size-select" disabled>210</button>
-							</c:if>
-							<c:if test="${goods.gd_sub_num == 25}">
-								<button class="btn btn-size-select" disabled>120</button>
-								<button class="btn btn-size-select" disabled>130</button>
-								<button class="btn btn-size-select" disabled>140</button>
-								<button class="btn btn-size-select" disabled>150</button>
-								<button class="btn btn-size-select" disabled>160</button>
-							</c:if>
+				<form action="<%=request.getContextPath()%>/order/buy">
+					<!-- 제품정보 박스 -->
+					<div class="goods-detail-information-container">
+						<div class="goods-detail-name-box">
+							<span class="goods-detail-name">${goods.gd_name}</span>
 						</div>
-					</div>
-					<!-- 수량 선택 -->
-					<div class="goods-detail-amount-box">
-						<h4>수량</h4>
-						<input type="number" class="goods-detail-amount" min="1" value="1">
-						<c:if test="${user.me_authority == '관리자'}">
-							<button type="button" onclick="window.open('<%=request.getContextPath()%>/goods/add?op_gd_num=${goods.gd_num}','','width=500px, height=200px, top=300px, left=300px')" class="btn btn-item-add">재고추가</button>
-						</c:if>
-					</div>
-					<!-- 제품 선택 박스(장바구니, 찜, 구매) -->
-					<div class="goods-detail-select-container">
-						<div class="goods-detail-select-box">
-							<button class="btn btn-select-bascket">
-								<span>장바구니 담기</span>
-								<i class="icon-right"></i>
-							</button>
-							<button class="btn btn-select-choice">
-								<i class="icon-choice"></i>
-							</button>
-							<button class="btn btn-select-buy">
-								<span>구매</span>
-								<i class="icon-right"></i>
-							</button>
+						<div class="goods-detail-price-box">
+							<span class="goods-detail-price">${goods.gd_price}원</span>
 						</div>
-					</div>
-					<c:if test="${user.me_authority == '관리자'}">
-						<!-- 수정, 삭제 버튼 -->
-						<div class="goods-detail-modify-delete-container">
-							<div class="goods-detail-modify-delete">
-								<a href="<%=request.getContextPath()%>/goods/modify?gd_num=${goods.gd_num}" class="btn btn-goods-modify">
-									<span>수정</span>
-									<i class="icon-right"></i>
-								</a>
-								<a href="<%=request.getContextPath()%>/goods/delete?gd_num=${goods.gd_num}" onclick="return confirm('삭제하시겠습니까?')" class="btn btn-goods-delete">
-									<span>삭제</span>
-									<i class="icon-right"></i>
-								</a>
+						<!-- 사이즈 선택 -->
+						<div class="goods-detail-size-container">
+							<div class="size-title">구입 가능한 사이즈</div>
+							<div class="goods-size-box">
+								<c:if test="${goods.gd_ca_num == 1}">
+									<button type="button" class="btn btn-size-select" disabled>230</button>
+									<button type="button" class="btn btn-size-select" disabled>235</button>
+									<button type="button" class="btn btn-size-select" disabled>240</button>
+									<button type="button" class="btn btn-size-select" disabled>245</button>
+									<button type="button" class="btn btn-size-select" disabled>250</button>
+									<button type="button" class="btn btn-size-select" disabled>255</button>
+									<button type="button" class="btn btn-size-select" disabled>260</button>
+									<button type="button" class="btn btn-size-select" disabled>265</button>
+									<button type="button" class="btn btn-size-select" disabled>270</button>
+									<button type="button" class="btn btn-size-select" disabled>275</button>
+									<button type="button" class="btn btn-size-select" disabled>280</button>
+								</c:if>
+								<c:if test="${goods.gd_ca_num == 2 || goods.gd_sub_num == 20 || goods.gd_sub_num == 23 || goods.gd_sub_num == 26}">
+									<button type="button" class="btn btn-size-select" disabled>XS</button>
+									<button type="button" class="btn btn-size-select" disabled>S</button>
+									<button type="button" class="btn btn-size-select" disabled>M</button>
+									<button type="button" class="btn btn-size-select" disabled>L</button>
+									<button type="button" class="btn btn-size-select" disabled>XL</button>
+								</c:if>
+								<c:if test="${goods.gd_ca_num == 3 || goods.gd_sub_num == 21 || goods.gd_sub_num == 24}">
+									<button type="button" class="btn btn-size-select" disabled>FREE</button>
+								</c:if>
+								<c:if test="${goods.gd_sub_num == 19}">
+									<button type="button" class="btn btn-size-select" disabled>220</button>
+									<button type="button" class="btn btn-size-select" disabled>225</button>
+									<button type="button" class="btn btn-size-select" disabled>230</button>
+									<button type="button" class="btn btn-size-select" disabled>235</button>
+									<button type="button" class="btn btn-size-select" disabled>240</button>
+								</c:if>
+								<c:if test="${goods.gd_sub_num == 22}">
+									<button type="button" class="btn btn-size-select" disabled>170</button>
+									<button type="button" class="btn btn-size-select" disabled>180</button>
+									<button type="button" class="btn btn-size-select" disabled>190</button>
+									<button type="button" class="btn btn-size-select" disabled>200</button>
+									<button type="button" class="btn btn-size-select" disabled>210</button>
+								</c:if>
+								<c:if test="${goods.gd_sub_num == 25}">
+									<button type="button" class="btn btn-size-select" disabled>120</button>
+									<button type="button" class="btn btn-size-select" disabled>130</button>
+									<button type="button" class="btn btn-size-select" disabled>140</button>
+									<button type="button" class="btn btn-size-select" disabled>150</button>
+									<button type="button" class="btn btn-size-select" disabled>160</button>
+								</c:if>
+								<input type="hidden" name="op_size">
+								<input type="hidden" name="ol_op_num">
 							</div>
 						</div>
-					</c:if>
-				</div>
+						<!-- 수량 선택 -->
+						<div class="goods-detail-amount-box">
+							<h4>수량</h4>
+							<input type="number" class="goods-detail-amount" min="1" value="1" name="ol_amount">
+						</div>
+						<!-- 제품 선택 박스(장바구니, 찜, 구매) -->
+						<div class="goods-detail-select-container">
+							<div class="goods-detail-select-box">
+								<button type="button" class="btn btn-select-bascket">
+									<span>장바구니 담기</span>
+									<i class="icon-right"></i>
+								</button>
+								<button type="button" class="btn btn-select-choice">
+									<i class="icon-choice"></i>
+								</button>
+								<button class="btn btn-select-buy">
+									<span>구매</span>
+									<i class="icon-right"></i>
+								</button>
+							</div>
+						</div>
+						<c:if test="${user.me_authority == '관리자'}">
+							<!-- 수정, 삭제 버튼 -->
+							<div class="goods-detail-modify-delete-container">
+								<div class="goods-detail-modify-delete">
+									<a href="<%=request.getContextPath()%>/goods/modify?gd_num=${goods.gd_num}" class="btn btn-goods-modify">
+										<span>수정</span>
+										<i class="icon-right"></i>
+									</a>
+									<a href="<%=request.getContextPath()%>/goods/delete?gd_num=${goods.gd_num}" onclick="return confirm('삭제하시겠습니까?')" class="btn btn-goods-delete">
+										<span>삭제</span>
+										<i class="icon-right"></i>
+									</a>
+								</div>
+							</div>
+						</c:if>
+					</div>
+				</form>
 			</div>
 			<!-- 제품 설명 박스 -->
 			<div class="goods-detail-content-container">
@@ -209,6 +210,8 @@
 				}
 			});
 			$(this).addClass('selected');
+			var size = $(this).text();
+			$('[name=op_size]').val(size);
 		});
 		//해당 사이즈 재고가 있는 지 표시
 		getOption();
@@ -235,6 +238,29 @@
 		        }
 		    });
 		}
+		// 구매 버튼 클릭시 옵션번호 가져오기
+		$('.btn-select-buy').click(function() {
+			var size = $('[name=op_size]').val();
+			if(size == '' || size == null){
+				alert('사이즈를 선택하세요.');
+				return false;
+			}
+			var option = {
+				op_gd_num : ${goods.gd_num},
+				op_size : $('[name=op_size]').val()
+			}
+			$.ajax({
+		        async:false,
+		        type:'POST',
+		        data:JSON.stringify(option),
+		        url: '<%=request.getContextPath()%>/option/select',
+		        dataType:"json",
+		        contentType:"application/json; charset=UTF-8",
+		        success : function(res){
+					$('[name=ol_op_num]').val(res);
+		        }
+		    });
+		});
 	</script>
 </body>
 </html>

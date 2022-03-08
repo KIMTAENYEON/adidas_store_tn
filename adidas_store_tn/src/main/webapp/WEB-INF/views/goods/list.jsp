@@ -282,6 +282,10 @@
 				$('[name=se_new]').prop('checked', true);
 			}
 		}
+		//재고추가시 이벤트 막기
+		$('.btn-item-add').click(function(e) {
+			e.preventDefault();
+		})
 	</script>
 </body>
 </html>

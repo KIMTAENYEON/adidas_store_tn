@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.green.adidas.dao.OrderDAO">
+	<select id="selectOpNum" resultType="int">
+		select op_num from `option` where op_gd_num = #{option.op_gd_num} and op_size = #{option.op_size}
+	</select>
+	<select id="getGoods" resultType="kr.green.adidas.vo.GoodsVO">
+		select * from goods 
+			join `option`
+			on gd_num = op_gd_num
+			where op_num = #{orderList.ol_op_num}
+	</select>
+	<select id="getOption" resultType="kr.green.adidas.vo.OptionVO">
+		select * from `option` where op_num = #{orderList.ol_op_num}
+	</select>
+	<select id="getTotalPrice" resultType="int">
+		select sum(gd_price * #{orderList.ol_amount}) from goods 
+			join `option`
+			on gd_num = op_gd_num
+			where op_num = #{orderList.ol_op_num}
+	</select>
+</mapper>
