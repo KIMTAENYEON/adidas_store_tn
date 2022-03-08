@@ -126,6 +126,83 @@
 	background-image: url(../img/right-arrow.png);
 	background-position: left center;  background-size: contain; background-repeat: no-repeat;
 }
+/* 신상품 */
+.new-goods{
+	padding: 20px 0 65px;
+}
+.new-goods .new-goods-container{
+	width: 80%; min-width: 1280px; margin: 0 auto;
+}
+.new-goods .new-goods-text-box{
+	width: 100%; height: 80px; padding-bottom: 20px; display: flex; justify-content: space-between;
+}
+.new-goods .new-goods-text-box h3{
+	font-size: 40px; margin: 0;
+}
+.new-goods .new-goods-all{
+	display: flex; align-items: flex-end;
+}
+.new-goods .new-goods-text-box a{
+	color: #000; font-size: 14px; font-weight: bold; letter-spacing: 2px; margin-right: 10px;
+}
+/* 신상품 리스트 */
+.new-goods .new-goods-list-box{
+	width: 100%;
+}
+.new-goods .new-goods-list-container{
+	width: 100%; height: 100%; overflow: hidden; position: relative;
+}
+.new-goods .new-goods-list{
+	display: flex; width: 100%; height: 100%;
+}
+.new-goods .new-goods-item-box{
+	width: 20%; flex: 0 0 auto;
+}
+.new-goods .new-goods-item{
+	margin-right: 10px;	height: 100%;	display: block;	text-decoration: none;
+}
+.new-goods .goods-item-img-box{
+	width: 100%; position: relative; display: block;
+}
+.new-goods .goods-item-img-box img{
+	width: 100%; height: 100%;
+}
+.new-goods .btn-item-choice{
+	width: 30px; height: 30px;  position: absolute; top: 10px; right: 10px; border: none; cursor: pointer;
+}
+.new-goods .icon-item-choice{
+	width: 100%; height: 100%; display: block; 
+	background-image: url(../img/heart_empty.png); background-repeat: no-repeat;
+	background-position: center; background-size: contain; 
+}
+.new-goods .goods-item-text-box{
+	width: 100%; height: 100px; position: relative; display: block; color: #000;
+}
+.new-goods .goods-item-name{
+	font-size: 13px; line-height: 20px; position: absolute; top: 10px; left: 10px; display: block; 
+}
+.new-goods .goods-item-price{
+	font-size: 13px; line-height: 50px; position: absolute; bottom: 10px; left: 10px; display: block;
+}
+/* 신상품 이전 다음 버튼 */
+.new-goods .btn-prev{
+	border: 1px solid #000; background-color: #fff; width: 50px; height: 50px; cursor: pointer; display: none;
+	position: absolute; top: 30%; left: 0;
+}
+.new-goods .btn-prev .icon-left{
+	width: 24px; height: 24px; display: inline-block; color: #000;
+	background-image: url(../img/left-arrow.png);
+	background-position: left center;  background-size: contain; background-repeat: no-repeat;
+}
+.new-goods .btn-next{
+	border: 1px solid #000; background-color: #fff; width: 50px; height: 50px; cursor: pointer; 
+	position: absolute; top: 30%; right: 10px;
+}
+.new-goods .btn-next .icon-right{
+	width: 24px; height: 24px; display: inline-block; color: #000;
+	background-image: url(../img/right-arrow.png);
+	background-position: left center;  background-size: contain; background-repeat: no-repeat;
+}
 /* 하단 화면 */
 .bottom-container{
 	padding: 80px 0 80px; background-color: #e9ecef;

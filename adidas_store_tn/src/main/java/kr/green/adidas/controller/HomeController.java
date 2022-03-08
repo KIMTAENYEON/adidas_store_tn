@@ -38,7 +38,9 @@ public class HomeController {
 	@RequestMapping(value= "/")
 	public ModelAndView home(ModelAndView mv){
 	  List<GoodsVO> list =	goodsService.selectGroupbyCategory();
+	  List<GoodsVO> newList = goodsService.selectNewGoods();
 	  mv.addObject("list", list);
+	  mv.addObject("newList", newList);
 	  mv.setViewName("/main/home");
 	  return mv;
 	}

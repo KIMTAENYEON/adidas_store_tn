@@ -40,4 +40,6 @@ public interface GoodsDAO {
 	void deleteGoods(@Param("gd_num") Integer gd_num);
 
 	List<GoodsVO> selectGroupbyCategory();
+
+	List<GoodsVO> selectNewGoods();
 }

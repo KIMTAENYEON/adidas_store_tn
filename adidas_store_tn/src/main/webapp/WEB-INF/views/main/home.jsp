@@ -120,6 +120,45 @@
 				</div>
 			</div>
 		</div>
+		<!-- 신상품 -->
+		<div class="new-goods">
+			<div class="new-goods-container">
+				<div class="new-goods-text-box">
+					<div class="new-goods-text">
+						<h3>신상품</h3>
+					</div>
+					<div class="new-goods-all">
+						<a href="<%=request.getContextPath()%>/goods/list?se_new=on" class="btn btn-all">전체 보기</a>
+					</div>
+				</div>
+				<div class="new-goods-list-box">
+					<div class="new-goods-list-container">
+						<!-- 신상품 리스트 -->
+						<div class="new-goods-list">
+							<!-- 신상품 아이템 -->
+							<c:forEach var="goods" items="${newList}">
+								<div class="new-goods-item-box">
+									<a href="<%=request.getContextPath()%>/goods/detail?gd_num=${goods.gd_num}" class="new-goods-item">
+										<span class="goods-item-img-box">
+											<img src="<%=request.getContextPath()%>/img/${goods.gd_img}" alt="">
+											<button type="button" class="btn btn-item-choice"><i class="icon-item-choice"></i></button>
+										</span>
+										<span class="goods-item-text-box">
+											<span class="goods-item-name">${goods.gd_name}</span>
+											<span class="goods-item-price">${goods.gd_price}원</span>
+										</span>
+									</a>
+								</div>
+							</c:forEach>
+						</div>
+						<div class="new-goods-btn-box">
+							<button type="button" class="btn btn-prev"><i class="icon-left"></i></button>
+							<button type="button" class="btn btn-next"><i class="icon-right"></i></button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 		<!-- 하단 화면 -->
 		<div class="bottom">
 			<div class="bottom-container">
@@ -226,6 +265,28 @@
 				$('.select-category-btn-box .btn-prev').hide();
 			}
 		});
+		// 전체보기 버튼 hover 
+		$('.btn-all').hover(function(){
+			$(this).css({backgroundColor : '#000', color : '#fff', textDecoration: 'none'});
+		}, function(){
+			$(this).css({backgroundColor : '#fff', color : '#000', textDecoration: 'underline'});
+		})
+		// 신상품 다음버튼클릭
+		$('.new-goods .btn-next').click(function(){
+			$('.new-goods-list').animate({marginLeft : '-=100%'});
+			$(this).hide();
+			$('.new-goods .btn-prev').show();
+		});
+		// 신상품 이전버튼클릭
+		$('.new-goods .btn-prev').click(function(){
+			$('.new-goods-list').animate({marginLeft : '+=100%'});
+			$(this).hide();
+			$('.new-goods .btn-next').show();
+		});
+		// 찜하기 클릭
+		$('.btn-item-choice').click(function(e){
+			e.preventDefault();
+		})
 	</script>
 </body>
 </html>

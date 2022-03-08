@@ -134,4 +134,8 @@ public class GoodsServiceImp implements GoodsService{
 	public List<GoodsVO> selectGroupbyCategory() {
 		return goodsDao.selectGroupbyCategory();
 	}
+	@Override
+	public List<GoodsVO> selectNewGoods() {
+		return goodsDao.selectNewGoods();
+	}
 }

@@ -38,4 +38,6 @@ public interface GoodsService {
 
 	List<GoodsVO> selectGroupbyCategory();
 
+	List<GoodsVO> selectNewGoods();
+
 }

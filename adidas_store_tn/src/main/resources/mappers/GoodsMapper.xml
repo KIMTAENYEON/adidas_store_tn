@@ -143,4 +143,9 @@
 			group by gd_sub_num 
 			order by gd_sub_num asc
 	</select>
+	<select id="selectNewGoods" resultType="kr.green.adidas.vo.GoodsVO">
+		select * from goods
+			order by gd_date desc
+			limit 0, 10
+	</select>
 </mapper>
