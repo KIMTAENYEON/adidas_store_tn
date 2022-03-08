@@ -259,3 +259,29 @@ ALTER TABLE `adidas_store_tn`.`member`
 ADD COLUMN `me_session_id` VARCHAR(255) NULL AFTER `me_address_detail`,
 ADD COLUMN `me_session_limit` DATETIME NULL AFTER `me_session_id`;
 
+ALTER TABLE `adidas_store_tn`.`orderlist` 
+DROP FOREIGN KEY `ol_gd_num`;
+ALTER TABLE `adidas_store_tn`.`orderlist` 
+CHANGE COLUMN `ol_gd_num` `ol_op_num` INT NOT NULL ,
+ADD INDEX `ol_op_num_idx` (`ol_op_num` ASC) VISIBLE,
+DROP INDEX `ol_gd_num_idx` ;
+;
+ALTER TABLE `adidas_store_tn`.`orderlist` 
+ADD CONSTRAINT `ol_op_num`
+  FOREIGN KEY (`ol_op_num`)
+  REFERENCES `adidas_store_tn`.`option` (`op_num`);
+
+ALTER TABLE `adidas_store_tn`.`mylist` 
+DROP FOREIGN KEY `my_gd_num`;
+ALTER TABLE `adidas_store_tn`.`mylist` 
+CHANGE COLUMN `my_gd_num` `my_op_num` INT NOT NULL ,
+ADD INDEX `my_op_num_idx` (`my_op_num` ASC) VISIBLE,
+DROP INDEX `my_gd_num_idx` ;
+;
+ALTER TABLE `adidas_store_tn`.`mylist` 
+ADD CONSTRAINT `my_op_num`
+  FOREIGN KEY (`my_op_num`)
+  REFERENCES `adidas_store_tn`.`option` (`op_num`);
+
+ALTER TABLE `adidas_store_tn`.`mylist` 
+DROP COLUMN `my_check_state`;
