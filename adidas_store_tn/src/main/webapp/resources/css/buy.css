@@ -36,7 +36,7 @@
 .address-container .new-address-container input{
 	border: 1px solid #e9ecef; background-color: #fff;
 }
-.address-container .input-member #me_phone,
+.address-container .input-member #phone,
 .address-container .input-member #address,
 .address-container .input-member #detailAddress{
 	width: 100%;

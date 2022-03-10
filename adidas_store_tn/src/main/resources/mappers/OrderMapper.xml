@@ -21,4 +21,12 @@
 			on gd_num = op_gd_num
 			where op_num = #{orderList.ol_op_num}
 	</select>
+	<insert id="insertOrder" useGeneratedKeys="true" keyProperty="order.or_num" parameterType="kr.green.adidas.vo.OrderVO">
+		insert into `order` (or_name, or_address, or_address_detail, or_postnum, or_phone, or_me_email)
+			values (#{order.or_name}, #{order.or_address}, #{order.or_address_detail}, #{order.or_postnum}, #{order.or_phone}, #{order.or_me_email})
+	</insert>
+	<insert id="insertOrderList">
+		insert into orderlist (ol_op_num, ol_or_num, ol_total_price, ol_amount)
+			values (#{orderList.ol_op_num}, #{orderList.ol_or_num}, #{orderList.ol_total_price}, #{orderList.ol_amount})
+	</insert>
 </mapper>

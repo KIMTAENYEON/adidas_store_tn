@@ -15,6 +15,7 @@ import kr.green.adidas.vo.GoodsVO;
 import kr.green.adidas.vo.MemberVO;
 import kr.green.adidas.vo.OptionVO;
 import kr.green.adidas.vo.OrderListVO;
+import kr.green.adidas.vo.OrderVO;
 
 @Controller
 public class OrderController {
@@ -22,7 +23,7 @@ public class OrderController {
 	OrderService orderService;
 	
 	@RequestMapping(value= "/order/buy", method = RequestMethod.GET)
-	public ModelAndView orderBuy(ModelAndView mv, HttpServletRequest request, OrderListVO orderList){	
+	public ModelAndView orderBuyGet(ModelAndView mv, HttpServletRequest request, OrderListVO orderList){	
 		MemberVO user = (MemberVO) request.getSession().getAttribute("user");
 		GoodsVO goods = orderService.getGoods(orderList);
 		OptionVO option = orderService.getOption(orderList);
@@ -32,6 +33,17 @@ public class OrderController {
 		mv.addObject("ol_amount", orderList.getOl_amount());
 		mv.addObject("totalPrice", totalPrice);
 	  mv.setViewName("/goods/buy");
+	  return mv;
+	}
+	@RequestMapping(value= "/order/buy", method = RequestMethod.POST)
+	public ModelAndView orderBuyPost(ModelAndView mv, HttpServletRequest request, OrderVO order, OrderListVO orderList){	
+		MemberVO user = (MemberVO) request.getSession().getAttribute("user");
+		if(user == null) {
+			mv.setViewName("redirect:/member/login");
+		}else {
+			orderService.insertOrder(order, user, orderList);
+			mv.setViewName("redirect:/");
+		}
 	  return mv;
 	}
 	@ResponseBody

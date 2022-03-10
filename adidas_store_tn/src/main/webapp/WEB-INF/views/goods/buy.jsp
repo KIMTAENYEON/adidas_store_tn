@@ -19,31 +19,36 @@
 	</style>
 </head>
 <body>
-<form action="" id="newAddress" novalidate="novalidate">
+<form action="<%=request.getContextPath()%>/order/buy" method="post" id="order">
 	<div class="body margin-top">
 		<!-- 배송지 설정 -->
 		<div class="address-container">
 			<h3>배송지 주소</h3>
 			<div class="address-box">
+				<input type="hidden" name="or_name">
+				<input type="hidden" name="or_postnum">
+				<input type="hidden" name="or_address">
+				<input type="hidden" name="or_address_detail">
+				<input type="hidden" name="or_phone">
 				<!-- 회원 주소 박스 -->
 				<div class="member-address-container selected">
 					<div class="input-member">
-						<input type="text" value="${user.me_name}" disabled>
+						<input type="text" id="me_name" value="${user.me_name}" disabled>
 					</div>
 					<!-- 주소 -->
 					<div class="input-member">
 						<div class="form-inline">
-							<input type="text" placeholder="우편번호" value="${user.me_postnum}" disabled>
+							<input type="text" id="me_postnum" placeholder="우편번호" value="${user.me_postnum}" disabled>
 						</div>
 					</div>
 					<div class="input-member">
-						<input type="text" placeholder="주소" value="${user.me_address}" disabled>
+						<input type="text" id="me_address" placeholder="주소" value="${user.me_address}" disabled>
 					</div>
 					<div class="input-member">
-						<input type="text" placeholder="상세주소" value="${user.me_address_detail}" disabled>
+						<input type="text" id="me_address_detail" placeholder="상세주소" value="${user.me_address_detail}" disabled>
 					</div>
 					<div class="input-member">
-						<input type="text" value="${user.me_phone}" disabled>
+						<input type="text" id="me_phone" value="${user.me_phone}" disabled>
 					</div>
 				</div>
 				<!-- 새로운 주소 박스-->
@@ -69,7 +74,7 @@
 						</div>
 					</div>
 					<div class="input-member">
-						<input type="text" name="me_phone" placeholder="전화번호(-를 포함하여 입력하세요.)" id="me_phone" disabled>
+						<input type="text" name="me_phone" placeholder="전화번호(-를 포함하여 입력하세요.)" id="phone" disabled>
 					</div>
 				</div>
 			</div>
@@ -89,6 +94,9 @@
 							<span class="goods-item-size">사이즈 : ${option.op_size}</span>
 							<span class="goods-item-amount">수량 : ${ol_amount}</span>
 							<span class="goods-item-price">${totalPrice}원</span>
+							<input type="hidden" name="ol_op_num" value="${option.op_num}">
+							<input type="hidden" name="ol_total_price" value="${totalPrice}">
+							<input type="hidden" name="ol_amount" value="${ol_amount}">
 						</span>
 					</a>
 				</div>
@@ -171,7 +179,7 @@
 	    }
 		$(function() {
 	    	// 유효성 검사
-	        $("#newAddress").validate({
+	        $("#order").validate({
 	            rules: {
 	                me_name: {
 	                    required : true
@@ -228,6 +236,27 @@
 			}else{
 				$('.new-address-container input').prop('disabled', '');
 			}
+		});
+		// 결제 전송 시
+		$('#order').submit(function() {
+			if($('.member-address-container').hasClass('selected')){
+				var name = $('.member-address-container #me_name').val();
+				var postnum = $('.member-address-container #me_postnum').val();
+				var address = $('.member-address-container #me_address').val();
+				var addressDetail = $('.member-address-container #me_address_detail').val();
+				var phone = $('.member-address-container #me_phone').val();
+			}else{
+				var name = $('.new-address-container [name=me_name]').val();
+				var postnum = $('.new-address-container [name=me_postnum]').val();
+				var address = $('.new-address-container [name=me_address]').val();
+				var addressDetail = $('.new-address-container [name=me_address_detail]').val();
+				var phone = $('.new-address-container [name=me_phone]').val();
+			}
+			$('.address-box [name=or_name]').val(name);
+			$('.address-box [name=or_postnum]').val(postnum);
+			$('.address-box [name=or_address]').val(address);
+			$('.address-box [name=or_address_detail]').val(addressDetail);
+			$('.address-box [name=or_phone]').val(phone);
 		});
 	</script>
 </body>
