@@ -29,4 +29,10 @@
 		insert into orderlist (ol_op_num, ol_or_num, ol_total_price, ol_amount)
 			values (#{orderList.ol_op_num}, #{orderList.ol_or_num}, #{orderList.ol_total_price}, #{orderList.ol_amount})
 	</insert>
+	<select id="selectOrderList" resultType="kr.green.adidas.vo.OrderListVO">
+		select * from `order`
+			join orderlist
+		    on or_num = ol_or_num
+		    where or_me_email = #{user.me_email} and or_date >= date_add(now(), interval - 1 month)
+	</select>
 </mapper>

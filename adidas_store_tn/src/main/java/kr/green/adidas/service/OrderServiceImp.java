@@ -1,5 +1,8 @@
 package kr.green.adidas.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -71,6 +74,53 @@ public class OrderServiceImp implements OrderService{
 		orderDao.insertOrder(order);
 		orderList.setOl_or_num(order.getOr_num());
 		orderDao.insertOrderList(orderList);
+	}
+
+	@Override
+	public List<OrderListVO> selectOrderList(MemberVO user) {
+		if(user == null)
+			return null;
+		return orderDao.selectOrderList(user);
+	}
+
+	@Override
+	public List<GoodsVO> selectGoodsList(List<OrderListVO> list) {
+		if(list == null)
+			return null;
+		List<GoodsVO> goodsList = new ArrayList<GoodsVO>();
+		for(OrderListVO tmpOrderList : list) {
+			int equals = 0;
+			GoodsVO dbGoods = orderDao.getGoods(tmpOrderList);
+			for(GoodsVO tmpGoodsList : goodsList) {
+				if(tmpGoodsList.equals(dbGoods)) {
+					equals += 1;
+				}
+			}
+			if(equals == 0) {
+				goodsList.add(orderDao.getGoods(tmpOrderList));			
+			}
+		}
+		return goodsList;
+	}
+
+	@Override
+	public List<OptionVO> selectOptionList(List<OrderListVO> list) {
+		if(list == null)
+			return null;
+		List<OptionVO> optionList = new ArrayList<OptionVO>();
+		for(OrderListVO tmpOrderList : list) {
+			int equals = 0;
+			OptionVO dbOption = orderDao.getOption(tmpOrderList);
+			for(OptionVO tmpOption : optionList) {
+				if(tmpOption.equals(dbOption)) {
+					equals += 1;
+				}
+			}
+			if(equals == 0) {
+				optionList.add(orderDao.getOption(tmpOrderList));				
+			}
+		}
+		return optionList;
 	}
 	
 }

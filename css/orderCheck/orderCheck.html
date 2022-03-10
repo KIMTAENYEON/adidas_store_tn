@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link rel="stylesheet" href="../orderCheck/orderCheck.css">
+	<script src="../js/jquery.min.js"></script>
+</head>
+<body>
+	<div class="body margin-top"> 
+		<div class="order-goods-container">
+			<h3>주문 조회</h3>
+			<span> * 주문취소는 배송상태가 '주문완료' 일 때 가능합니다.</span>
+			<div class="order-goods-box">
+				<div class="order-goods-item-box">
+					<a href="" class="btn btn-goods-item">
+						<span class="goods-item-img-box">
+							<img src="../imgUpload/GW2499.png" alt="">
+						</span>
+						<span class="goods-item-text-box">
+							<span class="goods-item-name">name</span>
+							<span class="goods-item-size">사이즈 : s</span>
+							<span class="goods-item-amount">수량 : 1</span>
+							<span class="goods-item-price">10000원</span>
+							<span class="goods-order-state-box">
+								<span>주문완료</span>
+								<button class="btn btn-order-cancle">주문취소</button>
+							</span>
+						</span>
+					</a>
+				</div>
+				<div class="order-goods-item-box">
+					<a href="" class="btn btn-goods-item">
+						<span class="goods-item-img-box">
+							<img src="../imgUpload/GW2499.png" alt="">
+						</span>
+						<span class="goods-item-text-box">
+							<span class="goods-item-name">name</span>
+							<span class="goods-item-size">사이즈 : s</span>
+							<span class="goods-item-amount">수량 (1)</span>
+							<span class="goods-item-price">10000원</span>
+						</span>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script>
+		$('.goods-order-state-box').click(function(e){
+			e.preventDefault();
+		})
+		$('.btn-order-cancle').click(function(e){
+			e.preventDefault();
+		})
+	</script>
+</body>
+</html>

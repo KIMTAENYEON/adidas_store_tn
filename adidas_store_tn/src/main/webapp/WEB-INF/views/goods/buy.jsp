@@ -85,7 +85,7 @@
 			<div class="order-goods-box">
 				<!-- 제품 -->
 				<div class="order-goods-item-box">
-					<a href="" class="btn btn-goods-item">
+					<a href="<%=request.getContextPath()%>/goods/detail/?gd_num=${goods.gd_num}" class="btn btn-goods-item">
 						<span class="goods-item-img-box">
 							<img src="<%=request.getContextPath()%>/img/${goods.gd_img}" alt="">
 						</span>

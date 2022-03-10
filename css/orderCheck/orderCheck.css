@@ -1,0 +1,48 @@
+@charset "UTF-8";
+*{
+	padding: 0; margin: 0; list-style: none; text-decoration: none; color: #000;
+	box-sizing: border-box;
+}
+/* 주문제품정보 */
+.order-goods-container{
+	max-width: 60%;
+	margin-left: 10%; margin-bottom: 30px;
+}
+.order-goods-container h3{
+	font-size: 30px; margin-bottom: 30px;
+}
+.order-goods-container>span{
+	margin: -10px 0 10px 10px; color: red;
+}
+.order-goods-box{
+	width: 100%; display: grid; 
+}
+.order-goods-container .order-goods-item-box{
+	border: 1px solid #000; width: 100%; margin-top: -1px; position: relative;
+}/* 제품이미지박스 */
+.order-goods-container .goods-item-img-box{
+	width: 20%; background-color: whitesmoke; position: relative; float: left;
+}
+.order-goods-container .goods-item-img-box img{
+	width: 100%; height: 100%;
+}
+/* 제품텍스트박스 */
+.order-goods-container .goods-item-text-box{
+	width: 80%; float: right;
+}
+.order-goods-container .goods-item-text-box span{
+	font-size: 16px; line-height: 30px; margin: 5px 0 5px 20px;
+}
+.order-goods-container span{
+	display: block;
+}
+.order-goods-container .goods-order-state-box{
+	position: absolute; top: 30%; right: 10%; cursor: auto;
+}
+.order-goods-container .goods-order-state-box span,
+.order-goods-container .goods-order-state-box select{
+	font-size: 20px; font-weight: bold;
+}
+.order-goods-container .btn-order-cancle{
+	width: 80px; height: 30px; border: 2px solid #000; background-color: #fff; margin-left: 20px; font-size: 16px; font-weight: bold; cursor: pointer;
+}

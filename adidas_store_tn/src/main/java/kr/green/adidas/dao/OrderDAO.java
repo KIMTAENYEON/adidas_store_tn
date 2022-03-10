@@ -1,8 +1,11 @@
 package kr.green.adidas.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
 import kr.green.adidas.vo.GoodsVO;
+import kr.green.adidas.vo.MemberVO;
 import kr.green.adidas.vo.OptionVO;
 import kr.green.adidas.vo.OrderListVO;
 import kr.green.adidas.vo.OrderVO;
@@ -20,5 +23,7 @@ public interface OrderDAO {
 	void insertOrder(@Param("order") OrderVO order);
 
 	void insertOrderList(@Param("orderList") OrderListVO orderList);
+
+	List<OrderListVO> selectOrderList(@Param("user") MemberVO user);
 
 }

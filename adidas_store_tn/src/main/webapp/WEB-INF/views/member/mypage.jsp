@@ -38,7 +38,7 @@
 						<span>개인정보</span>
 						<i class="icon-right"></i>
 					</a>
-					<a class="btn btn-order">
+					<a href="<%=request.getContextPath()%>/member/orderCheck" class="btn btn-order">
 						<span>주문조회</span>
 						<i class="icon-right"></i>
 					</a>

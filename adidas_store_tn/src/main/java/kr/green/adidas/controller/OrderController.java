@@ -1,5 +1,7 @@
 package kr.green.adidas.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +44,7 @@ public class OrderController {
 			mv.setViewName("redirect:/member/login");
 		}else {
 			orderService.insertOrder(order, user, orderList);
-			mv.setViewName("redirect:/");
+			mv.setViewName("redirect:/member/orderCheck");
 		}
 	  return mv;
 	}
@@ -50,5 +52,17 @@ public class OrderController {
 	@RequestMapping(value= "/option/select")
 	public int optionSelect(@RequestBody OptionVO option) {
 		return orderService.selectOption(option);
+	}
+	@RequestMapping(value= "/member/orderCheck", method = RequestMethod.GET)
+	public ModelAndView orderCheckGet(ModelAndView mv, HttpServletRequest request){	
+		MemberVO user = (MemberVO) request.getSession().getAttribute("user");
+		List<OrderListVO> list = orderService.selectOrderList(user);
+		List<GoodsVO> goods = orderService.selectGoodsList(list);
+		List<OptionVO> option = orderService.selectOptionList(list);
+		mv.addObject("goods", goods);
+		mv.addObject("option", option);
+		mv.addObject("list",list);
+		mv.setViewName("/member/orderCheck");
+	  return mv;
 	}
 }
