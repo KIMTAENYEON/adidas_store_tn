@@ -35,4 +35,10 @@
 		    on or_num = ol_or_num
 		    where or_me_email = #{user.me_email} and or_date >= date_add(now(), interval - 1 month)
 	</select>
+	<delete id="deleteOrderList">
+		delete from orderList where ol_num = #{orderList.ol_num} and ol_state = '주문완료'
+	</delete>
+	<delete id="deleteOrder">
+		delete from `order` where or_num = #{orderList.ol_or_num}
+	</delete>
 </mapper>

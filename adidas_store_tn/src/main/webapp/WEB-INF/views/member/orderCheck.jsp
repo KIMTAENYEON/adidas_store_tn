@@ -33,6 +33,10 @@
 												<span class="goods-item-amount">수량 : ${orderList.ol_amount}</span>
 												<span class="goods-item-price">${orderList.ol_total_price}원</span>
 												<span class="goods-order-state-box">
+													<input type="hidden" name="ol_num" value="${orderList.ol_num}">
+													<input type="hidden" name="ol_op_num" value="${orderList.ol_op_num}">
+													<input type="hidden" name="ol_or_num" value="${orderList.ol_or_num}">
+													<input type="hidden" name="ol_amount" value="${orderList.ol_amount}">
 													<span>${orderList.ol_state}</span>
 													<c:if test="${orderList.ol_state == '주문완료'}">
 														<button class="btn btn-order-cancle">주문취소</button>
@@ -55,6 +59,26 @@
 		})
 		$('.btn-order-cancle').click(function(e){
 			e.preventDefault();
+			var ol_num = $(this).siblings('[name=ol_num]').val();
+			var ol_op_num = $(this).siblings('[name=ol_op_num]').val();
+			var ol_or_num = $(this).siblings('[name=ol_or_num]').val();
+			var ol_amount = $(this).siblings('[name=ol_amount]').val();
+			var orderList = {
+				ol_num : ol_num,
+				ol_op_num : ol_op_num,
+				ol_or_num : ol_or_num,
+				ol_amount : ol_amount
+			}
+			$.ajax({
+		        async:false,
+		        type:'POST',
+		        data:JSON.stringify(orderList),
+		        url: '<%=request.getContextPath()%>/order/cancle',
+		        contentType:"application/json; charset=UTF-8",
+		        success : function(res){
+		        	window.location.reload()
+		        }
+		    });
 		})
 	</script>
 </body>

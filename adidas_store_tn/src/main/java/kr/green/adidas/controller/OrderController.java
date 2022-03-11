@@ -65,4 +65,11 @@ public class OrderController {
 		mv.setViewName("/member/orderCheck");
 	  return mv;
 	}
+	@ResponseBody
+	@RequestMapping(value= "/order/cancle")
+	public boolean orderCancle(@RequestBody OrderListVO orderList) {
+		orderService.deleteOrderList(orderList);
+		orderService.deleteOrder(orderList);
+		return true;
+	}
 }

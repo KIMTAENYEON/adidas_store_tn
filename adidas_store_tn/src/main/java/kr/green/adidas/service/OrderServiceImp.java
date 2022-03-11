@@ -122,5 +122,23 @@ public class OrderServiceImp implements OrderService{
 		}
 		return optionList;
 	}
+
+	@Override
+	public void deleteOrderList(OrderListVO orderList) {
+		if(orderList == null)
+			return;
+		if(orderList.getOl_num() <= 0)
+			return;
+		orderDao.deleteOrderList(orderList);
+	}
+
+	@Override
+	public void deleteOrder(OrderListVO orderList) {
+		if(orderList == null)
+			return;
+		if(orderList.getOl_num() <= 0)
+			return;
+		orderDao.deleteOrder(orderList);
+	}
 	
 }

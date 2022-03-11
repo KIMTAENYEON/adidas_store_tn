@@ -26,4 +26,8 @@ public interface OrderDAO {
 
 	List<OrderListVO> selectOrderList(@Param("user") MemberVO user);
 
+	void deleteOrderList(@Param("orderList") OrderListVO orderList);
+
+	void deleteOrder(@Param("orderList") OrderListVO orderList);
+
 }

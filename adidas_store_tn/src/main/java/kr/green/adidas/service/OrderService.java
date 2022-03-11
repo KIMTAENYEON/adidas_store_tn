@@ -26,4 +26,8 @@ public interface OrderService {
 
 	List<OptionVO> selectOptionList(List<OrderListVO> list);
 
+	void deleteOrderList(OrderListVO orderList);
+
+	void deleteOrder(OrderListVO orderList);
+
 }
