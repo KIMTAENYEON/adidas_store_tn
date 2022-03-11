@@ -30,4 +30,10 @@ public interface OrderService {
 
 	void deleteOrder(OrderListVO orderList);
 
+	List<OrderListVO> getOrderList(String ol_state);
+
+	List<OrderVO> selectOrderList(List<OrderListVO> list);
+
+	void updateState(OrderListVO orderList);
+
 }

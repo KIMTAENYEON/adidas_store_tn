@@ -1,5 +1,6 @@
 package kr.green.adidas.vo;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import lombok.Data;
@@ -14,4 +15,10 @@ public class OrderVO {
 	private String or_address_detail;
 	private String or_postnum;
 	private String or_me_email;
+	
+	public String getOr_date_str() {
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		String str = format.format(or_date);
+		return str;
+	}
 }

@@ -41,4 +41,16 @@
 	<delete id="deleteOrder">
 		delete from `order` where or_num = #{orderList.ol_or_num}
 	</delete>
+	<select id="getOrderList" resultType="kr.green.adidas.vo.OrderListVO">
+		select * from orderlist
+			<if test="ol_state != '배송상태' and ol_state != null">
+				where ol_state = #{ol_state}
+			</if>
+	</select>
+	<select id="getOrder" resultType="kr.green.adidas.vo.OrderVO">
+		select * from `order` where or_num = #{orderList.ol_or_num}
+	</select>
+	<update id="updateState">
+		update orderlist set ol_state = #{orderList.ol_state} where ol_num = #{orderList.ol_num}
+	</update>
 </mapper>

@@ -140,5 +140,37 @@ public class OrderServiceImp implements OrderService{
 			return;
 		orderDao.deleteOrder(orderList);
 	}
+
+	@Override
+	public List<OrderListVO> getOrderList(String ol_state) {
+		return orderDao.getOrderList(ol_state);	
+	}
+
+	@Override
+	public List<OrderVO> selectOrderList(List<OrderListVO> list) {
+		if(list == null)
+			return null;
+		List<OrderVO> orderList = new ArrayList<OrderVO>();
+		for(OrderListVO tmpOrderList : list) {
+			int equals = 0;
+			OrderVO dbOrder = orderDao.getOrder(tmpOrderList);
+			for(OrderVO tmpOrder : orderList) {
+				if(tmpOrder.equals(dbOrder)) {
+					equals += 1;
+				}
+			}
+			if(equals == 0) {
+				orderList.add(orderDao.getOrder(tmpOrderList));				
+			}
+		}
+		return orderList;
+	}
+
+	@Override
+	public void updateState(OrderListVO orderList) {
+		if(orderList == null)
+			return;
+		orderDao.updateState(orderList);
+	}
 	
 }

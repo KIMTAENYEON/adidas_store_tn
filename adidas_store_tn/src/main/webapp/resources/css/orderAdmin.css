@@ -1,0 +1,44 @@
+@charset "UTF-8";
+*{
+	padding: 0; margin: 0; list-style: none; text-decoration: none; color: #000;
+	box-sizing: border-box;
+}
+.orderAdmin-container{
+	max-width: 80%;
+	margin: 0 auto;
+}
+.orderAdmin-container h3{
+	font-size: 30px; margin-bottom: 30px;
+}
+.orderAdmin-container .orderAdmin-table-container{
+	width: 100%; border: 1px solid #000; border-collapse: collapse;
+}
+.orderAdmin-container thead{
+	height: 50px;
+}
+.orderAdmin-container thead select{
+	font-size: 16px; font-weight: bold; border: none; outline: none; cursor: pointer; text-align: center; width: 100%; height: 50px;
+}
+.orderAdmin-container thead,
+.orderAdmin-container th,
+.orderAdmin-container td{
+	border: 1px solid #000;
+}
+.orderAdmin-container .gd_img{
+	width: 10%; background-color: #e9ecef;
+}
+.orderAdmin-container a{
+	display: block;
+}
+.orderAdmin-container .gd_img img{
+	width: 100%;
+}
+.orderAdmin-container .gd_name{
+	width: 20%;
+}
+.orderAdmin-container .me_address{
+	width: 25%;
+}
+.orderAdmin-container .ol_state select{
+	width: 100%; height: 50px; font-size: 16px; font-weight: bold; outline: none; border: none; color: red; cursor: pointer; text-align: center;
+}

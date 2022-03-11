@@ -30,4 +30,10 @@ public interface OrderDAO {
 
 	void deleteOrder(@Param("orderList") OrderListVO orderList);
 
+	List<OrderListVO> getOrderList(@Param("ol_state") String ol_state);
+
+	OrderVO getOrder(@Param("orderList") OrderListVO tmpOrderList);
+
+	void updateState(@Param("orderList") OrderListVO orderList);
+
 }

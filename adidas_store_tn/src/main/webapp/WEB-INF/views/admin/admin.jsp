@@ -19,7 +19,7 @@
 				</a>
 			</div>
 			<div class="admin-order-move"> 
-				<a href="" class="btn btn-admin-order">
+				<a href="<%=request.getContextPath()%>/admin/orderAdmin" class="btn btn-admin-order">
 					<span>주문관리</span>
 					<i class="icon-right"></i>
 				</a>
