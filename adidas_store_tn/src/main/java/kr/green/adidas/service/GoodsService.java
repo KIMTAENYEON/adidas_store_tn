@@ -16,7 +16,7 @@ public interface GoodsService {
 
 	void registerGoods(GoodsVO goods, MultipartFile file, MemberVO user);
 
-	List<CategoryVO> selectCategory();
+	List<CategoryVO> selectCategory(String gender);
 
 	List<SubCategoryVO> selectSubCategory(Integer sub_ca_num);
 

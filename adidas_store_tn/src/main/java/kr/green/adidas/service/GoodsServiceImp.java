@@ -43,8 +43,8 @@ public class GoodsServiceImp implements GoodsService{
 		goodsDao.insertGoods(goods);
 	}
 	@Override
-	public List<CategoryVO> selectCategory() {
-		return goodsDao.selectCategory();
+	public List<CategoryVO> selectCategory(String gender) {
+		return goodsDao.selectCategory(gender);
 	}
 
 	@Override

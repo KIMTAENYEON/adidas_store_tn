@@ -61,9 +61,9 @@ public class GoodsController {
 	}
 	@ResponseBody
 	@RequestMapping(value= "/category")
-	public Map<String, Object> category(){	
+	public Map<String, Object> category(String gender){	
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		List<CategoryVO> list = goodsService.selectCategory();
+		List<CategoryVO> list = goodsService.selectCategory(gender);
 		map.put("list", list);
 	  return map;
 	}

@@ -207,14 +207,14 @@
 			if($('[name=se_max_price]').val() == null || $('[name=se_max_price]').val() == "")
 				$('[name=se_max_price]').val(0)
 		});
-		setCategory();
+		setCategory('${select.se_gender}');
 	  	//카테고리 목록 불러오기 함수
-	  	function setCategory(){
+	  	function setCategory(gender){
 			var str = '<option value="0">카테고리</option>';
 			$.ajax({
 		        async:false,
 		        type:'GET',
-		        url: '<%=request.getContextPath()%>/category',
+		        url: '<%=request.getContextPath()%>/category?gender='+gender,
 		        dataType:"json",
 		        success : function(res){
 	        		var list = res.list
@@ -225,6 +225,11 @@
 		        }
 		    });
 		}
+	  	//성별 변경시
+	  	$('.goods-select-gender').change(function(){
+			var gender = $(this).val();
+			setCategory(gender);
+		});
 	  	//카테고리 변경시
 	  	$('.goods-select-category').change(function(){
 			var ca_num = $(this).val();
@@ -268,6 +273,7 @@
 			var gender = '${select.se_gender}';
 			var se_new = '${select.se_new}';
 			$('.goods-select-gender').find('[value='+gender+']').prop('selected', 'selected');
+			setCategory(gender);
 			$('.goods-select-category').find('[value='+${select.se_ca_num}+']').prop('selected', 'selected');
 			setSubCategory(${select.se_ca_num});
 			$('.goods-select-subcategory').find('[value='+${select.se_sub_num}+']').prop('selected', 'selected');	

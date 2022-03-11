@@ -12,7 +12,13 @@
 				#{goods.gd_ca_num}, #{goods.gd_sub_num})
 	</insert>
 	<select id="selectCategory" resultType="kr.green.adidas.vo.CategoryVO">
-		select * from category
+		select * from category 
+			<if test="gender == 'Man' or gender == 'Women' or gender == 'Unisex'">
+				where ca_num <![CDATA[ < ]]> 4
+			</if>
+			<if test="gender == 'Kids'">
+				where ca_num > 3
+			</if>
 	</select>
 	<select id="selectSubCategory" resultType="kr.green.adidas.vo.SubCategoryVO">
 		select * from subcategory where sub_ca_num = #{sub_ca_num}

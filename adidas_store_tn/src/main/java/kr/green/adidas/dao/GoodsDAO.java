@@ -15,7 +15,7 @@ public interface GoodsDAO {
 
 	void insertGoods(@Param("goods")GoodsVO goods);
 
-	List<CategoryVO> selectCategory();
+	List<CategoryVO> selectCategory(@Param("gender") String gender);
 
 	List<SubCategoryVO> selectSubCategory(@Param("sub_ca_num") Integer sub_ca_num);
 
