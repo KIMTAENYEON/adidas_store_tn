@@ -74,7 +74,7 @@
 									<a href="<%=request.getContextPath()%>/goods/list?se_gender=Man&se_new=on">신상품</a>
 								</li>
 								<li class="cate-sub-item">
-									<a href="">인기상품</a>
+									<a href="<%=request.getContextPath()%>/goods/list?se_gender=Man&se_lineup=4">인기상품</a>
 								</li>
 							</ul>
 						</div>
@@ -113,7 +113,7 @@
 									<a href="<%=request.getContextPath()%>/goods/list?se_gender=Women&se_new=on">신상품</a>
 								</li>
 								<li class="cate-sub-item">
-									<a href="">인기상품</a>
+									<a href="<%=request.getContextPath()%>/goods/list?se_gender=Women&se_lineup=4">인기상품</a>
 								</li>
 							</ul>
 						</div>
@@ -152,7 +152,7 @@
 									<a href="<%=request.getContextPath()%>/goods/list?se_gender=Kids&se_new=on">신상품</a>
 								</li>
 								<li class="cate-sub-item">
-									<a href="">인기상품</a>
+									<a href="<%=request.getContextPath()%>/goods/list?se_gender=Kids&se_lineup=4">인기상품</a>
 								</li>
 							</ul>
 						</div>

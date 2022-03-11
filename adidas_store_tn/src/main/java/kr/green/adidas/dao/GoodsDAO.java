@@ -42,4 +42,8 @@ public interface GoodsDAO {
 	List<GoodsVO> selectGroupbyCategory(@Param("gender") String gender);
 
 	List<GoodsVO> selectNewGoods();
+
+	List<GoodsVO> getGoodsListPopular(@Param("cri") Criteria cri, @Param("select") SelectVO select);
+
+	int selectTotalCountPopular(@Param("cri") Criteria cri, @Param("select") SelectVO select);
 }

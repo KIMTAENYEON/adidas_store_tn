@@ -114,7 +114,7 @@
 								<option value="1">가격낮은순</option>
 								<option value="2">가격높은순</option>
 								<option value="3">최신순</option>
-								<option value="4">인기상품</option>
+								<option value="4">인기순</option>
 							</select>
 						</span>
 						<button type="submit" class="btn btn-option-apply">

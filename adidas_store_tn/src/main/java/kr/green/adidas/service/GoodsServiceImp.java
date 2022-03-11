@@ -57,11 +57,21 @@ public class GoodsServiceImp implements GoodsService{
 	public List<GoodsVO> getGoodsList(Criteria cri, SelectVO select) {
 		if(select.getSe_gender() == null || select.getSe_gender().equals("성별"))
 			select.setSe_gender("");
-		return goodsDao.getGoodsList(cri, select);
+		if(select.getSe_lineup() == 4) {
+			return goodsDao.getGoodsListPopular(cri, select);
+		}else {
+			return goodsDao.getGoodsList(cri, select);			
+		}
 	}
 	@Override
 	public int getTotalCount(Criteria cri, SelectVO select) {
-		return goodsDao.selectTotalCount(cri, select);
+		if(select.getSe_gender() == null || select.getSe_gender().equals("성별"))
+			select.setSe_gender("");
+		if(select.getSe_lineup() == 4) {
+			return goodsDao.selectTotalCountPopular(cri, select);	
+		}else {
+			return goodsDao.selectTotalCount(cri, select);			
+		}
 	}
 	@Override
 	public List<OptionVO> getTotalAmount() {

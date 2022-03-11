@@ -68,8 +68,82 @@
 				limit #{cri.pageStart}, #{cri.perPageNum}
 	
 	</select>
+	<select id="getGoodsListPopular" resultType="kr.green.adidas.vo.GoodsVO">
+		select goods.* from goods 
+			join `option`
+		    on gd_num = op_gd_num
+		    join orderlist
+		    on ol_op_num = op_num
+			where gd_name like concat('%', #{cri.search}, '%') and ol_state != '주문완료'
+			<!-- 성별선택시 Man이나 Women일 때 Unisex도 포함 -->
+			<if test="select.se_gender == 'Man' or select.se_gender == 'Women'">
+				and gd_gender in(#{select.se_gender}, 'Unisex')
+			</if>
+			<!-- 성별선택시 선택안하면 모든성별 검색-->
+			<if test="select.se_gender != 'Man' and select.se_gender != 'Women'">
+				and gd_gender like concat(#{select.se_gender}, '%') 
+			</if>
+			<!-- 카테고리 선택 결과 -->
+			<if test="select.se_ca_num != 0">
+				and gd_ca_num = #{select.se_ca_num}
+				<!-- 서브카테고리 선택 결과 -->
+				<if test="select.se_sub_num != 0">
+					and gd_sub_num = #{select.se_sub_num}
+				</if>
+			</if>
+			<!-- 신상품 체크시 -->
+			<if test="select.se_new != null and select.se_new != ''">
+				and gd_date >= date_add(now(), interval - 1 month)
+			</if>
+			<!-- 가격 설정 -->
+			<if test="select.se_min_price != 0">
+				and gd_price > #{select.se_min_price}
+			</if>
+			<if test="select.se_max_price != 0">
+				and gd_price<![CDATA[ < ]]>#{select.se_max_price}
+			</if>
+			group by gd_num
+			order by sum(ol_amount) desc
+			limit #{cri.pageStart}, #{cri.perPageNum}
+	
+	</select>
 	<select id="selectTotalCount" resultType="int">
 		select count(*) from goods where gd_name like concat('%', #{cri.search}, '%')
+			<!-- 성별선택시 Man이나 Women일 때 Unisex도 포함 -->
+			<if test="select.se_gender == 'Man' or select.se_gender == 'Women'">
+				and gd_gender in(#{select.se_gender}, 'Unisex')
+			</if>
+			<!-- 성별선택시 선택안하면 모든성별 검색-->
+			<if test="select.se_gender != 'Man' and select.se_gender != 'Women'">
+				and gd_gender like concat(#{select.se_gender}, '%') 
+			</if>
+			<!-- 카테고리 선택 결과 -->
+			<if test="select.se_ca_num != 0">
+				and gd_ca_num = #{select.se_ca_num}
+				<!-- 서브카테고리 선택 결과 -->
+				<if test="select.se_sub_num != 0">
+					and gd_sub_num = #{select.se_sub_num}
+				</if>
+			</if>
+			<!-- 신상품 체크시 -->
+			<if test="select.se_new != null and select.se_new != ''">
+				and gd_date >= date_add(now(), interval - 1 month)
+			</if>
+			<!-- 가격 설정 -->
+			<if test="select.se_min_price != 0">
+				and gd_price > #{select.se_min_price}
+			</if>
+			<if test="select.se_max_price != 0">
+				and gd_price<![CDATA[ < ]]>#{select.se_max_price}
+			</if>
+	</select>
+	<select id="selectTotalCountPopular" resultType="int">
+		select count(distinct gd_num) from goods 
+			join `option`
+		    on gd_num = op_gd_num
+		    join orderlist
+		    on ol_op_num = op_num
+			where gd_name like concat('%', #{cri.search}, '%') and ol_state != '주문완료'
 			<!-- 성별선택시 Man이나 Women일 때 Unisex도 포함 -->
 			<if test="select.se_gender == 'Man' or select.se_gender == 'Women'">
 				and gd_gender in(#{select.se_gender}, 'Unisex')

@@ -42,10 +42,13 @@
 		delete from `order` where or_num = #{orderList.ol_or_num}
 	</delete>
 	<select id="getOrderList" resultType="kr.green.adidas.vo.OrderListVO">
-		select * from orderlist
+		select orderlist.* from orderlist
+			join `order`
+			on ol_or_num = or_num
 			<if test="ol_state != '배송상태' and ol_state != null">
 				where ol_state = #{ol_state}
 			</if>
+			order by or_date desc
 	</select>
 	<select id="getOrder" resultType="kr.green.adidas.vo.OrderVO">
 		select * from `order` where or_num = #{orderList.ol_or_num}
