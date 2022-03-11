@@ -39,7 +39,7 @@ public interface GoodsDAO {
 
 	void deleteGoods(@Param("gd_num") Integer gd_num);
 
-	List<GoodsVO> selectGroupbyCategory();
+	List<GoodsVO> selectGroupbyCategory(@Param("gender") String gender);
 
 	List<GoodsVO> selectNewGoods();
 }

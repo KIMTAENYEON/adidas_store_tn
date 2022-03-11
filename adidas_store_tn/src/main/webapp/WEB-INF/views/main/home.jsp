@@ -65,50 +65,44 @@
 					<div class="select-category-list-container">
 						<!-- Women-카테고리 -->
 						<div class="select-category-list-box WOMEN">
-							<c:forEach var="goods" items="${list}">
-								<c:if test="${goods.gd_sub_num < 19 && goods.gd_sub_num != 6}">
-									<!-- 카테고리 -->
-									<div class="select-category-item-box start">
-										<a href="<%=request.getContextPath()%>/goods/list?se_gender=Women&se_ca_num=${goods.gd_ca_num}&se_sub_num=${goods.gd_sub_num}" class="select-category-item">
-											<span class="select-category-img-box">
-												<img src="<%=request.getContextPath()%>/img/${goods.gd_img}" alt="">
-											</span>
-											<span class="select-category-name">${goods.gd_name}</span>
-										</a>
-									</div>
-								</c:if>
+							<c:forEach var="goods" items="${womenList}">
+								<!-- 카테고리 -->
+								<div class="select-category-item-box start">
+									<a href="<%=request.getContextPath()%>/goods/list?se_gender=Women&se_ca_num=${goods.gd_ca_num}&se_sub_num=${goods.gd_sub_num}" class="select-category-item">
+										<span class="select-category-img-box">
+											<img src="<%=request.getContextPath()%>/img/${goods.gd_img}" alt="">
+										</span>
+										<span class="select-category-name">${goods.gd_name}</span>
+									</a>
+								</div>
 							</c:forEach>
 						</div>
 						<!-- Man-카테고리 -->
 						<div class="select-category-list-box MAN">
-							<c:forEach var="goods" items="${list}">
-								<c:if test="${goods.gd_sub_num < 19 && goods.gd_sub_num != 12 && goods.gd_sub_num != 13 && goods.gd_sub_num != 14}">
-									<!-- 카테고리 -->
-									<div class="select-category-item-box start">
-										<a href="<%=request.getContextPath()%>/goods/list?se_gender=Man&se_ca_num=${goods.gd_ca_num}&se_sub_num=${goods.gd_sub_num}" class="select-category-item">
-											<span class="select-category-img-box">
-												<img src="<%=request.getContextPath()%>/img/${goods.gd_img}" alt="">
-											</span>
-											<span class="select-category-name">${goods.gd_name}</span>
-										</a>
-									</div>
-								</c:if>
+							<c:forEach var="goods" items="${manList}">
+								<!-- 카테고리 -->
+								<div class="select-category-item-box start">
+									<a href="<%=request.getContextPath()%>/goods/list?se_gender=Man&se_ca_num=${goods.gd_ca_num}&se_sub_num=${goods.gd_sub_num}" class="select-category-item">
+										<span class="select-category-img-box">
+											<img src="<%=request.getContextPath()%>/img/${goods.gd_img}" alt="">
+										</span>
+										<span class="select-category-name">${goods.gd_name}</span>
+									</a>
+								</div>
 							</c:forEach>
 						</div>
 						<!-- Kids-카테고리 -->
 						<div class="select-category-list-box KIDS">
-							<c:forEach var="goods" items="${list}">
-								<c:if test="${goods.gd_sub_num >= 19 && goods.gd_sub_num <= 26}">
-									<!-- 카테고리 -->
-									<div class="select-category-item-box start">
-										<a href="<%=request.getContextPath()%>/goods/list?se_gender=Kids&se_ca_num=${goods.gd_ca_num}&se_sub_num=${goods.gd_sub_num}" class="select-category-item">
-											<span class="select-category-img-box">
-												<img src="<%=request.getContextPath()%>/img/${goods.gd_img}" alt="">
-											</span>
-											<span class="select-category-name">${goods.gd_name}</span>
-										</a>
-									</div>
-								</c:if>
+							<c:forEach var="goods" items="${kidsList}">
+								<!-- 카테고리 -->
+								<div class="select-category-item-box start">
+									<a href="<%=request.getContextPath()%>/goods/list?se_gender=Kids&se_ca_num=${goods.gd_ca_num}&se_sub_num=${goods.gd_sub_num}" class="select-category-item">
+										<span class="select-category-img-box">
+											<img src="<%=request.getContextPath()%>/img/${goods.gd_img}" alt="">
+										</span>
+										<span class="select-category-name">${goods.gd_name}</span>
+									</a>
+								</div>
 							</c:forEach>
 						</div>
 						<!-- 이전, 다음 버튼 -->

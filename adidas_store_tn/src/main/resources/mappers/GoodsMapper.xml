@@ -140,6 +140,13 @@
 		select gd_gender, gd_ca_num, gd_img, gd_sub_num, sub_name as gd_name from goods 
 			join subcategory
     		on gd_sub_num = sub_num
+    		<if test="gender == 'Man' or gender == 'Women'">
+				where gd_gender in(#{gender}, 'Unisex')
+			</if>
+			<!-- 성별선택시 선택안하면 모든성별 검색-->
+			<if test="gender != 'Man' and gender != 'Women'">
+				where gd_gender like concat(#{gender}, '%') 
+			</if>
 			group by gd_sub_num 
 			order by gd_sub_num asc
 	</select>

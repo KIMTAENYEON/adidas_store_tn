@@ -131,8 +131,8 @@ public class GoodsServiceImp implements GoodsService{
 		goodsDao.deleteGoods(gd_num);
 	}
 	@Override
-	public List<GoodsVO> selectGroupbyCategory() {
-		return goodsDao.selectGroupbyCategory();
+	public List<GoodsVO> selectGroupbyCategory(String gender) {
+		return goodsDao.selectGroupbyCategory(gender);
 	}
 	@Override
 	public List<GoodsVO> selectNewGoods() {

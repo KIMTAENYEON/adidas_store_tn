@@ -36,7 +36,7 @@ public interface GoodsService {
 
 	void deleteGoods(Integer gd_num, MemberVO user);
 
-	List<GoodsVO> selectGroupbyCategory();
+	List<GoodsVO> selectGroupbyCategory(String gender);
 
 	List<GoodsVO> selectNewGoods();
 
