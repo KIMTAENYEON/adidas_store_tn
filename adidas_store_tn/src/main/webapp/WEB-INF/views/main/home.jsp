@@ -23,10 +23,6 @@
 							<h2>FIND YOUR I'MPOSSIBLE</h2>
 							<div class="content">무엇이 가능하고 불가능한지 설명할 필요 없어. 우리의 가능성은 우리가 잘 아니까.</div>
 							<div class="content-btn-box">
-								<a href="" class="btn content-btn">
-									<span>스토리 보기</span>
-									<i class="icon-right"></i>
-								</a>
 							</div>
 					</div>
 				</div>

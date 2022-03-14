@@ -13,7 +13,7 @@
 }
 /* 컨텐츠부분 */
 .top-content-box{
-	width: auto; height: auto; position: absolute; top: 33%; left: 10%;
+	width: auto; height: auto; position: absolute; top: 40%; left: 10%;
 	display: flex; box-sizing: border-box;
 	padding: 40px 15px 60px;
 }
