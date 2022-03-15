@@ -285,3 +285,25 @@ ADD CONSTRAINT `my_op_num`
 
 ALTER TABLE `adidas_store_tn`.`mylist` 
 DROP COLUMN `my_check_state`;
+
+ALTER TABLE `adidas_store_tn`.`mylist` 
+DROP COLUMN `my_list_state`;
+
+CREATE TABLE `adidas_store_tn`.`choice` (
+  `ch_num` INT NOT NULL AUTO_INCREMENT,
+  `ch_state` INT NOT NULL DEFAULT 0,
+  `ch_me_email` VARCHAR(255) NOT NULL,
+  `ch_gd_num` INT NOT NULL,
+  PRIMARY KEY (`ch_num`),
+  INDEX `ch_me_email_idx` (`ch_me_email` ASC) VISIBLE,
+  INDEX `ch_gd_num_idx` (`ch_gd_num` ASC) VISIBLE,
+  CONSTRAINT `ch_me_email`
+    FOREIGN KEY (`ch_me_email`)
+    REFERENCES `adidas_store_tn`.`member` (`me_email`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `ch_gd_num`
+    FOREIGN KEY (`ch_gd_num`)
+    REFERENCES `adidas_store_tn`.`goods` (`gd_num`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
