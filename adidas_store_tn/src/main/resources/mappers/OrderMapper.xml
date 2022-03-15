@@ -10,7 +10,7 @@
 		select * from goods 
 			join `option`
 			on gd_num = op_gd_num
-			where op_num = #{orderList.ol_op_num}
+			where op_num = #{op_num}
 	</select>
 	<select id="getOption" resultType="kr.green.adidas.vo.OptionVO">
 		select * from `option` where op_num = #{orderList.ol_op_num}

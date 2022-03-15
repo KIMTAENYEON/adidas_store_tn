@@ -42,7 +42,7 @@
 						<span>주문조회</span>
 						<i class="icon-right"></i>
 					</a>
-					<a class="btn btn-choice">
+					<a href="<%=request.getContextPath()%>/member/choice" class="btn btn-choice">
 						<span>찜목록</span>
 						<i class="icon-right"></i>
 					</a>

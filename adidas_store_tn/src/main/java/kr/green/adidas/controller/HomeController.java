@@ -20,8 +20,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.util.WebUtils;
 
+import kr.green.adidas.service.ChoiceService;
 import kr.green.adidas.service.GoodsService;
 import kr.green.adidas.service.MemberService;
+import kr.green.adidas.vo.ChoiceVO;
 import kr.green.adidas.vo.EmailCheckVO;
 import kr.green.adidas.vo.GoodsVO;
 import kr.green.adidas.vo.MemberVO;
@@ -34,6 +36,8 @@ public class HomeController {
 	MemberService memberService;
 	@Autowired
 	GoodsService goodsService;
+	@Autowired
+	ChoiceService choiceService;
 	
 	@RequestMapping(value= "/")
 	public ModelAndView home(ModelAndView mv){
@@ -158,6 +162,30 @@ public class HomeController {
 	public Map<String, Object> subcategoryAll(){	
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		List<SubCategoryVO> list = memberService.selectSubCategory();
+		map.put("list", list);
+	  return map;
+	}
+	@RequestMapping(value= "/member/choice", method = RequestMethod.GET)
+	public ModelAndView choiceGet(ModelAndView mv, HttpServletRequest request){		
+		MemberVO user = (MemberVO) request.getSession().getAttribute("user");
+		List<ChoiceVO> choice = choiceService.selectChoice(user);
+		List<GoodsVO> goods = choiceService.choiceGoodsList(choice);
+		mv.addObject("goods", goods);
+	  mv.setViewName("/member/choice");
+	  return mv;
+	}
+	@ResponseBody
+	@RequestMapping(value= "/choice/insert")
+	public boolean choiceInsert(@RequestBody ChoiceVO choice){	
+		boolean choiceState = choiceService.insertChoice(choice);
+	  return choiceState;
+	}
+	@ResponseBody
+	@RequestMapping(value= "/choice/state")
+	public Map<String, Object> choiceState(HttpServletRequest request){
+		MemberVO user = (MemberVO) request.getSession().getAttribute("user");
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		List<ChoiceVO> list = choiceService.selectChoice(user);
 		map.put("list", list);
 	  return map;
 	}

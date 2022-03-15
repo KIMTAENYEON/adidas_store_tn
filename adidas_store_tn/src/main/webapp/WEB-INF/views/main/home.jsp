@@ -130,6 +130,7 @@
 								<div class="new-goods-item-box">
 									<a href="<%=request.getContextPath()%>/goods/detail?gd_num=${goods.gd_num}" class="new-goods-item">
 										<span class="goods-item-img-box">
+											<input type="hidden" name="gd_num" value="${goods.gd_num}">
 											<img src="<%=request.getContextPath()%>/img/${goods.gd_img}" alt="">
 											<button type="button" class="btn btn-item-choice"><i class="icon-item-choice"></i></button>
 										</span>
@@ -279,11 +280,50 @@
 			if($(this).children().hasClass('icon-item-choice')){
 				$(this).children().addClass('icon-item-choice-ing');
 				$(this).children().removeClass('icon-item-choice');
+				var ch_state = 1;
 			}else{
 				$(this).children().addClass('icon-item-choice');
 				$(this).children().removeClass('icon-item-choice-ing');
+				var ch_state = 0;
 			}
+			var ch_gd_num = $(this).siblings('[name=gd_num]').val();
+			var ch_me_email = '${user.me_email}';
+			var choice = {
+				ch_state : ch_state,
+				ch_gd_num : ch_gd_num,
+				ch_me_email : ch_me_email
+			}
+			$.ajax({
+		        async:false,
+		        type:'POST',
+		        data:JSON.stringify(choice),
+		        url: '<%=request.getContextPath()%>/choice/insert',
+		        contentType:"application/json; charset=UTF-8",
+		        success : function(res){
+		        	
+		        }
+		    });
 		})
+		getChoiceState();
+		//로그인한 유저의 찜상태 가져오기
+		function getChoiceState() {
+			$.ajax({
+		        async:false,
+		        type:'POST',
+		        url:'<%=request.getContextPath()%>/choice/state',
+		        dataType:"json",
+		        success : function(res){
+		        	var list = res.list
+		        	for(choice of list){
+						$('.new-goods-item-box [name=gd_num]').each(function() {
+							if(choice.ch_state == 1){
+								$('[value='+choice.ch_gd_num+']').siblings('.btn-item-choice').children().addClass('icon-item-choice-ing').removeClass('icon-item-choice');								
+							}
+						});
+		        	}
+		        }
+		    });
+		}
 	</script>
 </body>
 </html>

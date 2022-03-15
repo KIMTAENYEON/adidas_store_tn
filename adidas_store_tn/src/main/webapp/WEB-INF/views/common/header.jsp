@@ -54,7 +54,7 @@
 					<a href="<%=request.getContextPath()%>/member/mypage" class="mypage"><i class="icon-mypage"></i></a>
 				</div>
 				<div class="choice-box">
-					<a href="" class="choice"><i class="icon-choice"></i></a>
+					<a href="<%=request.getContextPath()%>/member/choice" class="choice"><i class="icon-choice"></i></a>
 				</div>
 				<div class="basket-box">
 					<a href="" class="basket"><i class="icon-basket"></i></a>

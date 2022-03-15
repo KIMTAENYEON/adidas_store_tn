@@ -14,7 +14,7 @@ public interface OrderDAO {
 
 	int selectOpNum(@Param("option") OptionVO option);
 
-	GoodsVO getGoods(@Param("orderList") OrderListVO orderList);
+	GoodsVO getGoods(@Param("op_num") Integer op_num);
 
 	OptionVO getOption(@Param("orderList") OrderListVO orderList);
 

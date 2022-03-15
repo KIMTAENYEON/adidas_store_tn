@@ -31,7 +31,7 @@ public class OrderServiceImp implements OrderService{
 	public GoodsVO getGoods(OrderListVO orderList) {
 		if(orderList.getOl_op_num() <= 0 || orderList.getOl_amount() <= 0)
 			return null;
-		return orderDao.getGoods(orderList);
+		return orderDao.getGoods(orderList.getOl_op_num());
 	}
 
 	@Override
@@ -90,14 +90,14 @@ public class OrderServiceImp implements OrderService{
 		List<GoodsVO> goodsList = new ArrayList<GoodsVO>();
 		for(OrderListVO tmpOrderList : list) {
 			int equals = 0;
-			GoodsVO dbGoods = orderDao.getGoods(tmpOrderList);
+			GoodsVO dbGoods = orderDao.getGoods(tmpOrderList.getOl_op_num());
 			for(GoodsVO tmpGoodsList : goodsList) {
 				if(tmpGoodsList.equals(dbGoods)) {
 					equals += 1;
 				}
 			}
 			if(equals == 0) {
-				goodsList.add(orderDao.getGoods(tmpOrderList));			
+				goodsList.add(orderDao.getGoods(tmpOrderList.getOl_op_num()));			
 			}
 		}
 		return goodsList;
