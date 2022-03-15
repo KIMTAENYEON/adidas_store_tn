@@ -6,6 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Document</title>
 	<link rel="stylesheet" href="../detail/detail.css">
+	<script src="../js/jquery.min.js"></script>
 </head>
 <body>
 	<div class="body margin-top">
@@ -154,5 +155,17 @@
 			</div>
 		</div>
 	</div>
+	<script>
+		$('.btn-select-choice').click(function(e){
+			e.preventDefault();
+			if($(this).children().hasClass('icon-choice')){
+				$(this).children().addClass('icon-choice-ing');
+				$(this).children().removeClass('icon-choice');
+			}else{
+				$(this).children().addClass('icon-choice');
+				$(this).children().removeClass('icon-choice-ing');
+			}
+		})
+	</script>
 </body>
 </html>

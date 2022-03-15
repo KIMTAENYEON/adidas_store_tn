@@ -261,6 +261,56 @@
 		        }
 		    });
 		});
+		// 찜하기 클릭
+		$('.btn-select-choice').click(function(e){
+			e.preventDefault();
+			if($(this).children().hasClass('icon-choice')){
+				$(this).children().addClass('icon-choice-ing');
+				$(this).children().removeClass('icon-choice');
+				var ch_state = 1;
+			}else{
+				$(this).children().addClass('icon-choice');
+				$(this).children().removeClass('icon-choice-ing');
+				var ch_state = 0;
+			}
+			var ch_gd_num = '${goods.gd_num}';
+			var ch_me_email = '${user.me_email}';
+			var choice = {
+				ch_state : ch_state,
+				ch_gd_num : ch_gd_num,
+				ch_me_email : ch_me_email
+			}
+			$.ajax({
+		        async:false,
+		        type:'POST',
+		        data:JSON.stringify(choice),
+		        url: '<%=request.getContextPath()%>/choice/insert',
+		        contentType:"application/json; charset=UTF-8",
+		        success : function(res){
+		        	
+		        }
+		    });
+		})
+		getChoiceState();
+		//로그인한 유저의 찜상태 가져오기
+		function getChoiceState() {
+			$.ajax({
+		        async:false,
+		        type:'POST',
+		        url:'<%=request.getContextPath()%>/choice/state',
+		        dataType:"json",
+		        success : function(res){
+		        	var list = res.list
+		        	for(choice of list){
+		        		if(choice.ch_gd_num == '${goods.gd_num}'){
+		        			if(choice.ch_state == 1){
+								$('.btn-select-choice').children().addClass('icon-choice-ing').removeClass('icon-choice');								
+							}
+		        		}
+		        	}
+		        }
+		    });
+		}
 	</script>
 </body>
 </html>
