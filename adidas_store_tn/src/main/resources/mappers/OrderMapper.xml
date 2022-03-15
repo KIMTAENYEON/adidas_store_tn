@@ -34,6 +34,7 @@
 			join orderlist
 		    on or_num = ol_or_num
 		    where or_me_email = #{user.me_email} and or_date >= date_add(now(), interval - 1 month)
+		    order by or_date desc
 	</select>
 	<delete id="deleteOrderList">
 		delete from orderList where ol_num = #{orderList.ol_num} and ol_state = '주문완료'

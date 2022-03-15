@@ -10,6 +10,9 @@
 .mypage-container{
 	position: relative; padding: 0 100px;
 }
+.mypage-container h3{
+	font-size: 30px; margin-bottom: 30px;
+}
 /* 나의 장바구니 */
 .mypage-basket-box{
 	width: 70%; height: 400px; background-color: yellow; padding: 15px; float: left;

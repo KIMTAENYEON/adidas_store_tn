@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link rel="stylesheet" href="../choice/choice.css">
+	<script src="../js/jquery.min.js"></script>
+</head>
+<body>
+	<div class="body margin-top">
+		<div class="mypage-choice">
+			<div class="choice-container">
+				<h3>나의 관심목록</h3>
+				<div class="choice-box">
+					<div class="choice-img-box">
+						<a href="" class="btn btn-img-choice">
+							<span class="img-box">
+								<img src="../imgUpload/ED6116.webp" alt="">
+								<span class="price-box">10000원</span>
+								<button type="button" class="btn btn-item-choice"><i class="icon-item-choice-ing"></i></button>
+							</span>
+							<span class="name-box">이름</span>
+						</a>
+					</div>
+					<div class="choice-img-box">
+						<a href="" class="btn btn-img-choice">
+							<span class="img-box">
+								<img src="../imgUpload/ED6116.webp" alt="">
+								<span class="price-box">10000원</span>
+								<button type="button" class="btn btn-item-choice"><i class="icon-item-choice-ing"></i></button>
+							</span>
+							<span class="name-box">이름</span>
+						</a>
+					</div>
+					<div class="choice-img-box">
+						<a href="" class="btn btn-img-choice">
+							<span class="img-box">
+								<img src="../imgUpload/ED6116.webp" alt="">
+								<span class="price-box">10000원</span>
+								<button type="button" class="btn btn-item-choice"><i class="icon-item-choice-ing"></i></button>
+							</span>
+							<span class="name-box">이름</span>
+						</a>
+					</div>
+					<div class="choice-img-box">
+						<a href="" class="btn btn-img-choice">
+							<span class="img-box">
+								<img src="../imgUpload/ED6116.webp" alt="">
+								<span class="price-box">10000원</span>
+								<button type="button" class="btn btn-item-choice"><i class="icon-item-choice-ing"></i></button>
+							</span>
+							<span class="name-box">이름</span>
+						</a>
+					</div>
+					<div class="choice-img-box">
+						<a href="" class="btn btn-img-choice">
+							<span class="img-box">
+								<img src="../imgUpload/ED6116.webp" alt="">
+								<span class="price-box">10000원</span>
+								<button type="button" class="btn btn-item-choice"><i class="icon-item-choice-ing"></i></button>
+							</span>
+							<span class="name-box">이름</span>
+						</a>
+					</div>
+				</div>
+			</div>
+			<!-- 우측 메뉴 -->
+			<div class="mypage-right-container">
+				<div class="mypage-right-box">
+					<a class="btn btn-logout">
+						<span>로그아웃</span>
+						<i class="icon-right"></i>
+					</a>
+					<a class="btn btn-privacy">
+						<span>개인정보</span>
+						<i class="icon-right"></i>
+					</a>
+					<a class="btn btn-order">
+						<span>주문조회</span>
+						<i class="icon-right"></i>
+					</a>
+					<a class="btn btn-choice">
+						<span>찜목록</span>
+						<i class="icon-right"></i>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script>
+		$('.btn-item-choice').click(function(e){
+			e.preventDefault();
+			if($(this).children().hasClass('icon-item-choice')){
+				$(this).children().addClass('icon-item-choice-ing');
+				$(this).children().removeClass('icon-item-choice');
+			}else{
+				$(this).children().addClass('icon-item-choice');
+				$(this).children().removeClass('icon-item-choice-ing');
+			}
+		})
+	</script>
+</body>
+</html>

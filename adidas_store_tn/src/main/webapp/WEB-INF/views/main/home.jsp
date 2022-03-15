@@ -276,6 +276,13 @@
 		// 찜하기 클릭
 		$('.btn-item-choice').click(function(e){
 			e.preventDefault();
+			if($(this).children().hasClass('icon-item-choice')){
+				$(this).children().addClass('icon-item-choice-ing');
+				$(this).children().removeClass('icon-item-choice');
+			}else{
+				$(this).children().addClass('icon-item-choice');
+				$(this).children().removeClass('icon-item-choice-ing');
+			}
 		})
 	</script>
 </body>

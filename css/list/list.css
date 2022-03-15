@@ -78,6 +78,11 @@
 	background-image: url(../img/heart_empty.png);
 	background-position: center; background-size: contain; 
 }
+.goods-item-list-container .icon-item-choice-ing{
+	width: 100%; height: 100%; display: block; 
+	background-image: url(../img/heart.png);
+	background-position: center; background-size: contain; 
+}
 /* 제품텍스트박스 */
 .goods-item-list-container .goods-item-text-box{
 	width: 100%; height: 100px; position: relative;

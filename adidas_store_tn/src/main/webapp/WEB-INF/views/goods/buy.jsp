@@ -257,6 +257,11 @@
 			$('.address-box [name=or_address]').val(address);
 			$('.address-box [name=or_address_detail]').val(addressDetail);
 			$('.address-box [name=or_phone]').val(phone);
+				var or_name = $('.address-box [name=or_name]').val();
+				var or_postnum = $('.address-box [name=or_postnum]').val();
+				var or_address = $('.address-box [name=or_address]').val();
+				var or_address_detail = $('.address-box [name=or_address_detail]').val();
+				var or_phone = $('.address-box [name=or_phone]').val();
 		});
 	</script>
 </body>

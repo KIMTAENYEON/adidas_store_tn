@@ -168,11 +168,16 @@
 	width: 100%; height: 100%;
 }
 .new-goods .btn-item-choice{
-	width: 30px; height: 30px;  position: absolute; top: 10px; right: 10px; border: none; cursor: pointer;
+	width: 20px; height: 20px;  position: absolute; top: 10px; right: 10px; border: none; cursor: pointer;
 }
 .new-goods .icon-item-choice{
 	width: 100%; height: 100%; display: block; 
 	background-image: url(../img/heart_empty.png); background-repeat: no-repeat;
+	background-position: center; background-size: contain; 
+}
+.new-goods .icon-item-choice-ing{
+	width: 100%; height: 100%; display: block; 
+	background-image: url(../img/heart.png);
 	background-position: center; background-size: contain; 
 }
 .new-goods .goods-item-text-box{
