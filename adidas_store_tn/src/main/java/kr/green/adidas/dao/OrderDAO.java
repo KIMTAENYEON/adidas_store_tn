@@ -18,8 +18,6 @@ public interface OrderDAO {
 
 	OptionVO getOption(@Param("orderList") OrderListVO orderList);
 
-	int getTotalPrice(@Param("orderList") OrderListVO orderList);
-
 	void insertOrder(@Param("order") OrderVO order);
 
 	void insertOrderList(@Param("orderList") OrderListVO orderList);

@@ -34,4 +34,6 @@ public interface ChoiceDAO {
 
 	void deleteMyList(@Param("my_num") Integer my_num);
 
+	void deleteMyListOrder(@Param("me_email") String me_email, @Param("op_num") Integer op_num);
+
 }

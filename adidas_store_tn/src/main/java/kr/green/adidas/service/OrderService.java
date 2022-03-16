@@ -16,8 +16,6 @@ public interface OrderService {
 
 	OptionVO getOption(OrderListVO orderList);
 
-	int getTotalPrice(OrderListVO orderList);
-
 	void insertOrder(OrderVO order, MemberVO user, OrderListVO orderList);
 
 	List<OrderListVO> selectOrderList(MemberVO user);

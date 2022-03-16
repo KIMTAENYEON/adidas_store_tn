@@ -107,7 +107,13 @@
 		// 구매 버튼 클릭 
 		$('.btn-buy').click(function(e){
 			e.preventDefault();
-			
+			if($('.basket-goods-box').children().hasClass('basket-goods-item-box')){
+				var url = '<%=request.getContextPath()%>/order/buy';
+				window.location.replace(url);				
+			}else{
+				alert('제품이 없습니다.');
+				return false;
+			}
 		})
 		getChoiceState();
 		//로그인한 유저의 찜상태 가져오기
@@ -161,8 +167,8 @@
 				var totalPrice = price * amount
 				$(this).find('.goods-item-price').text(totalPrice + '원');
 				totalPriceAll += totalPrice;
-				$('.order-total-price').text(totalPriceAll + '원');
 			});
+			$('.order-total-price').text(totalPriceAll + '원');
 		}
 	</script>
 </body>

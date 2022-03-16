@@ -80,6 +80,7 @@
 								</c:if>
 								<input type="hidden" name="op_size">
 								<input type="hidden" name="ol_op_num">
+								<input type="hidden" name="basket" value="no">
 							</div>
 						</div>
 						<!-- 수량 선택 -->

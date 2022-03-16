@@ -42,13 +42,6 @@ public class OrderServiceImp implements OrderService{
 	}
 
 	@Override
-	public int getTotalPrice(OrderListVO orderList) {
-		if(orderList.getOl_op_num() <= 0 || orderList.getOl_amount() <= 0)
-			return 0;
-		return orderDao.getTotalPrice(orderList);
-	}
-
-	@Override
 	public void insertOrder(OrderVO order, MemberVO user, OrderListVO orderList) {
 		if(user == null)
 			return;

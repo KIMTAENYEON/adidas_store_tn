@@ -43,4 +43,7 @@
 	<delete id="deleteMyList">
 		delete from mylist where my_num = #{my_num}
 	</delete>
+	<delete id="deleteMyListOrder">
+		delete from mylist where my_me_email = #{me_email} and my_op_num = #{op_num}
+	</delete>
 </mapper>

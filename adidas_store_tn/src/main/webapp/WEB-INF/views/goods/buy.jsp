@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -83,23 +84,55 @@
 		<div class="order-goods-container">
 			<h3>주문 상세 사항</h3>
 			<div class="order-goods-box">
-				<!-- 제품 -->
-				<div class="order-goods-item-box">
-					<a href="<%=request.getContextPath()%>/goods/detail/?gd_num=${goods.gd_num}" class="btn btn-goods-item">
-						<span class="goods-item-img-box">
-							<img src="<%=request.getContextPath()%>/img/${goods.gd_img}" alt="">
-						</span>
-						<span class="goods-item-text-box">
-							<span class="goods-item-name">${goods.gd_name}</span>
-							<span class="goods-item-size">사이즈 : ${option.op_size}</span>
-							<span class="goods-item-amount">수량 : ${ol_amount}</span>
-							<span class="goods-item-price">${totalPrice}원</span>
-							<input type="hidden" name="ol_op_num" value="${option.op_num}">
-							<input type="hidden" name="ol_total_price" value="${totalPrice}">
-							<input type="hidden" name="ol_amount" value="${ol_amount}">
-						</span>
-					</a>
-				</div>
+				<!-- 장바구니에서 제품 구매로 올 때 -->
+				<c:forEach var="myList" items="${myList}">
+				<c:forEach var="option" items="${option}">
+				<c:if test="${option.op_num == myList.my_op_num}">
+				<c:forEach var="goods" items="${goods}">
+				<c:if test="${goods.gd_num == option.op_gd_num}">
+					<div class="order-goods-item-box">
+						<a href="<%=request.getContextPath()%>/goods/detail/?gd_num=${goods.gd_num}" class="btn btn-goods-item">
+							<span class="goods-item-img-box">
+								<img src="<%=request.getContextPath()%>/img/${goods.gd_img}" alt="">
+							</span>
+							<span class="goods-item-text-box">
+								<span class="goods-item-name">${goods.gd_name}</span>
+								<span class="goods-item-size">사이즈 : ${option.op_size}</span>
+								<span class="goods-item-amount">수량 : ${myList.my_amount}</span>
+								<span class="goods-item-price">${goods.gd_price}</span>
+								<input type="hidden" class="index" value="0">
+								<input type="hidden" class="ol_op_num" name="list[0].ol_op_num" value="${option.op_num}">
+								<input type="hidden" class="ol_amount" name="list[0].ol_amount" value="${myList.my_amount}">
+								<input type="hidden" class="ol_total_price" name="list[0].ol_total_price" value="">
+							</span>
+							<input type="hidden" name="basket" value="1">
+						</a>
+					</div>
+				</c:if>
+				</c:forEach>
+				</c:if>
+				</c:forEach>
+				</c:forEach>
+				<!-- 제품상세에서 제품 구매로 올 때 -->
+				<c:if test="${myList == null}">
+					<div class="order-goods-item-box">
+						<a href="<%=request.getContextPath()%>/goods/detail/?gd_num=${goods.gd_num}" class="btn btn-goods-item">
+							<span class="goods-item-img-box">
+								<img src="<%=request.getContextPath()%>/img/${goods.gd_img}" alt="">
+							</span>
+							<span class="goods-item-text-box">
+								<span class="goods-item-name">${goods.gd_name}</span>
+								<span class="goods-item-size">사이즈 : ${option.op_size}</span>
+								<span class="goods-item-amount">수량 : ${ol_amount}</span>
+								<span class="goods-item-price">${goods.gd_price}</span>
+								<input type="hidden" class="ol_op_num" name="list[0].ol_op_num" value="${option.op_num}">
+								<input type="hidden" class="ol_amount" name="list[0].ol_amount" value="${ol_amount}">
+								<input type="hidden" class="ol_total_price" name="list[0].ol_total_price" value="">
+							</span>
+							<input type="hidden" name="basket" value="0">
+						</a>
+					</div>
+				</c:if>
 			</div>
 		</div>
 		<!-- 주문요약 -->
@@ -107,7 +140,7 @@
 			<div class="order-box">
 				<h3>총 금액</h3>
 				<div class="order-total-price">
-					${totalPrice}원
+					
 				</div>
 			</div>
 			<button class="btn btn-pay">
@@ -118,6 +151,32 @@
 	</div>
 </form>
 	<script>
+		setTotalPrice();
+		//제품의 총 금액 계산하기 
+		function setTotalPrice() {
+			var totalPriceAll = 0;
+			$('.order-goods-item-box').each(function() {
+				var price = $(this).find('.goods-item-price').text();
+				var amount = $(this).find('.ol_amount').val();
+				var totalPrice = price * amount
+				$(this).find('.goods-item-price').text(totalPrice + '원');
+				$(this).find('.ol_total_price').val(totalPrice);
+				totalPriceAll += totalPrice;
+				$('.order-total-price').text(totalPriceAll + '원');
+			});
+		}
+		setIndex();
+		//제품리스트의 번지수 지정
+		function setIndex() {
+			var index = 0
+			$('.index').each(function() {
+				$(this).siblings('.ol_op_num').attr('name', 'list['+index+'].ol_op_num');
+				$(this).siblings('.ol_amount').attr('name', 'list['+index+'].ol_amount');
+				$(this).siblings('.ol_total_price').attr('name', 'list['+index+'].ol_total_price');
+				$(this).val(index);
+				index += 1;
+			});
+		}
 		// 우편번호 찾기 찾기 화면을 넣을 element
 	    var element_wrap = document.getElementById('wrap');
 	    function foldDaumPostcode() {

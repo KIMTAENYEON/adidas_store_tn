@@ -28,4 +28,6 @@ public interface ChoiceService {
 
 	void deleteMyList(Integer my_num);
 
+	void deleteMyListOrder(String me_email, Integer op_num);
+
 }

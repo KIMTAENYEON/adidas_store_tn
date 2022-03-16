@@ -15,12 +15,6 @@
 	<select id="getOption" resultType="kr.green.adidas.vo.OptionVO">
 		select * from `option` where op_num = #{orderList.ol_op_num}
 	</select>
-	<select id="getTotalPrice" resultType="int">
-		select sum(gd_price * #{orderList.ol_amount}) from goods 
-			join `option`
-			on gd_num = op_gd_num
-			where op_num = #{orderList.ol_op_num}
-	</select>
 	<insert id="insertOrder" useGeneratedKeys="true" keyProperty="order.or_num" parameterType="kr.green.adidas.vo.OrderVO">
 		insert into `order` (or_name, or_address, or_address_detail, or_postnum, or_phone, or_me_email)
 			values (#{order.or_name}, #{order.or_address}, #{order.or_address_detail}, #{order.or_postnum}, #{order.or_phone}, #{order.or_me_email})

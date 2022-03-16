@@ -118,4 +118,11 @@ public class ChoiceServiceImp implements ChoiceService{
 	public void deleteMyList(Integer my_num) {
 		choiceDao.deleteMyList(my_num);
 	}
+
+	@Override
+	public void deleteMyListOrder(String me_email, Integer op_num) {
+		if(me_email == null || me_email.trim().length() == 0 || op_num <= 0)
+			return;
+		choiceDao.deleteMyListOrder(me_email, op_num);
+	}
 }
