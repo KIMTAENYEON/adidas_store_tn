@@ -6,6 +6,9 @@ import org.apache.ibatis.annotations.Param;
 
 import kr.green.adidas.vo.ChoiceVO;
 import kr.green.adidas.vo.GoodsVO;
+import kr.green.adidas.vo.MemberVO;
+import kr.green.adidas.vo.MyListVO;
+import kr.green.adidas.vo.OptionVO;
 
 public interface ChoiceDAO {
 
@@ -18,5 +21,17 @@ public interface ChoiceDAO {
 	List<ChoiceVO> selectChoice(@Param("me_email") String me_email);
 
 	GoodsVO getGoodsChoice(@Param("gd_num") Integer gd_num);
+
+	MyListVO selectMyList(@Param("user") MemberVO user, @Param("op_num") Integer op_num);
+
+	void insertMyList(@Param("user") MemberVO user, @Param("op_num") Integer op_num, @Param("op_amount") Integer op_amount);
+
+	void updateMyList(@Param("myList") MyListVO dbMyList, @Param("op_amount") Integer op_amount);
+
+	List<MyListVO> getMyList(@Param("user") MemberVO user);
+
+	OptionVO getOptionOpNum(@Param("op_num") Integer op_num);
+
+	void deleteMyList(@Param("my_num") Integer my_num);
 
 }

@@ -40,4 +40,6 @@ public interface GoodsService {
 
 	List<GoodsVO> selectNewGoods();
 
+	OptionVO selectOption(OptionVO option);
+
 }

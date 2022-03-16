@@ -311,6 +311,33 @@
 		        }
 		    });
 		}
+		//장바구니 담기 클릭
+		$('.btn-select-bascket').click(function(e) {
+			e.preventDefault();
+			var op_gd_num = '${goods.gd_num}';
+			var op_size = $('[name=op_size]').val();
+			var op_amount = $('.goods-detail-amount').val();
+			var option = {
+				op_gd_num : op_gd_num,
+				op_size : op_size,
+				op_amount : op_amount
+			}
+			$.ajax({
+		        async:false,
+		        type:'POST',
+		        data:JSON.stringify(option),
+		        url: '<%=request.getContextPath()%>/basket/put',
+		        dataType:"json",
+		        contentType:"application/json; charset=UTF-8",
+		        success : function(res){
+		        	if(res == true){
+		        		alert('장바구니에 담았습니다.')
+		        	}else{
+		        		alert('사이즈와 수량을 다시 확인하세요.')
+		        	}
+		        }
+		    });
+		});
 	</script>
 </body>
 </html>

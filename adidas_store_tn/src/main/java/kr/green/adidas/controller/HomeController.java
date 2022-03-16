@@ -27,6 +27,8 @@ import kr.green.adidas.vo.ChoiceVO;
 import kr.green.adidas.vo.EmailCheckVO;
 import kr.green.adidas.vo.GoodsVO;
 import kr.green.adidas.vo.MemberVO;
+import kr.green.adidas.vo.MyListVO;
+import kr.green.adidas.vo.OptionVO;
 import kr.green.adidas.vo.SubCategoryVO;
 
 @Controller
@@ -192,7 +194,43 @@ public class HomeController {
 	@RequestMapping(value= "/member/basket", method = RequestMethod.GET)
 	public ModelAndView basketGet(ModelAndView mv, HttpServletRequest request){		
 		MemberVO user = (MemberVO) request.getSession().getAttribute("user");
+		List<MyListVO> myList = choiceService.getMyList(user);
+		List<OptionVO> option = choiceService.myListOptionList(myList);
+		List<GoodsVO> goods = choiceService.optionGoodsList(option);
+		mv.addObject("myList", myList);
+		mv.addObject("option", option);
+		mv.addObject("goods", goods);
 	  mv.setViewName("/member/basket");
 	  return mv;
+	}
+	@ResponseBody
+	@RequestMapping(value= "/basket/put")
+	public boolean basketPut(HttpServletRequest request, @RequestBody OptionVO option){
+		MemberVO user = (MemberVO) request.getSession().getAttribute("user");
+		if(user == null)
+			return false;
+		OptionVO dbOption = goodsService.selectOption(option);
+		if(dbOption == null)
+			return false;
+		choiceService.putMyList(dbOption.getOp_num(), user, option.getOp_amount());
+	  return true;
+	}
+	@ResponseBody
+	@RequestMapping(value= "/basket/amount")
+	public boolean basketAmount(HttpServletRequest request, @RequestBody MyListVO myList){
+		MemberVO user = (MemberVO) request.getSession().getAttribute("user");
+		if(user == null || myList == null)
+			return false;
+		choiceService.updateMyList(myList);
+	  return true;
+	}
+	@ResponseBody
+	@RequestMapping(value= "/basket/del")
+	public boolean basketDel(HttpServletRequest request, Integer my_num){
+		MemberVO user = (MemberVO) request.getSession().getAttribute("user");
+		if(user == null || my_num == null || my_num <= 0)
+			return false;
+		choiceService.deleteMyList(my_num);
+	  return true;
 	}
 }

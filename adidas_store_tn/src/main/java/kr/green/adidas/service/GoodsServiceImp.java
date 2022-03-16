@@ -148,4 +148,10 @@ public class GoodsServiceImp implements GoodsService{
 	public List<GoodsVO> selectNewGoods() {
 		return goodsDao.selectNewGoods();
 	}
+	@Override
+	public OptionVO selectOption(OptionVO option) {
+		if(option == null)
+			return null;
+		return goodsDao.selectOption(option);
+	}
 }

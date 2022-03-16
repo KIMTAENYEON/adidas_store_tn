@@ -97,7 +97,7 @@ public class OrderServiceImp implements OrderService{
 				}
 			}
 			if(equals == 0) {
-				goodsList.add(orderDao.getGoods(tmpOrderList.getOl_op_num()));			
+				goodsList.add(dbGoods);			
 			}
 		}
 		return goodsList;
