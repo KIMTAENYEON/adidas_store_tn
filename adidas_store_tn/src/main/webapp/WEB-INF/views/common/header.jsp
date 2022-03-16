@@ -57,7 +57,7 @@
 					<a href="<%=request.getContextPath()%>/member/choice" class="choice"><i class="icon-choice"></i></a>
 				</div>
 				<div class="basket-box">
-					<a href="" class="basket"><i class="icon-basket"></i></a>
+					<a href="<%=request.getContextPath()%>/member/basket" class="basket"><i class="icon-basket"></i></a>
 				</div>
 			</div>
 			<!-- 메인메뉴 호버 -->

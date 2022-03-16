@@ -189,4 +189,10 @@ public class HomeController {
 		map.put("list", list);
 	  return map;
 	}
+	@RequestMapping(value= "/member/basket", method = RequestMethod.GET)
+	public ModelAndView basketGet(ModelAndView mv, HttpServletRequest request){		
+		MemberVO user = (MemberVO) request.getSession().getAttribute("user");
+	  mv.setViewName("/member/basket");
+	  return mv;
+	}
 }
