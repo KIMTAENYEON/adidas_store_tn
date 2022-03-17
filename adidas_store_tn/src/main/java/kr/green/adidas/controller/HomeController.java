@@ -105,7 +105,11 @@ public class HomeController {
 	  return memberService.checknumCheck(emailCheck);
 	}
 	@RequestMapping(value= "/member/mypage", method = RequestMethod.GET)
-	public ModelAndView mypageGet(ModelAndView mv){		
+	public ModelAndView mypageGet(ModelAndView mv, HttpServletRequest request){
+		MemberVO user = (MemberVO) request.getSession().getAttribute("user");
+		List<MyListVO> myList = choiceService.getMyList(user);
+		List<GoodsVO> goods = choiceService.myListGoodsList(myList);
+		mv.addObject("goods", goods);
 	  mv.setViewName("/member/mypage");
 	  return mv;
 	}

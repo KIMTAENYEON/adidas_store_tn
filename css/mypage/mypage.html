@@ -6,6 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>마이 페이지</title>
 	<link rel="stylesheet" href="../mypage/mypage.css">
+	<script src="../js/jquery.min.js"></script>
 </head>
 <body>
 	<div class="body">
@@ -14,14 +15,34 @@
 			<div class="mypage-basket-container margin-top">
 				<h3>나의 장바구니</h3>
 				<div class="mypage-basket-box">
-					<div class="mypage-basket-img">
-
+					<div class="mypage-basket-img-container">
+						<div class="mypage-basket-img-box">
+							<div class="mypage-basket-img">
+								<span class="goods-item-img-box">
+									<img src="../imgUpload/GW2499.png" alt="">
+								</span>
+							</div>
+							<div class="mypage-basket-img">
+								<span class="goods-item-img-box">
+									<img src="../imgUpload/ED6116.webp" alt="">
+								</span>
+							</div>
+							<div class="mypage-basket-img">
+								<span class="goods-item-img-box">
+									<img src="../imgUpload/GW2499.png" alt="">
+								</span>
+							</div>
+						</div>
+						<div class="mypage-basket-img-btn-box">
+							<button type="button" class="btn btn-prev"><i class="icon-left"></i></button>
+							<button type="button" class="btn btn-next"><i class="icon-right"></i></button>
+						</div>
 					</div>
 					<div class="mypage-basket-btn-box">
-						<button class="btn btn-mypage">
+						<a class="btn btn-mypage">
 							<span>나의 장바구니 보기</span>
 							<i class="icon-right"></i>
-						</button>
+						</a>
 					</div>
 				</div>
 			</div>
@@ -48,5 +69,65 @@
 			</div>
 		</div>
 	</div>
+	<script>
+		// 중단 카테고리 다음버튼클릭
+		$('.mypage-basket-img-btn-box .btn-next').click(function(){
+			var basketNext = $('.mypage-basket-img-box .end').nextAll().length
+			var basketNextMargin = (basketNext * 25)
+			if(basketNext >= 4){
+				$('.mypage-basket-img-box').animate({marginLeft : '-=100%'});
+				$('.mypage-basket-img-box .end').nextAll().eq(3).addClass('end');
+				$('.mypage-basket-img-box .end').first().removeClass('end');
+				$('.mypage-basket-img-box .start').nextAll().eq(3).addClass('start');
+				$('.mypage-basket-img-box .start').first().removeClass('start');
+				$('.mypage-basket-img-btn-box .btn-prev').show();
+			}
+			if(basketNext >= 1 && basketNext < 4){
+				$('.mypage-basket-img-box').animate({marginLeft : '-='+basketNextMargin+'%'});
+				$('.mypage-basket-img-box .end').nextAll().eq(basketNext -1).addClass('end');
+				$('.mypage-basket-img-box .end').first().removeClass('end');
+				$('.mypage-basket-img-box .start').nextAll().eq(basketNext -1).addClass('start');
+				$('.mypage-basket-img-box .start').first().removeClass('start');
+				$('.mypage-basket-img-btn-box .btn-prev').show();
+			}
+			var basketNext = $('.mypage-basket-img-box .end').nextAll().length
+			if(basketNext == 0){
+				$('.mypage-basket-img-btn-box .btn-next').hide();
+			}
+		});
+		// 중단 카테고리 이전버튼클릭
+		$('.mypage-basket-img-btn-box .btn-prev').click(function(){
+			var basketPrev = $('.mypage-basket-img-box .start').prevAll().length
+			var basketPrevMargin = (basketPrev * 25)
+			if(basketPrev >= 4){
+				$('.mypage-basket-img-box').animate({marginLeft : '+=100%'});
+				$('.mypage-basket-img-box .end').prevAll().eq(3).addClass('end');
+				$('.mypage-basket-img-box .end').last().removeClass('end');
+				$('.mypage-basket-img-box .start').prevAll().eq(3).addClass('start');
+				$('.mypage-basket-img-box .start').last().removeClass('start');
+				$('.mypage-basket-img-btn-box .btn-next').show();
+			}
+			if(basketPrev >= 1 && basketPrev < 4){
+				$('.mypage-basket-img-box').animate({marginLeft : '+='+basketPrevMargin+'%'});
+				$('.mypage-basket-img-box .end').prevAll().eq(basketPrev -1).addClass('end');
+				$('.mypage-basket-img-box .end').last().removeClass('end');
+				$('.mypage-basket-img-box .start').prevAll().eq(basketPrev -1).addClass('start');
+				$('.mypage-basket-img-box .start').last().removeClass('start');
+				$('.mypage-basket-img-btn-box .btn-next').show();
+			}
+			var basketPrev = $('.mypage-basket-img-box .start').prevAll().length
+			if(basketPrev == 0){
+				$('.mypage-basket-img-btn-box .btn-prev').hide();
+			}
+		});
+		setStartEnd();
+		function setStartEnd(){
+			$('.mypage-basket-img-box').children().eq(0).addClass('start');
+			$('.mypage-basket-img-box').children().eq(3).addClass('end');
+			if($('.mypage-basket-img-box').children().length <= 4){
+				$('.mypage-basket-img-btn-box .btn-next').hide();
+			}
+		}
+	</script>
 </body>
 </html>

@@ -11,17 +11,49 @@
 	position: relative; padding: 0 100px;
 }
 .mypage-container h3{
-	font-size: 30px; margin-bottom: 30px;
+	font-size: 30px; margin-bottom: 30px; margin-left: 15px;
 }
 /* 나의 장바구니 */
-.mypage-basket-box{
-	width: 70%; height: 400px; background-color: yellow; padding: 15px; float: left;
+.mypage-container .mypage-basket-box{
+	width: 70%; padding: 15px; float: left;
 }
-.mypage-basket-img{
-	width: 100%; height: 300px; background-color: grey; margin-bottom: 10px;
+.mypage-container .mypage-basket-img-container{
+	width: 100%; margin-bottom: 10px; position: relative; overflow: hidden;
 }
+.mypage-container .mypage-basket-img-box{
+	width: 100%; display: flex; gap: 1%;
+}
+.mypage-container .mypage-basket-img{
+	width: 24%; flex: 0 0 auto; 
+}
+/* 제품이미지박스 */
+.mypage-container .goods-item-img-box{
+	width: 100%; background-color: #e9ecef; position: relative; float: left;
+}
+.mypage-container .goods-item-img-box img{
+	width: 100%; height: 100%; 
+}
+.mypage-container .mypage-basket-img-btn-box .btn-prev{
+	border: 1px solid #000; background-color: #fff; width: 40px; height: 40px; cursor: pointer; display: none;
+	position: absolute; top: 40%; left: 0;
+}
+.mypage-container .btn-prev .icon-left{
+	width: 15px; height: 15px; display: inline-block; color: #000;
+	background-image: url(../img/left-arrow.png); margin-left: 0;
+	background-position: left center;  background-size: contain; background-repeat: no-repeat;
+}
+.mypage-container .mypage-basket-img-btn-box .btn-next{
+	border: 1px solid #000; background-color: #fff; width: 40px; height: 40px; cursor: pointer; 
+	position: absolute; top: 40%; right: 1%;
+}
+.mypage-container .btn-next .icon-right{
+	width: 15px; height: 15px; display: inline-block; color: #000;
+	background-image: url(../img/right-arrow.png); margin-left: 0;
+	background-position: left center;  background-size: contain; background-repeat: no-repeat;
+}
+/*장바구니보기 버튼*/
 .mypage-container .btn-mypage{
-	width: 200px;	height: 50px; background: #fff; border: 2px solid #000;
+	width: 200px;	height: 50px; background: #fff; border: 2px solid #000; display: block; text-align: center;
 }
 .mypage-container .btn-mypage span{
 	font-size: 13px; font-weight: bold;

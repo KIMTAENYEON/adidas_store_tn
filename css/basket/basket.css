@@ -19,7 +19,8 @@
 }
 .basket-container .basket-goods-item-box{
 	border: 1px solid #000; width: 100%; margin-top: -1px; position: relative;
-}/* 제품이미지박스 */
+}
+/* 제품이미지박스 */
 .basket-container .goods-item-img-box{
 	width: 20%; background-color: whitesmoke; position: relative; float: left;
 }

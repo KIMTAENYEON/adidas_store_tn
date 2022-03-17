@@ -125,4 +125,24 @@ public class ChoiceServiceImp implements ChoiceService{
 			return;
 		choiceDao.deleteMyListOrder(me_email, op_num);
 	}
+
+	@Override
+	public List<GoodsVO> myListGoodsList(List<MyListVO> myList) {
+		if(myList == null)
+			return null;
+		List<GoodsVO> goodsList = new ArrayList<GoodsVO>();
+		for(MyListVO tmpOptionList : myList) {
+			int equals = 0;
+			GoodsVO dbGoods = orderDao.getGoods(tmpOptionList.getMy_op_num());
+			for(GoodsVO tmpGoodsList : goodsList) {
+				if(tmpGoodsList.equals(dbGoods)) {
+					equals += 1;
+				}
+			}
+			if(equals == 0) {
+				goodsList.add(dbGoods);			
+			}
+		}
+		return goodsList;
+	}
 }

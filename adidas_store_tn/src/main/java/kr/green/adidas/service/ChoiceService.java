@@ -30,4 +30,6 @@ public interface ChoiceService {
 
 	void deleteMyListOrder(String me_email, Integer op_num);
 
+	List<GoodsVO> myListGoodsList(List<MyListVO> myList);
+
 }
