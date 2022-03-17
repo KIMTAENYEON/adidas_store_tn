@@ -2,6 +2,7 @@ package kr.green.adidas.service;
 
 import java.util.List;
 
+import kr.green.adidas.pagination.Criteria;
 import kr.green.adidas.vo.GoodsVO;
 import kr.green.adidas.vo.MemberVO;
 import kr.green.adidas.vo.OptionVO;
@@ -28,10 +29,12 @@ public interface OrderService {
 
 	void deleteOrder(OrderListVO orderList);
 
-	List<OrderListVO> getOrderList(String ol_state);
+	List<OrderListVO> getOrderList(String ol_state, Criteria cri);
 
 	List<OrderVO> selectOrderList(List<OrderListVO> list);
 
 	void updateState(OrderListVO orderList);
+
+	int getTotalCountOrder(Criteria cri, String ol_state);
 
 }

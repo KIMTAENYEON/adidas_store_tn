@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import kr.green.adidas.pagination.Criteria;
+import kr.green.adidas.pagination.PageMaker;
 import kr.green.adidas.service.OrderService;
 import kr.green.adidas.vo.GoodsVO;
 import kr.green.adidas.vo.OptionVO;
@@ -27,11 +29,14 @@ public class AdminController {
 	  return mv;
 	}
 	@RequestMapping(value= "/admin/orderAdmin")
-	public ModelAndView orderAdminGet(ModelAndView mv, String ol_state){		
-		List<OrderListVO> list = orderService.getOrderList(ol_state);
+	public ModelAndView orderAdminGet(ModelAndView mv, String ol_state, Criteria cri){		
+		List<OrderListVO> list = orderService.getOrderList(ol_state, cri);
 		List<GoodsVO> goods = orderService.selectGoodsList(list);
 		List<OptionVO> option = orderService.selectOptionList(list);
 		List<OrderVO> order = orderService.selectOrderList(list);
+		int totalCount = orderService.getTotalCountOrder(cri, ol_state);
+		PageMaker pm = new PageMaker(totalCount, cri);
+		mv.addObject("pm", pm);
 		mv.addObject("list", list);
 		mv.addObject("goods", goods);
 		mv.addObject("option", option);

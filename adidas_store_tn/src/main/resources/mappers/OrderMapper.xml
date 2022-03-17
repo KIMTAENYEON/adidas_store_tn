@@ -44,6 +44,7 @@
 				where ol_state = #{ol_state}
 			</if>
 			order by or_date desc
+			limit #{cri.pageStart}, #{cri.perPageNum}
 	</select>
 	<select id="getOrder" resultType="kr.green.adidas.vo.OrderVO">
 		select * from `order` where or_num = #{orderList.ol_or_num}
@@ -51,4 +52,12 @@
 	<update id="updateState">
 		update orderlist set ol_state = #{orderList.ol_state} where ol_num = #{orderList.ol_num}
 	</update>
+	<select id="getTotalCountOrder" resultType="int">
+		select count(*) from orderlist 
+			join `order`
+			on ol_or_num = or_num
+			<if test="ol_state != '배송상태' and ol_state != null">
+				where ol_state = #{ol_state}
+			</if>
+	</select>
 </mapper>

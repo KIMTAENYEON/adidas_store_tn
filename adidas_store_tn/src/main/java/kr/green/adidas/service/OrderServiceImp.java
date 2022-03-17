@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.green.adidas.dao.OrderDAO;
+import kr.green.adidas.pagination.Criteria;
 import kr.green.adidas.vo.GoodsVO;
 import kr.green.adidas.vo.MemberVO;
 import kr.green.adidas.vo.OptionVO;
@@ -135,8 +136,8 @@ public class OrderServiceImp implements OrderService{
 	}
 
 	@Override
-	public List<OrderListVO> getOrderList(String ol_state) {
-		return orderDao.getOrderList(ol_state);	
+	public List<OrderListVO> getOrderList(String ol_state, Criteria cri) {
+		return orderDao.getOrderList(ol_state, cri);	
 	}
 
 	@Override
@@ -164,6 +165,11 @@ public class OrderServiceImp implements OrderService{
 		if(orderList == null)
 			return;
 		orderDao.updateState(orderList);
+	}
+
+	@Override
+	public int getTotalCountOrder(Criteria cri, String ol_state) {
+		return orderDao.getTotalCountOrder(cri, ol_state);
 	}
 	
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import kr.green.adidas.pagination.Criteria;
 import kr.green.adidas.vo.GoodsVO;
 import kr.green.adidas.vo.MemberVO;
 import kr.green.adidas.vo.OptionVO;
@@ -28,10 +29,12 @@ public interface OrderDAO {
 
 	void deleteOrder(@Param("orderList") OrderListVO orderList);
 
-	List<OrderListVO> getOrderList(@Param("ol_state") String ol_state);
+	List<OrderListVO> getOrderList(@Param("ol_state") String ol_state, @Param("cri") Criteria cri);
 
 	OrderVO getOrder(@Param("orderList") OrderListVO tmpOrderList);
 
 	void updateState(@Param("orderList") OrderListVO orderList);
+
+	int getTotalCountOrder(@Param("cri") Criteria cri, @Param("ol_state") String ol_state);
 
 }
