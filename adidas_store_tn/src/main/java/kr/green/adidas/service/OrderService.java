@@ -19,7 +19,7 @@ public interface OrderService {
 
 	void insertOrder(OrderVO order, MemberVO user, OrderListVO orderList);
 
-	List<OrderListVO> selectOrderList(MemberVO user);
+	List<OrderListVO> selectOrderList(MemberVO user, Criteria cri);
 
 	List<GoodsVO> selectGoodsList(List<OrderListVO> list);
 

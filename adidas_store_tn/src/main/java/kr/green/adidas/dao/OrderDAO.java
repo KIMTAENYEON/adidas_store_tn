@@ -23,7 +23,7 @@ public interface OrderDAO {
 
 	void insertOrderList(@Param("orderList") OrderListVO orderList);
 
-	List<OrderListVO> selectOrderList(@Param("user") MemberVO user);
+	List<OrderListVO> selectOrderList(@Param("user") MemberVO user, @Param("cri") Criteria cri);
 
 	void deleteOrderList(@Param("orderList") OrderListVO orderList);
 

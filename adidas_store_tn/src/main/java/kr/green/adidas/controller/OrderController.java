@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import kr.green.adidas.pagination.Criteria;
+import kr.green.adidas.pagination.PageMaker;
 import kr.green.adidas.service.ChoiceService;
 import kr.green.adidas.service.OrderService;
 import kr.green.adidas.vo.GoodsVO;
@@ -75,11 +77,14 @@ public class OrderController {
 		return orderService.selectOption(option);
 	}
 	@RequestMapping(value= "/member/orderCheck", method = RequestMethod.GET)
-	public ModelAndView orderCheckGet(ModelAndView mv, HttpServletRequest request){	
+	public ModelAndView orderCheckGet(ModelAndView mv, HttpServletRequest request, Criteria cri, String ol_state){	
 		MemberVO user = (MemberVO) request.getSession().getAttribute("user");
-		List<OrderListVO> list = orderService.selectOrderList(user);
+		List<OrderListVO> list = orderService.selectOrderList(user, cri);
 		List<GoodsVO> goods = orderService.selectGoodsList(list);
 		List<OptionVO> option = orderService.selectOptionList(list);
+		int totalCount = orderService.getTotalCountOrder(cri, ol_state);
+		PageMaker pm = new PageMaker(totalCount, cri);
+		mv.addObject("pm", pm);
 		mv.addObject("goods", goods);
 		mv.addObject("option", option);
 		mv.addObject("list",list);

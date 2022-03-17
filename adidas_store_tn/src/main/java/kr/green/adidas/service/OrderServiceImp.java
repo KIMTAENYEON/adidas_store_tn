@@ -71,10 +71,10 @@ public class OrderServiceImp implements OrderService{
 	}
 
 	@Override
-	public List<OrderListVO> selectOrderList(MemberVO user) {
+	public List<OrderListVO> selectOrderList(MemberVO user, Criteria cri) {
 		if(user == null)
 			return null;
-		return orderDao.selectOrderList(user);
+		return orderDao.selectOrderList(user, cri);
 	}
 
 	@Override
