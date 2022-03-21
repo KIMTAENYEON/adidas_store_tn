@@ -140,7 +140,7 @@
 							</span>
 							<span class="goods-item-text-box">
 								<span class="goods-item-name">${goods.gd_name}</span>
-								<span class="goods-item-price">${goods.gd_price}원</span>
+								<span class="goods-item-price">${goods.gd_price}</span>
 								<c:if test="${user.me_authority == '관리자'}">
 									<c:forEach var="option" items="${option}">
 										<c:if test="${goods.gd_num == option.op_gd_num }">
@@ -342,6 +342,16 @@
 		        	}
 		        }
 		    });
+		}
+		setComma();
+		//콤마 찍기
+		function setComma() {
+			$('.goods-item-price').each(function() {
+				var price = $(this).text();
+				price = parseInt(price);
+				var priceComma = price.toLocaleString('ko-KR');
+				$(this).text(priceComma + '원');
+			});
 		}
 	</script>
 </body>

@@ -136,7 +136,7 @@
 										</span>
 										<span class="goods-item-text-box">
 											<span class="goods-item-name">${goods.gd_name}</span>
-											<span class="goods-item-price">${goods.gd_price}원</span>
+											<span class="goods-item-price">${goods.gd_price}</span>
 										</span>
 									</a>
 								</div>
@@ -314,15 +314,27 @@
 		        dataType:"json",
 		        success : function(res){
 		        	var list = res.list
-		        	for(choice of list){
-						$('.new-goods-item-box [name=gd_num]').each(function() {
-							if(choice.ch_state == 1){
-								$('[value='+choice.ch_gd_num+']').siblings('.btn-item-choice').children().addClass('icon-item-choice-ing').removeClass('icon-item-choice');								
-							}
-						});
+		        	if(list != null){
+		        		for(choice of list){
+							$('.new-goods-item-box [name=gd_num]').each(function() {
+								if(choice.ch_state == 1){
+									$('[value='+choice.ch_gd_num+']').siblings('.btn-item-choice').children().addClass('icon-item-choice-ing').removeClass('icon-item-choice');								
+								}
+							});
+			        	}
 		        	}
 		        }
 		    });
+		}
+		setComma();
+		//콤마 찍기
+		function setComma() {
+			$('.goods-item-price').each(function() {
+				var price = $(this).text();
+				price = parseInt(price);
+				var priceComma = price.toLocaleString('ko-KR');
+				$(this).text(priceComma + '원');
+			});
 		}
 	</script>
 </body>

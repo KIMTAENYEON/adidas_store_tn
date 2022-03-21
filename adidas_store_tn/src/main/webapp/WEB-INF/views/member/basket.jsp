@@ -165,10 +165,12 @@
 				var price = $(this).find('.goods-item-price').text();
 				var amount = $(this).find('.goods-basket-amount').val();
 				var totalPrice = price * amount
-				$(this).find('.goods-item-price').text(totalPrice + '원');
+				var totalPriceComma = totalPrice.toLocaleString('ko-KR');
+				$(this).find('.goods-item-price').text(totalPriceComma + '원');
 				totalPriceAll += totalPrice;
 			});
-			$('.order-total-price').text(totalPriceAll + '원');
+			var totalPriceAllComma = totalPriceAll.toLocaleString('ko-KR');
+			$('.order-total-price').text(totalPriceAllComma + '원');
 		}
 	</script>
 </body>

@@ -28,7 +28,7 @@
 							<span class="goods-detail-name">${goods.gd_name}</span>
 						</div>
 						<div class="goods-detail-price-box">
-							<span class="goods-detail-price">${goods.gd_price}원</span>
+							<span class="goods-detail-price">${goods.gd_price}</span>
 						</div>
 						<!-- 사이즈 선택 -->
 						<div class="goods-detail-size-container">
@@ -339,6 +339,16 @@
 		        }
 		    });
 		});
+		setComma();
+		//콤마 찍기
+		function setComma() {
+			$('.goods-detail-price').each(function() {
+				var price = $(this).text();
+				price = parseInt(price);
+				var priceComma = price.toLocaleString('ko-KR');
+				$(this).text(priceComma + '원');
+			});
+		}
 	</script>
 </body>
 </html>

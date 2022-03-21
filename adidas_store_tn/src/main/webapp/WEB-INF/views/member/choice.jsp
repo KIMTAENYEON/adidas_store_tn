@@ -23,7 +23,7 @@
 								<span class="img-box">
 									<input type="hidden" name="gd_num" value="${goods.gd_num}">
 									<img src="<%=request.getContextPath()%>/img/${goods.gd_img}" alt="">
-									<span class="price-box">${goods.gd_price}원</span>
+									<span class="price-box">${goods.gd_price}</span>
 									<button type="button" class="btn btn-item-choice"><i class="icon-item-choice"></i></button>
 								</span>
 								<span class="name-box">${goods.gd_name}</span>
@@ -105,6 +105,16 @@
 		        	}
 		        }
 		    });
+		}
+		setComma();
+		//콤마 찍기
+		function setComma() {
+			$('.price-box').each(function() {
+				var price = $(this).text();
+				price = parseInt(price);
+				var priceComma = price.toLocaleString('ko-KR');
+				$(this).text(priceComma + '원');
+			});
 		}
 	</script>
 </body>

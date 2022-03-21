@@ -31,7 +31,7 @@
 								<span class="goods-item-name">${goods.gd_name}</span>
 								<span class="goods-item-size">사이즈 : ${option.op_size}</span>
 								<span class="goods-item-amount">수량 : ${orderList.ol_amount}</span>
-								<span class="goods-item-price">${orderList.ol_total_price}원</span>
+								<span class="goods-item-price">${orderList.ol_total_price}</span>
 								<span class="goods-order-state-box">
 									<input type="hidden" name="ol_num" value="${orderList.ol_num}">
 									<input type="hidden" name="ol_op_num" value="${orderList.ol_op_num}">
@@ -135,6 +135,16 @@
 				$(this).css('background-color', '#fff');
 			}
 		});
+		setComma();
+		//콤마 찍기
+		function setComma() {
+			$('.goods-item-price').each(function() {
+				var price = $(this).text();
+				price = parseInt(price);
+				var priceComma = price.toLocaleString('ko-KR');
+				$(this).text(priceComma + '원');
+			});
+		}
 	</script>
 </body>
 </html>
