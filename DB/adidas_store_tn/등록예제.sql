@@ -147,7 +147,7 @@ CHANGE COLUMN `my_check_state` `my_check_state` VARCHAR(2) NOT NULL ;
 
 ALTER TABLE `adidas_store_tn`.`option` 
 CHANGE COLUMN `op_num` `op_num` INT NOT NULL AUTO_INCREMENT ,
-CHANGE COLUMN `op_size` `op_size` INT NOT NULL ,
+CHANGE COLUMN `op_size` `op_size` varchar(5) NOT NULL ,
 CHANGE COLUMN `op_amount` `op_amount` INT NOT NULL ;
 
 ALTER TABLE `adidas_store_tn`.`option` 
