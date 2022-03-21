@@ -6,7 +6,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -18,7 +17,6 @@ import kr.green.adidas.pagination.PageMaker;
 import kr.green.adidas.service.ChoiceService;
 import kr.green.adidas.service.OrderService;
 import kr.green.adidas.vo.GoodsVO;
-import kr.green.adidas.vo.ListOrderListVO;
 import kr.green.adidas.vo.MemberVO;
 import kr.green.adidas.vo.MyListVO;
 import kr.green.adidas.vo.OptionVO;
@@ -55,21 +53,28 @@ public class OrderController {
 	  return mv;
 	}
 	@RequestMapping(value= "/order/buy", method = RequestMethod.POST)
-	public ModelAndView orderBuyPost(ModelAndView mv, HttpServletRequest request, OrderVO order
-			, @ModelAttribute(value="ListOrderListVO") ListOrderListVO list, Integer basket){	
+	public ModelAndView orderBuyPost(ModelAndView mv, HttpServletRequest request){	
 		MemberVO user = (MemberVO) request.getSession().getAttribute("user");
 		if(user == null) {
 			mv.setViewName("redirect:/member/login");
-		}else {
-			for(OrderListVO tmpOrderList : list.getList()) {				
-				orderService.insertOrder(order, user, tmpOrderList);
-				if(basket == 1) {
-					choiceService.deleteMyListOrder(user.getMe_email(), tmpOrderList.getOl_op_num());
-				}
-			}
-			mv.setViewName("redirect:/member/orderCheck");
 		}
 	  return mv;
+	}
+	@ResponseBody
+	@RequestMapping(value= "/order/pay/order")
+	public int orderPayOrder(HttpServletRequest request, @RequestBody OrderVO order) {
+		MemberVO user = (MemberVO) request.getSession().getAttribute("user");
+		return orderService.insertOrder(order, user);
+	}
+	@ResponseBody
+	@RequestMapping(value= "/order/pay/orderList")
+	public boolean orderPayOrderList(HttpServletRequest request, @RequestBody OrderListVO orderList, Integer basket) {
+		MemberVO user = (MemberVO) request.getSession().getAttribute("user");
+		orderService.insertOrderList(orderList, basket);
+		if(basket == 1) {
+			choiceService.deleteMyListOrder(user.getMe_email(), orderList.getOl_op_num());
+		}
+		return true;
 	}
 	@ResponseBody
 	@RequestMapping(value= "/option/select")

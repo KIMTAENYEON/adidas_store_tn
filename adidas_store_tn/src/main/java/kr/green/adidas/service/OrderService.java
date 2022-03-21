@@ -17,7 +17,7 @@ public interface OrderService {
 
 	OptionVO getOption(OrderListVO orderList);
 
-	void insertOrder(OrderVO order, MemberVO user, OrderListVO orderList);
+	int insertOrder(OrderVO order, MemberVO user);
 
 	List<OrderListVO> selectOrderList(MemberVO user, Criteria cri);
 
@@ -36,5 +36,7 @@ public interface OrderService {
 	void updateState(OrderListVO orderList);
 
 	int getTotalCountOrder(Criteria cri, String ol_state);
+
+	void insertOrderList(OrderListVO orderList, Integer basket);
 
 }

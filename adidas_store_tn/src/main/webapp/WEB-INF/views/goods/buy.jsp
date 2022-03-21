@@ -15,6 +15,7 @@
 	<!-- 유효성 검사 -->
 	<script src="<%=request.getContextPath()%>/resources/js/jquery.validate.min.js"></script>
 	<script src="<%=request.getContextPath()%>/resources/js/additional-methods.min.js"></script>
+	<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
 	<style>
 		.error{ color : red}
 	</style>
@@ -101,9 +102,9 @@
 								<span class="goods-item-amount">수량 : ${myList.my_amount}</span>
 								<span class="goods-item-price">${goods.gd_price}</span>
 								<input type="hidden" class="index" value="0">
-								<input type="hidden" class="ol_op_num" name="list[0].ol_op_num" value="${option.op_num}">
-								<input type="hidden" class="ol_amount" name="list[0].ol_amount" value="${myList.my_amount}">
-								<input type="hidden" class="ol_total_price" name="list[0].ol_total_price" value="">
+								<input type="hidden" class="ol_op_num" name="ol_op_num" value="${option.op_num}">
+								<input type="hidden" class="ol_amount" name="ol_amount" value="${myList.my_amount}">
+								<input type="hidden" class="ol_total_price" name="ol_total_price" value="">
 							</span>
 							<input type="hidden" name="basket" value="1">
 						</a>
@@ -125,9 +126,9 @@
 								<span class="goods-item-size">사이즈 : ${option.op_size}</span>
 								<span class="goods-item-amount">수량 : ${ol_amount}</span>
 								<span class="goods-item-price">${goods.gd_price}</span>
-								<input type="hidden" class="ol_op_num" name="list[0].ol_op_num" value="${option.op_num}">
-								<input type="hidden" class="ol_amount" name="list[0].ol_amount" value="${ol_amount}">
-								<input type="hidden" class="ol_total_price" name="list[0].ol_total_price" value="">
+								<input type="hidden" class="ol_op_num" name="ol_op_num" value="${option.op_num}">
+								<input type="hidden" class="ol_amount" name="ol_amount" value="${ol_amount}">
+								<input type="hidden" class="ol_total_price" name="ol_total_price" value="">
 							</span>
 							<input type="hidden" name="basket" value="0">
 						</a>
@@ -142,6 +143,7 @@
 				<div class="order-total-price">
 					
 				</div>
+				<input type="hidden" class="total-price">
 			</div>
 			<button class="btn btn-pay">
 				<span>결제</span>
@@ -164,20 +166,9 @@
 				$(this).find('.ol_total_price').val(totalPrice);
 				totalPriceAll += totalPrice;
 			});
+			$('.total-price').val(totalPriceAll);
 			var totalPriceAllComma = totalPriceAll.toLocaleString('ko-KR');
 			$('.order-total-price').text(totalPriceAllComma + '원');
-		}
-		setIndex();
-		//제품리스트의 번지수 지정
-		function setIndex() {
-			var index = 0
-			$('.index').each(function() {
-				$(this).siblings('.ol_op_num').attr('name', 'list['+index+'].ol_op_num');
-				$(this).siblings('.ol_amount').attr('name', 'list['+index+'].ol_amount');
-				$(this).siblings('.ol_total_price').attr('name', 'list['+index+'].ol_total_price');
-				$(this).val(index);
-				index += 1;
-			});
 		}
 		// 우편번호 찾기 찾기 화면을 넣을 element
 	    var element_wrap = document.getElementById('wrap');
@@ -277,7 +268,9 @@
 	               	me_address:{
 	               		required: "주소를 입력하세요."
 	               	}
-	            }
+	            },submitHandler: function(form) {
+	            	requestPay();
+	              }
 	        });
 	        $.validator.addMethod(
 	       	    "regex",
@@ -318,12 +311,83 @@
 			$('.address-box [name=or_address]').val(address);
 			$('.address-box [name=or_address_detail]').val(addressDetail);
 			$('.address-box [name=or_phone]').val(phone);
-				var or_name = $('.address-box [name=or_name]').val();
-				var or_postnum = $('.address-box [name=or_postnum]').val();
-				var or_address = $('.address-box [name=or_address]').val();
-				var or_address_detail = $('.address-box [name=or_address_detail]').val();
-				var or_phone = $('.address-box [name=or_phone]').val();
+			var or_name = $('.address-box [name=or_name]').val();
+			var or_postnum = $('.address-box [name=or_postnum]').val();
+			var or_address = $('.address-box [name=or_address]').val();
+			var or_address_detail = $('.address-box [name=or_address_detail]').val();
+			var or_phone = $('.address-box [name=or_phone]').val();
 		});
+		var IMP = window.IMP; // 생략 가능
+	    IMP.init("imp76369410"); // 예: imp00000000
+	    //결제진행
+	    function requestPay() {
+		  // IMP.request_pay(param, callback) 결제창 호출
+		  IMP.request_pay({ // param
+		      pg: "html5_inicis",
+		      pay_method: "card",
+		      merchant_uid: 'merchant_' + new Date().getTime(),
+		      name: "아디다스 온라인 스토어",
+		      amount: $('.total-price').val(),
+		      buyer_email: "${user.me_email}",
+		      buyer_name: $('.address-box [name=or_name]').val(),
+		      buyer_tel: $('.address-box [name=or_phone]').val(),
+		      buyer_addr: $('.address-box [name=or_address]').val(),
+		      buyer_postcode: $('.address-box [name=or_postnum]').val()
+		  }, function (rsp) { // callback
+			  if (rsp.success) {
+				  for(var i = 0; i < $('.order-goods-item-box').length; i++){
+					  var or_name = $('.address-box [name=or_name]').val();
+					  var or_postnum = $('.address-box [name=or_postnum]').val();
+					  var or_address = $('.address-box [name=or_address]').val();
+					  var or_address_detail = $('.address-box [name=or_address_detail]').val();
+					  var or_phone = $('.address-box [name=or_phone]').val();
+					  var order = {
+						or_name : or_name,
+						or_postnum : or_postnum,
+						or_address : or_address,
+						or_address_detail : or_address_detail,
+						or_phone : or_phone
+					  }
+					  var ol_or_num = 0;
+					  $.ajax({
+					        async:false,
+					        type:'POST',
+					        data:JSON.stringify(order),
+					        url: '<%=request.getContextPath()%>/order/pay/order',
+					        contentType:"application/json; charset=UTF-8",
+					        success : function(res){
+					        	ol_or_num = res;
+					        }
+					  });
+					  var ol_op_num = $('.order-goods-item-box').eq(i).find('[name=ol_op_num]').val();
+					  var ol_total_price = $('.order-goods-item-box').eq(i).find('[name=ol_total_price]').val();
+					  var ol_amount = $('.order-goods-item-box').eq(i).find('[name=ol_amount]').val();
+					  var orderList = {
+						ol_op_num : ol_op_num,
+						ol_total_price : ol_total_price,
+						ol_amount : ol_amount,
+						ol_or_num: ol_or_num
+					  }
+					  var basket = $('[name=basket]').val();
+					  $.ajax({
+					        async:false,
+					        type:'POST',
+					        data:JSON.stringify(orderList),
+					        url: '<%=request.getContextPath()%>/order/pay/orderList?basket='+basket,
+					        contentType:"application/json; charset=UTF-8",
+					        success : function(res){
+					        	
+					        }
+					  });
+				  }
+				  var url = '<%=request.getContextPath()%>/member/orderCheck';
+		    	  window.location.replace(url);
+		      } else {
+		    	  alert('결제에 실패했습니다.');
+		    	  window.location.reload();
+		      }
+		  });
+		}
 	</script>
 </body>
 </html>

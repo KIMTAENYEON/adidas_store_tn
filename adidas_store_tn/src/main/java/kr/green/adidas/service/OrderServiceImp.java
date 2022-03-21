@@ -43,31 +43,24 @@ public class OrderServiceImp implements OrderService{
 	}
 
 	@Override
-	public void insertOrder(OrderVO order, MemberVO user, OrderListVO orderList) {
+	public int insertOrder(OrderVO order, MemberVO user) {
 		if(user == null)
-			return;
+			return 0;
 		if(order == null)
-			return;
-		if(orderList == null)
-			return;
-		if(orderList.getOl_op_num() <= 0)
-			return;
-		if(orderList.getOl_amount() <= 0)
-			return;
+			return 0;
 		if(order.getOr_name() == null || order.getOr_name().trim().length() == 0)
-			return;
+			return 0;
 		if(order.getOr_address() == null || order.getOr_address().trim().length() == 0)
-			return;
+			return 0;
 		if(order.getOr_address_detail() == null || order.getOr_address_detail().trim().length() == 0)
-			return;
+			return 0;
 		if(order.getOr_postnum() == null || order.getOr_postnum().trim().length() == 0)
-			return;
+			return 0;
 		if(order.getOr_phone() == null || order.getOr_phone().trim().length() == 0)
-			return;
+			return 0;
 		order.setOr_me_email(user.getMe_email());
 		orderDao.insertOrder(order);
-		orderList.setOl_or_num(order.getOr_num());
-		orderDao.insertOrderList(orderList);
+		return order.getOr_num();
 	}
 
 	@Override
@@ -170,6 +163,15 @@ public class OrderServiceImp implements OrderService{
 	@Override
 	public int getTotalCountOrder(Criteria cri, String ol_state) {
 		return orderDao.getTotalCountOrder(cri, ol_state);
+	}
+
+	@Override
+	public void insertOrderList(OrderListVO orderList, Integer basket) {
+		if(orderList == null)
+			return;
+		if(orderList.getOl_or_num() <= 0 || orderList.getOl_op_num() <= 0 || orderList.getOl_total_price() <= 0 || orderList.getOl_amount() <= 0)
+			return;
+		orderDao.insertOrderList(orderList);
 	}
 	
 }
