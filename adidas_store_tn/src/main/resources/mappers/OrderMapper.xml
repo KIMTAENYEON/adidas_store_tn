@@ -20,8 +20,8 @@
 			values (#{order.or_name}, #{order.or_address}, #{order.or_address_detail}, #{order.or_postnum}, #{order.or_phone}, #{order.or_me_email})
 	</insert>
 	<insert id="insertOrderList">
-		insert into orderlist (ol_op_num, ol_or_num, ol_total_price, ol_amount)
-			values (#{orderList.ol_op_num}, #{orderList.ol_or_num}, #{orderList.ol_total_price}, #{orderList.ol_amount})
+		insert into orderlist (ol_op_num, ol_or_num, ol_total_price, ol_amount, ol_uid)
+			values (#{orderList.ol_op_num}, #{orderList.ol_or_num}, #{orderList.ol_total_price}, #{orderList.ol_amount}, #{orderList.ol_uid})
 	</insert>
 	<select id="selectOrderList" resultType="kr.green.adidas.vo.OrderListVO">
 		select * from `order`
@@ -32,7 +32,7 @@
 		    limit #{cri.pageStart}, #{cri.perPageNum}
 	</select>
 	<delete id="deleteOrderList">
-		delete from orderList where ol_num = #{orderList.ol_num} and ol_state = '주문완료'
+		delete from orderList where ol_or_num = #{orderList.ol_or_num} and ol_state = '주문완료' 
 	</delete>
 	<delete id="deleteOrder">
 		delete from `order` where or_num = #{orderList.ol_or_num}
@@ -51,7 +51,7 @@
 		select * from `order` where or_num = #{orderList.ol_or_num}
 	</select>
 	<update id="updateState">
-		update orderlist set ol_state = #{orderList.ol_state} where ol_num = #{orderList.ol_num}
+		update orderlist set ol_state = #{orderList.ol_state} where ol_or_num = #{orderList.ol_or_num}
 	</update>
 	<select id="getTotalCountOrder" resultType="int">
 		select count(*) from orderlist 

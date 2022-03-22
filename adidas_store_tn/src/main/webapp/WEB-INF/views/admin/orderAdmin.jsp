@@ -57,6 +57,7 @@
 													<th class="ol_state">
 														<input type="hidden" value="${orderList.ol_state}">
 														<input type="hidden" name="ol_num" value="${orderList.ol_num}">
+														<input type="hidden" name="ol_or_num" value="${orderList.ol_or_num}">
 														<select name="ol_state">
 															<option value="주문완료">주문완료</option>
 															<option value="배송준비중">배송준비중</option>
@@ -132,10 +133,12 @@
 		//배송상태 변경
 		$('[name=ol_state]').change(function() {
 			var ol_num = $(this).siblings('[name=ol_num]').val();
+			var ol_or_num = $(this).siblings('[name=ol_or_num]').val();
 			var ol_state = $(this).val();
 			var orderList = {
 				ol_num : ol_num,
-				ol_state : ol_state
+				ol_state : ol_state,
+				ol_or_num : ol_or_num
 			}
 			$.ajax({
 		        async:false,

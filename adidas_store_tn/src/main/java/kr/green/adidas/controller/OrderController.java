@@ -1,9 +1,20 @@
 package kr.green.adidas.controller;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -77,6 +88,61 @@ public class OrderController {
 		return true;
 	}
 	@ResponseBody
+	@RequestMapping(value="/order/inicis/cancel")
+	public String inicisCancel(@RequestBody OrderListVO orderList) throws IOException, ParseException {
+		//access_token 발급
+		HttpURLConnection conn = null;
+		URL url = new URL("https://api.iamport.kr/users/getToken");
+		conn = (HttpURLConnection)url.openConnection();
+		conn.setRequestMethod("POST");
+		conn.setRequestProperty("Content-Type", "application/json");
+		conn.setRequestProperty("Accept", "application/json");
+		conn.setDoOutput(true);
+		JSONObject obj = new JSONObject();
+		obj.put("imp_key", "8420494889116139");
+		obj.put("imp_secret", "d9dc6c5b3e484cdee7a145bf2b7b577bbd5f6142c0f6d9f450c7f44126852d2d26b010c5bd176b1e");
+		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
+		bw.write(obj.toString());
+		bw.flush();
+		bw.close();
+		BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+		StringBuilder sb = new StringBuilder();
+		String line = null;
+		while((line = br.readLine()) != null) {
+		sb.append(line + "\n");
+		}
+		br.close();
+		JSONParser jsonParser = new JSONParser();
+		JSONObject jsonObj = (JSONObject)jsonParser.parse(sb.toString());
+		JSONObject responseData = (JSONObject)jsonObj.get("response");
+		String access_token = (String)responseData.get("access_token");
+
+		//REST API(결제환불) 호출
+		HttpURLConnection conn2 = null;
+		URL url2 = new URL("https://api.iamport.kr/payments/cancel");
+		conn2 = (HttpURLConnection)url2.openConnection();
+		conn2.setRequestMethod("POST");
+		conn2.setRequestProperty("Content-Type", "application/json");
+		conn2.setRequestProperty("Authorization", access_token);
+		conn2.setDoOutput(true);
+		JSONObject obj2 = new JSONObject();
+		obj2.put("reason", "테스트 환불");
+		obj2.put("imp_uid", orderList.getOl_uid());
+		obj2.put("amount", orderList.getOl_total_price());
+		BufferedWriter bw2 = new BufferedWriter(new OutputStreamWriter(conn2.getOutputStream()));
+		bw2.write(obj2.toString());
+		bw2.flush();
+		bw2.close();
+		BufferedReader br2 = new BufferedReader(new InputStreamReader(conn2.getInputStream()));
+		StringBuilder sb2 = new StringBuilder();
+		String line2 = null;
+		while((line2 = br2.readLine()) != null) {
+		sb2.append(line2 + "\n");
+		}
+		br2.close();
+		return "OK";
+	}
+	@ResponseBody
 	@RequestMapping(value= "/option/select")
 	public int optionSelect(@RequestBody OptionVO option) {
 		return orderService.selectOption(option);
@@ -100,7 +166,7 @@ public class OrderController {
 	@RequestMapping(value= "/order/cancle")
 	public boolean orderCancle(@RequestBody OrderListVO orderList) {
 		orderService.deleteOrderList(orderList);
-		orderService.deleteOrder(orderList);
+		orderService.deleteOrder(orderList);		
 		return true;
 	}
 }

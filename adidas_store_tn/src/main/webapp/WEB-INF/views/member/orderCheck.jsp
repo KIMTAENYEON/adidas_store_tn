@@ -10,6 +10,7 @@
 	<title>Document</title>
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/orderCheck.css">
 	<script src="<%=request.getContextPath()%>/resources/js/jquery.min.js"></script>
+	<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
 </head>
 <body>
 	<div class="body margin-top"> 
@@ -37,6 +38,8 @@
 									<input type="hidden" name="ol_op_num" value="${orderList.ol_op_num}">
 									<input type="hidden" name="ol_or_num" value="${orderList.ol_or_num}">
 									<input type="hidden" name="ol_amount" value="${orderList.ol_amount}">
+									<input type="hidden" name="ol_uid" value="${orderList.ol_uid}">
+									<input type="hidden" name="ol_total_price" value="${orderList.ol_total_price}">
 									<span>${orderList.ol_state}</span>
 									<c:if test="${orderList.ol_state == '주문완료'}">
 										<button class="btn btn-order-cancle">주문취소</button>
@@ -98,21 +101,29 @@
 		</div>
 	</div>
 	<script>
-		$('.goods-order-state-box').click(function(e){
+		$('.btn').click(function(e){
 			e.preventDefault();
 		})
+		//주문취소 버튼 클릭
 		$('.btn-order-cancle').click(function(e){
 			e.preventDefault();
 			var ol_num = $(this).siblings('[name=ol_num]').val();
 			var ol_op_num = $(this).siblings('[name=ol_op_num]').val();
 			var ol_or_num = $(this).siblings('[name=ol_or_num]').val();
 			var ol_amount = $(this).siblings('[name=ol_amount]').val();
+			var ol_uid = $(this).siblings('[name=ol_uid]').val();
+			var a = confirm("같이 주문한 모든제품을 취소하겠습니까?");
+			if(a == false){
+				return false;
+			}
 			var orderList = {
 				ol_num : ol_num,
 				ol_op_num : ol_op_num,
 				ol_or_num : ol_or_num,
-				ol_amount : ol_amount
+				ol_amount : ol_amount,
+				ol_uid : ol_uid
 			}
+			cancelPay(orderList);
 			$.ajax({
 		        async:false,
 		        type:'POST',
@@ -145,6 +156,22 @@
 				$(this).text(priceComma + '원');
 			});
 		}
+		//환불
+		function cancelPay(orderList) {
+		    $.ajax({
+			    url: '<%=request.getContextPath()%>/order/inicis/cancel',
+			    type: "POST",
+			    data: JSON.stringify(orderList),
+			    contentType:"application/json; charset=UTF-8",
+			    dataType: "json"
+		    }).done(function(res) {
+		    	if(res == 'OK'){
+	        		alert('주문을 취소했습니다.');
+	        	}
+			}).fail(function(error) {
+				alert('취소 실패');
+			});
+		  }
 	</script>
 </body>
 </html>

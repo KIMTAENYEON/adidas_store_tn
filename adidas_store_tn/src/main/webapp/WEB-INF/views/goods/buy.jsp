@@ -335,30 +335,30 @@
 		      buyer_postcode: $('.address-box [name=or_postnum]').val()
 		  }, function (rsp) { // callback
 			  if (rsp.success) {
+				  var or_name = $('.address-box [name=or_name]').val();
+				  var or_postnum = $('.address-box [name=or_postnum]').val();
+				  var or_address = $('.address-box [name=or_address]').val();
+				  var or_address_detail = $('.address-box [name=or_address_detail]').val();
+				  var or_phone = $('.address-box [name=or_phone]').val();
+				  var order = {
+					or_name : or_name,
+					or_postnum : or_postnum,
+					or_address : or_address,
+					or_address_detail : or_address_detail,
+					or_phone : or_phone
+				  }
+				  var ol_or_num = 0;
+				  $.ajax({
+				        async:false,
+				        type:'POST',
+				        data:JSON.stringify(order),
+				        url: '<%=request.getContextPath()%>/order/pay/order',
+				        contentType:"application/json; charset=UTF-8",
+				        success : function(res){
+				        	ol_or_num = res;
+				        }
+				  });
 				  for(var i = 0; i < $('.order-goods-item-box').length; i++){
-					  var or_name = $('.address-box [name=or_name]').val();
-					  var or_postnum = $('.address-box [name=or_postnum]').val();
-					  var or_address = $('.address-box [name=or_address]').val();
-					  var or_address_detail = $('.address-box [name=or_address_detail]').val();
-					  var or_phone = $('.address-box [name=or_phone]').val();
-					  var order = {
-						or_name : or_name,
-						or_postnum : or_postnum,
-						or_address : or_address,
-						or_address_detail : or_address_detail,
-						or_phone : or_phone
-					  }
-					  var ol_or_num = 0;
-					  $.ajax({
-					        async:false,
-					        type:'POST',
-					        data:JSON.stringify(order),
-					        url: '<%=request.getContextPath()%>/order/pay/order',
-					        contentType:"application/json; charset=UTF-8",
-					        success : function(res){
-					        	ol_or_num = res;
-					        }
-					  });
 					  var ol_op_num = $('.order-goods-item-box').eq(i).find('[name=ol_op_num]').val();
 					  var ol_total_price = $('.order-goods-item-box').eq(i).find('[name=ol_total_price]').val();
 					  var ol_amount = $('.order-goods-item-box').eq(i).find('[name=ol_amount]').val();
@@ -366,7 +366,8 @@
 						ol_op_num : ol_op_num,
 						ol_total_price : ol_total_price,
 						ol_amount : ol_amount,
-						ol_or_num: ol_or_num
+						ol_or_num: ol_or_num,
+						ol_uid : rsp.imp_uid
 					  }
 					  var basket = $('[name=basket]').val();
 					  $.ajax({

@@ -116,6 +116,8 @@ public class OrderServiceImp implements OrderService{
 			return;
 		if(orderList.getOl_num() <= 0)
 			return;
+		if(orderList.getOl_or_num() <= 0)
+			return;
 		orderDao.deleteOrderList(orderList);
 	}
 

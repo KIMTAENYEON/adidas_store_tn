@@ -10,4 +10,6 @@ public class OrderListVO {
 	private int ol_total_price;
 	private int ol_amount;
 	private String ol_state;
+	private String ol_uid;
+	private String ol_pay;
 }
