@@ -22,7 +22,7 @@ public class GoodsServiceImp implements GoodsService{
 	@Autowired
 	GoodsDAO goodsDao;
 
-	String uploadPath = "D:\\JAVA_TN\\upload";
+	String uploadPath = "D:\\JAVA_TN\\adidas_store_tn\\upload";
 	
 	@Override
 	public void registerGoods(GoodsVO goods, MultipartFile file, MemberVO user) {
