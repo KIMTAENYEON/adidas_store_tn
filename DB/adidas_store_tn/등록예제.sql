@@ -307,3 +307,8 @@ CREATE TABLE `adidas_store_tn`.`choice` (
     REFERENCES `adidas_store_tn`.`goods` (`gd_num`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
+-- 2022-03-22 추가
+ALTER TABLE `adidas_store_tn`.`orderlist` 
+ADD COLUMN `ol_uid` VARCHAR(255) NOT NULL AFTER `ol_state`;
+
+
