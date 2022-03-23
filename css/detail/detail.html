@@ -154,6 +154,188 @@
 				</div>
 			</div>
 		</div>
+		<!-- 제품 리뷰 -->
+		<div class="goods-review">
+			<div class="goods-review-container">
+				<div class="goods-review-head-box">
+					<h3>평점 및 리뷰</h3>
+					<select name="">
+						<option value="">정렬기준</option>
+					</select>
+				</div>
+				<div class="goods-review-list-container">
+					<!-- 리뷰목록 -->
+					<div class="goods-review-list-box">
+						<div class="goods-review-box">
+							<div class="goods-review-title">
+								리뷰 타이틀
+							</div>
+							<div class="goods-review-star-box">
+								<div class="goods-review-star">
+									<i class="icon-star"></i>
+								</div>
+								<div class="goods-review-star">
+									<i class="icon-star"></i>
+								</div>
+								<div class="goods-review-star">
+									<i class="icon-star"></i>
+								</div>
+								<div class="goods-review-star">
+									<i class="icon-star"></i>
+								</div>
+								<div class="goods-review-star">
+									<i class="icon-star-empty"></i>
+								</div>
+							</div>
+							<div class="goods-review-content">
+								리뷰내용 
+							</div>
+							<div class="goods-review-updown">
+								<button class="btn btn-review-up"><i class="icon-up"></i></button>
+								<span>0</span>
+								<button class="btn btn-review-down"><i class="icon-down"></i></button>
+								<span>0</span>
+							</div>
+						</div>
+						<div class="goods-review-box">
+							<div class="goods-review-title">
+								리뷰 타이틀2
+							</div>
+							<div class="goods-review-star-box">
+								<div class="goods-review-star">
+									<i class="icon-star"></i>
+								</div>
+								<div class="goods-review-star">
+									<i class="icon-star"></i>
+								</div>
+								<div class="goods-review-star">
+									<i class="icon-star"></i>
+								</div>
+								<div class="goods-review-star">
+									<i class="icon-star"></i>
+								</div>
+								<div class="goods-review-star">
+									<i class="icon-star-empty"></i>
+								</div>
+							</div>
+							<div class="goods-review-content">
+								리뷰내용2
+							</div>
+							<div class="goods-review-updown">
+								<button class="btn btn-review-up"><i class="icon-up"></i></button>
+								<span>0</span>
+								<button class="btn btn-review-down"><i class="icon-down selected"></i></button>
+								<span>0</span>
+							</div>
+						</div>
+					</div>
+					<!-- 리뷰쓰기, 내 리뷰 -->
+					<div class="goods-review-user-box">
+						<!-- 리뷰 쓰기 -->
+						<div class="goods-review-write-box">
+							<h3>리뷰 작성</h3>
+							<div class="goods-review-write">
+								<input type="text" class="review-title" placeholder="제목">
+								<div class="review-write-star-box">
+									<span>별점선택 : </span>
+									<button class="btn btn-star"><i class="icon-star"></i></button>
+									<button class="btn btn-star"><i class="icon-star"></i><i class="icon-star"></i></button>
+									<button class="btn btn-star"><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i></button>
+									<button class="btn btn-star selected"><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i></button>
+									<button class="btn btn-star"><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i></button>
+								</div>
+								<textarea class="review-content" rows="5" placeholder="내용"></textarea>
+								<button class="btn btn-review-reg">등록</button>
+							</div>
+						</div>
+						<!-- 내 리뷰 -->
+						<div class="goods-review-myreview-box">
+							<h3>내가 쓴 리뷰</h3>
+							<div class="goods-review-box">
+								<div class="goods-review-title">
+									내 리뷰 타이틀
+								</div>
+								<div class="goods-review-star-box">
+									<div class="goods-review-star">
+										<i class="icon-star"></i>
+									</div>
+									<div class="goods-review-star">
+										<i class="icon-star"></i>
+									</div>
+									<div class="goods-review-star">
+										<i class="icon-star"></i>
+									</div>
+									<div class="goods-review-star">
+										<i class="icon-star"></i>
+									</div>
+									<div class="goods-review-star">
+										<i class="icon-star-empty"></i>
+									</div>
+								</div>
+								<div class="goods-review-content">
+									내 리뷰 내용<br><br><br><br><br><br>11 <br>11 <br> 11
+								</div>
+								<div class="goods-review-updown">
+									<button class="btn btn-review-up"><i class="icon-up selected"></i></button>
+									<span>0</span>
+									<button class="btn btn-review-down"><i class="icon-down"></i></button>
+									<span>0</span>
+								</div>
+								<div class="goods-review-button">
+									<button class="btn btn-review-mod">수정</button>
+									<button class="btn btn-review-del">삭제</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- 페이지네이션 -->
+					<div class="goods-list-pagination-container">
+						<div class="goods-list-pagination-box">
+							<div class="pagination-prev-box">
+								<a href="" class="btn btn-pagination-prev">이전</a>
+							</div>
+							<div class="pagination-page-box">
+								<span>
+									페이지: 
+								</span>
+								<div class="pagination-now-page-box">
+									<button type="button" class="btn btn-now-page">
+										<span>2</span>
+										<i class="icon-arrow-down"></i>
+									</button>
+									<!-- 현재페이지박스 클릭시 나타나는 페이지선택박스 -->
+									<div class="page-select-box">
+										<ul class="pagination-page-select">
+											<li class="page-item">
+												<a href="javascript:;" class="page-link">1</a>
+											</li>
+											<li class="page-item selected">
+												<a href="javascript:;" class="page-link">2</a>
+											</li>
+											<li class="page-item">
+												<a href="javascript:;" class="page-link">3</a>
+											</li>
+											<li class="page-item">
+												<a href="javascript:;" class="page-link">4</a>
+											</li>
+											<li class="page-item">
+												<a href="javascript:;" class="page-link">5</a>
+											</li>
+										</ul>
+									</div>
+								</div>
+								<span>
+									/46
+								</span>
+							</div>
+							<div class="pagination-next-box">
+								<a href="" class="btn btn-pagination-next">다음</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 	<script>
 		$('.btn-select-choice').click(function(e){
