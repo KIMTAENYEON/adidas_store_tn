@@ -307,8 +307,32 @@ CREATE TABLE `adidas_store_tn`.`choice` (
     REFERENCES `adidas_store_tn`.`goods` (`gd_num`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
--- 2022-03-22 추가
+-- 2022-03-22 (결제코드) 추가
 ALTER TABLE `adidas_store_tn`.`orderlist` 
 ADD COLUMN `ol_uid` VARCHAR(255) NOT NULL AFTER `ol_state`;
+-- 2022-03-24 (review테이블) 추가
+CREATE TABLE `adidas_store_tn`.`review` (
+  `re_num` INT NOT NULL AUTO_INCREMENT,
+  `re_title` VARCHAR(255) NOT NULL,
+  `re_content` LONGTEXT NOT NULL,
+  `re_star` INT NOT NULL DEFAULT 1,
+  `re_date` DATETIME NOT NULL DEFAULT now(),
+  `re_state` INT NOT NULL DEFAULT 0,
+  `re_gd_num` INT NULL,
+  `re_me_email` VARCHAR(255) NULL,
+  PRIMARY KEY (`re_num`),
+  INDEX `re_gd_num_idx` (`re_gd_num` ASC) VISIBLE,
+  INDEX `re_me_email_idx` (`re_me_email` ASC) VISIBLE,
+  CONSTRAINT `re_gd_num`
+    FOREIGN KEY (`re_gd_num`)
+    REFERENCES `adidas_store_tn`.`goods` (`gd_num`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `re_me_email`
+    FOREIGN KEY (`re_me_email`)
+    REFERENCES `adidas_store_tn`.`member` (`me_email`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
 
 
