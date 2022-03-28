@@ -275,4 +275,11 @@
 	<select id="getLikesDownCount" resultType="int">
 		select count(*) from likes where li_re_num = #{re_num} and li_state = -1
 	</select>
+	<update id="updateReview">
+		update review set 
+			re_title = #{review.re_title},
+			re_content = #{review.re_content},
+			re_star = #{review.re_star}
+			where re_gd_num = #{review.re_gd_num} and re_me_email = #{review.re_me_email}
+	</update>
 </mapper>

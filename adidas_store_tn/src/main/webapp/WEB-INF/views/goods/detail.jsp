@@ -215,9 +215,7 @@
 					<div class="goods-review-list-box">
 					<c:forEach var="review" items="${review}">
 						<div class="goods-review-box">
-							<div class="goods-review-title">
-								${review.re_title}
-							</div>
+							<div class="goods-review-title">${review.re_title}</div>
 							<div class="goods-review-star-box">
 								<input type="hidden" name="re_star" value="${review.re_star}">
 								<div class="goods-review-star">
@@ -236,9 +234,7 @@
 									<i class="icon-star"></i>
 								</div>
 							</div>
-							<div class="goods-review-content">
-								${review.re_content}
-							</div>
+							<div class="goods-review-content">${review.re_content}</div>
 							<div class="goods-review-updown">
 								<input type="hidden" name="re_num" value="${review.re_num}">
 								<c:forEach var="likes" items="${likes}">
@@ -257,33 +253,29 @@
 					<!-- 리뷰쓰기, 내 리뷰 -->
 					<div class="goods-review-user-box">
 						<!-- 리뷰 쓰기 -->
-						<c:if test="${myReview == null}">
-							<div class="goods-review-write-box">
-								<h3>리뷰 작성</h3>
-								<div class="goods-review-write">
-									<input type="text" class="review-title" placeholder="제목">
-									<div class="review-write-star-box">
-										<span>별점선택 : </span>
-										<input type="hidden" name="re_star_input">
-										<button class="btn btn-star"><i class="icon-star"></i></button>
-										<button class="btn btn-star"><i class="icon-star"></i><i class="icon-star"></i></button>
-										<button class="btn btn-star"><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i></button>
-										<button class="btn btn-star"><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i></button>
-										<button class="btn btn-star"><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i></button>
-									</div>
-									<textarea class="review-content" rows="5" placeholder="내용"></textarea>
-									<button class="btn btn-review-reg">등록</button>
+						<div class="goods-review-write-box">
+							<h3>리뷰 작성</h3>
+							<div class="goods-review-write">
+								<input type="text" class="review-title" placeholder="제목">
+								<div class="review-write-star-box">
+									<span>별점선택 : </span>
+									<input type="hidden" name="re_star_input">
+									<button class="btn btn-star"><i class="icon-star"></i></button>
+									<button class="btn btn-star"><i class="icon-star"></i><i class="icon-star"></i></button>
+									<button class="btn btn-star"><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i></button>
+									<button class="btn btn-star"><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i></button>
+									<button class="btn btn-star"><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i></button>
 								</div>
+								<textarea class="review-content" rows="5" placeholder="내용"></textarea>
+								<button class="btn btn-review-reg">등록</button>
 							</div>
-						</c:if>
+						</div>
 						<!-- 내 리뷰 -->
 						<c:if test="${myReview != null}">
 							<div class="goods-review-myreview-box">
 								<h3>내가 쓴 리뷰</h3>
 								<div class="goods-review-box">
-									<div class="goods-review-title">
-										${myReview.re_title}
-									</div>
+									<div class="goods-review-title">${myReview.re_title}</div>
 									<div class="goods-review-star-box">
 										<input type="hidden" name="re_star" value="${myReview.re_star}">
 										<div class="goods-review-star">
@@ -302,9 +294,7 @@
 											<i class="icon-star"></i>
 										</div>
 									</div>
-									<div class="goods-review-content">
-										${myReview.re_content}
-									</div>
+									<div class="goods-review-content">${myReview.re_content}</div>
 									<div class="goods-review-updown">
 										<input type="hidden" name="re_num" value="${myReview.re_num}">
 										<c:forEach var="likes" items="${likes}">
@@ -324,51 +314,6 @@
 								</div>
 							</div>
 						</c:if>
-					</div>
-					<!-- 페이지네이션 -->
-					<div class="goods-list-pagination-container">
-						<div class="goods-list-pagination-box">
-							<div class="pagination-prev-box">
-								<a href="" class="btn btn-pagination-prev">이전</a>
-							</div>
-							<div class="pagination-page-box">
-								<span>
-									페이지: 
-								</span>
-								<div class="pagination-now-page-box">
-									<button type="button" class="btn btn-now-page">
-										<span>2</span>
-										<i class="icon-arrow-down"></i>
-									</button>
-									<!-- 현재페이지박스 클릭시 나타나는 페이지선택박스 -->
-									<div class="page-select-box">
-										<ul class="pagination-page-select">
-											<li class="page-item">
-												<a href="javascript:;" class="page-link">1</a>
-											</li>
-											<li class="page-item selected">
-												<a href="javascript:;" class="page-link">2</a>
-											</li>
-											<li class="page-item">
-												<a href="javascript:;" class="page-link">3</a>
-											</li>
-											<li class="page-item">
-												<a href="javascript:;" class="page-link">4</a>
-											</li>
-											<li class="page-item">
-												<a href="javascript:;" class="page-link">5</a>
-											</li>
-										</ul>
-									</div>
-								</div>
-								<span>
-									/46
-								</span>
-							</div>
-							<div class="pagination-next-box">
-								<a href="" class="btn btn-pagination-next">다음</a>
-							</div>
-						</div>
 					</div>
 				</div>
 			</div>
@@ -526,6 +471,7 @@
 		function getOrderCheck() {
 			var me_email = '${user.me_email}';
 			var gd_num = ${goods.gd_num};
+			var myReview = '${myReview}';
 			$.ajax({
 		        async:false,
 		        type:'GET',
@@ -533,6 +479,10 @@
 		        success : function(res){
 		        	if(res == false){
 		        		$('.goods-review-write-box').css('display', 'none');
+		        	}else{
+		        		if(myReview == null || myReview.trim().length == 0){
+			        		$('.goods-review-write-box').show();
+			        	}
 		        	}
 		        }
 		    });
@@ -704,6 +654,18 @@
 		        	}
 		        }
 		    });
+		});
+		//리뷰 수정 버튼
+		$('.btn-review-mod').click(function() {
+			var re_title = $('.goods-review-myreview-box').find('.goods-review-title').text();
+			var re_content = $('.goods-review-myreview-box').find('.goods-review-content').text();
+			var re_star =  $('.goods-review-myreview-box').find('[name=re_star]').val();
+			$('.goods-review-myreview-box').hide();
+			$('.goods-review-write-box').show();
+			$('.goods-review-write-box').find('.review-title').val(re_title);
+			$('.goods-review-write-box').find('.review-content').val(re_content);
+			$('.goods-review-write-box').find('[name=re_star_input]').val(re_star);
+			$('.btn-star').eq(re_star - 1).click();
 		});
 	</script>
 </body>

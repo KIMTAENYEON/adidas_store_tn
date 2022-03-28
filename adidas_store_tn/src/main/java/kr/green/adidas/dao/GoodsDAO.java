@@ -70,4 +70,6 @@ public interface GoodsDAO {
 	int getLikesUpCount(@Param("re_num") Integer re_num);
 
 	int getLikesDownCount(@Param("re_num") Integer re_num);
+
+	void updateReview(@Param("review") ReviewVO review);
 }

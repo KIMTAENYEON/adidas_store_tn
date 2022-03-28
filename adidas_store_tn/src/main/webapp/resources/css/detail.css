@@ -226,6 +226,9 @@
 	background-image: url(../img/down.png);
 	background-position: left center;  background-size: contain; background-repeat: no-repeat;
 }
+.goods-review .btn-review-more{
+	background-color: #fff; border: none; font-size: 16px; font-weight: bold; cursor: pointer; margin: 20px auto; width: 100%;
+}
 /* 리뷰 쓰기, 내 리뷰 */
 .goods-review .goods-review-user-box{
 	width: 100%;
@@ -235,7 +238,7 @@
 }
 /* 리뷰 쓰기 */
 .goods-review .goods-review-write-box{
-	width: 100%;
+	width: 100%; display: none;
 }
 .goods-review .goods-review-write{
 	width: 100%;

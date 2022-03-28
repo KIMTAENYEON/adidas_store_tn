@@ -197,7 +197,12 @@ public class GoodsServiceImp implements GoodsService{
 			return false;
 		if(review.getRe_me_email() == null || review.getRe_me_email().trim().length() == 0)
 			return false;
-		goodsDao.insertReview(review);
+		ReviewVO dbReview = goodsDao.selectMyReview(review.getRe_me_email(), review.getRe_gd_num());
+		if(dbReview == null) {
+			goodsDao.insertReview(review);			
+		}else {
+			goodsDao.updateReview(review);
+		}
 		return true;
 	}
 	@Override
