@@ -51,7 +51,7 @@ public interface GoodsDAO {
 
 	int selectTotalCountPopular(@Param("cri") Criteria cri, @Param("select") SelectVO select);
 
-	List<ReviewVO> selectReviewList(@Param("gd_num") Integer gd_num);
+	List<ReviewVO> selectReviewList(@Param("gd_num") Integer gd_num, @Param("lineup") Integer lineup);
 
 	ReviewVO selectMyReview(@Param("me_email") String me_email, @Param("gd_num") Integer gd_num);
 
@@ -76,4 +76,6 @@ public interface GoodsDAO {
 	void deleteLikes(@Param("re_num") Integer re_num);
 
 	void deleteReview(@Param("re_num") Integer re_num);
+
+	void updateReviewUpDown(@Param("re_num") Integer re_num, @Param("up") Integer up, @Param("down") Integer down);
 }

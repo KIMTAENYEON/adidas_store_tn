@@ -236,7 +236,23 @@
 			limit 0, 10
 	</select>
 	<select id="selectReviewList" resultType="kr.green.adidas.vo.ReviewVO">
-		select * from review where re_gd_num = #{gd_num} order by re_date desc
+		select * from review 
+			where re_gd_num = #{gd_num} 
+			<if test="lineup == null or lineup == 0 or lineup == 1">
+				order by re_date desc
+			</if>
+			<if test="lineup == 2">
+				order by re_up desc
+			</if>
+			<if test="lineup == 3">
+				order by re_down desc
+			</if>
+			<if test="lineup == 4">
+				order by re_star desc
+			</if>
+			<if test="lineup == 5">
+				order by re_star asc
+			</if>
 	</select>
 	<select id="selectMyReview" resultType="kr.green.adidas.vo.ReviewVO">
 		select * from review where re_me_email = #{me_email} and re_gd_num = #{gd_num}
@@ -288,4 +304,10 @@
 	<delete id="deleteReview">
 		delete from review where re_num = #{re_num}
 	</delete>
+	<update id="updateReviewUpDown">
+		update review set
+			re_up = #{up},
+			re_down = #{down}
+			where re_num = #{re_num}
+	</update>
 </mapper>

@@ -90,14 +90,14 @@ public class GoodsController {
 	  return goodsService.insertOption(option);
 	}
 	@RequestMapping(value= "/goods/detail")
-	public ModelAndView detail(ModelAndView mv, Integer gd_num, HttpServletRequest request){
+	public ModelAndView detail(ModelAndView mv, Integer gd_num, HttpServletRequest request, Integer lineup){
 		MemberVO user = (MemberVO) request.getSession().getAttribute("user");
 		GoodsVO goods = goodsService.getGoods(gd_num);
 		if(goods == null) {
 			mv.setViewName("/goods/list");
 		}else {
 			List<OptionVO> option = goodsService.getOption(gd_num);
-			List<ReviewVO> review = goodsService.getReviewList(gd_num);
+			List<ReviewVO> review = goodsService.getReviewList(gd_num, lineup);
 			List<LikesVO> likes = goodsService.getLikesList(user);
 			ReviewVO myReview = goodsService.getMyReview(user, gd_num);
 			mv.addObject("likes", likes);

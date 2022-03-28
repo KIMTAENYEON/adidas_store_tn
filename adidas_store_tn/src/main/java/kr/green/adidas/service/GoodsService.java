@@ -44,7 +44,7 @@ public interface GoodsService {
 
 	OptionVO selectOption(OptionVO option);
 
-	List<ReviewVO> getReviewList(Integer gd_num);
+	List<ReviewVO> getReviewList(Integer gd_num, Integer lineup);
 
 	ReviewVO getMyReview(MemberVO user, Integer gd_num);
 

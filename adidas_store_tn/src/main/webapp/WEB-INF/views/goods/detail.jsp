@@ -206,8 +206,13 @@
 			<div class="goods-review-container">
 				<div class="goods-review-head-box">
 					<h3>평점 및 리뷰</h3>
-					<select name="">
-						<option value="">정렬기준</option>
+					<select name="review-lineup" class="review-lineup">
+						<option value="0">정렬기준</option>
+						<option value="1">최신순</option>
+						<option value="2">추천순</option>
+						<option value="3">비추천순</option>
+						<option value="4">별점높은순</option>
+						<option value="5">별점낮은순</option>
 					</select>
 				</div>
 				<div class="goods-review-list-container">
@@ -507,6 +512,10 @@
 				$(this).siblings('[name=li_state]').val(1);
 				li_state = 1;
 			}
+			if(li_me_email == null || li_me_email.trim().length == 0){
+				alert('로그인 후 가능합니다.');
+				return false;
+			}
 			var likes = {
 				li_state : li_state,
 				li_me_email : li_me_email,
@@ -682,6 +691,14 @@
 		        }
 		    });
 		});
+		//리뷰 정렬 선택
+		$('.review-lineup').change(function() {
+			var gd_num = ${goods.gd_num};
+			var lineup = $(this).val();
+			var url = '<%=request.getContextPath()%>/goods/detail?gd_num='+gd_num+'&lineup='+lineup;
+			window.location.replace(url);
+		});
+		//리뷰 정렬 
 	</script>
 </body>
 </html>

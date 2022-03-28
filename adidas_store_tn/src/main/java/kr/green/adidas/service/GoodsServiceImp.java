@@ -158,10 +158,10 @@ public class GoodsServiceImp implements GoodsService{
 		return goodsDao.selectOption(option);
 	}
 	@Override
-	public List<ReviewVO> getReviewList(Integer gd_num) {
+	public List<ReviewVO> getReviewList(Integer gd_num, Integer lineup) {
 		if(gd_num == null)
 			return null;
-		return goodsDao.selectReviewList(gd_num);
+		return goodsDao.selectReviewList(gd_num, lineup);
 	}
 	@Override
 	public ReviewVO getMyReview(MemberVO user, Integer gd_num) {
@@ -215,6 +215,9 @@ public class GoodsServiceImp implements GoodsService{
 		}else {
 			goodsDao.updateLikes(likes);
 		}
+		int up = goodsDao.getLikesUpCount(likes.getLi_re_num());
+		int down = goodsDao.getLikesDownCount(likes.getLi_re_num());
+		goodsDao.updateReviewUpDown(likes.getLi_re_num(), up, down);
 		return likes.getLi_state();
 	}
 	@Override
