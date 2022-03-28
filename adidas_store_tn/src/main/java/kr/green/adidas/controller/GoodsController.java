@@ -131,6 +131,16 @@ public class GoodsController {
 	  return goodsService.setLikes(likes);
 	}
 	@ResponseBody
+	@RequestMapping(value= "/likes/up")
+	public int likesUp(Integer re_num){
+	  return goodsService.setLikesUpCount(re_num);
+	}
+	@ResponseBody
+	@RequestMapping(value= "/likes/down")
+	public int likesDown(Integer re_num){
+	  return goodsService.setLikesDownCount(re_num);
+	}
+	@ResponseBody
 	@RequestMapping(value= "/option")
 	public Map<String, Object> option(Integer gd_num){
 		HashMap<String, Object> map = new HashMap<String, Object>();

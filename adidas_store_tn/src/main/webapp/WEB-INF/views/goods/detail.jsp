@@ -545,10 +545,6 @@
 				$(this).siblings('.goods-review-star').eq(star).nextAll().children().addClass('empty');
 			});
 		}
-		//추천상태 불러오기
-		function setReState() {
-			
-		}
 		//추천, 비추천 클릭
 		$('.btn-review-up').click(function() {
 			var li_state = $(this).siblings('[name=li_state]').val();
@@ -578,6 +574,7 @@
 		        	}else{
 		        		alert('해당 리뷰를 추천을 취소했습니다.')
 		        	}
+		        	window.location.reload();
 		        }
 		    });
 		});
@@ -609,6 +606,7 @@
 		        	}else{
 		        		alert('해당 리뷰를 비추천을 취소했습니다.')
 		        	}
+		        	window.location.reload();
 		        }
 		    });
 		});
@@ -627,6 +625,33 @@
 					$(this).siblings('.btn-review-up').children().removeClass('selected');
 					$(this).siblings('.btn-review-down').children().removeClass('selected');
 				}
+			});
+		}
+		setLikesCount();
+		//추천, 비추천 수 가져오기
+		function setLikesCount() {
+			$('[name=re_num]').each(function() {
+				var re_num = $(this).val();
+				var up = 0;
+				var down = 0;
+				$.ajax({
+			        async:false,
+			        type:'GET',
+			        url: '<%=request.getContextPath()%>/likes/up?re_num='+re_num,
+			        success : function(res){
+			        	up = res;
+			        }
+			    });
+				$.ajax({
+			        async:false,
+			        type:'GET',
+			        url: '<%=request.getContextPath()%>/likes/down?re_num='+re_num,
+			        success : function(res){
+			        	down = res;
+			        }
+			    });
+				$(this).siblings('.btn-review-up').next().text(up);
+				$(this).siblings('.btn-review-down').next().text(down);
 			});
 		}
 		//리뷰쓰기 별점 선택

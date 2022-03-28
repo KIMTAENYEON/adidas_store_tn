@@ -56,4 +56,8 @@ public interface GoodsService {
 
 	List<LikesVO> getLikesList(MemberVO user);
 
+	int setLikesUpCount(Integer re_num);
+
+	int setLikesDownCount(Integer re_num);
+
 }

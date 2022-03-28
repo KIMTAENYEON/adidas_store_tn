@@ -218,4 +218,16 @@ public class GoodsServiceImp implements GoodsService{
 			return null;
 		return goodsDao.selectLikesList(user);
 	}
+	@Override
+	public int setLikesUpCount(Integer re_num) {
+		if(re_num <= 0)
+			return 0;
+		return goodsDao.getLikesUpCount(re_num);
+	}
+	@Override
+	public int setLikesDownCount(Integer re_num) {
+		if(re_num <= 0)
+			return 0;
+		return goodsDao.getLikesDownCount(re_num);
+	}
 }

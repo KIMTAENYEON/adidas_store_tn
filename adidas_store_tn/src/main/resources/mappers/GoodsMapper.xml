@@ -269,4 +269,10 @@
 	<select id="selectLikesList" resultType="kr.green.adidas.vo.LikesVO">
 		select * from likes where li_me_email = #{user.me_email}
 	</select>
+	<select id="getLikesUpCount" resultType="int">
+		select count(*) from likes where li_re_num = #{re_num} and li_state = 1
+	</select>
+	<select id="getLikesDownCount" resultType="int">
+		select count(*) from likes where li_re_num = #{re_num} and li_state = -1
+	</select>
 </mapper>

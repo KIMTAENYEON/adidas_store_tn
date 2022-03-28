@@ -66,4 +66,8 @@ public interface GoodsDAO {
 	void updateLikes(@Param("likes") LikesVO likes);
 
 	List<LikesVO> selectLikesList(@Param("user") MemberVO user);
+
+	int getLikesUpCount(@Param("re_num") Integer re_num);
+
+	int getLikesDownCount(@Param("re_num") Integer re_num);
 }
