@@ -333,6 +333,37 @@ CREATE TABLE `adidas_store_tn`.`review` (
     REFERENCES `adidas_store_tn`.`member` (`me_email`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
+--  2022-03-28 (review테이블 수정), likes테이블 추가
+ALTER TABLE `adidas_store_tn`.`review` 
+DROP FOREIGN KEY `re_gd_num`,
+DROP FOREIGN KEY `re_me_email`;
+ALTER TABLE `adidas_store_tn`.`review` 
+CHANGE COLUMN `re_gd_num` `re_gd_num` INT NOT NULL ,
+CHANGE COLUMN `re_me_email` `re_me_email` VARCHAR(255) NOT NULL ;
+ALTER TABLE `adidas_store_tn`.`review` 
+ADD CONSTRAINT `re_gd_num`
+  FOREIGN KEY (`re_gd_num`)
+  REFERENCES `adidas_store_tn`.`goods` (`gd_num`),
+ADD CONSTRAINT `re_me_email`
+  FOREIGN KEY (`re_me_email`)
+  REFERENCES `adidas_store_tn`.`member` (`me_email`);
+ALTER TABLE `adidas_store_tn`.`review` 
+DROP COLUMN `re_state`;
+CREATE TABLE `adidas_store_tn`.`likes` (
+  `li_num` INT NOT NULL AUTO_INCREMENT,
+  `li_state` INT NOT NULL DEFAULT 0,
+  `li_me_email` VARCHAR(255) NOT NULL,
+  `li_re_num` INT NOT NULL,
+  PRIMARY KEY (`li_num`));
+ALTER TABLE `adidas_store_tn`.`review` 
+ADD COLUMN `re_up` INT NULL AFTER `re_me_email`,
+ADD COLUMN `re_down` INT NULL AFTER `re_up`;
+ALTER TABLE `adidas_store_tn`.`review` 
+CHANGE COLUMN `re_up` `re_up` INT NULL DEFAULT 0 ,
+CHANGE COLUMN `re_down` `re_down` INT NULL DEFAULT 0 ;
+
+
+
 
 
 
