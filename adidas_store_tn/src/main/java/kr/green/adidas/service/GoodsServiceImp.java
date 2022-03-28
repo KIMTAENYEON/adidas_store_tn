@@ -11,8 +11,11 @@ import kr.green.adidas.pagination.Criteria;
 import kr.green.adidas.utils.UploadFileUtils;
 import kr.green.adidas.vo.CategoryVO;
 import kr.green.adidas.vo.GoodsVO;
+import kr.green.adidas.vo.LikesVO;
 import kr.green.adidas.vo.MemberVO;
 import kr.green.adidas.vo.OptionVO;
+import kr.green.adidas.vo.OrderListVO;
+import kr.green.adidas.vo.ReviewVO;
 import kr.green.adidas.vo.SelectVO;
 import kr.green.adidas.vo.SubCategoryVO;
 
@@ -153,5 +156,66 @@ public class GoodsServiceImp implements GoodsService{
 		if(option == null)
 			return null;
 		return goodsDao.selectOption(option);
+	}
+	@Override
+	public List<ReviewVO> getReviewList(Integer gd_num) {
+		if(gd_num == null)
+			return null;
+		return goodsDao.selectReviewList(gd_num);
+	}
+	@Override
+	public ReviewVO getMyReview(MemberVO user, Integer gd_num) {
+		if(user == null)
+			return null;
+		if(gd_num <= 0)
+			return null;
+		return goodsDao.selectMyReview(user.getMe_email(), gd_num);
+	}
+	@Override
+	public boolean getGoodsOrderCheck(String me_email, Integer gd_num) {
+		if(me_email == null || gd_num <= 0)
+			return false;
+		OrderListVO dbOrderList = goodsDao.getGoodsOrderCheck(me_email, gd_num);
+		if(dbOrderList == null) {
+			return false;
+		}else {
+			return true;
+		}
+	}
+	@Override
+	public boolean insertReview(ReviewVO review) {
+		if(review == null) {
+			return false;
+		}
+		if(review.getRe_title() == null || review.getRe_title().trim().length() == 0)
+			return false;
+		if(review.getRe_content() == null || review.getRe_content().trim().length() == 0)
+			return false;
+		if(review.getRe_star() <= 0)
+			return false;
+		if(review.getRe_gd_num() <= 0)
+			return false;
+		if(review.getRe_me_email() == null || review.getRe_me_email().trim().length() == 0)
+			return false;
+		goodsDao.insertReview(review);
+		return true;
+	}
+	@Override
+	public int setLikes(LikesVO likes) {
+		if(likes == null)
+			return 0;
+		LikesVO dbLikes = goodsDao.selectLikes(likes);
+		if(dbLikes == null) {
+			goodsDao.insertLikes(likes);
+		}else {
+			goodsDao.updateLikes(likes);
+		}
+		return likes.getLi_state();
+	}
+	@Override
+	public List<LikesVO> getLikesList(MemberVO user) {
+		if(user == null)
+			return null;
+		return goodsDao.selectLikesList(user);
 	}
 }

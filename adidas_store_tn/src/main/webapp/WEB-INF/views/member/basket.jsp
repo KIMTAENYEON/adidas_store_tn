@@ -17,6 +17,9 @@
 		<div class="basket-container">
 			<h3>장바구니</h3>
 			<div class="basket-goods-box">
+				<c:if test="${myList.size() == 0}">
+					<h2>장바구니가 비었습니다.</h2>
+				</c:if>
 				<c:forEach var="myList" items="${myList}">
 				<c:forEach var="option" items="${option}">
 				<c:if test="${option.op_num == myList.my_op_num}">

@@ -7,8 +7,10 @@ import org.springframework.web.multipart.MultipartFile;
 import kr.green.adidas.pagination.Criteria;
 import kr.green.adidas.vo.CategoryVO;
 import kr.green.adidas.vo.GoodsVO;
+import kr.green.adidas.vo.LikesVO;
 import kr.green.adidas.vo.MemberVO;
 import kr.green.adidas.vo.OptionVO;
+import kr.green.adidas.vo.ReviewVO;
 import kr.green.adidas.vo.SelectVO;
 import kr.green.adidas.vo.SubCategoryVO;
 
@@ -41,5 +43,17 @@ public interface GoodsService {
 	List<GoodsVO> selectNewGoods();
 
 	OptionVO selectOption(OptionVO option);
+
+	List<ReviewVO> getReviewList(Integer gd_num);
+
+	ReviewVO getMyReview(MemberVO user, Integer gd_num);
+
+	boolean getGoodsOrderCheck(String me_email, Integer gd_num);
+
+	boolean insertReview(ReviewVO review);
+
+	int setLikes(LikesVO likes);
+
+	List<LikesVO> getLikesList(MemberVO user);
 
 }

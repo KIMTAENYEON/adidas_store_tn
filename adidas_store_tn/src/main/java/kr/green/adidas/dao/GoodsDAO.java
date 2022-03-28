@@ -7,7 +7,11 @@ import org.apache.ibatis.annotations.Param;
 import kr.green.adidas.pagination.Criteria;
 import kr.green.adidas.vo.CategoryVO;
 import kr.green.adidas.vo.GoodsVO;
+import kr.green.adidas.vo.LikesVO;
+import kr.green.adidas.vo.MemberVO;
 import kr.green.adidas.vo.OptionVO;
+import kr.green.adidas.vo.OrderListVO;
+import kr.green.adidas.vo.ReviewVO;
 import kr.green.adidas.vo.SelectVO;
 import kr.green.adidas.vo.SubCategoryVO;
 
@@ -46,4 +50,20 @@ public interface GoodsDAO {
 	List<GoodsVO> getGoodsListPopular(@Param("cri") Criteria cri, @Param("select") SelectVO select);
 
 	int selectTotalCountPopular(@Param("cri") Criteria cri, @Param("select") SelectVO select);
+
+	List<ReviewVO> selectReviewList(@Param("gd_num") Integer gd_num);
+
+	ReviewVO selectMyReview(@Param("me_email") String me_email, @Param("gd_num") Integer gd_num);
+
+	OrderListVO getGoodsOrderCheck(@Param("me_email") String me_email, @Param("gd_num") Integer gd_num);
+
+	void insertReview(@Param("review") ReviewVO review);
+
+	LikesVO selectLikes(@Param("likes") LikesVO likes);
+
+	void insertLikes(@Param("likes") LikesVO likes);
+
+	void updateLikes(@Param("likes") LikesVO likes);
+
+	List<LikesVO> selectLikesList(@Param("user") MemberVO user);
 }

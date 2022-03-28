@@ -17,6 +17,9 @@
 			<!-- 나의 장바구니 -->
 			<div class="mypage-basket-container margin-top">
 				<h3>나의 장바구니</h3>
+				<c:if test="${goods.size() == 0 }">
+					<h2>장바구니가 비었습니다.</h2>
+				</c:if>
 				<div class="mypage-basket-box">
 					<div class="mypage-basket-img-container">
 						<div class="mypage-basket-img-box">
@@ -33,12 +36,14 @@
 							<button type="button" class="btn btn-next"><i class="icon-right"></i></button>
 						</div>
 					</div>
+					<c:if test="${goods.size() != 0 }">
 					<div class="mypage-basket-btn-box">
 						<a href="<%=request.getContextPath()%>/member/basket" class="btn btn-mypage">
 							<span>나의 장바구니 보기</span>
 							<i class="icon-right"></i>
 						</a>
 					</div>
+					</c:if>
 				</div>
 			</div>
 			<!-- 우측 메뉴 -->

@@ -13,6 +13,9 @@
 .mypage-container h3{
 	font-size: 30px; margin-bottom: 30px; margin-left: 15px;
 }
+.mypage-container h2{
+	margin-left: 15px; 
+}
 /* 나의 장바구니 */
 .mypage-container .mypage-basket-box{
 	width: 70%; padding: 15px; float: left;

@@ -235,4 +235,38 @@
 			order by gd_date desc
 			limit 0, 10
 	</select>
+	<select id="selectReviewList" resultType="kr.green.adidas.vo.ReviewVO">
+		select * from review where re_gd_num = #{gd_num} order by re_date desc
+	</select>
+	<select id="selectMyReview" resultType="kr.green.adidas.vo.ReviewVO">
+		select * from review where re_me_email = #{me_email} and re_gd_num = #{gd_num}
+	</select>
+	<select id="getGoodsOrderCheck" resultType="kr.green.adidas.vo.OrderListVO">
+		select * from orderList 
+			join `order`
+			on ol_or_num = or_num
+			join `option`
+			on ol_op_num = op_num
+			where or_me_email = #{me_email} and op_gd_num = #{gd_num} and ol_state = '배송완료'
+			group by or_me_email
+	</select>
+	<insert id="insertReview">
+		insert into review (re_title, re_content, re_star, re_gd_num, re_me_email)
+			values(#{review.re_title}, #{review.re_content}, #{review.re_star}, #{review.re_gd_num}, #{review.re_me_email})
+	</insert>
+	<select id="selectLikes" resultType="kr.green.adidas.vo.LikesVO">
+		select * from likes where li_me_email = #{likes.li_me_email} and li_re_num = #{likes.li_re_num}
+	</select>
+	<insert id="insertLikes">
+		insert into likes (li_state, li_me_email, li_re_num)
+			values (#{likes.li_state}, #{likes.li_me_email}, #{likes.li_re_num})
+	</insert>
+	<update id="updateLikes">
+		update likes set 
+			li_state = #{likes.li_state}
+			where li_me_email = #{likes.li_me_email} and li_re_num = #{likes.li_re_num}
+	</update>
+	<select id="selectLikesList" resultType="kr.green.adidas.vo.LikesVO">
+		select * from likes where li_me_email = #{user.me_email}
+	</select>
 </mapper>

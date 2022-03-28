@@ -201,6 +201,178 @@
 				</div>
 			</div>
 		</div>
+		<!-- 제품 리뷰 -->
+		<div class="goods-review">
+			<div class="goods-review-container">
+				<div class="goods-review-head-box">
+					<h3>평점 및 리뷰</h3>
+					<select name="">
+						<option value="">정렬기준</option>
+					</select>
+				</div>
+				<div class="goods-review-list-container">
+					<!-- 리뷰목록 -->
+					<div class="goods-review-list-box">
+					<c:forEach var="review" items="${review}">
+						<div class="goods-review-box">
+							<div class="goods-review-title">
+								${review.re_title}
+							</div>
+							<div class="goods-review-star-box">
+								<input type="hidden" name="re_star" value="${review.re_star}">
+								<div class="goods-review-star">
+									<i class="icon-star"></i>
+								</div>
+								<div class="goods-review-star">
+									<i class="icon-star"></i>
+								</div>
+								<div class="goods-review-star">
+									<i class="icon-star"></i>
+								</div>
+								<div class="goods-review-star">
+									<i class="icon-star"></i>
+								</div>
+								<div class="goods-review-star">
+									<i class="icon-star"></i>
+								</div>
+							</div>
+							<div class="goods-review-content">
+								${review.re_content}
+							</div>
+							<div class="goods-review-updown">
+								<input type="hidden" name="re_num" value="${review.re_num}">
+								<c:forEach var="likes" items="${likes}">
+								<c:if test="${likes.li_re_num == review.re_num}">
+									<input type="hidden" name="li_state" value="${likes.li_state}">
+								</c:if>
+								</c:forEach>
+								<button class="btn btn-review-up"><i class="icon-up"></i></button>
+								<span>0</span>
+								<button class="btn btn-review-down"><i class="icon-down"></i></button>
+								<span>0</span>
+							</div>
+						</div>
+					</c:forEach>
+					</div>
+					<!-- 리뷰쓰기, 내 리뷰 -->
+					<div class="goods-review-user-box">
+						<!-- 리뷰 쓰기 -->
+						<c:if test="${myReview == null}">
+							<div class="goods-review-write-box">
+								<h3>리뷰 작성</h3>
+								<div class="goods-review-write">
+									<input type="text" class="review-title" placeholder="제목">
+									<div class="review-write-star-box">
+										<span>별점선택 : </span>
+										<input type="hidden" name="re_star_input">
+										<button class="btn btn-star"><i class="icon-star"></i></button>
+										<button class="btn btn-star"><i class="icon-star"></i><i class="icon-star"></i></button>
+										<button class="btn btn-star"><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i></button>
+										<button class="btn btn-star"><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i></button>
+										<button class="btn btn-star"><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i></button>
+									</div>
+									<textarea class="review-content" rows="5" placeholder="내용"></textarea>
+									<button class="btn btn-review-reg">등록</button>
+								</div>
+							</div>
+						</c:if>
+						<!-- 내 리뷰 -->
+						<c:if test="${myReview != null}">
+							<div class="goods-review-myreview-box">
+								<h3>내가 쓴 리뷰</h3>
+								<div class="goods-review-box">
+									<div class="goods-review-title">
+										${myReview.re_title}
+									</div>
+									<div class="goods-review-star-box">
+										<input type="hidden" name="re_star" value="${myReview.re_star}">
+										<div class="goods-review-star">
+											<i class="icon-star"></i>
+										</div>
+										<div class="goods-review-star">
+											<i class="icon-star"></i>
+										</div>
+										<div class="goods-review-star">
+											<i class="icon-star"></i>
+										</div>
+										<div class="goods-review-star">
+											<i class="icon-star"></i>
+										</div>
+										<div class="goods-review-star">
+											<i class="icon-star"></i>
+										</div>
+									</div>
+									<div class="goods-review-content">
+										${myReview.re_content}
+									</div>
+									<div class="goods-review-updown">
+										<input type="hidden" name="re_num" value="${myReview.re_num}">
+										<c:forEach var="likes" items="${likes}">
+										<c:if test="${likes.li_re_num == myReview.re_num}">
+											<input type="hidden" name="li_state" value="${likes.li_state}">
+										</c:if>
+										</c:forEach>
+										<button class="btn btn-review-up"><i class="icon-up"></i></button>
+										<span>0</span>
+										<button class="btn btn-review-down"><i class="icon-down"></i></button>
+										<span>0</span>
+									</div>
+									<div class="goods-review-button">
+										<button class="btn btn-review-mod">수정</button>
+										<button class="btn btn-review-del">삭제</button>
+									</div>
+								</div>
+							</div>
+						</c:if>
+					</div>
+					<!-- 페이지네이션 -->
+					<div class="goods-list-pagination-container">
+						<div class="goods-list-pagination-box">
+							<div class="pagination-prev-box">
+								<a href="" class="btn btn-pagination-prev">이전</a>
+							</div>
+							<div class="pagination-page-box">
+								<span>
+									페이지: 
+								</span>
+								<div class="pagination-now-page-box">
+									<button type="button" class="btn btn-now-page">
+										<span>2</span>
+										<i class="icon-arrow-down"></i>
+									</button>
+									<!-- 현재페이지박스 클릭시 나타나는 페이지선택박스 -->
+									<div class="page-select-box">
+										<ul class="pagination-page-select">
+											<li class="page-item">
+												<a href="javascript:;" class="page-link">1</a>
+											</li>
+											<li class="page-item selected">
+												<a href="javascript:;" class="page-link">2</a>
+											</li>
+											<li class="page-item">
+												<a href="javascript:;" class="page-link">3</a>
+											</li>
+											<li class="page-item">
+												<a href="javascript:;" class="page-link">4</a>
+											</li>
+											<li class="page-item">
+												<a href="javascript:;" class="page-link">5</a>
+											</li>
+										</ul>
+									</div>
+								</div>
+								<span>
+									/46
+								</span>
+							</div>
+							<div class="pagination-next-box">
+								<a href="" class="btn btn-pagination-next">다음</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 	<script>
 		//사이즈 선택 시 색상 변경
@@ -349,6 +521,165 @@
 				$(this).text(priceComma + '원');
 			});
 		}
+		getOrderCheck();
+		//해당제품의 회원 주문상태 가져오기
+		function getOrderCheck() {
+			var me_email = '${user.me_email}';
+			var gd_num = ${goods.gd_num};
+			$.ajax({
+		        async:false,
+		        type:'GET',
+		        url: '<%=request.getContextPath()%>/goods/order/check?me_email='+me_email+'&gd_num='+gd_num,
+		        success : function(res){
+		        	if(res == false){
+		        		$('.goods-review-write-box').css('display', 'none');
+		        	}
+		        }
+		    });
+		}
+		setStar();
+		//해당리뷰의 별점 찍기
+		function setStar() {
+			$('[name=re_star]').each(function() {
+				var star = $(this).val() - 1;
+				$(this).siblings('.goods-review-star').eq(star).nextAll().children().addClass('empty');
+			});
+		}
+		//추천상태 불러오기
+		function setReState() {
+			
+		}
+		//추천, 비추천 클릭
+		$('.btn-review-up').click(function() {
+			var li_state = $(this).siblings('[name=li_state]').val();
+			var li_me_email = '${user.me_email}';
+			var li_re_num = $(this).siblings('[name=re_num]').val();
+			if(li_state == 1){
+				$(this).siblings('[name=li_state]').val(0);
+				li_state = 0;
+			}else{
+				$(this).siblings('[name=li_state]').val(1);
+				li_state = 1;
+			}
+			var likes = {
+				li_state : li_state,
+				li_me_email : li_me_email,
+				li_re_num : li_re_num
+			}
+			$.ajax({
+		        async:false,
+		        type:'POST',
+		        data:JSON.stringify(likes),
+		        url: '<%=request.getContextPath()%>/likes',
+		        contentType:"application/json; charset=UTF-8",
+		        success : function(res){
+		        	if(res == 1){
+		        		alert('해당 리뷰를 추천했습니다.')
+		        	}else{
+		        		alert('해당 리뷰를 추천을 취소했습니다.')
+		        	}
+		        }
+		    });
+		});
+		$('.btn-review-down').click(function() {
+			var li_state = $(this).siblings('[name=li_state]').val();
+			var li_me_email = '${user.me_email}';
+			var li_re_num = $(this).siblings('[name=re_num]').val();
+			if(li_state == -1){
+				$(this).siblings('[name=li_state]').val(0);
+				li_state = 0;
+			}else{
+				$(this).siblings('[name=li_state]').val(-1);
+				li_state = -1;
+			}
+			var likes = {
+				li_state : li_state,
+				li_me_email : li_me_email,
+				li_re_num : li_re_num
+			}
+			$.ajax({
+		        async:false,
+		        type:'POST',
+		        data:JSON.stringify(likes),
+		        url: '<%=request.getContextPath()%>/likes',
+		        contentType:"application/json; charset=UTF-8",
+		        success : function(res){
+		        	if(res == -1){
+		        		alert('해당 리뷰를 비추천했습니다.')
+		        	}else{
+		        		alert('해당 리뷰를 비추천을 취소했습니다.')
+		        	}
+		        }
+		    });
+		});
+		setLikesState();
+		//추천상태 불러오기
+		function setLikesState() {
+			$('[name=li_state]').each(function() {
+				var li_state = $(this).val();
+				if(li_state == 1){
+					$(this).siblings('.btn-review-up').children().addClass('selected');
+					$(this).siblings('.btn-review-down').children().removeClass('selected');
+				}else if(li_state == -1){
+					$(this).siblings('.btn-review-up').children().removeClass('selected');
+					$(this).siblings('.btn-review-down').children().addClass('selected');
+				}else{
+					$(this).siblings('.btn-review-up').children().removeClass('selected');
+					$(this).siblings('.btn-review-down').children().removeClass('selected');
+				}
+			});
+		}
+		//리뷰쓰기 별점 선택
+		$('.btn-star').click(function() {
+			$(this).siblings('.btn-star').removeClass('selected');
+			$(this).addClass('selected');
+			var star = $(this).prevAll('.btn-star').length + 1;
+			$(this).siblings('[name=re_star_input]').val(star);
+		});
+		//리뷰쓰기 등록버튼
+		$('.btn-review-reg').click(function() {
+			var re_star = $('[name=re_star_input]').val();
+			var re_title = $('.review-title').val();
+			var re_content = $('.review-content').val();
+			var re_gd_num = ${goods.gd_num};
+			var re_me_email = '${user.me_email}';
+			if(re_star <= 0 || re_star == null){
+				alert('별점을 선택하세요.')
+				return false;
+			}
+			if(re_title == null || re_title.trim().length == 0){
+				alert('제목을 입력하세요.')
+				return false;
+			}
+			if(re_content == null || re_content.trim().length == 0){
+				alert('내용을 입력하세요.')
+				return false;
+			}
+			if(re_me_email == null || re_me_email.trim().length == 0){
+				alert('로그인 후 입력 가능합니다.');
+				return false;
+			}
+			var review = {
+				re_star : re_star,
+				re_title : re_title,
+				re_content : re_content,
+				re_gd_num : re_gd_num,
+				re_me_email : re_me_email
+			}
+			$.ajax({
+		        async:false,
+		        type:'POST',
+		        data:JSON.stringify(review),
+		        url: '<%=request.getContextPath()%>/review/reg',
+		        contentType:"application/json; charset=UTF-8",
+		        success : function(res){
+		        	if(res == true){
+		        		alert('리뷰를 등록했습니다.');
+		        		window.location.reload();
+		        	}
+		        }
+		    });
+		});
 	</script>
 </body>
 </html>

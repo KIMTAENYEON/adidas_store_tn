@@ -20,8 +20,10 @@ import kr.green.adidas.pagination.PageMaker;
 import kr.green.adidas.service.GoodsService;
 import kr.green.adidas.vo.CategoryVO;
 import kr.green.adidas.vo.GoodsVO;
+import kr.green.adidas.vo.LikesVO;
 import kr.green.adidas.vo.MemberVO;
 import kr.green.adidas.vo.OptionVO;
+import kr.green.adidas.vo.ReviewVO;
 import kr.green.adidas.vo.SelectVO;
 import kr.green.adidas.vo.SubCategoryVO;
 
@@ -88,17 +90,45 @@ public class GoodsController {
 	  return goodsService.insertOption(option);
 	}
 	@RequestMapping(value= "/goods/detail")
-	public ModelAndView detail(ModelAndView mv, Integer gd_num){	
+	public ModelAndView detail(ModelAndView mv, Integer gd_num, HttpServletRequest request){
+		MemberVO user = (MemberVO) request.getSession().getAttribute("user");
 		GoodsVO goods = goodsService.getGoods(gd_num);
 		if(goods == null) {
 			mv.setViewName("/goods/list");
 		}else {
 			List<OptionVO> option = goodsService.getOption(gd_num);
+			List<ReviewVO> review = goodsService.getReviewList(gd_num);
+			List<LikesVO> likes = goodsService.getLikesList(user);
+			ReviewVO myReview = goodsService.getMyReview(user, gd_num);
+			mv.addObject("likes", likes);
+			mv.addObject("myReview", myReview);
+			mv.addObject("review", review);
 			mv.addObject("option", option);
 			mv.addObject("goods", goods);
 			mv.setViewName("/goods/detail");
 		}
 	  return mv;
+	}
+	@ResponseBody
+	@RequestMapping(value= "/goods/order/check")
+	public boolean goodsOrderCheck(String me_email, Integer gd_num){
+		if(me_email == null || gd_num <= 0)
+			return false;
+	  return goodsService.getGoodsOrderCheck(me_email, gd_num);
+	}
+	@ResponseBody
+	@RequestMapping(value= "/review/reg")
+	public boolean reviewReg(@RequestBody ReviewVO review){
+		if(review == null)
+			return false;
+	  return goodsService.insertReview(review);
+	}
+	@ResponseBody
+	@RequestMapping(value= "/likes")
+	public int likes(@RequestBody LikesVO likes){
+		if(likes == null)
+			return 0;
+	  return goodsService.setLikes(likes);
 	}
 	@ResponseBody
 	@RequestMapping(value= "/option")
