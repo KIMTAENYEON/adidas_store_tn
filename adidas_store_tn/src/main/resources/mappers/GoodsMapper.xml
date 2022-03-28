@@ -282,4 +282,10 @@
 			re_star = #{review.re_star}
 			where re_gd_num = #{review.re_gd_num} and re_me_email = #{review.re_me_email}
 	</update>
+	<delete id="deleteLikes">
+		delete from likes where li_re_num = #{re_num}
+	</delete>
+	<delete id="deleteReview">
+		delete from review where re_num = #{re_num}
+	</delete>
 </mapper>

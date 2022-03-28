@@ -60,4 +60,6 @@ public interface GoodsService {
 
 	int setLikesDownCount(Integer re_num);
 
+	boolean deleteReview(Integer re_num);
+
 }

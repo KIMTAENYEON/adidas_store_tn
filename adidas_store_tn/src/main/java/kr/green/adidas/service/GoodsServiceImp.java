@@ -235,4 +235,12 @@ public class GoodsServiceImp implements GoodsService{
 			return 0;
 		return goodsDao.getLikesDownCount(re_num);
 	}
+	@Override
+	public boolean deleteReview(Integer re_num) {
+		if(re_num <= 0)
+			return false;
+		goodsDao.deleteLikes(re_num);
+		goodsDao.deleteReview(re_num);
+		return true;
+	}
 }

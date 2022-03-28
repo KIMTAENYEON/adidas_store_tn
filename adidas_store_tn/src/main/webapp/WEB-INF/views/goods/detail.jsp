@@ -667,6 +667,21 @@
 			$('.goods-review-write-box').find('[name=re_star_input]').val(re_star);
 			$('.btn-star').eq(re_star - 1).click();
 		});
+		//리뷰 삭제 버튼
+		$('.btn-review-del').click(function() {
+			var re_num = $('.goods-review-myreview-box').find('[name=re_num]').val();
+			$.ajax({
+		        async:false,
+		        type:'GET',
+		        url: '<%=request.getContextPath()%>/review/del?re_num='+re_num,
+		        success : function(res){
+		        	if(res == true){
+		        		alert('리뷰를 삭제했습니다.');
+		        		window.location.reload();
+		        	}
+		        }
+		    });
+		});
 	</script>
 </body>
 </html>

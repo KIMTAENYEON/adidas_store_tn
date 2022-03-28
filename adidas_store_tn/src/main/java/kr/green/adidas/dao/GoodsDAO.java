@@ -72,4 +72,8 @@ public interface GoodsDAO {
 	int getLikesDownCount(@Param("re_num") Integer re_num);
 
 	void updateReview(@Param("review") ReviewVO review);
+
+	void deleteLikes(@Param("re_num") Integer re_num);
+
+	void deleteReview(@Param("re_num") Integer re_num);
 }

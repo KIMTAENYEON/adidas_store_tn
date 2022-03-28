@@ -124,6 +124,13 @@ public class GoodsController {
 	  return goodsService.insertReview(review);
 	}
 	@ResponseBody
+	@RequestMapping(value= "/review/del")
+	public boolean reviewDel(Integer re_num){
+		if(re_num == null)
+			return false;
+	  return goodsService.deleteReview(re_num);
+	}
+	@ResponseBody
 	@RequestMapping(value= "/likes")
 	public int likes(@RequestBody LikesVO likes){
 		if(likes == null)
