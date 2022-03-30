@@ -719,6 +719,13 @@
 				}
 				val += token;
 				val += product;
+				arr = val.split(token);
+				//쿠키에 10개이상의 제품이 있는 경우
+				if(arr.length > 10){
+					var lengthCount = arr.length - 10;
+					arr.splice(0, lengthCount);
+					val = arr.toString();
+				}
 			}else{
 				val = product;
 			}
