@@ -75,7 +75,7 @@
 	position: absolute; top: 25px; right: 190px;
 }
 .header .right-menu .admin-page-box a{
-	border: 1px solid black; background-color: #e9ecef;
+	background-color: #fff; padding: 5px;
 }
 /* 검색창 */
 .search-box{
