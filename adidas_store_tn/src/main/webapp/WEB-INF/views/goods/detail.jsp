@@ -698,7 +698,43 @@
 			var url = '<%=request.getContextPath()%>/goods/detail?gd_num='+gd_num+'&lineup='+lineup;
 			window.location.replace(url);
 		});
-		//리뷰 정렬 
+		//최근에 본 제품
+		addProduct();
+		function addProduct() {
+			var product = ${goods.gd_num};
+			var token = ',';
+			var val = getCookie('product');
+			console.log(val);
+			if(val != null){
+				var arr = val.split(token);
+				console.log(arr);
+				//쿠키에 이미 있는경우 맨 뒤로 보냄
+				if(arr.indexOf("" + product) >= 0){
+					var index = arr.indexOf("" + product);
+					var nowGoods = arr.splice(index, 1);
+					arr.push(nowGoods);
+					val = arr.toString();
+					setCookie('product' , val, 7);
+					return;
+				}
+				val += token;
+				val += product;
+			}else{
+				val = product;
+			}
+			setCookie('product' , val, 7);
+		}
+		//쿠키에 저장
+		function setCookie(name, value, expireTime){
+			var date = new Date();
+			date.setTime(date.getTime() + expireTime*24*60*60*1000);
+			document.cookie = name + '=' + value + ';expires=' + date.toUTCString() + ';path=/';
+		}
+		//쿠키 가져오기
+		function getCookie(name) {
+		  var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+		  return value? value[2] : null;
+		}
 	</script>
 </body>
 </html>
