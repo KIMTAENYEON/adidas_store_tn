@@ -198,6 +198,29 @@
 					</div>
 				</div>
 			</div>
+			<!-- 최근에 본 제품 -->
+			<div class="recently-product">
+				<div class="recently-product-container">
+					<div class="recently-product-text-box">
+						<div class="recently-product-text">
+							<h3>최근에 본 제품</h3>
+						</div>
+					</div>
+					<div class="recently-product-list-box">
+						<div class="recently-product-list-container">
+							<!-- 최근에 본 제품리스트 -->
+							<div class="recently-product-list">
+								<!-- 최근에 본 아이템 -->
+								
+							</div>
+							<div class="recently-product-btn-box">
+								<button type="button" class="btn btn-prev"><i class="icon-left"></i></button>
+								<button type="button" class="btn btn-next"><i class="icon-right"></i></button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 	<script>
@@ -342,6 +365,113 @@
 		        	}
 		        }
 		    });
+		}
+		//쿠키 가져오기
+		function getCookie(name) {
+		  var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+		  return value? value[2] : null;
+		}
+		//최근에 본 제품 리스트 가져오기
+		getProduct();
+		function getProduct() {
+			var val = getCookie('product');
+			var token = ',';
+			if(val == null){
+				$('.recently-product').hide();
+			}else{
+				var arr = val.split(token);
+				$.ajax({
+			        async:false,
+			        type:'GET',
+			        url: '<%=request.getContextPath()%>/product?gd_num='+arr,
+			        dataType:"json",
+			        success : function(res){
+			        	var list = res.list
+			        	if(list != null){
+			        		var str = '';
+			        		for(product of list){
+			        			str = createProduct(product);
+			        			$('.recently-product-list').prepend(str);
+			        		}
+			        	}
+			        }
+			    });
+			}
+		}
+		// 최근에 본 제품 리스트 html코드 만들기
+		function createProduct(product) {
+			var str = 		'<div class="recently-product-item-box">';
+				str +=			'<a href="<%=request.getContextPath()%>/goods/detail?gd_num=' + product.gd_num + '" class="recently-product-item">';
+				str +=				'<span class="goods-item-img-box">';
+				str +=					'<img src="<%=request.getContextPath()%>/img/' + product.gd_img +'" alt="">';
+				str +=				'</span>';
+				str +=				'<span class="goods-item-text-box">';
+				str +=					'<span class="goods-item-name">'+ product.gd_name +'</span>';
+				str +=					'<span class="goods-item-price">'+ product.gd_price +'</span>';
+				str +=				'</span>';
+				str +=			'</a>';
+				str +=		'</div>';
+			return str;
+		}
+		// 최근에 본 제품 다음버튼클릭
+		$('.recently-product .btn-next').click(function(){
+			console.log(1);
+			var productNext = $('.recently-product-list .end').nextAll().length
+			var productNextMargin = (productNext * 20)
+			if(productNext >= 5){
+				$('.recently-product-list').animate({marginLeft : '-=100%'});
+				$('.recently-product-list .end').nextAll().eq(4).addClass('end');
+				$('.recently-product-list .end').first().removeClass('end');
+				$('.recently-product-list .start').nextAll().eq(4).addClass('start');
+				$('.recently-product-list .start').first().removeClass('start');
+				$('.recently-product .btn-prev').show();
+			}
+			if(productNext >= 1 && productNext < 5){
+				$('.recently-product-list').animate({marginLeft : '-='+productNextMargin+'%'});
+				$('.recently-product-list .end').nextAll().eq(productNext -1).addClass('end');
+				$('.recently-product-list .end').first().removeClass('end');
+				$('.recently-product-list .start').nextAll().eq(productNext -1).addClass('start');
+				$('.recently-product-list .start').first().removeClass('start');
+				$('.recently-product .btn-prev').show();
+			}
+			var productNext = $('.recently-product-list .end').nextAll().length
+			if(productNext == 0){
+				$('.recently-product .btn-next').hide();
+			}
+		});
+		// 최근에 본 제품 이전버튼클릭
+		$('.recently-product .btn-prev').click(function(){
+			var productPrev = $('.recently-product-list .start').prevAll().length
+			var productPrevMargin = (productPrev * 20)
+			if(productPrev >= 5){
+				$('.recently-product-list').animate({marginLeft : '+=100%'});
+				$('.recently-product-list .end').prevAll().eq(4).addClass('end');
+				$('.recently-product-list .end').last().removeClass('end');
+				$('.recently-product-list .start').prevAll().eq(4).addClass('start');
+				$('.recently-product-list .start').last().removeClass('start');
+				$('.recently-product .btn-next').show();
+			}
+			if(productPrev >= 1 && productPrev < 5){
+				$('.recently-product-list').animate({marginLeft : '+='+productPrevMargin+'%'});
+				$('.recently-product-list .end').prevAll().eq(productPrev -1).addClass('end');
+				$('.recently-product-list .end').last().removeClass('end');
+				$('.recently-product-list .start').prevAll().eq(productPrev -1).addClass('start');
+				$('.recently-product-list .start').last().removeClass('start');
+				$('.recently-product .btn-next').show();
+			}
+			var productPrev = $('.recently-product-list .start').prevAll().length
+			if(productPrev == 0){
+				$('.recently-product .btn-prev').hide();
+			}
+		});
+		//최근에 본 제품 시작지점, 끝지점 설정
+		setStartEnd();
+		function setStartEnd(){
+			$('.recently-product-list').children().eq(0).addClass('start');
+			$('.recently-product-list').children().eq(4).addClass('end');
+			if($('.recently-product-list').children().length <= 5){
+				$('.recently-product .btn-next').hide();
+			}
 		}
 		setComma();
 		//콤마 찍기

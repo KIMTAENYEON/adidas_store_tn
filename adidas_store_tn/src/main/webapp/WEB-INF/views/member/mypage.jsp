@@ -70,7 +70,7 @@
 		</div>
 	</div>
 	<script>
-		// 중단 카테고리 다음버튼클릭
+		// 마이페이지 다음버튼클릭
 		$('.mypage-basket-img-btn-box .btn-next').click(function(){
 			var basketNext = $('.mypage-basket-img-box .end').nextAll().length
 			var basketNextMargin = (basketNext * 25)
@@ -95,7 +95,7 @@
 				$('.mypage-basket-img-btn-box .btn-next').hide();
 			}
 		});
-		// 중단 카테고리 이전버튼클릭
+		// 마이페이지 이전버튼클릭
 		$('.mypage-basket-img-btn-box .btn-prev').click(function(){
 			var basketPrev = $('.mypage-basket-img-box .start').prevAll().length
 			var basketPrevMargin = (basketPrev * 25)

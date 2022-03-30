@@ -484,16 +484,6 @@
 		        }
 		    });
 		});
-		setComma();
-		//콤마 찍기
-		function setComma() {
-			$('.goods-detail-price').each(function() {
-				var price = $(this).text();
-				price = parseInt(price);
-				var priceComma = price.toLocaleString('ko-KR');
-				$(this).text(priceComma + '원');
-			});
-		}
 		getOrderCheck();
 		//해당제품의 회원 주문상태 가져오기
 		function getOrderCheck() {
@@ -772,7 +762,6 @@
 				$('.recently-product').hide();
 			}else{
 				var arr = val.split(token);
-				console.log(arr);
 				$.ajax({
 			        async:false,
 			        type:'GET',
@@ -800,7 +789,7 @@
 				str +=				'</span>';
 				str +=				'<span class="goods-item-text-box">';
 				str +=					'<span class="goods-item-name">'+ product.gd_name +'</span>';
-				str +=					'<span class="goods-item-price">'+ product.gd_price +'원</span>';
+				str +=					'<span class="goods-item-price">'+ product.gd_price +'</span>';
 				str +=				'</span>';
 				str +=			'</a>';
 				str +=		'</div>';
@@ -808,16 +797,80 @@
 		}
 		// 최근에 본 제품 다음버튼클릭
 		$('.recently-product .btn-next').click(function(){
-			$('.recently-product-list').animate({marginLeft : '-=100%'});
-			$(this).hide();
-			$('.recently-product .btn-prev').show();
+			console.log(1);
+			var productNext = $('.recently-product-list .end').nextAll().length
+			var productNextMargin = (productNext * 20)
+			if(productNext >= 5){
+				$('.recently-product-list').animate({marginLeft : '-=100%'});
+				$('.recently-product-list .end').nextAll().eq(4).addClass('end');
+				$('.recently-product-list .end').first().removeClass('end');
+				$('.recently-product-list .start').nextAll().eq(4).addClass('start');
+				$('.recently-product-list .start').first().removeClass('start');
+				$('.recently-product .btn-prev').show();
+			}
+			if(productNext >= 1 && productNext < 5){
+				$('.recently-product-list').animate({marginLeft : '-='+productNextMargin+'%'});
+				$('.recently-product-list .end').nextAll().eq(productNext -1).addClass('end');
+				$('.recently-product-list .end').first().removeClass('end');
+				$('.recently-product-list .start').nextAll().eq(productNext -1).addClass('start');
+				$('.recently-product-list .start').first().removeClass('start');
+				$('.recently-product .btn-prev').show();
+			}
+			var productNext = $('.recently-product-list .end').nextAll().length
+			if(productNext == 0){
+				$('.recently-product .btn-next').hide();
+			}
 		});
 		// 최근에 본 제품 이전버튼클릭
 		$('.recently-product .btn-prev').click(function(){
-			$('.recently-product-list').animate({marginLeft : '+=100%'});
-			$(this).hide();
-			$('.recently-product .btn-next').show();
+			var productPrev = $('.recently-product-list .start').prevAll().length
+			var productPrevMargin = (productPrev * 20)
+			if(productPrev >= 5){
+				$('.recently-product-list').animate({marginLeft : '+=100%'});
+				$('.recently-product-list .end').prevAll().eq(4).addClass('end');
+				$('.recently-product-list .end').last().removeClass('end');
+				$('.recently-product-list .start').prevAll().eq(4).addClass('start');
+				$('.recently-product-list .start').last().removeClass('start');
+				$('.recently-product .btn-next').show();
+			}
+			if(productPrev >= 1 && productPrev < 5){
+				$('.recently-product-list').animate({marginLeft : '+='+productPrevMargin+'%'});
+				$('.recently-product-list .end').prevAll().eq(productPrev -1).addClass('end');
+				$('.recently-product-list .end').last().removeClass('end');
+				$('.recently-product-list .start').prevAll().eq(productPrev -1).addClass('start');
+				$('.recently-product-list .start').last().removeClass('start');
+				$('.recently-product .btn-next').show();
+			}
+			var productPrev = $('.recently-product-list .start').prevAll().length
+			if(productPrev == 0){
+				$('.recently-product .btn-prev').hide();
+			}
 		});
+		//최근에 본 제품 시작지점, 끝지점 설정
+		setStartEnd();
+		function setStartEnd(){
+			$('.recently-product-list').children().eq(0).addClass('start');
+			$('.recently-product-list').children().eq(4).addClass('end');
+			if($('.recently-product-list').children().length <= 5){
+				$('.recently-product .btn-next').hide();
+			}
+		}
+		setComma();
+		//콤마 찍기
+		function setComma() {
+			$('.goods-detail-price').each(function() {
+				var price = $(this).text();
+				price = parseInt(price);
+				var priceComma = price.toLocaleString('ko-KR');
+				$(this).text(priceComma + '원');
+			});
+			$('.goods-item-price').each(function() {
+				var price = $(this).text();
+				price = parseInt(price);
+				var priceComma = price.toLocaleString('ko-KR');
+				$(this).text(priceComma + '원');
+			});
+		}
 	</script>
 </body>
 </html>
