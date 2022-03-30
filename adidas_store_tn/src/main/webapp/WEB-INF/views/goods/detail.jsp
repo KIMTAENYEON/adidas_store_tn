@@ -216,6 +216,9 @@
 					</select>
 				</div>
 				<div class="goods-review-list-container">
+					<c:if test="${review == null || review == '[]'}">
+						<h3>리뷰가 없습니다.</h3>
+					</c:if>
 					<!-- 리뷰목록 -->
 					<div class="goods-review-list-box">
 					<c:forEach var="review" items="${review}">
@@ -711,6 +714,15 @@
 			var url = '<%=request.getContextPath()%>/goods/detail?gd_num='+gd_num+'&lineup='+lineup;
 			window.location.replace(url);
 		});
+		//선택한 리뷰 정렬 가져오기
+		setLineup();
+		function setLineup() {
+			$('.review-lineup').find('[value='+${lineup}+']').prop('selected', 'selected');	
+			if(${lineup != 0}){
+				var position = $('.goods-review').position();
+				$(window).scrollTop(position.top);
+			}
+		}
 		//최근에 본 제품 쿠키저장
 		addProduct();
 		function addProduct() {

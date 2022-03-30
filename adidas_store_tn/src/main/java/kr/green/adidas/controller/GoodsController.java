@@ -106,6 +106,10 @@ public class GoodsController {
 			mv.addObject("review", review);
 			mv.addObject("option", option);
 			mv.addObject("goods", goods);
+			if(lineup == null) {
+				lineup = 0;
+			}
+			mv.addObject("lineup", lineup);
 			mv.setViewName("/goods/detail");
 		}
 	  return mv;
