@@ -292,6 +292,138 @@
 				</div>
 			</div>
 		</div>
+		<!-- 최근에 본 제품 -->
+		<div class="recently-product">
+			<div class="recently-product-container">
+				<div class="recently-product-text-box">
+					<div class="recently-product-text">
+						<h3>최근에 본 제품</h3>
+					</div>
+				</div>
+				<div class="recently-product-list-box">
+					<div class="recently-product-list-container">
+						<!-- 최근에 본 제품리스트 -->
+						<div class="recently-product-list">
+							<!-- 신상품 아이템 -->
+							<div class="recently-product-item-box">
+								<a href="" class="recently-product-item">
+									<span class="goods-item-img-box">
+										<img src="../imgUpload/HB9489.webp" alt="">
+									</span>
+									<span class="goods-item-text-box">
+										<span class="goods-item-name">1</span>
+										<span class="goods-item-price">10000원</span>
+									</span>
+								</a>
+							</div>
+							<div class="recently-product-item-box">
+								<a href="" class="recently-product-item">
+									<span class="goods-item-img-box">
+										<img src="../imgUpload/HB9489.webp" alt="">
+									</span>
+									<span class="goods-item-text-box">
+										<span class="goods-item-name">2</span>
+										<span class="goods-item-price">10000원</span>
+									</span>
+								</a>
+							</div>
+							<div class="recently-product-item-box">
+								<a href="" class="recently-product-item">
+									<span class="goods-item-img-box">
+										<img src="../imgUpload/HB9489.webp" alt="">
+									</span>
+									<span class="goods-item-text-box">
+										<span class="goods-item-name">3</span>
+										<span class="goods-item-price">10000원</span>
+									</span>
+								</a>
+							</div>
+							<div class="recently-product-item-box">
+								<a href="" class="recently-product-item">
+									<span class="goods-item-img-box">
+										<img src="../imgUpload/DZ9388.webp" alt="">
+									</span>
+									<span class="goods-item-text-box">
+										<span class="goods-item-name">4</span>
+										<span class="goods-item-price">10000원</span>
+									</span>
+								</a>
+							</div>
+							<div class="recently-product-item-box">
+								<a href="" class="recently-product-item">
+									<span class="goods-item-img-box">
+										<img src="../imgUpload/ED6116.webp" alt="">
+									</span>
+									<span class="goods-item-text-box">
+										<span class="goods-item-name">5</span>
+										<span class="goods-item-price">10000원</span>
+									</span>
+								</a>
+							</div>
+							<div class="recently-product-item-box">
+								<a href="" class="recently-product-item">
+									<span class="goods-item-img-box">
+										<img src="../imgUpload/FY6869.webp" alt="">
+									</span>
+									<span class="goods-item-text-box">
+										<span class="goods-item-name">6</span>
+										<span class="goods-item-price">10000원</span>
+									</span>
+								</a>
+							</div>
+							<div class="recently-product-item-box">
+								<a href="" class="recently-product-item">
+									<span class="goods-item-img-box">
+										<img src="../imgUpload/HB9489.webp" alt="">
+									</span>
+									<span class="goods-item-text-box">
+										<span class="goods-item-name">7</span>
+										<span class="goods-item-price">10000원</span>
+									</span>
+								</a>
+							</div>
+							<div class="recently-product-item-box">
+								<a href="" class="recently-product-item">
+									<span class="goods-item-img-box">
+										<img src="../imgUpload/HB9489.webp" alt="">
+									</span>
+									<span class="goods-item-text-box">
+										<span class="goods-item-name">8</span>
+										<span class="goods-item-price">10000원</span>
+									</span>
+								</a>
+							</div>
+							<div class="recently-product-item-box">
+								<a href="" class="recently-product-item">
+									<span class="goods-item-img-box">
+										<img src="../imgUpload/HB9489.webp" alt="">
+									</span>
+									<span class="goods-item-text-box">
+										<span class="goods-item-name">9</span>
+										<span class="goods-item-price">10000원</span>
+									</span>
+								</a>
+							</div>
+							<div class="recently-product-item-box">
+								<a href="" class="recently-product-item">
+									<span class="goods-item-img-box">
+										<img src="../imgUpload/HB9489.webp" alt="">
+									</span>
+									<span class="goods-item-text-box">
+										<span class="goods-item-name">10</span>
+										<span class="goods-item-price">10000원</span>
+									</span>
+								</a>
+							</div>
+						</div>
+						<div class="recently-product-btn-box">
+							<button type="button" class="btn btn-prev"><i class="icon-left"></i></button>
+							<button type="button" class="btn btn-next"><i class="icon-right"></i></button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 	<script>
 		$('.btn-select-choice').click(function(e){
@@ -304,6 +436,18 @@
 				$(this).children().removeClass('icon-choice-ing');
 			}
 		})
+		// 최근에 본 제품 다음버튼클릭
+		$('.recently-product .btn-next').click(function(){
+			$('.recently-product-list').animate({marginLeft : '-=100%'});
+			$(this).hide();
+			$('.recently-product .btn-prev').show();
+		});
+		// 최근에 본 제품 이전버튼클릭
+		$('.recently-product .btn-prev').click(function(){
+			$('.recently-product-list').animate({marginLeft : '+=100%'});
+			$(this).hide();
+			$('.recently-product .btn-next').show();
+		});
 	</script>
 </body>
 </html>
