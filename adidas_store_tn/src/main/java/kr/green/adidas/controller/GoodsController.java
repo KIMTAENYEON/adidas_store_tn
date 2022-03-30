@@ -1,5 +1,6 @@
 package kr.green.adidas.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -146,6 +147,17 @@ public class GoodsController {
 	@RequestMapping(value= "/likes/down")
 	public int likesDown(Integer re_num){
 	  return goodsService.setLikesDownCount(re_num);
+	}
+	@ResponseBody
+	@RequestMapping(value= "/product")
+	public Map<String, Object> product(Integer [] gd_num){	
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		List<GoodsVO> list = new ArrayList<GoodsVO>();
+		for(Integer tmp : gd_num) {
+			list.add(goodsService.getGoods(tmp));
+		}
+		map.put("list", list);
+	  return map;
 	}
 	@ResponseBody
 	@RequestMapping(value= "/option")

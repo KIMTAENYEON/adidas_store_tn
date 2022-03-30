@@ -323,6 +323,29 @@
 				</div>
 			</div>
 		</div>
+		<!-- 최근에 본 제품 -->
+		<div class="recently-product">
+			<div class="recently-product-container">
+				<div class="recently-product-text-box">
+					<div class="recently-product-text">
+						<h3>최근에 본 제품</h3>
+					</div>
+				</div>
+				<div class="recently-product-list-box">
+					<div class="recently-product-list-container">
+						<!-- 최근에 본 제품리스트 -->
+						<div class="recently-product-list">
+							<!-- 최근에 본 아이템 -->
+							
+						</div>
+						<div class="recently-product-btn-box">
+							<button type="button" class="btn btn-prev"><i class="icon-left"></i></button>
+							<button type="button" class="btn btn-next"><i class="icon-right"></i></button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 	<script>
 		//사이즈 선택 시 색상 변경
@@ -698,16 +721,14 @@
 			var url = '<%=request.getContextPath()%>/goods/detail?gd_num='+gd_num+'&lineup='+lineup;
 			window.location.replace(url);
 		});
-		//최근에 본 제품
+		//최근에 본 제품 쿠키저장
 		addProduct();
 		function addProduct() {
 			var product = ${goods.gd_num};
 			var token = ',';
 			var val = getCookie('product');
-			console.log(val);
 			if(val != null){
 				var arr = val.split(token);
-				console.log(arr);
 				//쿠키에 이미 있는경우 맨 뒤로 보냄
 				if(arr.indexOf("" + product) >= 0){
 					var index = arr.indexOf("" + product);
@@ -742,6 +763,61 @@
 		  var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
 		  return value? value[2] : null;
 		}
+		//최근에 본 제품 리스트 가져오기
+		getProduct();
+		function getProduct() {
+			var val = getCookie('product');
+			var token = ',';
+			if(val == null){
+				$('.recently-product').hide();
+			}else{
+				var arr = val.split(token);
+				console.log(arr);
+				$.ajax({
+			        async:false,
+			        type:'GET',
+			        url: '<%=request.getContextPath()%>/product?gd_num='+arr,
+			        dataType:"json",
+			        success : function(res){
+			        	var list = res.list
+			        	if(list != null){
+			        		var str = '';
+			        		for(product of list){
+			        			str = createProduct(product);
+			        			$('.recently-product-list').prepend(str);
+			        		}
+			        	}
+			        }
+			    });
+			}
+		}
+		// 최근에 본 제품 리스트 html코드 만들기
+		function createProduct(product) {
+			var str = 		'<div class="recently-product-item-box">';
+				str +=			'<a href="<%=request.getContextPath()%>/goods/detail?gd_num=' + product.gd_num + '" class="recently-product-item">';
+				str +=				'<span class="goods-item-img-box">';
+				str +=					'<img src="<%=request.getContextPath()%>/img/' + product.gd_img +'" alt="">';
+				str +=				'</span>';
+				str +=				'<span class="goods-item-text-box">';
+				str +=					'<span class="goods-item-name">'+ product.gd_name +'</span>';
+				str +=					'<span class="goods-item-price">'+ product.gd_price +'원</span>';
+				str +=				'</span>';
+				str +=			'</a>';
+				str +=		'</div>';
+			return str;
+		}
+		// 최근에 본 제품 다음버튼클릭
+		$('.recently-product .btn-next').click(function(){
+			$('.recently-product-list').animate({marginLeft : '-=100%'});
+			$(this).hide();
+			$('.recently-product .btn-prev').show();
+		});
+		// 최근에 본 제품 이전버튼클릭
+		$('.recently-product .btn-prev').click(function(){
+			$('.recently-product-list').animate({marginLeft : '+=100%'});
+			$(this).hide();
+			$('.recently-product .btn-next').show();
+		});
 	</script>
 </body>
 </html>
