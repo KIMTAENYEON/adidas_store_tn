@@ -96,7 +96,7 @@
 										<span class="select-category-img-box">
 											<img src="<%=request.getContextPath()%>/img/${goods.gd_img}" alt="">
 										</span>
-										<span class="select-category-name">${goods.gd_name}</span>
+										<span class="select-category-name"><c:if test="${goods.gd_sub_num >= 19 && goods.gd_sub_num <= 21}">청소년 [8-16세] </c:if><c:if test="${goods.gd_sub_num >= 22 && goods.gd_sub_num <= 24}">어린이 [4-8세] </c:if><c:if test="${goods.gd_sub_num >= 25 && goods.gd_sub_num <= 26}">유아 [1-4세] </c:if>${goods.gd_name}</span>
 									</a>
 								</div>
 							</c:forEach>
