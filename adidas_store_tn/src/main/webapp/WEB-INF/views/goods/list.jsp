@@ -319,6 +319,10 @@
 		//찜하기버튼 클릭
 		$('.btn-item-choice').click(function(e){
 			e.preventDefault();
+			var user = "${user.me_email}";
+			if(user == null || user == ""){
+				return;
+			}
 			if($(this).children().hasClass('icon-item-choice')){
 				$(this).children().addClass('icon-item-choice-ing');
 				$(this).children().removeClass('icon-item-choice');
@@ -349,6 +353,10 @@
 		getChoiceState();
 		//로그인한 유저의 찜상태 가져오기
 		function getChoiceState() {
+			var user = "${user.me_email}";
+			if(user == null || user == ""){
+				return;
+			}
 			$.ajax({
 		        async:false,
 		        type:'POST',
@@ -356,12 +364,14 @@
 		        dataType:"json",
 		        success : function(res){
 		        	var list = res.list
-		        	for(choice of list){
-						$('.goods-item-box [name=gd_num]').each(function() {
-							if(choice.ch_state == 1){
-								$('[value='+choice.ch_gd_num+']').siblings('.btn-item-choice').children().addClass('icon-item-choice-ing').removeClass('icon-item-choice');								
-							}
-						});
+		        	if(list != null){
+			        	for(choice of list){
+							$('.goods-item-box [name=gd_num]').each(function() {
+								if(choice.ch_state == 1){
+									$('[value='+choice.ch_gd_num+']').siblings('.btn-item-choice').children().addClass('icon-item-choice-ing').removeClass('icon-item-choice');								
+								}
+							});
+			        	}
 		        	}
 		        }
 		    });

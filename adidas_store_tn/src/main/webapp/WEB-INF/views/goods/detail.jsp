@@ -389,6 +389,11 @@
 		}
 		// 구매 버튼 클릭시 옵션번호 가져오기
 		$('.btn-select-buy').click(function() {
+			var user = "${user.me_email}";
+			if(user == null || user == ""){
+				alert('로그인 후 가능합니다.')
+				return false;
+			}
 			var size = $('[name=op_size]').val();
 			if(size == '' || size == null){
 				alert('사이즈를 선택하세요.');
@@ -413,6 +418,10 @@
 		// 찜하기 클릭
 		$('.btn-select-choice').click(function(e){
 			e.preventDefault();
+			var user = "${user.me_email}";
+			if(user == null || user == ""){
+				return;
+			}
 			if($(this).children().hasClass('icon-choice')){
 				$(this).children().addClass('icon-choice-ing');
 				$(this).children().removeClass('icon-choice');
@@ -443,6 +452,10 @@
 		getChoiceState();
 		//로그인한 유저의 찜상태 가져오기
 		function getChoiceState() {
+			var user = "${user.me_email}";
+			if(user == null || user == ""){
+				return;
+			}
 			$.ajax({
 		        async:false,
 		        type:'POST',
@@ -450,12 +463,14 @@
 		        dataType:"json",
 		        success : function(res){
 		        	var list = res.list
-		        	for(choice of list){
-		        		if(choice.ch_gd_num == '${goods.gd_num}'){
-		        			if(choice.ch_state == 1){
-								$('.btn-select-choice').children().addClass('icon-choice-ing').removeClass('icon-choice');								
-							}
-		        		}
+		        	if(list != null){
+			        	for(choice of list){
+			        		if(choice.ch_gd_num == '${goods.gd_num}'){
+			        			if(choice.ch_state == 1){
+									$('.btn-select-choice').children().addClass('icon-choice-ing').removeClass('icon-choice');								
+								}
+			        		}
+			        	}
 		        	}
 		        }
 		    });
@@ -463,6 +478,11 @@
 		//장바구니 담기 클릭
 		$('.btn-select-bascket').click(function(e) {
 			e.preventDefault();
+			var user = "${user.me_email}";
+			if(user == null || user == ""){
+				alert('로그인 후 가능합니다.')
+				return;
+			}
 			var op_gd_num = '${goods.gd_num}';
 			var op_size = $('[name=op_size]').val();
 			var op_amount = $('.goods-detail-amount').val();
@@ -563,6 +583,10 @@
 			}else{
 				$(this).siblings('[name=li_state]').val(-1);
 				li_state = -1;
+			}
+			if(li_me_email == null || li_me_email.trim().length == 0){
+				alert('로그인 후 가능합니다.');
+				return false;
 			}
 			var likes = {
 				li_state : li_state,
@@ -809,7 +833,6 @@
 		}
 		// 최근에 본 제품 다음버튼클릭
 		$('.recently-product .btn-next').click(function(){
-			console.log(1);
 			var productNext = $('.recently-product-list .end').nextAll().length
 			var productNextMargin = (productNext * 20)
 			if(productNext >= 5){
