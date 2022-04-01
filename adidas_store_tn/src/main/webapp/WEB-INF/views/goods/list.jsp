@@ -28,7 +28,7 @@
 				<div class="goods-list-select-search-box">
 					<h1>
 						<c:if test="${pm.criteria.search != null && pm.criteria.search != ''}">
-							<span>${pm.criteria.search}</span>
+							<span class="search-text">"${pm.criteria.search}"</span>
 						</c:if>
 						<c:if test="${select.se_gender != null && select.se_gender != '성별'}">
 							<span>${select.se_gender}</span>
@@ -117,6 +117,7 @@
 								<option value="4">인기순</option>
 							</select>
 						</span>
+						<input type="hidden" class="search-input" placeholder="검색" name="search" value="${pm.criteria.search}">
 						<button type="submit" class="btn btn-option-apply">
 							적용
 							<i class="icon-right"></i>
@@ -492,6 +493,13 @@
 				var priceComma = price.toLocaleString('ko-KR');
 				$(this).text(priceComma + '원');
 			});
+		}
+		//검색후 옵션선택시 
+		setSearch();
+		function setSearch() {
+			if($('.search-text').nextAll().length > 0){
+				$('.search-text').after('<span class="and"> · </span>');
+			}
 		}
 	</script>
 </body>
