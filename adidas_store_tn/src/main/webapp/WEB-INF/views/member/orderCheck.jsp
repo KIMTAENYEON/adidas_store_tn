@@ -101,9 +101,6 @@
 		</div>
 	</div>
 	<script>
-		$('.btn').click(function(e){
-			e.preventDefault();
-		})
 		//주문취소 버튼 클릭
 		$('.btn-order-cancle').click(function(e){
 			e.preventDefault();
