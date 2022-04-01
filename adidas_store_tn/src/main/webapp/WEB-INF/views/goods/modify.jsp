@@ -26,7 +26,7 @@
 					<div class="goods-modify-img">
 						<h3>이미지 선택</h3>
 						<input type="file" id="gd_img" name="file" />
-						<div class="select_img"><img src="<%=request.getContextPath()%>${goods.gd_img}"/></div>
+						<div class="select_img"><img src="<%=request.getContextPath()%>/img/${goods.gd_img}"/></div>
 					</div>
 					<!-- 제품정보 -->
 					<div class="goods-modify-information"> 
