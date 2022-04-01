@@ -46,7 +46,7 @@
 										<c:forEach var="order" items="${order}">
 											<c:if test="${order.or_num == orderList.ol_or_num}">
 												<tr>
-													<th class="gd_img"><a href=""><img src="<%=request.getContextPath()%>/img/${goods.gd_img}" alt=""></a></th>
+													<th class="gd_img"><a href="<%=request.getContextPath()%>/goods/detail?gd_num=${goods.gd_num}"><img src="<%=request.getContextPath()%>/img/${goods.gd_img}" alt=""></a></th>
 													<th class="gd_name">${goods.gd_name}</th>
 													<th class="op_size">${option.op_size}</th>
 													<th class="ol_amount">${orderList.ol_amount}</th>
