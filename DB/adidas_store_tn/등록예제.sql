@@ -361,6 +361,9 @@ ADD COLUMN `re_down` INT NULL AFTER `re_up`;
 ALTER TABLE `adidas_store_tn`.`review` 
 CHANGE COLUMN `re_up` `re_up` INT NULL DEFAULT 0 ,
 CHANGE COLUMN `re_down` `re_down` INT NULL DEFAULT 0 ;
+--  2022-04-01 (goods테이블 수정)
+ALTER TABLE `adidas_store_tn`.`goods` 
+ADD COLUMN `gd_del` VARCHAR(5) NOT NULL DEFAULT 'N' AFTER `gd_sub_num`;
 
 
 
