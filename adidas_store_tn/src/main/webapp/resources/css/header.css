@@ -44,30 +44,30 @@
 	font-size: 14px; margin-bottom: 5px; letter-spacing: -1.5px;
 }
 /* 로고 부분 */
-.logo-box{
+.header .logo-box{
 	display: flex;
 }
-.logo{
+.header .logo{
 	width: 100px; height: 100px;
 	background-image: url(https://www.adidas.co.kr/glass/react/717be74/assets/img/icon-adidas-logo.svg);
 	background-position: left center;  background-size: contain; background-repeat: no-repeat;
 }
 /* 메인 메뉴 */
-.main-menu{
+.header .main-menu{
 	flex: 0 0 auto; position: relative; display: flex;
 }
-.main-menu-gender{
+.header .main-menu-gender{
 	margin-top: 40px; margin-right: 20px; height: 100px;
 }
-.main-menu-gender a{
+.header .main-menu-gender a{
 	font-weight: bold; font-size: 20px; letter-spacing: 1.87px; margin: 0 3px;
 }
 /* 우측 메뉴 */
-.right-menu{
+.header .right-menu{
 	display: flex; margin-top: 50px;
 }
 /* 로그인 */
-.right-menu .login-user-box{
+.header .right-menu .login-user-box{
 	position: absolute; top: 25px; right: 49px;
 }
 /* 관리자페이지 */
@@ -78,46 +78,46 @@
 	background-color: #fff; padding: 5px;
 }
 /* 검색창 */
-.search-box{
+.header .search-box{
 	position: absolute; top: 59px; right: 190px;
 }
-.search-input{
+.header .search-input{
 	border: solid thin #e9ecef; padding-left: 10px; padding-right: 35px; 
 	background-color: #e9ecef;	text-overflow: ellipsis; font-size: 13px;
 	height: 32px; line-height: 32px; outline: none;
 }
 /* 마이페이지 */
-.mypage-box{
+.header .mypage-box{
 	width: 50px; height: 50px; position: relative;
 }
-.mypage{
+.header .mypage{
 	width: 32px; height: 32px; position: absolute; top: 9px; left: 9px;
 }
-.icon-mypage{
+.header .icon-mypage{
 	width: 32px; height: 32px; display: block;  
 	background-image: url(../img/person.png);
 	background-position: center; background-size: contain; 
 }
 /* 찜목록 */
-.choice-box{
+.header .choice-box{
 	width: 50px; height: 50px; position: relative;
 }
-.choice{
+.header .choice{
 	width: 32px; height: 32px; position: absolute; top: 9px; left: 9px;
 }
-.icon-choice{
+.header .icon-choice{
 	width: 32px; height: 32px; display: block;  
 	background-image: url(../img/heart_empty.png);
 	background-position: center; background-size: contain; 
 }
 /* 장바구니 */
-.basket-box{
+.header .basket-box{
 	width: 50px; height: 50px; position: relative;
 }
-.basket{
+.header .basket{
 	width: 32px; height: 32px; position: absolute; top: 9px; left: 9px;
 }
-.icon-basket{
+.header .icon-basket{
 	width: 32px; height: 32px; display: block;  
 	background-image: url(../img/shopping.png);
 	background-position: center; background-size: contain; 
