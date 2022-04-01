@@ -78,4 +78,9 @@ public interface GoodsDAO {
 	void deleteReview(@Param("re_num") Integer re_num);
 
 	void updateReviewUpDown(@Param("re_num") Integer re_num, @Param("up") Integer up, @Param("down") Integer down);
+
+	void deleteMyListOption(@Param("op_num") Integer op_num);
+
+	void deleteChoice(@Param("gd_num") Integer gd_num);
+
 }

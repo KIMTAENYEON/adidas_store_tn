@@ -141,6 +141,11 @@ public class GoodsServiceImp implements GoodsService{
 		GoodsVO dbGoods = goodsDao.selectGoods(gd_num);
 		if(dbGoods == null)
 			return;
+		List<OptionVO> option = goodsDao.getOption(gd_num);
+		for(OptionVO tmp : option) {
+			goodsDao.deleteMyListOption(tmp.getOp_num());
+		}
+		goodsDao.deleteChoice(gd_num);
 		goodsDao.deleteGoods(gd_num);
 	}
 	@Override

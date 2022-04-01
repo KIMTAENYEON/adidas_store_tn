@@ -23,4 +23,5 @@ public class GoodsVO {
 	private String gd_importer;
 	private int gd_ca_num;
 	private int gd_sub_num;
+	private String gd_del;
 }

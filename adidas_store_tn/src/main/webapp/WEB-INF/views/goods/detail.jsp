@@ -13,6 +13,10 @@
 </head>
 <body>
 	<div class="body margin-top">
+	<c:if test="${goods.gd_del == 'Y'}">
+		<h3 class="delete-h3">삭제된 제품 입니다.</h3>
+	</c:if>
+	<c:if test="${goods.gd_del == 'N'}">
 		<div class="goods-detail">
 			<div class="goods-detail-container">
 				<!-- 이미지 박스 -->
@@ -349,6 +353,7 @@
 				</div>
 			</div>
 		</div>
+	</c:if>
 	</div>
 	<script>
 		//사이즈 선택 시 색상 변경

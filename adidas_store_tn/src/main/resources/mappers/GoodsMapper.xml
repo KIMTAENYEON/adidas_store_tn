@@ -25,6 +25,7 @@
 	</select>
 	<select id="getGoodsList" resultType="kr.green.adidas.vo.GoodsVO">
 		select * from goods where gd_name like concat('%', #{cri.search}, '%') 
+			and gd_del = 'N'
 			<!-- 성별선택시 Man이나 Women일 때 Unisex도 포함 -->
 			<if test="select.se_gender == 'Man' or select.se_gender == 'Women'">
 				and gd_gender in(#{select.se_gender}, 'Unisex')
@@ -75,6 +76,7 @@
 		    join orderlist
 		    on ol_op_num = op_num
 			where gd_name like concat('%', #{cri.search}, '%') and ol_state != '주문완료'
+			and gd_del = 'N'
 			<!-- 성별선택시 Man이나 Women일 때 Unisex도 포함 -->
 			<if test="select.se_gender == 'Man' or select.se_gender == 'Women'">
 				and gd_gender in(#{select.se_gender}, 'Unisex')
@@ -109,6 +111,7 @@
 	</select>
 	<select id="selectTotalCount" resultType="int">
 		select count(*) from goods where gd_name like concat('%', #{cri.search}, '%')
+			and gd_del = 'N'
 			<!-- 성별선택시 Man이나 Women일 때 Unisex도 포함 -->
 			<if test="select.se_gender == 'Man' or select.se_gender == 'Women'">
 				and gd_gender in(#{select.se_gender}, 'Unisex')
@@ -144,6 +147,7 @@
 		    join orderlist
 		    on ol_op_num = op_num
 			where gd_name like concat('%', #{cri.search}, '%') and ol_state != '주문완료'
+			and gd_del = 'N'
 			<!-- 성별선택시 Man이나 Women일 때 Unisex도 포함 -->
 			<if test="select.se_gender == 'Man' or select.se_gender == 'Women'">
 				and gd_gender in(#{select.se_gender}, 'Unisex')
@@ -213,9 +217,11 @@
 			gd_sub_num = #{goods.gd_sub_num}
 			where gd_num = #{goods.gd_num}
 	</update>
-	<delete id="deleteGoods">
-		delete from goods where gd_num = #{gd_num}
-	</delete>
+	<update id="deleteGoods">
+		update goods set 
+			gd_del = 'Y'
+			where gd_num = #{gd_num};
+	</update>
 	<select id="selectGroupbyCategory" resultType="kr.green.adidas.vo.GoodsVO">
 		select gd_gender, gd_ca_num, gd_img, gd_sub_num, sub_name as gd_name from goods 
 			join subcategory
@@ -232,6 +238,7 @@
 	</select>
 	<select id="selectNewGoods" resultType="kr.green.adidas.vo.GoodsVO">
 		select * from goods
+			where gd_del = 'N'
 			order by gd_date desc
 			limit 0, 10
 	</select>
@@ -310,4 +317,10 @@
 			re_down = #{down}
 			where re_num = #{re_num}
 	</update>
+	<delete id="deleteMyListOption">
+		delete from mylist where my_op_num = #{op_num}
+	</delete>
+	<delete id="deleteChoice">
+		delete from choice where ch_gd_num = #{gd_num}
+	</delete>
 </mapper>

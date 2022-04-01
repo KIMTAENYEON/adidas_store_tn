@@ -10,6 +10,9 @@
 .goods-detail .goods-detail-container::after{
 	clear: both; content: ""; display: block;
 }
+.delete-h3{
+	font-size: 30px; font-weight: bold; padding: 300px 40%
+}
 /* 이미지 박스 */
 .goods-detail-img-container{
 	width: 70%; height: 750px; background-color: #edeff0; float: left;
