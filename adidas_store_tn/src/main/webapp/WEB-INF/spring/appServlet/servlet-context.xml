@@ -62,6 +62,9 @@
 	    <interceptor>
 	        <mapping path="/member/mypage"/>
 	        <mapping path="/member/privacy"/>
+	        <mapping path="/member/choice"/>
+	        <mapping path="/member/basket"/>
+	        <mapping path="/member/orderCheck"/>
 	        <beans:ref bean="memberInterceptor"/>
 	    </interceptor>
 	    <interceptor>
@@ -76,8 +79,11 @@
 	    </interceptor>
 	    <interceptor>
 	        <mapping path="/admin"/>
+	        <mapping path="/admin/orderAdmin"/>
 	        <mapping path="/goods/register"/>
 	        <mapping path="/goods/add"/>
+	        <mapping path="/goods/modify"/>
+	        <mapping path="/goods/delete"/>
 	        <beans:ref bean="adminInterceptor"/>
 	    </interceptor>
 	</interceptors>
