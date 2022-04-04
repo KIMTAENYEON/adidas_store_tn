@@ -272,7 +272,7 @@
 }
 /* 내 리뷰 */
 .goods-review .goods-review-myreview-box{
-	width: 100%;
+	width: 100%; border-top: 1px solid #e9ecef; border-bottom: 1px solid #e9ecef; padding: 10px 0px;
 } 
 .goods-review .goods-review-button{
 	position: absolute; bottom: 0; right: 0;
