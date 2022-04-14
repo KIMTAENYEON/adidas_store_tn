@@ -364,7 +364,22 @@ CHANGE COLUMN `re_down` `re_down` INT NULL DEFAULT 0 ;
 --  2022-04-01 (goods테이블 수정)
 ALTER TABLE `adidas_store_tn`.`goods` 
 ADD COLUMN `gd_del` VARCHAR(5) NOT NULL DEFAULT 'N' AFTER `gd_sub_num`;
-
+-- 2022-04-14 (likes외래키 지정)
+ALTER TABLE `adidas_store_tn`.`likes` 
+ADD INDEX `li_re_num_idx` (`li_re_num` ASC) VISIBLE,
+ADD INDEX `li_me_email_idx` (`li_me_email` ASC) VISIBLE;
+;
+ALTER TABLE `adidas_store_tn`.`likes` 
+ADD CONSTRAINT `li_re_num`
+  FOREIGN KEY (`li_re_num`)
+  REFERENCES `adidas_store_tn`.`review` (`re_num`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION,
+ADD CONSTRAINT `li_me_email`
+  FOREIGN KEY (`li_me_email`)
+  REFERENCES `adidas_store_tn`.`member` (`me_email`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
 
 
 
