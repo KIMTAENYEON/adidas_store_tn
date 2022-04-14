@@ -1,0 +1,71 @@
+@charset "UTF-8";
+*{
+	padding: 0; margin: 0; list-style: none; text-decoration: none; color: #000;
+	box-sizing: border-box;
+}
+
+.login-container{
+	max-width: 1220px;
+	margin: 0 auto;
+}
+.login-container .login-box{
+	width: 500px; height: 500px; margin: 0 auto;
+}
+.login-container .login-box h3{
+	font-size: 42px; line-height: 38px; margin-bottom: 15px;
+}
+.login-container .login-box .pw-forget{
+	text-decoration: underline;
+}
+.login-container .login-box .pw-forget:hover{
+	background-color: #000; color: #fff;
+}
+/* 이메일입력, 패스워드입력 */
+.email-input-container,
+.pw-input-container{
+	margin-top: 15px;
+}
+.email-input-box,
+.pw-input-box{
+	width: 500px; height: 50px; padding: 10px 10px; border: 1px solid #000;
+}
+.email-input-box input,
+.pw-input-box input{
+	width: 100%;  height: 100%; font-size: 16px; outline: none; border: none;
+}
+/* 로그인 유지 */
+.auto-login-container{
+	margin: 15px 0;
+}
+.auto-login-box{
+	align-items: center;	display: flex;	line-height: 24px;
+}
+.auto-login-box input{
+	width: 24px; height: 24px; margin-right: 10px;
+}
+.auto-login-box span{	font-size: 16px;}
+/* 로그인 버튼 */
+.btn-container{
+	display: flex;
+}
+.btn-login{
+	width: 150px;	height: 50px; background: #fff; border: 2px solid #000;
+}
+.btn-login span{
+	font-size: 13px; font-weight: bold;
+	text-align: center; line-height: 50px;
+}
+.icon-right{
+	width: 24px; height: 24px; margin-left: 15px; display: inline-block; vertical-align: -5px;
+	background-image: url(../img/right-arrow.png);
+	background-position: left center;  background-size: contain; background-repeat: no-repeat;
+}
+/* 회원가입 버튼 */
+.btn-container .btn-signup{
+	width: 150px;	height: 50px; background: #fff; border: 2px solid #000;
+	text-align: center; line-height: 50px; display: inline-block; margin-left: 200px;
+}
+.btn-container .btn-signup span{
+	font-size: 13px; font-weight: bold;
+	text-align: center; line-height: 50px;
+}

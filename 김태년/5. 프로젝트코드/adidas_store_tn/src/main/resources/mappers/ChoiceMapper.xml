@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.green.adidas.dao.ChoiceDAO">
+	<insert id="insertChoice">
+		insert into choice (ch_state, ch_me_email, ch_gd_num)
+			values (#{choice.ch_state}, #{choice.ch_me_email}, #{choice.ch_gd_num})
+	</insert>
+	<select id="getChoice" resultType="kr.green.adidas.vo.ChoiceVO">
+		select * from choice where ch_gd_num = #{choice.ch_gd_num} and ch_me_email = #{choice.ch_me_email}
+	</select>
+	<update id="updateChoice">
+		update choice set 
+			ch_state = #{choice.ch_state}
+			where ch_gd_num = #{choice.ch_gd_num} and ch_me_email = #{choice.ch_me_email}
+	</update>
+	<select id="selectChoice" resultType="kr.green.adidas.vo.ChoiceVO">
+		select * from choice where ch_me_email = #{me_email}
+	</select>
+	<select id="getGoodsChoice" resultType="kr.green.adidas.vo.GoodsVO">
+		select * from goods where gd_num = #{gd_num}
+	</select>
+	<select id="selectMyList" resultType="kr.green.adidas.vo.MyListVO">
+		select * from mylist where my_me_email = #{user.me_email} and my_op_num = #{op_num}
+	</select>
+	<insert id="insertMyList">
+		insert into mylist (my_amount, my_me_email, my_op_num)
+			values (#{op_amount}, #{user.me_email}, #{op_num})
+	</insert>
+	<update id="updateMyList">
+		update mylist set 
+			my_amount = #{op_amount}
+			where my_num = #{myList.my_num}
+	</update>
+	<select id="getMyList" resultType="kr.green.adidas.vo.MyListVO">
+		select * from mylist where my_me_email = #{user.me_email}
+			order by my_num desc
+	</select>
+	<select id="getOptionOpNum" resultType="kr.green.adidas.vo.OptionVO">
+		select * from `option` where op_num = #{op_num}
+	</select>
+	<delete id="deleteMyList">
+		delete from mylist where my_num = #{my_num}
+	</delete>
+	<delete id="deleteMyListOrder">
+		delete from mylist where my_me_email = #{me_email} and my_op_num = #{op_num}
+	</delete>
+</mapper>

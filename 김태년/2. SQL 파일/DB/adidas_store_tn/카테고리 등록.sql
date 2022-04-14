@@ -1,0 +1,34 @@
+INSERT INTO `adidas_store_tn`.`category` (`ca_num`, `ca_name`) VALUES ('1', '신발');
+INSERT INTO `adidas_store_tn`.`category` (`ca_num`, `ca_name`) VALUES ('2', '의류');
+INSERT INTO `adidas_store_tn`.`category` (`ca_num`, `ca_name`) VALUES ('3', '용품');
+INSERT INTO `adidas_store_tn`.`category` (`ca_num`, `ca_name`) VALUES ('4', '청소년(8 - 16세)');
+INSERT INTO `adidas_store_tn`.`category` (`ca_num`, `ca_name`) VALUES ('5', '어린이(4 - 8세)');
+INSERT INTO `adidas_store_tn`.`category` (`ca_num`, `ca_name`) VALUES ('6', '유아(1 - 4세)');
+
+
+INSERT INTO `adidas_store_tn`.`subcategory` (`sub_num`, `sub_name`, `sub_ca_num`) VALUES ('1', '오리지널스', '1');
+INSERT INTO `adidas_store_tn`.`subcategory` (`sub_num`, `sub_name`, `sub_ca_num`) VALUES ('2', '러닝', '1');
+INSERT INTO `adidas_store_tn`.`subcategory` (`sub_num`, `sub_name`, `sub_ca_num`) VALUES ('3', '축구', '1');
+INSERT INTO `adidas_store_tn`.`subcategory` (`sub_num`, `sub_name`, `sub_ca_num`) VALUES ('4', '골프', '1');
+INSERT INTO `adidas_store_tn`.`subcategory` (`sub_num`, `sub_name`, `sub_ca_num`) VALUES ('5', '자켓', '2');
+INSERT INTO `adidas_store_tn`.`subcategory` (`sub_num`, `sub_name`, `sub_ca_num`) VALUES ('6', '축구 저지', '2');
+INSERT INTO `adidas_store_tn`.`subcategory` (`sub_num`, `sub_name`, `sub_ca_num`) VALUES ('7', '후디', '2');
+INSERT INTO `adidas_store_tn`.`subcategory` (`sub_num`, `sub_name`, `sub_ca_num`) VALUES ('8', '티셔츠', '2');
+INSERT INTO `adidas_store_tn`.`subcategory` (`sub_num`, `sub_name`, `sub_ca_num`) VALUES ('9', '트랙수트/트랙탑', '2');
+INSERT INTO `adidas_store_tn`.`subcategory` (`sub_num`, `sub_name`, `sub_ca_num`) VALUES ('10', '팬츠', '2');
+INSERT INTO `adidas_store_tn`.`subcategory` (`sub_num`, `sub_name`, `sub_ca_num`) VALUES ('11', '반바지', '2');
+INSERT INTO `adidas_store_tn`.`subcategory` (`sub_num`, `sub_name`, `sub_ca_num`) VALUES ('12', '타이즈', '2');
+INSERT INTO `adidas_store_tn`.`subcategory` (`sub_num`, `sub_name`, `sub_ca_num`) VALUES ('13', '스커트', '2');
+INSERT INTO `adidas_store_tn`.`subcategory` (`sub_num`, `sub_name`, `sub_ca_num`) VALUES ('14', '원피스', '2');
+INSERT INTO `adidas_store_tn`.`subcategory` (`sub_num`, `sub_name`, `sub_ca_num`) VALUES ('15', '양말', '3');
+INSERT INTO `adidas_store_tn`.`subcategory` (`sub_num`, `sub_name`, `sub_ca_num`) VALUES ('16', '모자', '3');
+INSERT INTO `adidas_store_tn`.`subcategory` (`sub_num`, `sub_name`, `sub_ca_num`) VALUES ('17', '가방', '3');
+INSERT INTO `adidas_store_tn`.`subcategory` (`sub_num`, `sub_name`, `sub_ca_num`) VALUES ('18', '장갑', '3');
+INSERT INTO `adidas_store_tn`.`subcategory` (`sub_num`, `sub_name`, `sub_ca_num`) VALUES ('19', '신발', '4');
+INSERT INTO `adidas_store_tn`.`subcategory` (`sub_num`, `sub_name`, `sub_ca_num`) VALUES ('20', '의류', '4');
+INSERT INTO `adidas_store_tn`.`subcategory` (`sub_num`, `sub_name`, `sub_ca_num`) VALUES ('21', '용품', '4');
+INSERT INTO `adidas_store_tn`.`subcategory` (`sub_num`, `sub_name`, `sub_ca_num`) VALUES ('22', '신발', '5');
+INSERT INTO `adidas_store_tn`.`subcategory` (`sub_num`, `sub_name`, `sub_ca_num`) VALUES ('23', '의류', '5');
+INSERT INTO `adidas_store_tn`.`subcategory` (`sub_num`, `sub_name`, `sub_ca_num`) VALUES ('24', '용품', '5');
+INSERT INTO `adidas_store_tn`.`subcategory` (`sub_num`, `sub_name`, `sub_ca_num`) VALUES ('25', '신발', '6');
+INSERT INTO `adidas_store_tn`.`subcategory` (`sub_num`, `sub_name`, `sub_ca_num`) VALUES ('26', '의류', '6');

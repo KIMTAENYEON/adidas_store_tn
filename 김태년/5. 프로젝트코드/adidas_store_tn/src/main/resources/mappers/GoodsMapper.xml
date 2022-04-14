@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.green.adidas.dao.GoodsDAO">
+	<insert id="insertGoods">
+		insert into goods (gd_img, gd_name, gd_gender, gd_price, gd_title, gd_content,
+				gd_code, gd_material, gd_color, gd_country, gd_made_date, gd_made_company, gd_ca_num, gd_sub_num)
+			values(#{goods.gd_img}, #{goods.gd_name}, #{goods.gd_gender}, #{goods.gd_price},
+				#{goods.gd_title}, #{goods.gd_content}, #{goods.gd_code}, #{goods.gd_material},
+				#{goods.gd_color}, #{goods.gd_country}, #{goods.gd_made_date}, #{goods.gd_made_company},
+				#{goods.gd_ca_num}, #{goods.gd_sub_num})
+	</insert>
+	<select id="selectCategory" resultType="kr.green.adidas.vo.CategoryVO">
+		select * from category 
+			<if test="gender == 'Man' or gender == 'Women' or gender == 'Unisex'">
+				where ca_num <![CDATA[ < ]]> 4
+			</if>
+			<if test="gender == 'Kids'">
+				where ca_num > 3
+			</if>
+	</select>
+	<select id="selectSubCategory" resultType="kr.green.adidas.vo.SubCategoryVO">
+		select * from subcategory where sub_ca_num = #{sub_ca_num}
+	</select>
+	<select id="getGoodsList" resultType="kr.green.adidas.vo.GoodsVO">
+		select * from goods where gd_name like concat('%', #{cri.search}, '%') 
+			and gd_del = 'N'
+			<!-- 성별선택시 Man이나 Women일 때 Unisex도 포함 -->
+			<if test="select.se_gender == 'Man' or select.se_gender == 'Women'">
+				and gd_gender in(#{select.se_gender}, 'Unisex')
+			</if>
+			<!-- 성별선택시 선택안하면 모든성별 검색-->
+			<if test="select.se_gender != 'Man' and select.se_gender != 'Women'">
+				and gd_gender like concat(#{select.se_gender}, '%') 
+			</if>
+			<!-- 카테고리 선택 결과 -->
+			<if test="select.se_ca_num != 0">
+				and gd_ca_num = #{select.se_ca_num}
+				<!-- 서브카테고리 선택 결과 -->
+				<if test="select.se_sub_num != 0">
+					and gd_sub_num = #{select.se_sub_num}
+				</if>
+			</if>
+			<!-- 신상품 체크시 -->
+			<if test="select.se_new != null and select.se_new != ''">
+				and gd_date >= date_add(now(), interval - 1 month)
+			</if>
+			<!-- 가격 설정 -->
+			<if test="select.se_min_price != 0">
+				and gd_price > #{select.se_min_price}
+			</if>
+			<if test="select.se_max_price != 0">
+				and gd_price<![CDATA[ < ]]>#{select.se_max_price}
+			</if>
+				<!-- 정렬 설정 -->
+				<if test="select.se_lineup == 0">
+					order by gd_num desc
+				</if>
+				<if test="select.se_lineup == 1">
+					order by gd_price asc
+				</if>
+				<if test="select.se_lineup == 2">
+					order by gd_price desc
+				</if>
+				<if test="select.se_lineup == 3">
+					order by gd_date desc
+				</if>
+				limit #{cri.pageStart}, #{cri.perPageNum}
+	
+	</select>
+	<select id="getGoodsListPopular" resultType="kr.green.adidas.vo.GoodsVO">
+		select goods.* from goods 
+			join `option`
+		    on gd_num = op_gd_num
+		    join orderlist
+		    on ol_op_num = op_num
+			where gd_name like concat('%', #{cri.search}, '%') and ol_state != '주문완료'
+			and gd_del = 'N'
+			<!-- 성별선택시 Man이나 Women일 때 Unisex도 포함 -->
+			<if test="select.se_gender == 'Man' or select.se_gender == 'Women'">
+				and gd_gender in(#{select.se_gender}, 'Unisex')
+			</if>
+			<!-- 성별선택시 선택안하면 모든성별 검색-->
+			<if test="select.se_gender != 'Man' and select.se_gender != 'Women'">
+				and gd_gender like concat(#{select.se_gender}, '%') 
+			</if>
+			<!-- 카테고리 선택 결과 -->
+			<if test="select.se_ca_num != 0">
+				and gd_ca_num = #{select.se_ca_num}
+				<!-- 서브카테고리 선택 결과 -->
+				<if test="select.se_sub_num != 0">
+					and gd_sub_num = #{select.se_sub_num}
+				</if>
+			</if>
+			<!-- 신상품 체크시 -->
+			<if test="select.se_new != null and select.se_new != ''">
+				and gd_date >= date_add(now(), interval - 1 month)
+			</if>
+			<!-- 가격 설정 -->
+			<if test="select.se_min_price != 0">
+				and gd_price > #{select.se_min_price}
+			</if>
+			<if test="select.se_max_price != 0">
+				and gd_price<![CDATA[ < ]]>#{select.se_max_price}
+			</if>
+			group by gd_num
+			order by sum(ol_amount) desc
+			limit #{cri.pageStart}, #{cri.perPageNum}
+	
+	</select>
+	<select id="selectTotalCount" resultType="int">
+		select count(*) from goods where gd_name like concat('%', #{cri.search}, '%')
+			and gd_del = 'N'
+			<!-- 성별선택시 Man이나 Women일 때 Unisex도 포함 -->
+			<if test="select.se_gender == 'Man' or select.se_gender == 'Women'">
+				and gd_gender in(#{select.se_gender}, 'Unisex')
+			</if>
+			<!-- 성별선택시 선택안하면 모든성별 검색-->
+			<if test="select.se_gender != 'Man' and select.se_gender != 'Women'">
+				and gd_gender like concat(#{select.se_gender}, '%') 
+			</if>
+			<!-- 카테고리 선택 결과 -->
+			<if test="select.se_ca_num != 0">
+				and gd_ca_num = #{select.se_ca_num}
+				<!-- 서브카테고리 선택 결과 -->
+				<if test="select.se_sub_num != 0">
+					and gd_sub_num = #{select.se_sub_num}
+				</if>
+			</if>
+			<!-- 신상품 체크시 -->
+			<if test="select.se_new != null and select.se_new != ''">
+				and gd_date >= date_add(now(), interval - 1 month)
+			</if>
+			<!-- 가격 설정 -->
+			<if test="select.se_min_price != 0">
+				and gd_price > #{select.se_min_price}
+			</if>
+			<if test="select.se_max_price != 0">
+				and gd_price<![CDATA[ < ]]>#{select.se_max_price}
+			</if>
+	</select>
+	<select id="selectTotalCountPopular" resultType="int">
+		select count(distinct gd_num) from goods 
+			join `option`
+		    on gd_num = op_gd_num
+		    join orderlist
+		    on ol_op_num = op_num
+			where gd_name like concat('%', #{cri.search}, '%') and ol_state != '주문완료'
+			and gd_del = 'N'
+			<!-- 성별선택시 Man이나 Women일 때 Unisex도 포함 -->
+			<if test="select.se_gender == 'Man' or select.se_gender == 'Women'">
+				and gd_gender in(#{select.se_gender}, 'Unisex')
+			</if>
+			<!-- 성별선택시 선택안하면 모든성별 검색-->
+			<if test="select.se_gender != 'Man' and select.se_gender != 'Women'">
+				and gd_gender like concat(#{select.se_gender}, '%') 
+			</if>
+			<!-- 카테고리 선택 결과 -->
+			<if test="select.se_ca_num != 0">
+				and gd_ca_num = #{select.se_ca_num}
+				<!-- 서브카테고리 선택 결과 -->
+				<if test="select.se_sub_num != 0">
+					and gd_sub_num = #{select.se_sub_num}
+				</if>
+			</if>
+			<!-- 신상품 체크시 -->
+			<if test="select.se_new != null and select.se_new != ''">
+				and gd_date >= date_add(now(), interval - 1 month)
+			</if>
+			<!-- 가격 설정 -->
+			<if test="select.se_min_price != 0">
+				and gd_price > #{select.se_min_price}
+			</if>
+			<if test="select.se_max_price != 0">
+				and gd_price<![CDATA[ < ]]>#{select.se_max_price}
+			</if>
+	</select>
+	<select id="getTotalAmount" resultType="kr.green.adidas.vo.OptionVO">
+		select op_gd_num, sum(op_amount) as op_amount from `option`
+			group by op_gd_num
+	</select>
+	<insert id="insertOption">
+		insert into `option` (op_gd_num, op_size, op_amount)
+			values (#{option.op_gd_num}, #{option.op_size}, #{option.op_amount})
+	</insert>
+	<select id="selectOption" resultType="kr.green.adidas.vo.OptionVO">
+		select * from `option`
+			where op_gd_num = #{option.op_gd_num} and op_size = #{option.op_size}
+	</select>
+	<update id="addAmount">
+		update `option` set
+			op_amount = op_amount + #{option.op_amount}
+			where op_gd_num = #{option.op_gd_num} and op_size = #{option.op_size}
+	</update>
+	<select id="selectGoods" resultType="kr.green.adidas.vo.GoodsVO">
+		select * from goods where gd_num = #{gd_num}
+	</select>
+	<select id="getOption" resultType="kr.green.adidas.vo.OptionVO">
+		select * from `option` where op_gd_num = #{gd_num}
+	</select>
+	<update id="updateGoods">
+		update goods set
+			gd_img = #{goods.gd_img},
+			gd_name = #{goods.gd_name},
+			gd_gender = #{goods.gd_gender},
+			gd_price = #{goods.gd_price},
+			gd_title = #{goods.gd_title},
+			gd_content = #{goods.gd_content},
+			gd_code = #{goods.gd_code},
+			gd_material = #{goods.gd_material},
+			gd_color = #{goods.gd_color},
+			gd_country = #{goods.gd_country},
+			gd_made_date = #{goods.gd_made_date},
+			gd_made_company = #{goods.gd_made_company},
+			gd_ca_num = #{goods.gd_ca_num},
+			gd_sub_num = #{goods.gd_sub_num}
+			where gd_num = #{goods.gd_num}
+	</update>
+	<update id="deleteGoods">
+		update goods set 
+			gd_del = 'Y'
+			where gd_num = #{gd_num};
+	</update>
+	<select id="selectGroupbyCategory" resultType="kr.green.adidas.vo.GoodsVO">
+		select gd_gender, gd_ca_num, gd_img, gd_sub_num, sub_name as gd_name from goods 
+			join subcategory
+    		on gd_sub_num = sub_num
+    		<if test="gender == 'Man' or gender == 'Women'">
+				where gd_gender in(#{gender}, 'Unisex')
+			</if>
+			<!-- 성별선택시 선택안하면 모든성별 검색-->
+			<if test="gender != 'Man' and gender != 'Women'">
+				where gd_gender like concat(#{gender}, '%') 
+			</if>
+			group by gd_sub_num 
+			order by gd_sub_num asc
+	</select>
+	<select id="selectNewGoods" resultType="kr.green.adidas.vo.GoodsVO">
+		select * from goods
+			where gd_del = 'N'
+			order by gd_date desc
+			limit 0, 10
+	</select>
+	<select id="selectReviewList" resultType="kr.green.adidas.vo.ReviewVO">
+		select * from review 
+			where re_gd_num = #{gd_num} 
+			<if test="lineup == null or lineup == 0 or lineup == 1">
+				order by re_date desc
+			</if>
+			<if test="lineup == 2">
+				order by re_up desc
+			</if>
+			<if test="lineup == 3">
+				order by re_down desc
+			</if>
+			<if test="lineup == 4">
+				order by re_star desc
+			</if>
+			<if test="lineup == 5">
+				order by re_star asc
+			</if>
+	</select>
+	<select id="selectMyReview" resultType="kr.green.adidas.vo.ReviewVO">
+		select * from review where re_me_email = #{me_email} and re_gd_num = #{gd_num}
+	</select>
+	<select id="getGoodsOrderCheck" resultType="kr.green.adidas.vo.OrderListVO">
+		select * from orderList 
+			join `order`
+			on ol_or_num = or_num
+			join `option`
+			on ol_op_num = op_num
+			where or_me_email = #{me_email} and op_gd_num = #{gd_num} and ol_state = '배송완료'
+			group by or_me_email
+	</select>
+	<insert id="insertReview">
+		insert into review (re_title, re_content, re_star, re_gd_num, re_me_email)
+			values(#{review.re_title}, #{review.re_content}, #{review.re_star}, #{review.re_gd_num}, #{review.re_me_email})
+	</insert>
+	<select id="selectLikes" resultType="kr.green.adidas.vo.LikesVO">
+		select * from likes where li_me_email = #{likes.li_me_email} and li_re_num = #{likes.li_re_num}
+	</select>
+	<insert id="insertLikes">
+		insert into likes (li_state, li_me_email, li_re_num)
+			values (#{likes.li_state}, #{likes.li_me_email}, #{likes.li_re_num})
+	</insert>
+	<update id="updateLikes">
+		update likes set 
+			li_state = #{likes.li_state}
+			where li_me_email = #{likes.li_me_email} and li_re_num = #{likes.li_re_num}
+	</update>
+	<select id="selectLikesList" resultType="kr.green.adidas.vo.LikesVO">
+		select * from likes where li_me_email = #{user.me_email}
+	</select>
+	<select id="getLikesUpCount" resultType="int">
+		select count(*) from likes where li_re_num = #{re_num} and li_state = 1
+	</select>
+	<select id="getLikesDownCount" resultType="int">
+		select count(*) from likes where li_re_num = #{re_num} and li_state = -1
+	</select>
+	<update id="updateReview">
+		update review set 
+			re_title = #{review.re_title},
+			re_content = #{review.re_content},
+			re_star = #{review.re_star}
+			where re_gd_num = #{review.re_gd_num} and re_me_email = #{review.re_me_email}
+	</update>
+	<delete id="deleteLikes">
+		delete from likes where li_re_num = #{re_num}
+	</delete>
+	<delete id="deleteReview">
+		delete from review where re_num = #{re_num}
+	</delete>
+	<update id="updateReviewUpDown">
+		update review set
+			re_up = #{up},
+			re_down = #{down}
+			where re_num = #{re_num}
+	</update>
+	<delete id="deleteMyListOption">
+		delete from mylist where my_op_num = #{op_num}
+	</delete>
+	<delete id="deleteChoice">
+		delete from choice where ch_gd_num = #{gd_num}
+	</delete>
+</mapper>
